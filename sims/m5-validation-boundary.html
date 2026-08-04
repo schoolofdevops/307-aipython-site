@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Validation Boundary</title>
+<style>
+  :root{
+    --bg:#0d1220; --panel:#151c2e; --panel2:#111827; --line:#26324e; --line2:#1c2740;
+    --txt:#dbe4f5; --dim:#8494b3; --faint:#5a6a8c;
+    --accent:#4cc9f0; --accent2:#7b6cf6;
+    --ok:#3ddc97; --warn:#f5b942; --bad:#ff6b6b;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  /* fluid type scale: ~12.3px @800w -> 16px @>=1750w, floor 10.5px */
+  html{font-size:clamp(10.5px,0.4vw + 9.1px,16px);color-scheme:dark}
+  html,body{height:100%}
+  body{
+    background:var(--bg); color:var(--txt);
+    font:1rem/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    overflow:hidden;
+  }
+  #app{display:flex;flex-direction:column;height:100%;padding:8px 10px;gap:6px}
+
+  /* ---------- header ---------- */
+  header{display:flex;align-items:center;gap:10px;flex:0 0 auto;flex-wrap:wrap}
+  header h1{font-size:1.02rem;font-weight:650;letter-spacing:.2px;white-space:nowrap}
+  header h1 .ic{color:var(--accent)}
+  #stats,#stats *{cursor:default}
+  #stats{font-family:var(--mono);font-size:.8rem;color:var(--faint);display:flex;gap:10px;white-space:nowrap}
+  #stats b{color:var(--txt);font-weight:600}
+  #stats .streakon b{color:var(--ok)}
+
+  #modeSwitch{margin-left:auto;display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  .modeBtn{background:var(--panel2);border:none;color:var(--dim);font-size:.85rem;font-weight:600;
+    padding:4px 12px;cursor:pointer;min-height:26px;transition:background .15s,color .15s}
+  .modeBtn:hover{color:var(--txt)}
+  .modeBtn.active{background:rgba(76,201,240,.18);color:var(--accent)}
+  #modeStrict.active{background:rgba(255,107,107,.16);color:var(--bad)}
+
+  #reset{background:none;border:1px solid var(--line);color:var(--dim);border-radius:6px;
+    padding:3px 9px;font-size:.88rem;cursor:pointer;min-height:24px}
+  #reset:hover{color:var(--txt);border-color:var(--faint)}
+
+  /* ---------- challenge banner ---------- */
+  #challenge{flex:0 0 auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    background:linear-gradient(90deg,rgba(123,108,246,.14),rgba(76,201,240,.07));
+    border:1px solid #3a3f6e;border-radius:8px;padding:4px 11px;min-height:30px}
+  #challenge .tag{font-size:.78rem;font-weight:700;letter-spacing:.8px;color:var(--accent2);
+    text-transform:uppercase;white-space:nowrap}
+  #challenge .steps{display:flex;gap:5px}
+  #challenge .dot{width:1.3rem;height:1.3rem;border-radius:50%;border:1.5px solid var(--faint);
+    font-size:.76rem;display:flex;align-items:center;justify-content:center;color:var(--faint);font-weight:700}
+  #challenge .dot.cur{border-color:var(--accent);color:var(--accent)}
+  #challenge .dot.done{border-color:var(--ok);background:rgba(61,220,151,.15);color:var(--ok)}
+  #challenge .txt{flex:1;color:var(--txt);font-size:.9rem;min-width:14rem}
+  #challenge .txt .dim{color:var(--faint);font-size:.82rem}
+  #challenge .txt b{color:var(--accent)}
+  #chPredict{display:flex;gap:6px;flex-wrap:wrap}
+  #chPredict .chip{cursor:pointer;border:1px solid var(--accent2);color:#a89cf8;background:rgba(123,108,246,.1);
+    border-radius:12px;padding:2px 10px;font-size:.84rem;transition:background .15s,color .15s}
+  #chPredict .chip:hover{background:rgba(123,108,246,.28);color:#d6cfff}
+  #challenge.success{background:linear-gradient(90deg,rgba(61,220,151,.16),rgba(61,220,151,.05));border-color:#2c7a5b}
+  #challenge.success .tag{color:var(--ok)}
+  #challenge.success .txt{line-height:1.3}
+
+  /* ---------- main grid ---------- */
+  #main{flex:1 1 auto;display:grid;grid-template-columns:clamp(250px,27rem,420px) 1fr;gap:6px;min-height:0}
+  #main>*{min-width:0}
+  #left{display:flex;flex-direction:column;gap:6px;min-height:0}
+  .panel{background:var(--panel);border:1px solid var(--line2);border-radius:10px;padding:7px 10px;min-height:0}
+  .panel h2{font-size:.74rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--faint);margin-bottom:4px}
+
+  /* packet card -- read-only, deliberately non-interactive */
+  #card,#card *{cursor:default}
+  #card{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+  #card h2 span{color:var(--accent);text-transform:none;letter-spacing:0;font-family:var(--mono);font-size:.86rem}
+  #cardScenario{font-size:.83rem;line-height:1.4;color:var(--txt);opacity:.9;margin-bottom:4px}
+  #cardBody{flex:1 1 auto;min-height:0;overflow-y:auto;scrollbar-width:thin}
+  .payload{font-family:var(--mono);font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-word;color:var(--dim)}
+  .payload .hl{background:rgba(76,201,240,.16);color:var(--accent);border-radius:3px;display:inline-block}
+  .payload .hl.hlx{background:rgba(245,185,66,.16);color:var(--warn)}
+  #cardHint{cursor:help !important;margin-top:5px;padding-top:4px;border-top:1px dashed var(--line2);
+    font-size:.72rem;color:var(--faint);font-family:var(--mono)}
+
+  /* consequences panel -- read-only readout */
+  #consequences,#consequences *{cursor:default}
+  #consequences{flex:0 0 auto}
+  #vLabel{font-family:var(--mono);font-size:.94rem;font-weight:700;min-height:1.3rem;color:var(--faint)}
+  #vLabel.ok{color:var(--ok)} #vLabel.warn{color:var(--warn)} #vLabel.bad{color:var(--bad)}
+  #vNote{font-size:.82rem;line-height:1.4;color:var(--txt);opacity:.92;margin-top:3px;min-height:1.1rem}
+  #vDetail{font-family:var(--mono);font-size:.74rem;color:var(--dim);margin-top:3px;min-height:1rem}
+  #note{margin-top:5px;padding-top:4px;border-top:1px dashed var(--line2);font-size:.72rem;line-height:1.35;color:var(--faint);cursor:help !important}
+  #note .i{color:var(--accent);font-style:normal}
+
+  /* the call panel -- pick a verdict */
+  #call{display:flex;flex-direction:column;min-height:0}
+  #callBadgeRow{display:flex;align-items:center;justify-content:space-between;margin-bottom:2px}
+  .modeBadge{font-family:var(--mono);font-size:.72rem;font-weight:700;padding:1px 7px;border-radius:6px;letter-spacing:.5px}
+  .modeBadge.lenient{background:rgba(76,201,240,.16);color:var(--accent)}
+  .modeBadge.strict{background:rgba(255,107,107,.14);color:var(--bad)}
+  #opts{flex:1;display:flex;flex-direction:column;gap:6px;min-height:0}
+  .opt{flex:1;display:flex;align-items:center;gap:9px;text-align:left;min-height:2.6rem;
+    border:1px solid var(--line);border-radius:8px;background:var(--panel2);color:var(--txt);
+    padding:3px 10px;cursor:pointer;position:relative;transition:border-color .15s,background .15s}
+  .opt:hover:not(:disabled){border-color:var(--accent);background:rgba(76,201,240,.07)}
+  .opt:disabled{cursor:default;opacity:.55}
+  .opt:disabled.picked,.opt:disabled.correct{opacity:1}
+  .opt .oname{flex:0 0 6.4rem;font-family:var(--mono);font-size:.9rem;font-weight:650}
+  .opt .odesc{flex:1;font-size:.78rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-left:6px}
+  .opt .mark{font-size:.7rem;font-weight:700;letter-spacing:.4px;white-space:nowrap;
+    padding:1px 6px;border-radius:7px;display:none}
+  .opt.picked .mark.you{display:inline-block}
+  .opt.correct .mark.rs{display:inline-block;background:rgba(61,220,151,.16);color:var(--ok);border:1px solid rgba(61,220,151,.4)}
+  .opt.picked.ok{border-color:var(--ok);background:rgba(61,220,151,.1)}
+  .opt.picked.bad{border-color:var(--bad);background:rgba(255,107,107,.1)}
+  .opt.picked.ok .mark.you{background:rgba(61,220,151,.16);color:var(--ok);border:1px solid rgba(61,220,151,.4)}
+  .opt.picked.bad .mark.you{background:rgba(255,107,107,.14);color:var(--bad);border:1px solid rgba(255,107,107,.4)}
+  .opt.picked.correct .mark.rs{display:none}
+  #nextBtn{margin-top:2px;width:100%;min-height:2.2rem;border-radius:8px;border:1px solid var(--accent);
+    background:rgba(76,201,240,.1);color:var(--accent);font-size:.9rem;font-weight:600;cursor:pointer;
+    display:none;align-items:center;justify-content:center;gap:7px;animation:pulse 1.4s ease-in-out infinite}
+  #nextBtn.show{display:flex}
+  #nextBtn:hover{background:rgba(76,201,240,.22)}
+  @keyframes pulse{50%{box-shadow:0 0 10px rgba(76,201,240,.5)}}
+
+  /* event log -- read-only stream, deliberately non-interactive */
+  #events{flex:0 0 clamp(96px,8.4rem,140px);display:flex;flex-direction:column;min-height:0}
+  #events,#events *{cursor:default}
+  #events h2 span{letter-spacing:0;text-transform:none;color:var(--line)}
+  #evList{flex:1;overflow-y:auto;font-family:var(--mono);font-size:.77rem;line-height:1.62;scrollbar-width:thin}
+  .ev{display:flex;gap:8px;white-space:nowrap;overflow:hidden}
+  .ev .et{color:var(--faint);flex:0 0 2.6rem}
+  .ev .er{flex:0 0 5.6rem;overflow:hidden;text-overflow:ellipsis;color:var(--ok)}
+  .ev.warn .er{color:var(--warn)}
+  .ev.bad .er{color:var(--bad)}
+  .ev.info .er{color:var(--accent2)}
+  .ev .em{flex:1;color:var(--txt);opacity:.85;overflow:hidden;text-overflow:ellipsis}
+  .ev.new{animation:evin .4s ease-out}
+  @keyframes evin{0%{background:rgba(76,201,240,.12)}100%{background:transparent}}
+
+  /* narrow fallback: stack + allow scroll rather than clip */
+  @media (max-width:620px){
+    body{overflow:auto}
+    #main{grid-template-columns:1fr}
+    #app{height:auto;min-height:100%}
+    .opt .odesc{white-space:normal}
+    .ev .er{flex-basis:5rem}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important;transition:none !important}
+  }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <header>
+    <h1><span class="ic">&#128737;</span> Validation Boundary</h1>
+    <div id="stats" title="Your run so far -- packets solved and current correct-prediction streak">
+      <span>solved <b id="hSolved">0</b>/12</span>
+      <span id="hStreakWrap">streak <b id="hStreak">0</b></span>
+    </div>
+    <div id="modeSwitch">
+      <button id="modeLenient" class="modeBtn active" title="Lenient (default): Pydantic quietly converts some unambiguous values before rejecting anything else.">Lenient</button>
+      <button id="modeStrict" class="modeBtn" title="Strict: every coercion path is off -- only the exact declared type is accepted.">Strict</button>
+    </div>
+    <button id="reset" title="Reset the simulator">&#8630; Reset</button>
+  </header>
+
+  <div id="challenge">
+    <span class="tag">Try this</span>
+    <span class="steps">
+      <span class="dot" id="d1">1</span><span class="dot" id="d2">2</span><span class="dot" id="d3">3</span>
+    </span>
+    <span class="txt" id="chTxt"></span>
+    <span id="chPredict"></span>
+  </div>
+
+  <div id="main">
+    <div id="left">
+      <div class="panel" id="card">
+        <h2>Packet <span id="cardId">PKT-000</span></h2>
+        <div id="cardScenario"></div>
+        <div id="cardBody"></div>
+        <div id="cardHint"></div>
+      </div>
+      <div class="panel" id="consequences">
+        <h2>Consequences</h2>
+        <div id="vLabel">&mdash; predict, then reveal</div>
+        <div id="vNote"></div>
+        <div id="vDetail"></div>
+        <div id="note" title="This sim hardcodes verdicts for 12 packets, checked against real Pydantic v2 (2.13) behaviour. It is not a live validation engine and does not cover every rule -- custom validators, discriminated unions, and before/after validators are out of scope. For anything not shown here, read Pydantic's own docs.">
+          <span class="i">&#9432;</span> Teaching model, not gospel: 12 packets, verified against real Pydantic v2 --
+          not every rule Pydantic has.
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" id="call">
+      <div id="callBadgeRow">
+        <h2 style="margin-bottom:0">Your call &mdash; predict, then reveal</h2>
+        <span class="modeBadge lenient" id="modeBadge">LENIENT</span>
+      </div>
+      <div id="opts"></div>
+      <button id="nextBtn" title="Deal the next packet">Next packet &#9656;</button>
+    </div>
+  </div>
+
+  <div class="panel" id="events">
+    <h2>Boundary log <span>&mdash; what Pydantic (and your on-call rotation) would tell you</span></h2>
+    <div id="evList"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var $=function(id){return document.getElementById(id)};
+
+  /* ------------------------------------------------------------------ model */
+  var VLABEL={pass:'PASS',coerce:'COERCE',reject:'REJECT'};
+  var MODE_LABEL={lenient:'Lenient',strict:'Strict'};
+  var OPT_DESC={
+    pass:'accepted exactly as sent -- no conversion needed',
+    coerce:'accepted, but Pydantic silently converts the value first',
+    reject:'blocked -- Pydantic raises ValidationError'
+  };
+
+  /* All 12 payloads share this shape; each card changes exactly the field under
+     test. Verdicts below were checked against real pydantic==2.13.4, both
+     lenient (default) and strict=True -- see the module's sim task notes. */
+  var CARDS=[
+    { id:'PKT-201', highlightKey:null,
+      hint:'baseline -- every field already matches its declared type',
+      scenario:'A routine health-check packet lands at the boundary -- nothing unusual, every field already typed correctly.',
+      payload:{name:'sync-worker',replicas:3,port:8080,environment:'prod',enabled:true,
+        account_id:'778812345600',
+        observability:{dashboard_url:'https://grafana.example.com/d/sync-worker',alert_channel:'#sync-alerts'}},
+      lenient:{verdict:'pass',
+        note:'Every field is already the exact declared type -- there is nothing to convert and nothing to reject.',
+        logline:'sync-worker validated clean -- every field already matched its declared type.'},
+      strict:{verdict:'pass',
+        note:'Strict mode has nothing extra to catch here -- the payload was never relying on a conversion in the first place.',
+        logline:'sync-worker validated clean in strict mode too -- there was nothing here for strict mode to catch.'},
+      trap:null },
+
+    { id:'PKT-212', highlightKey:'replicas',
+      hint:"replicas declared: int",
+      scenario:'A canary rollout script reads `replicas` from a shell variable and passes it straight through as text.',
+      payload:{name:'sync-worker',replicas:'3',port:8080,environment:'prod',enabled:true,
+        account_id:'778812345600',
+        observability:{dashboard_url:'https://grafana.example.com/d/sync-worker',alert_channel:'#sync-alerts'}},
+      lenient:{verdict:'coerce',
+        note:'The field wants an int; "3" is an unambiguous numeric string, so lenient mode converts it and moves on.',
+        logline:'replicas arrived as text ("3"); lenient mode quietly cast it to the integer 3.',
+        coerceShow:'"3" (str) &rarr; 3 (int)'},
+      strict:{verdict:'reject', err:{type:'int_type',msg:'Input should be a valid integer'},
+        note:'Strict mode turns off every conversion path -- a string is not an int, full stop, however unambiguous it looks.',
+        logline:'strict mode rejected replicas: "3" outright -- int_type, no conversion attempted.'},
+      trap:'coerce' },
+
+    { id:'PKT-223', highlightKey:'replicas',
+      hint:'replicas declared: int',
+      scenario:"A teammate hand-typed the replica count into a hotfix YAML and fat-fingered a word instead of a number.",
+      payload:{name:'sync-worker',replicas:'three',port:8080,environment:'prod',enabled:true,
+        account_id:'778812345600',
+        observability:{dashboard_url:'https://grafana.example.com/d/sync-worker',alert_channel:'#sync-alerts'}},
+      lenient:{verdict:'reject', err:{type:'int_parsing',msg:'Input should be a valid integer, unable to parse string as an integer'},
+        note:'"three" is not a number in any form Python recognizes -- lenient mode tries to parse it and gives up.',
+        logline:'replicas arrived as text ("three"); lenient mode tried to parse it as an integer and gave up.'},
+      strict:{verdict:'reject', err:{type:'int_type',msg:'Input should be a valid integer'},
+        note:'Strict mode does not even attempt the parse -- any non-int value is an immediate reject.',
+        logline:'strict mode rejected replicas: "three" -- int_type, not even a parse attempt.'},
+      trap:null },
+
+    { id:'PKT-234', highlightKey:'environment',
+      hint:"environment declared: Literal['dev','staging','prod']",
+      scenario:'An on-call engineer typed the full word "production" into a deploy form instead of the short code the schema expects.',
+      payload:{name:'sync-worker',replicas:3,port:8080,environment:'production',enabled:true,
+        account_id:'778812345600',
+        observability:{dashboard_url:'https://grafana.example.com/d/sync-worker',alert_channel:'#sync-alerts'}},
+      lenient:{verdict:'reject', err:{type:'literal_error',msg:"Input should be 'dev', 'staging' or 'prod'"},
+        note:'environment is a closed set of exact values -- Pydantic checks against that set, not against "is this a real-sounding environment name".',
+        logline:'environment arrived as "production" -- not one of dev/staging/prod, rejected as literal_error.'},
+      strict:{verdict:'reject', err:{type:'literal_error',msg:"Input should be 'dev', 'staging' or 'prod'"},
+        note:'Strict mode changes nothing here -- Literal matching was never about coercion, so there is nothing extra for strict mode to forbid.',
+        logline:'strict mode still rejects "production" -- Literal fields reject the same way in both modes.'},
+      trap:null },
+
+    { id:'PKT-245', highlightKey:null,
+      hint:'port declared: int, required, no default -- NOT present in this payload',
+      scenario:"A trimmed-down manifest from a scripted deploy left `port` out entirely -- nobody noticed when the line went missing.",
+      payload:{name:'sync-worker',replicas:3,environment:'prod',enabled:true,
+        account_id:'778812345600',
+        observability:{dashboard_url:'https://grafana.example.com/d/sync-worker',alert_channel:'#sync-alerts'}},
+      lenient:{verdict:'reject', err:{type:'missing',msg:'Field required'},
+        note:'port has no default -- leave it out of the payload and Pydantic reports it missing before it even looks at a value.',
+        logline:'port was not in the payload at all -- rejected as missing (Field required).'},
+      strict:{verdict:'reject', err:{type:'missing',msg:'Field required'},
+        note:'A required field left out is required in every mode -- strict mode does not change what counts as present.',
+        logline:'strict mode still rejects the missing port field -- required is required.'},
+      trap:null },
+
+    { id:'PKT-256', highlightKey:'port',
+      hint:'port declared: int',
+      scenario:'A YAML parser upstream read `port: 8080` as a floating-point number because of how the file was templated.',
+      payload:{name:'sync-worker',replicas:3,port:8080.0,environment:'prod',enabled:true,
+        account_id:'778812345600',
+        observability:{dashboard_url:'https://grafana.example.com/d/sync-worker',alert_channel:'#sync-alerts'}},
+      lenient:{verdict:'coerce',
+        note:'8080.0 carries no fractional part -- lenient mode\'s int-from-float rule allows it and stores 8080.',
+        logline:'port arrived as 8080.0 (a float); lenient mode\'s int-from-float rule quietly converted it to 8080.',
+        coerceShow:'8080.0 (float) &rarr; 8080 (int)'},
+      strict:{verdict:'reject', err:{type:'int_type',msg:'Input should be a valid integer'},
+        note:'Strict mode refuses any float for an int field, whole-number or not -- the value itself must already be an int.',
+        logline:'strict mode rejected port: 8080.0 -- int_type, a float is never an int here.'},
+      trap:null },
+
+    { id:'PKT-267', highlightKey:'enabled',
+      hint:'enabled declared: bool',
+      scenario:'A CLI flag arrives as raw text from the shell: --enabled=yes, exactly as the operator typed it.',
+      payload:{name:'sync-worker',replicas:3,port:8080,environment:'prod',enabled:'yes',
+        account_id:'778812345600',
+        observability:{dashboard_url:'https://grafana.example.com/d/sync-worker',alert_channel:'#sync-alerts'}},
+      lenient:{verdict:'coerce',
+        note:'Pydantic\'s lenient bool parser recognizes a fixed set of yes/no-style strings -- "yes" becomes True.',
+        logline:'enabled arrived as the text "yes"; lenient mode recognized it as a boolean and cast it to True.',
+        coerceShow:'"yes" (str) &rarr; true (bool)'},
+      strict:{verdict:'reject', err:{type:'bool_type',msg:'Input should be a valid boolean'},
+        note:'Strict mode wants an actual boolean value -- no string, however boolean-sounding, is accepted.',
+        logline:'strict mode rejected enabled: "yes" -- bool_type, strings are never booleans here.'},
+      trap:'flip' },
+
+    { id:'PKT-278', highlightKey:'account_id',
+      hint:'account_id declared: str',
+      scenario:'An automation script pulled `account_id` from a spreadsheet cell that Excel silently stored as a number.',
+      payload:{name:'sync-worker',replicas:3,port:8080,environment:'prod',enabled:true,
+        account_id:778812345600,
+        observability:{dashboard_url:'https://grafana.example.com/d/sync-worker',alert_channel:'#sync-alerts'}},
+      lenient:{verdict:'reject', err:{type:'string_type',msg:'Input should be a valid string'},
+        note:'account_id is typed str on purpose -- Pydantic never stringifies a number for you, because a dropped leading zero could hide inside that "helpful" conversion.',
+        logline:'account_id arrived as the number 778812345600; lenient mode does not coerce int to str -- rejected as string_type.'},
+      strict:{verdict:'reject', err:{type:'string_type',msg:'Input should be a valid string'},
+        note:'Strict mode agrees for a simpler reason -- it never coerces anything, in either direction.',
+        logline:'strict mode also rejects account_id as string_type -- same outcome, stricter reasoning.'},
+      trap:null },
+
+    { id:'PKT-289', highlightKey:'observability',
+      hint:'observability declared: nested model (dashboard_url + alert_channel)',
+      scenario:'A broken template accidentally flattened the whole `observability` block down to a single URL string.',
+      payload:{name:'sync-worker',replicas:3,port:8080,environment:'prod',enabled:true,
+        account_id:'778812345600',
+        observability:'https://grafana.example.com/d/sync-worker'},
+      lenient:{verdict:'reject', err:{type:'model_type',msg:'Input should be a valid dictionary or instance of Observability'},
+        note:'observability must be an object with dashboard_url and alert_channel inside -- a bare URL string is not that shape at all.',
+        logline:'observability arrived as a single URL string, not an object -- rejected as model_type.'},
+      strict:{verdict:'reject', err:{type:'model_type',msg:'Input should be a valid dictionary or instance of Observability'},
+        note:'Same problem in strict mode -- this is a structural mismatch, not a type Pydantic could ever coerce toward.',
+        logline:'strict mode rejects the same malformed observability payload -- no mode fixes a missing structure.'},
+      trap:null },
+
+    { id:'PKT-300', highlightKey:'alert_channel',
+      hint:'observability.alert_channel declared: str',
+      scenario:'A dashboard-generation script wrote the Slack channel as a numeric ID instead of the #channel-name text it should be.',
+      payload:{name:'sync-worker',replicas:3,port:8080,environment:'prod',enabled:true,
+        account_id:'778812345600',
+        observability:{dashboard_url:'https://grafana.example.com/d/sync-worker',alert_channel:42}},
+      lenient:{verdict:'reject', err:{type:'string_type',msg:'Input should be a valid string'},
+        note:'The nested model checks its own fields the same way the outer one does -- alert_channel wants a str, and lenient mode does not stringify a number here either.',
+        logline:'observability.alert_channel arrived as the number 42, not text -- rejected as string_type, same rule as any other str field.'},
+      strict:{verdict:'reject', err:{type:'string_type',msg:'Input should be a valid string'},
+        note:'Strict mode rejects it too -- nested models inherit the same no-coercion stance in strict mode.',
+        logline:'strict mode rejects the same nested field -- the int-to-str rule holds at any depth.'},
+      trap:null },
+
+    { id:'PKT-311', highlightKey:'chaos_monkey',
+      hint:'chaos_monkey is not declared on ServiceDefinition at all',
+      scenario:'A well-meaning teammate added a `chaos_monkey` flag to the manifest that ServiceDefinition never asked for.',
+      payload:{name:'sync-worker',replicas:3,port:8080,environment:'prod',enabled:true,
+        account_id:'778812345600',
+        observability:{dashboard_url:'https://grafana.example.com/d/sync-worker',alert_channel:'#sync-alerts'},
+        chaos_monkey:true},
+      lenient:{verdict:'pass',
+        note:'Pydantic\'s default policy for a key it does not know about is to quietly ignore it -- the packet validates on its declared fields, and chaos_monkey is dropped, not stored, not raised.',
+        logline:'chaos_monkey was not a field ServiceDefinition knows about -- Pydantic\'s default policy silently ignored it and validated the rest.'},
+      strict:{verdict:'pass',
+        note:'strict=True only tightens type-checking on fields the model does declare -- it says nothing about fields it does not, so unknown keys are still ignored.',
+        logline:'strict mode still ignores chaos_monkey -- strict controls field types, not which extra keys are allowed.'},
+      trap:null },
+
+    { id:'PKT-322', highlightKey:'replicas',
+      hint:'replicas declared: int',
+      scenario:'A YAML anchor reuse bug means `replicas` inherited a boolean value from an unrelated flag higher in the file.',
+      payload:{name:'sync-worker',replicas:true,port:8080,environment:'prod',enabled:true,
+        account_id:'778812345600',
+        observability:{dashboard_url:'https://grafana.example.com/d/sync-worker',alert_channel:'#sync-alerts'}},
+      lenient:{verdict:'coerce',
+        note:'Python\'s bool is technically a subtype of int, and lenient mode inherits that -- True is silently accepted as replicas=1, a real, easy-to-miss foot-gun.',
+        logline:'replicas arrived as the boolean true; lenient mode accepted it as the integer 1 -- Python\'s bool-is-an-int rule leaking through.',
+        coerceShow:'true (bool) &rarr; 1 (int)'},
+      strict:{verdict:'reject', err:{type:'int_type',msg:'Input should be a valid integer'},
+        note:'Strict mode closes exactly this gap -- a bool is not an int in strict mode, so the trap does not fire.',
+        logline:'strict mode rejected replicas: true -- int_type; strict mode is what stops a stray boolean from becoming a fake replica count.'},
+      trap:null }
+  ];
+
+  var ORDER=CARDS.map(function(_,i){return i});
+
+  var S={queue:ORDER.slice(),retired:new Set(),correctByCardMode:{},
+         card:null,cardIdx:-1,mode:'lenient',answered:false,flipActive:false,
+         prediction:null,streak:0,t0:Date.now()};
+
+  /* ------------------------------------------------------------------ events */
+  var evList=$('evList');
+  function clock(){var s=Math.floor((Date.now()-S.t0)/1000);return Math.floor(s/60)+':'+('0'+s%60).slice(-2)}
+  function logEv(kind,reason,msg){
+    var d=document.createElement('div');
+    d.className='ev new '+(kind==='warn'?'warn':kind==='bad'?'bad':kind==='info'?'info':'');
+    d.innerHTML='<span class="et">'+clock()+'</span><span class="er"></span><span class="em"></span>';
+    d.children[1].textContent=reason; d.children[2].innerHTML=msg;
+    d.title=reason+'  --  '+msg.replace(/<[^>]+>/g,'');
+    evList.appendChild(d);
+    while(evList.children.length>90)evList.removeChild(evList.firstChild);
+    evList.scrollTop=evList.scrollHeight;
+  }
+
+  /* ------------------------------------------------------------------ challenge */
+  var CH={step:1,done:[false,false,false],streak:0,coerceTrapOK:false,flipTrapOK:false,
+    predPicked:[null,null,null],
+    preds:[
+      {q:'What decides whether a value passes the ServiceDefinition boundary?',
+       opts:['Whether it looks like reasonable data to a person','Whether it is already the declared type, or safely convertible to it under the current mode'],ok:1,
+       explain:'Pydantic checks the declared type, not vibes -- and in lenient mode, some conversions are attempted automatically before it gives up and rejects.'},
+      {q:'A field typed int receives the string "3" -- a value that plainly reads as a number. What does lenient mode do with it?',
+       opts:['Reject it -- a string is never the right type','Coerce it -- lenient mode converts unambiguous strings to the declared type'],ok:1,
+       explain:'lenient mode is lenient exactly here: an unambiguous numeric string gets converted, not rejected -- the coercion this module keeps warning you not to take for granted.'},
+      {q:'You just watched a packet COERCE cleanly in lenient mode. Flip the SAME packet to strict mode -- what happens?',
+       opts:['Nothing changes -- strict is just a stricter label on the same behavior','The verdict can flip to REJECT -- strict mode turns off every coercion path'],ok:1,
+       explain:'strict mode is not cosmetic -- it removes every conversion path, so a packet that quietly passed a moment ago can stop the deploy outright under the exact same bytes.'}
+    ]};
+  var CH_TEXT=[
+    'Step 1 -- Predict <b>3 packets correctly in a row</b>: read the field type and the current mode, then call it PASS, COERCE, or REJECT before you reveal.',
+    'Step 2 -- One packet\'s wrong-looking value is actually fine. Beat the <b>coercion trap</b>: correctly predict COERCE on it.',
+    'Step 3 -- Flip a packet you already solved from Lenient to Strict and predict it again. Beat the <b>strict-flip trap</b>: catch the verdict changing on the exact same packet.'
+  ];
+  var SUCCESS='Challenge complete! You felt the boundary rule: a type hint alone checks nothing &mdash; Pydantic\'s compiled validator does, and its verdict depends on both the value\'s shape <b>and</b> which mode is active. Same packet, two different outcomes.';
+
+  function predict(i){
+    if(CH.step>3)return;
+    var s=CH.step;
+    if(CH.predPicked[s-1]!==null)return;
+    if(i<0||i>=CH.preds[s-1].opts.length)return;
+    CH.predPicked[s-1]=i;
+    logEv('info','prediction','you predicted: “'+CH.preds[s-1].opts[i]+'”');
+    renderChallenge();
+  }
+  function predVerdict(s){
+    var pick=CH.predPicked[s-1];
+    if(pick===null)return; /* skipped -- formative, never blocking */
+    var pr=CH.preds[s-1];
+    if(pick===pr.ok)logEv('ok','prediction','Prediction right -- '+pr.explain);
+    else logEv('warn','prediction','Not what you predicted (“'+pr.opts[pick]+'”) -- '+pr.explain);
+  }
+  function updateChallenge(){
+    var moved=true;
+    while(moved){
+      moved=false;
+      if(CH.step===1&&!CH.done[0]&&CH.streak>=3){CH.done[0]=true;predVerdict(1);CH.step=2;moved=true;}
+      else if(CH.step===2&&!CH.done[1]&&CH.coerceTrapOK){CH.done[1]=true;predVerdict(2);CH.step=3;moved=true;}
+      else if(CH.step===3&&!CH.done[2]&&CH.flipTrapOK){CH.done[2]=true;predVerdict(3);CH.step=4;moved=true;}
+    }
+    renderChallenge();
+  }
+  function renderChallenge(){
+    for(var i=1;i<=3;i++){
+      var d=$('d'+i); d.className='dot'+(CH.done[i-1]?' done':CH.step===i?' cur':'');
+      d.textContent=CH.done[i-1]?'✓':i;
+    }
+    var box=$('challenge'),txt=$('chTxt'),pr=$('chPredict');
+    pr.innerHTML='';
+    if(CH.step===4){box.classList.add('success');txt.innerHTML=SUCCESS;return;}
+    var s=CH.step,p=CH.preds[s-1];
+    if(CH.predPicked[s-1]===null){
+      txt.innerHTML='<span class="dim">Predict first --</span> '+p.q;
+      p.opts.forEach(function(o,i){
+        var c=document.createElement('span');
+        c.className='chip';c.textContent=o;c.title='Lock in this prediction';
+        c.addEventListener('click',function(){predict(i)});
+        pr.appendChild(c);
+      });
+    }else{
+      txt.innerHTML=CH_TEXT[s-1]+' <span class="dim">(you predicted: “'+p.opts[CH.predPicked[s-1]]+'”)</span>';
+    }
+  }
+
+  /* ------------------------------------------------------------------ render */
+  function esc(s){return String(s).replace(/[&<>]/g,function(c){return c==='&'?'&amp;':c==='<'?'&lt;':'&gt;'});}
+  function renderPayload(card){
+    var lines=JSON.stringify(card.payload,null,2).split('\n');
+    return lines.map(function(line){
+      var e=esc(line);
+      if(card.highlightKey && line.indexOf('"'+card.highlightKey+'"')!==-1){
+        var cls=(card.id==='PKT-311')?'hl hlx':'hl';
+        return '<span class="'+cls+'">'+e+'</span>';
+      }
+      return e;
+    }).join('\n');
+  }
+
+  var optEls={};
+  function buildOptions(){
+    var wrap=$('opts');
+    ['pass','coerce','reject'].forEach(function(v){
+      var b=document.createElement('button');
+      b.className='opt';
+      b.title='Predict '+VLABEL[v]+': '+OPT_DESC[v];
+      b.innerHTML='<span class="oname"></span><span class="odesc"></span>'+
+        '<span class="mark you">your call</span><span class="mark rs">&#9664; actual</span>';
+      b.querySelector('.oname').textContent=VLABEL[v];
+      b.querySelector('.odesc').textContent=OPT_DESC[v];
+      b.addEventListener('click',function(){pick(v)});
+      wrap.appendChild(b);
+      optEls[v]=b;
+    });
+  }
+
+  function renderCard(){
+    var c=S.card;
+    $('cardId').textContent=c.id;
+    $('cardScenario').textContent=c.scenario;
+    $('cardBody').innerHTML='<pre class="payload">'+renderPayload(c)+'</pre>';
+    $('cardHint').textContent=c.hint;
+    $('cardHint').title='Declared type/shape -- the outcome still depends on the value AND the current mode.';
+  }
+
+  function renderModeButtons(){
+    $('modeLenient').classList.toggle('active',S.mode==='lenient');
+    $('modeStrict').classList.toggle('active',S.mode==='strict');
+    var b=$('modeBadge');
+    b.textContent=MODE_LABEL[S.mode].toUpperCase();
+    b.className='modeBadge '+S.mode;
+  }
+
+  function renderCallButtons(){
+    Object.keys(optEls).forEach(function(v){
+      var b=optEls[v];
+      b.disabled=S.answered;
+      b.classList.remove('picked','correct','ok','bad');
+    });
+    if(S.answered){
+      var actual=S.card[S.mode].verdict;
+      optEls[actual].classList.add('correct');
+      optEls[S.prediction].classList.add('picked',S.prediction===actual?'ok':'bad');
+    }
+    $('nextBtn').classList.toggle('show',S.answered);
+  }
+
+  function renderVerdict(){
+    if(!S.answered){
+      $('vLabel').textContent='— predict, then reveal';$('vLabel').className='';
+      $('vNote').textContent='';$('vDetail').textContent='';
+      return;
+    }
+    var mode=S.mode,cm=S.card[mode],actual=cm.verdict;
+    var cls=actual==='pass'?'ok':actual==='coerce'?'warn':'bad';
+    var correct=S.prediction===actual;
+    $('vLabel').innerHTML=VLABEL[actual]+' <span class="dim">(you called '+VLABEL[S.prediction]+' — '+(correct?'right':'wrong')+')</span>';
+    $('vLabel').className=cls;
+    $('vNote').textContent=cm.note;
+    if(actual==='reject')$('vDetail').textContent='Pydantic says: ['+cm.err.type+'] '+cm.err.msg;
+    else if(actual==='coerce')$('vDetail').innerHTML='Pydantic converted it: '+cm.coerceShow;
+    else $('vDetail').textContent='No error raised — accepted exactly as sent.';
+  }
+
+  function renderStats(){
+    $('hSolved').textContent=S.retired.size;
+    $('hStreak').textContent=S.streak;
+    $('hStreakWrap').className=S.streak>=3?'streakon':'';
+  }
+
+  /* ------------------------------------------------------------------ actions */
+  function deal(){
+    if(!S.queue.length){
+      S.queue=ORDER.slice();
+      logEv('info','reshuffle','deck cleared -- reshuffling from the top. The boundary keeps asking.');
+    }
+    S.cardIdx=S.queue.shift();
+    S.card=CARDS[S.cardIdx];
+    S.answered=false;S.flipActive=false;S.prediction=null;
+    renderCard();renderVerdict();renderCallButtons();renderStats();
+    logEv('info',S.card.id,'packet arrives at the boundary -- '+S.card.scenario);
+  }
+
+  function pick(v){
+    if(!S.card||S.answered)return;
+    var mode=S.mode,card=S.card,cm=card[mode],actual=cm.verdict;
+    var correct=(v===actual);
+    S.answered=true;S.prediction=v;
+    var key=card.id+':'+mode;
+    if(correct)S.correctByCardMode[key]=true;
+    if(!S.flipActive){
+      if(correct){
+        S.streak++;CH.streak=S.streak;
+        S.retired.add(card.id);
+        logEv('ok',card.id,cm.logline);
+      }else{
+        S.streak=0;CH.streak=0;
+        S.queue.push(S.cardIdx);
+        logEv(actual==='reject'?'bad':'warn',card.id,
+          'you called '+VLABEL[v]+'; the boundary actually '+VLABEL[actual]+'S it — '+cm.note);
+        logEv('info',card.id,'returns to the bottom of the deck — you will see it again.');
+      }
+    }else{
+      if(correct)logEv('ok',card.id,'[mode flip] '+cm.logline);
+      else logEv(actual==='reject'?'bad':'warn',card.id,
+        '[mode flip] you called '+VLABEL[v]+'; under '+MODE_LABEL[mode]+' it actually '+VLABEL[actual]+'S — '+cm.note);
+    }
+    if(card.trap==='coerce'&&correct&&actual==='coerce')CH.coerceTrapOK=true;
+    if(card.trap==='flip'&&S.correctByCardMode[card.id+':lenient']&&S.correctByCardMode[card.id+':strict'])CH.flipTrapOK=true;
+    renderVerdict();renderCallButtons();renderStats();updateChallenge();
+  }
+
+  function setMode(newMode){
+    if(newMode===S.mode)return;
+    S.mode=newMode;
+    logEv('info','mode','mode set to '+MODE_LABEL[newMode].toUpperCase()+' — '+
+      (newMode==='strict'?'every coercion path just turned off.':'unambiguous conversions are allowed again.'));
+    if(S.answered){
+      S.flipActive=true;S.answered=false;S.prediction=null;
+      logEv('info',S.card.id,'same packet, new mode — predict '+S.card.id+' again under '+MODE_LABEL[newMode]+'.');
+    }
+    renderModeButtons();renderVerdict();renderCallButtons();
+  }
+
+  $('nextBtn').addEventListener('click',function(){if(S.answered)deal()});
+  $('modeLenient').addEventListener('click',function(){setMode('lenient')});
+  $('modeStrict').addEventListener('click',function(){setMode('strict')});
+  $('reset').addEventListener('click',function(){location.reload()});
+
+  /* ------------------------------------------------------------------ boot */
+  buildOptions();
+  renderModeButtons();
+  logEv('info','backlog','12 packets loaded. Predict PASS / COERCE / REJECT before you reveal -- then flip the mode and watch some verdicts change.');
+  deal();
+  renderChallenge();
+
+  /* test hook */
+  window.__sim={S:S,CH:CH,CARDS:CARDS,VLABEL:VLABEL,
+    pick:pick,deal:deal,predict:predict,setMode:setMode,
+    next:function(){if(S.answered)deal()},
+    currentCard:function(){return S.card},
+    mode:function(){return S.mode}};
+})();
+</script>
+</body>
+</html>

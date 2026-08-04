@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solution Ladder Trainer</title>
+<style>
+  :root{
+    --bg:#0d1220; --panel:#151c2e; --panel2:#111827; --line:#26324e; --line2:#1c2740;
+    --txt:#dbe4f5; --dim:#8494b3; --faint:#5a6a8c;
+    --accent:#4cc9f0; --accent2:#7b6cf6;
+    --ok:#3ddc97; --warn:#f5b942; --bad:#ff6b6b;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  /* fluid type scale: ~12.3px @800w → 16px @≥1750w, floor 10.5px */
+  html{font-size:clamp(10.5px,0.4vw + 9.1px,16px);color-scheme:dark}
+  html,body{height:100%}
+  body{
+    background:var(--bg); color:var(--txt);
+    font:1rem/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    overflow:hidden;
+  }
+  #app{display:flex;flex-direction:column;height:100%;padding:8px 10px;gap:6px}
+
+  /* ---------- header ---------- */
+  header{display:flex;align-items:center;gap:12px;flex:0 0 auto}
+  header h1{font-size:1.02rem;font-weight:650;letter-spacing:.2px;white-space:nowrap}
+  header h1 .lad{color:var(--accent)}
+  #stats,#stats *{cursor:default}
+  #stats{margin-left:auto;font-family:var(--mono);font-size:.82rem;color:var(--faint);display:flex;gap:12px;white-space:nowrap}
+  #stats b{color:var(--txt);font-weight:600}
+  #stats .streakon b{color:var(--ok)}
+  #reset{background:none;border:1px solid var(--line);color:var(--dim);border-radius:6px;
+    padding:3px 9px;font-size:.88rem;cursor:pointer;min-height:24px}
+  #reset:hover{color:var(--txt);border-color:var(--faint)}
+
+  /* ---------- challenge banner ---------- */
+  #challenge{flex:0 0 auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    background:linear-gradient(90deg,rgba(123,108,246,.14),rgba(76,201,240,.07));
+    border:1px solid #3a3f6e;border-radius:8px;padding:4px 11px;min-height:30px}
+  #challenge .tag{font-size:.78rem;font-weight:700;letter-spacing:.8px;color:var(--accent2);
+    text-transform:uppercase;white-space:nowrap}
+  #challenge .steps{display:flex;gap:5px}
+  #challenge .dot{width:1.3rem;height:1.3rem;border-radius:50%;border:1.5px solid var(--faint);
+    font-size:.76rem;display:flex;align-items:center;justify-content:center;color:var(--faint);font-weight:700}
+  #challenge .dot.cur{border-color:var(--accent);color:var(--accent)}
+  #challenge .dot.done{border-color:var(--ok);background:rgba(61,220,151,.15);color:var(--ok)}
+  #challenge .txt{flex:1;color:var(--txt);font-size:.92rem;min-width:14rem}
+  #challenge .txt .dim{color:var(--faint);font-size:.84rem}
+  #challenge .txt b{color:var(--accent)}
+  #chPredict{display:flex;gap:6px;flex-wrap:wrap}
+  #chPredict .chip{cursor:pointer;border:1px solid var(--accent2);color:#a89cf8;background:rgba(123,108,246,.1);
+    border-radius:12px;padding:2px 10px;font-size:.84rem;transition:background .15s,color .15s}
+  #chPredict .chip:hover{background:rgba(123,108,246,.28);color:#d6cfff}
+  #challenge.success{background:linear-gradient(90deg,rgba(61,220,151,.16),rgba(61,220,151,.05));border-color:#2c7a5b}
+  #challenge.success .tag{color:var(--ok)}
+  #challenge.success .txt{line-height:1.3}
+
+  /* ---------- main grid ---------- */
+  #main{flex:1 1 auto;display:grid;grid-template-columns:clamp(250px,25rem,380px) 1fr;gap:6px;min-height:0}
+  #main>*{min-width:0}
+  #left>*{min-width:0}
+  .rung{min-width:0}
+  .panel{background:var(--panel);border:1px solid var(--line2);border-radius:10px;padding:7px 10px;min-height:0}
+  .panel h2{font-size:.74rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--faint);margin-bottom:4px}
+
+  #left{display:flex;flex-direction:column;gap:6px;min-height:0}
+
+  /* requirement card — read-only backlog ticket, deliberately non-interactive */
+  #card,#card *{cursor:default}
+  #card{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+  #card h2 span{color:var(--accent);text-transform:none;letter-spacing:0;font-family:var(--mono);font-size:.86rem}
+  #cardTitle{font-size:.98rem;font-weight:650;margin:1px 0 3px}
+  #cardBody{font-size:.85rem;line-height:1.42;color:var(--txt);opacity:.92;flex:0 1 auto;min-height:4.2rem;overflow-y:auto;scrollbar-width:thin}
+  #cardSigs{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
+  .sig{cursor:help !important;font-family:var(--mono);font-size:.72rem;color:var(--warn);
+    border:1px dashed rgba(245,185,66,.5);border-radius:6px;padding:1px 6px;white-space:nowrap}
+  #nextBtn{margin-top:auto;width:100%;min-height:2.3rem;border-radius:8px;border:1px solid var(--accent);
+    background:rgba(76,201,240,.1);color:var(--accent);font-size:.94rem;font-weight:600;cursor:pointer;
+    display:none;align-items:center;justify-content:center;gap:7px;animation:pulse 1.4s ease-in-out infinite}
+  #nextBtn.show{display:flex}
+  #nextBtn:hover{background:rgba(76,201,240,.22)}
+  @keyframes pulse{50%{box-shadow:0 0 10px rgba(76,201,240,.5)}}
+
+  /* cost meter — read-only consequence readout */
+  #meter,#meter *{cursor:default}
+  #meter{flex:0 0 auto}
+  #verdict{font-family:var(--mono);font-size:.86rem;font-weight:700;min-height:1.2rem;margin-bottom:4px;color:var(--faint)}
+  #verdict.ok{color:var(--ok)} #verdict.over{color:var(--warn)} #verdict.under{color:var(--bad)}
+  .mrow{display:flex;align-items:center;gap:7px;padding:2px 0}
+  .mrow .mlbl{flex:0 0 6.4rem;font-family:var(--mono);font-size:.76rem;color:var(--dim)}
+  .mrow .bar{flex:1;height:.78rem;background:var(--panel2);border:1px solid var(--line);border-radius:5px;position:relative;overflow:visible}
+  .mrow .fill{display:block;height:100%;width:0;border-radius:4px;background:var(--accent);transition:width .5s ease,background .3s}
+  .mrow.risk .fill{background:var(--bad)}
+  .mrow .tick{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ok);opacity:0;transition:opacity .3s,left .5s ease}
+  .mrow .tick.show{opacity:1}
+  .mrow .mval{flex:0 0 2.2rem;text-align:right;font-family:var(--mono);font-size:.78rem;color:var(--txt)}
+  #mLegend{font-size:.7rem;color:var(--faint);margin-top:2px}
+  #mLegend .tk{color:var(--ok)}
+  #note{margin-top:4px;padding-top:4px;border-top:1px dashed var(--line2);font-size:.72rem;line-height:1.35;color:var(--faint);cursor:help !important}
+  #note .i{color:var(--accent);font-style:normal}
+
+  /* the ladder — six clickable rungs, agent tool on top */
+  #ladder{display:flex;flex-direction:column;min-height:0}
+  #rungs{flex:1;display:flex;flex-direction:column;gap:5px;min-height:0}
+  .rung{flex:1;display:flex;align-items:center;gap:9px;text-align:left;min-height:2.4rem;
+    border:1px solid var(--line);border-radius:8px;background:var(--panel2);color:var(--txt);
+    padding:3px 10px;cursor:pointer;position:relative;transition:border-color .15s,background .15s}
+  .rung:hover:not(:disabled){border-color:var(--accent);background:rgba(76,201,240,.07)}
+  .rung:disabled{cursor:default;opacity:.55}
+  .rung:disabled.picked,.rung:disabled.req{opacity:1}
+  .rung .lvl{flex:0 0 1.5rem;font-family:var(--mono);font-size:.78rem;color:var(--faint);text-align:center}
+  .rung .rname{font-size:.92rem;font-weight:650;white-space:nowrap}
+  .rung .rdesc{flex:1;font-size:.78rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-left:6px}
+  .rung .rcost{font-family:var(--mono);font-size:.7rem;color:var(--faint);white-space:nowrap}
+  .rung.picked.okp{border-color:var(--ok);background:rgba(61,220,151,.1)}
+  .rung.picked.overp{border-color:var(--warn);background:rgba(245,185,66,.1)}
+  .rung.picked.underp{border-color:var(--bad);background:rgba(255,107,107,.1)}
+  .rung .mark{font-size:.7rem;font-weight:700;letter-spacing:.4px;white-space:nowrap;
+    padding:1px 6px;border-radius:7px;display:none}
+  .rung.picked .mark.you{display:inline-block}
+  .rung.req .mark.rs{display:inline-block;background:rgba(61,220,151,.16);color:var(--ok);border:1px solid rgba(61,220,151,.4)}
+  .rung.picked.okp .mark.you{background:rgba(61,220,151,.16);color:var(--ok);border:1px solid rgba(61,220,151,.4)}
+  .rung.picked.overp .mark.you{background:rgba(245,185,66,.14);color:var(--warn);border:1px solid rgba(245,185,66,.4)}
+  .rung.picked.underp .mark.you{background:rgba(255,107,107,.14);color:var(--bad);border:1px solid rgba(255,107,107,.4)}
+  .rung.picked.req .mark.rs{display:none}
+
+  /* event log — read-only stream, deliberately non-interactive */
+  #events{flex:0 0 clamp(96px,8.4rem,140px);display:flex;flex-direction:column;min-height:0}
+  #events,#events *{cursor:default}
+  #events h2 span{letter-spacing:0;text-transform:none;color:var(--line)}
+  #evList{flex:1;overflow-y:auto;font-family:var(--mono);font-size:.78rem;line-height:1.65;scrollbar-width:thin}
+  .ev{display:flex;gap:8px;white-space:nowrap;overflow:hidden}
+  .ev .et{color:var(--faint);flex:0 0 2.6rem}
+  .ev .er{flex:0 0 6.6rem;overflow:hidden;text-overflow:ellipsis;color:var(--ok)}
+  .ev.warn .er{color:var(--warn)}
+  .ev.bad .er{color:var(--bad)}
+  .ev.info .er{color:var(--accent2)}
+  .ev .em{flex:1;color:var(--txt);opacity:.85;overflow:hidden;text-overflow:ellipsis}
+  .ev.new{animation:evin .4s ease-out}
+  @keyframes evin{0%{background:rgba(76,201,240,.12)}100%{background:transparent}}
+
+  /* narrow fallback: stack + allow scroll rather than clip */
+  @media (max-width:620px){
+    body{overflow:auto}
+    #main{grid-template-columns:1fr}
+    #app{height:auto;min-height:100%}
+    .rung .rdesc{white-space:normal}
+    .ev .er{flex-basis:5rem}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important;transition:none !important}
+  }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <header>
+    <h1><span class="lad">⇪</span> Solution Ladder Trainer</h1>
+    <div id="stats" title="Your run so far — retired requirements and current correct streak">
+      <span>retired <b id="hRet">0</b>/8</span>
+      <span id="hStreakWrap">streak <b id="hStreak">0</b></span>
+    </div>
+    <button id="reset" title="Reset the simulator">↺ Reset</button>
+  </header>
+
+  <div id="challenge">
+    <span class="tag">Try this</span>
+    <span class="steps">
+      <span class="dot" id="d1">1</span><span class="dot" id="d2">2</span><span class="dot" id="d3">3</span>
+    </span>
+    <span class="txt" id="chTxt"></span>
+    <span id="chPredict"></span>
+  </div>
+
+  <div id="main">
+    <div id="left">
+      <div class="panel" id="card">
+        <h2>Requirement <span id="cardId">REQ-000</span></h2>
+        <div id="cardTitle"></div>
+        <div id="cardBody"></div>
+        <div id="cardSigs"></div>
+        <button id="nextBtn" title="Deal the next requirement card">Deal next card ▸</button>
+      </div>
+      <div class="panel" id="meter">
+        <h2>Consequences</h2>
+        <div id="verdict">— pick a rung on the ladder</div>
+        <div class="mrow"><span class="mlbl">build cost</span>
+          <span class="bar"><span class="fill" id="fBuild"></span><span class="tick" id="tBuild"></span></span>
+          <span class="mval" id="vBuild">—</span></div>
+        <div class="mrow"><span class="mlbl">ops burden</span>
+          <span class="bar"><span class="fill" id="fOps"></span><span class="tick" id="tOps"></span></span>
+          <span class="mval" id="vOps">—</span></div>
+        <div class="mrow risk"><span class="mlbl">drift / unmet risk</span>
+          <span class="bar"><span class="fill" id="fRisk"></span><span class="tick" id="tRisk"></span></span>
+          <span class="mval" id="vRisk">—</span></div>
+        <div id="mLegend">bar = your pick · <span class="tk">▍green tick</span> = the right-sized rung</div>
+        <div id="note" title="Real teams also ask: who is fluent in what, what already exists in the platform, and who carries the pager for this? The sim's costs are stylized and monotone by rung; reality is lumpier.">
+          <span class="i">ⓘ</span> Teaching model, not gospel: costs are stylized heuristics. Real decisions also
+          weigh team fluency, existing platforms, and who owns the maintenance — the sim scores the ladder rule only.
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" id="ladder">
+      <h2>The ladder — pick the lowest rung that meets the requirement</h2>
+      <div id="rungs"></div>
+    </div>
+  </div>
+
+  <div class="panel" id="events">
+    <h2>Ops log <span>— #platform-team, six months later</span></h2>
+    <div id="evList"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var $=function(id){return document.getElementById(id)};
+
+  /* ------------------------------------------------------------------ model */
+  var RUNGS=[
+    {n:'Script',      d:'you run it, it exits'},
+    {n:'CLI tool',    d:'flags, help, exit codes — someone else runs it'},
+    {n:'Service / API',d:'stays running; other systems call it over HTTP'},
+    {n:'Scheduled worker',d:'cron or a queue; no human triggers it'},
+    {n:'Controller / operator',d:'watches state, reconciles continuously'},
+    {n:'Agent tool',  d:'schema’d capability for an AI agent, with limits + approvals'}
+  ];
+  var BUILD=[8,18,34,46,72,88];  /* stylized, monotone by rung (see footnote) */
+  var OPS  =[4,10,28,38,70,80];
+
+  function costs(p,r){
+    var d=p-r,risk;
+    if(d===0)risk=8+r*2;
+    else if(d<0)risk=Math.min(100,35+22*(-d));
+    else risk=Math.min(100,18+10*d);
+    return {build:BUILD[p],ops:OPS[p],risk:risk,d:d};
+  }
+
+  var CARDS=[
+    {id:'REQ-311',t:'Top slow queries — once',ans:0,trap:null,
+     b:'Last night’s incident left a 2 GB Postgres slow-query log on your disk. The review is tomorrow morning and the team wants the top 10 slowest statements. You will almost certainly never run this again.',
+     sig:[['one file','Single input, single machine — no interface needed'],['one question','A single answer, not a capability'],['never again','No second run means no second user']],
+     v:{right:'20 minutes, 15 lines, answer pasted into the review doc. The log file is already deleted.',
+        over:'your one-off now has a repo, a deploy and a health check — and exactly one consumer: you, yesterday.'}},
+    {id:'REQ-327',t:'Prune old RDS snapshots nightly',ans:3,trap:null,
+     b:'Snapshots older than 14 days must be deleted every night, with a log of what was removed. No human should ever trigger it — it just has to happen.',
+     sig:[['every night','A fixed cadence is the worker signal'],['no human trigger','Nobody runs it by hand — that rules out script and CLI'],['keep a log','Unattended runs need an audit trail']],
+     v:{right:'cron fires at 02:00, the deletion log ships nightly, and nobody has thought about snapshots since.',
+        under:'the runbook says “remember to run the prune script”. Nobody did. Snapshot spend doubled in a quarter.',
+        over:'a reconciler that deletes storage around the clock — one mislabeled snapshot and it breaks things while you sleep.'}},
+    {id:'REQ-334',t:'Who owns service X — over HTTP',ans:2,trap:null,
+     b:'The deploy pipeline and the incident bot both need to ask “who owns service X?” live, from their own tooling. The answer merges three sources and changes daily.',
+     sig:[['two systems call it','Machine consumers want an API, not stdout'],['over HTTP','The interface is part of the requirement'],['live data','Answers must be current at call time']],
+     v:{right:'one endpoint, a health check, two happy consumers. Boring in the best way.',
+        under:'the pipeline shells out to your script and greps stdout. It broke on the first team name with a space.',
+        over:'there is no state to reconcile here — you built a control loop around a lookup table.'}},
+    {id:'REQ-352',t:'“Just share the cache-flush script”',ans:1,trap:'under',
+     b:'Your personal flush-and-verify script works perfectly. Now the release checklist tells two teammates and the CI pipeline to run it. The ask sounds tiny: “just share the script.”',
+     sig:[['CI runs it','A scheduler or pipeline is a second user — promotion trigger'],['teammates run it','The moment a second human runs it, it deserves an interface'],['needs dry-run','Safety flags are an interface concern']],
+     v:{right:'flags, --dry-run, help text, real exit codes. CI now fails loudly instead of lying quietly.',
+        under:'CI ran it with a stale env var for three weeks; it exited 0 every time. The moment a second human or a scheduler runs it, it deserves an interface.',
+        over:'a flush service with auth, a deploy and an on-call rotation — for what one --dry-run flag delivers.'}},
+    {id:'REQ-360',t:'Namespaces must ALWAYS have an owner',ans:3,trap:'over',
+     b:'Leadership: “make sure every namespace always carries an owner annotation.” Sounds continuous — but a morning sweep that opens a ticket has fixed every offender within a day, and nothing needs a reaction in seconds.',
+     sig:[['“always true”','Describes the outcome, not the mechanism'],['ticket fixes it in a day','Day-level cadence is worker territory'],['no seconds-level need','Nothing here justifies a reconcile loop']],
+     v:{right:'a 30-line sweep on a schedule. “Always” turned out to mean “every morning” — and that met the requirement.',
+        over:'you now operate a controller for a problem a ticket solved. It paged twice this month; the sweep never would have.',
+        under:'“always” became “whenever someone remembers to run it on shift”.'}},
+    {id:'REQ-371',t:'DNS must match the registry — reverted in a minute',ans:4,trap:null,
+     b:'Service DNS records are declared in a registry file. Live records must match it at all times: hand edits made during incidents must be detected and reverted within one minute, around the clock.',
+     sig:[['revert in <1 min','Minute-level reaction demands a watch loop'],['around the clock','No human can stand this watch'],['declared desired state','Desired vs actual is the controller signal']],
+     v:{right:'watch, diff, reconcile: a hand edit at 03:14 was reverted at 03:15 with an audit line. This rung earns its cost.',
+        under:'the nightly job reverted the bad record — eleven hours after it took checkout down.',
+        over:'an agent that asks a human before fixing DNS: the requirement said one minute; approvals take an hour.'}},
+    {id:'REQ-388',t:'Cluster health for the ops assistant',ans:5,trap:null,
+     b:'The team’s AI assistant should fetch node and pod health while drafting incident summaries — as a described capability with read-only credentials, a rate limit, and an audit trail.',
+     sig:[['an agent consumes it','The consumer is an AI agent — that names the rung'],['read-only','Scope the capability, not the cluster'],['audited + rate-limited','Limits and audit are part of the requirement']],
+     v:{right:'schema, read-only creds, rate limit, audit log: the agent got a capability, not your kubeconfig.',
+        under:'the assistant scrapes an unauthenticated internal endpoint — no schema, no limits, no audit trail. Security found it first.'}},
+    {id:'REQ-395',t:'Quota gate before every deploy',ans:1,trap:null,
+     b:'Every deploy should first check remaining resource quota and fail the pipeline with a clear reason when there is no headroom. Engineers also want to run the same check from their laptops.',
+     sig:[['CI + laptops','Humans and pipelines share one command'],['clear exit codes','The pipeline reads the exit code, humans read the message'],['fails the pipeline','A gate needs a deliberate interface']],
+     v:{right:'exit 1 with a reason; the pipeline goes red with a message humans read; the same command runs locally.',
+        under:'copy-pasted script, three diverging copies, and a pipeline that can’t tell “no quota” from “typo”.',
+        over:'the quota service is now a deploy-time dependency — when it’s down, nothing ships anywhere.'}}
+  ];
+  var OVER_G=['one rung high: you are paying operational burden the requirement never asked for.',
+              'you now operate machinery nobody asked for — it has a runbook, a pager, and one user.'];
+  var UNDER_G=['one rung short: the requirement is met only while somebody remembers.',
+               'the need is still open — humans are doing by hand what you were asked to automate.'];
+
+  var S={queue:CARDS.map(function(_,i){return i}),retired:[],card:null,answered:false,
+         picked:-1,streak:0,t0:Date.now()};
+
+  /* ------------------------------------------------------------------ events */
+  var evList=$('evList');
+  function clock(){var s=Math.floor((Date.now()-S.t0)/1000);return Math.floor(s/60)+':'+('0'+s%60).slice(-2)}
+  function logEv(kind,reason,msg){
+    var d=document.createElement('div');
+    d.className='ev new '+(kind==='warn'?'warn':kind==='bad'?'bad':kind==='info'?'info':'');
+    d.innerHTML='<span class="et">'+clock()+'</span><span class="er"></span><span class="em"></span>';
+    d.children[1].textContent=reason; d.children[2].textContent=msg;
+    d.title=reason+'  —  '+msg;
+    evList.appendChild(d);
+    while(evList.children.length>90)evList.removeChild(evList.firstChild);
+    evList.scrollTop=evList.scrollHeight;
+  }
+
+  /* ------------------------------------------------------------------ challenge */
+  var CH={step:1,done:[false,false,false],streak:0,underOK:false,overOK:false,
+    predPicked:[null,null,null],
+    preds:[
+      {q:'Which cost do estimates usually miss?',
+       opts:['The build cost','Operating it forever'],ok:1,
+       explain:'build is paid once; operation is paid every week the thing exists — that is why the lowest sufficient rung wins.'},
+      {q:'CI starts running your personal script — what breaks first?',
+       opts:['Silent failure — no exit codes, CI can’t tell green from broken','Nothing — same code, same result'],ok:0,
+       explain:'without flags and exit codes a script fails silently in CI — a second runner is the promotion trigger to a CLI.'},
+      {q:'Does “always true” force a controller?',
+       opts:['Yes — “always” means a reconcile loop','No — the lowest rung whose cadence meets the need'],ok:1,
+       explain:'“always” describes the outcome, not the mechanism — a daily sweep that meets the need beats a controller you must operate.'}
+    ]};
+  var CH_TEXT=[
+    'Step 1 — Classify <b>3 cards correctly in a row</b>: read the card, pick the lowest rung that meets it.',
+    'Step 2 — One card understates its ask (“just share the script”). Beat the <b>under-shoot trap</b>.',
+    'Step 3 — One card oversells urgency (“always”). Beat the <b>over-shoot trap</b> — don’t climb for prestige.'
+  ];
+  var SUCCESS='Challenge complete! You felt the ladder’s rule: the <b>lowest rung that meets the requirement</b> wins — under-shooting leaves the need open, over-shooting signs you up to operate machinery forever. Name the trigger that would force the next rung; if you can’t, stay put.';
+
+  function predict(i){
+    if(CH.step>3)return;
+    var s=CH.step;
+    if(CH.predPicked[s-1]!==null)return;
+    if(i<0||i>=CH.preds[s-1].opts.length)return;
+    CH.predPicked[s-1]=i;
+    logEv('info','prediction','you predicted: “'+CH.preds[s-1].opts[i]+'”');
+    renderChallenge();
+  }
+  function predVerdict(s){
+    var pick=CH.predPicked[s-1];
+    if(pick===null)return; /* skipped — formative, never blocking */
+    var pr=CH.preds[s-1];
+    if(pick===pr.ok)logEv('ok','prediction','Prediction right — '+pr.explain);
+    else logEv('warn','prediction','Not what you predicted (“'+pr.opts[pick]+'”) — '+pr.explain);
+  }
+  function updateChallenge(){
+    var moved=true;
+    while(moved){
+      moved=false;
+      if(CH.step===1&&!CH.done[0]&&CH.streak>=3){CH.done[0]=true;predVerdict(1);CH.step=2;moved=true;}
+      else if(CH.step===2&&!CH.done[1]&&CH.underOK){CH.done[1]=true;predVerdict(2);CH.step=3;moved=true;}
+      else if(CH.step===3&&!CH.done[2]&&CH.overOK){CH.done[2]=true;predVerdict(3);CH.step=4;moved=true;}
+    }
+    renderChallenge();
+  }
+  function renderChallenge(){
+    for(var i=1;i<=3;i++){
+      var d=$('d'+i); d.className='dot'+(CH.done[i-1]?' done':CH.step===i?' cur':'');
+      d.textContent=CH.done[i-1]?'✓':i;
+    }
+    var box=$('challenge'),txt=$('chTxt'),pr=$('chPredict');
+    pr.innerHTML='';
+    if(CH.step===4){box.classList.add('success');txt.innerHTML=SUCCESS;return;}
+    var s=CH.step,p=CH.preds[s-1];
+    if(CH.predPicked[s-1]===null){
+      txt.innerHTML='<span class="dim">Predict first —</span> '+p.q;
+      p.opts.forEach(function(o,i){
+        var c=document.createElement('span');
+        c.className='chip';c.textContent=o;c.title='Lock in this prediction';
+        c.addEventListener('click',function(){predict(i)});
+        pr.appendChild(c);
+      });
+    }else{
+      txt.innerHTML=CH_TEXT[s-1]+' <span class="dim">(you predicted: “'+p.opts[CH.predPicked[s-1]]+'”)</span>';
+    }
+  }
+
+  /* ------------------------------------------------------------------ render */
+  var rungEls=[];
+  function buildLadder(){
+    var wrap=$('rungs');
+    for(var i=RUNGS.length-1;i>=0;i--){
+      (function(i){
+        var b=document.createElement('button');
+        b.className='rung';
+        b.title='Pick this rung: '+RUNGS[i].n+' — '+RUNGS[i].d;
+        b.innerHTML='<span class="lvl">'+(i+1)+'</span><span class="rname"></span><span class="rdesc"></span>'+
+          '<span class="rcost">build '+BUILD[i]+' · ops '+OPS[i]+'</span>'+
+          '<span class="mark you">your pick</span><span class="mark rs">◀ right-sized</span>';
+        b.querySelector('.rname').textContent=RUNGS[i].n;
+        b.querySelector('.rdesc').textContent=RUNGS[i].d;
+        b.addEventListener('click',function(){pick(i)});
+        wrap.appendChild(b);
+        rungEls[i]=b;
+      })(i);
+    }
+  }
+  function renderCard(){
+    var c=S.card;
+    $('cardId').textContent=c.id;
+    $('cardTitle').textContent=c.t;
+    $('cardBody').textContent=c.b;
+    var sw=$('cardSigs');sw.innerHTML='';
+    c.sig.forEach(function(s){
+      var e=document.createElement('span');
+      e.className='sig';e.textContent=s[0];e.title=s[1];
+      sw.appendChild(e);
+    });
+  }
+  function renderMeter(c,r){
+    if(!c){
+      $('verdict').textContent='— pick a rung on the ladder';$('verdict').className='';
+      ['Build','Ops','Risk'].forEach(function(k){$('f'+k).style.width='0';$('v'+k).textContent='—';$('t'+k).classList.remove('show')});
+      return;
+    }
+    var right=costs(r,r);
+    $('fBuild').style.width=c.build+'%'; $('vBuild').textContent=c.build;
+    $('fOps').style.width=c.ops+'%';     $('vOps').textContent=c.ops;
+    $('fRisk').style.width=c.risk+'%';   $('vRisk').textContent=c.risk;
+    [['Build',right.build],['Ops',right.ops],['Risk',right.risk]].forEach(function(p){
+      var t=$('t'+p[0]);t.style.left='calc('+p[1]+'% - 1px)';t.classList.add('show');
+      t.title='right-sized: '+p[1];
+    });
+    var v=$('verdict');
+    if(c.d===0){v.textContent='RIGHT-SIZED ✓ — lowest rung that meets the requirement';v.className='ok';}
+    else if(c.d>0){v.textContent='OVER-SHOT by '+c.d+' rung'+(c.d>1?'s':'')+' — burden the requirement never asked for';v.className='over';}
+    else{v.textContent='UNDER-SHOT by '+(-c.d)+' rung'+(c.d<-1?'s':'')+' — the requirement is still open';v.className='under';}
+  }
+  function renderStats(){
+    $('hRet').textContent=S.retired.length;
+    $('hStreak').textContent=S.streak;
+    $('hStreakWrap').className=S.streak>=3?'streakon':'';
+  }
+  function renderRungs(){
+    rungEls.forEach(function(b,i){
+      b.disabled=S.answered;
+      b.classList.remove('picked','req','okp','overp','underp');
+      if(S.answered){
+        if(i===S.card.ans)b.classList.add('req');
+        if(i===S.picked){
+          b.classList.add('picked',S.picked===S.card.ans?'okp':S.picked>S.card.ans?'overp':'underp');
+        }
+      }
+    });
+    $('nextBtn').classList.toggle('show',S.answered);
+  }
+
+  /* ------------------------------------------------------------------ actions */
+  function deal(){
+    if(!S.queue.length){
+      S.queue=CARDS.map(function(_,i){return i});
+      S.retired=[];
+      logEv('info','reshuffle','deck cleared — reshuffling for free play. The ladder question never retires.');
+    }
+    S.card=CARDS[S.queue.shift()];
+    S.answered=false;S.picked=-1;
+    logEv('info','dealt',S.card.id+' — '+S.card.t);
+    renderCard();renderMeter(null);renderRungs();renderStats();
+  }
+  function pick(i){
+    if(S.answered||!S.card)return;
+    var card=S.card,r=card.ans,c=costs(i,r);
+    S.answered=true;S.picked=i;
+    var correct=(i===r);
+    if(correct){
+      S.streak++;CH.streak=S.streak;
+      S.retired.push(card.id);
+      if(card.trap==='under')CH.underOK=true;
+      if(card.trap==='over')CH.overOK=true;
+      logEv('ok',card.id,'right-sized: '+RUNGS[i].n+' — '+(card.v.right||'requirement met at the lowest sufficient rung.'));
+    }else{
+      S.streak=0;CH.streak=0;
+      S.queue.push(CARDS.indexOf(card));
+      var dir=i>r?'over':'under';
+      var flavor=card.v[dir]||(dir==='over'?OVER_G[Math.min(c.d-1,1)]:UNDER_G[Math.min(-c.d-1,1)]);
+      logEv(dir==='over'?'warn':'bad',card.id,
+        (dir==='over'?'over-shot ':'under-shot ')+'('+RUNGS[i].n+' vs '+RUNGS[r].n+'): '+flavor);
+      logEv('info',card.id,'returns to the bottom of the deck — you will see it again.');
+    }
+    logEv('info','cost',RUNGS[i].n+': build '+c.build+' · ops '+c.ops+' · risk '+c.risk+
+      (correct?'':' (right-sized: build '+BUILD[r]+' · ops '+OPS[r]+' · risk '+costs(r,r).risk+')'));
+    renderMeter(c,r);renderRungs();renderStats();
+    updateChallenge();
+  }
+  $('nextBtn').addEventListener('click',function(){if(S.answered)deal()});
+  $('reset').addEventListener('click',function(){location.reload()});
+
+  /* ------------------------------------------------------------------ boot */
+  buildLadder();
+  logEv('info','backlog','8 requirements loaded. Rule: choose the lowest rung that meets the requirement — and know what would force you up one.');
+  deal();
+  renderChallenge();
+
+  /* test hook */
+  window.__sim={S:S,CH:CH,RUNGS:RUNGS,CARDS:CARDS,BUILD:BUILD,OPS:OPS,
+    costs:costs,pick:pick,deal:deal,predict:predict,
+    next:function(){if(S.answered)deal()},
+    currentCard:function(){return S.card}};
+})();
+</script>
+</body>
+</html>

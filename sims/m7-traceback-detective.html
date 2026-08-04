@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Traceback Detective</title>
+<style>
+  :root{
+    --bg:#0d1220; --panel:#151c2e; --panel2:#111827; --line:#26324e; --line2:#1c2740;
+    --txt:#dbe4f5; --dim:#8494b3; --faint:#5a6a8c;
+    --accent:#4cc9f0; --accent2:#7b6cf6;
+    --ok:#3ddc97; --warn:#f5b942; --bad:#ff6b6b;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:clamp(10.5px,0.4vw + 9.1px,16px);color-scheme:dark}
+  html,body{height:100%}
+  body{
+    background:var(--bg); color:var(--txt);
+    font:1rem/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    overflow:hidden;
+  }
+  #app{display:flex;flex-direction:column;height:100%;padding:8px 10px;gap:6px}
+
+  /* ---------- header ---------- */
+  header{display:flex;align-items:center;gap:10px;flex:0 0 auto;flex-wrap:wrap}
+  header h1{font-size:1.02rem;font-weight:650;letter-spacing:.2px;white-space:nowrap}
+  header h1 .ic{color:var(--accent)}
+  #stats,#stats *{cursor:default}
+  #stats{font-family:var(--mono);font-size:.78rem;color:var(--faint);display:flex;gap:10px;white-space:nowrap}
+  #stats b{color:var(--txt);font-weight:600}
+  #stats .streakon b{color:var(--ok)}
+  #reset{margin-left:auto;background:none;border:1px solid var(--line);color:var(--dim);border-radius:6px;
+    padding:3px 9px;font-size:.88rem;cursor:pointer;min-height:24px}
+  #reset:hover{color:var(--txt);border-color:var(--faint)}
+
+  /* ---------- challenge banner ---------- */
+  #challenge{flex:0 0 auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    background:linear-gradient(90deg,rgba(123,108,246,.14),rgba(76,201,240,.07));
+    border:1px solid #3a3f6e;border-radius:8px;padding:4px 11px;min-height:30px}
+  #challenge .tag{font-size:.78rem;font-weight:700;letter-spacing:.8px;color:var(--accent2);
+    text-transform:uppercase;white-space:nowrap}
+  #challenge .steps{display:flex;gap:5px}
+  #challenge .dot{width:1.3rem;height:1.3rem;border-radius:50%;border:1.5px solid var(--faint);
+    font-size:.76rem;display:flex;align-items:center;justify-content:center;color:var(--faint);font-weight:700}
+  #challenge .dot.cur{border-color:var(--accent);color:var(--accent)}
+  #challenge .dot.done{border-color:var(--ok);background:rgba(61,220,151,.15);color:var(--ok)}
+  #challenge .txt{flex:1;color:var(--txt);font-size:.88rem;min-width:16rem}
+  #challenge .txt .dim{color:var(--faint);font-size:.8rem}
+  #challenge .txt b{color:var(--accent)}
+  #chPredict{display:flex;gap:6px;flex-wrap:wrap}
+  #chPredict .chip{cursor:pointer;border:1px solid var(--accent2);color:#a89cf8;background:rgba(123,108,246,.1);
+    border-radius:12px;padding:2px 10px;font-size:.82rem;transition:background .15s,color .15s}
+  #chPredict .chip:hover{background:rgba(123,108,246,.28);color:#d6cfff}
+  #challenge.success{background:linear-gradient(90deg,rgba(61,220,151,.16),rgba(61,220,151,.05));border-color:#2c7a5b}
+  #challenge.success .tag{color:var(--ok)}
+  #challenge.success .txt{line-height:1.3}
+
+  /* ---------- main grid ---------- */
+  #main{flex:1 1 auto;display:grid;grid-template-columns:clamp(180px,18rem,250px) 1fr;gap:6px;min-height:0}
+  #main>*{min-width:0}
+  .panel{background:var(--panel);border:1px solid var(--line2);border-radius:10px;padding:7px 10px;
+    display:flex;flex-direction:column;min-height:0;overflow:hidden}
+  .panel h2{font-size:.74rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--faint);margin-bottom:4px}
+  .panel h2 span{letter-spacing:0;text-transform:none;color:var(--accent);font-family:var(--mono);font-size:.78rem}
+
+  /* -- queue -- */
+  #queueList{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:4px;scrollbar-width:thin}
+  .ticket{cursor:pointer;text-align:left;border:1px solid var(--line);border-radius:7px;background:var(--panel2);
+    color:var(--txt);padding:5px 8px;transition:border-color .15s,background .15s}
+  .ticket:hover{border-color:var(--accent)}
+  .ticket.active{border-color:var(--accent);background:rgba(76,201,240,.08)}
+  .ticket .tid{font-family:var(--mono);font-size:.72rem;color:var(--accent2);font-weight:700}
+  .ticket .ttitle{font-size:.76rem;color:var(--dim);margin-top:1px}
+  .ticket .tmark{float:right;font-size:.7rem;font-weight:700}
+  .ticket .tmark.ok{color:var(--ok)}
+  .ticket .tmark.bad{color:var(--warn)}
+
+  /* -- case panel -- */
+  #casePanel{overflow-y:auto;scrollbar-width:thin}
+  #caseEmpty{color:var(--faint);font-size:.86rem;padding:8px 2px}
+  #caseBody{display:none;flex-direction:column;gap:6px}
+  #caseBody.on{display:flex}
+  #cmdLine,#cmdLine *{cursor:default}
+  #cmdLine{font-family:var(--mono);font-size:.76rem;color:var(--dim);background:var(--panel2);
+    border:1px dashed var(--line2);border-radius:6px;padding:4px 8px;white-space:pre-wrap}
+  .tbBlock{background:var(--panel2);border:1px solid var(--line);border-radius:7px;padding:4px 6px}
+  .tbDivider{font-size:.72rem;color:var(--warn);font-style:italic;padding:3px 2px;text-align:center}
+  .frameRow{border-radius:6px;padding:3px 6px;font-family:var(--mono);font-size:.72rem;line-height:1.5;
+    border:1px solid transparent}
+  .frameRow.lib{color:var(--faint)}
+  .frameRow.mine{color:var(--txt)}
+  .frameRow .fLoc{color:var(--accent2)}
+  .frameRow.lib .fLoc{color:var(--faint)}
+  .frameRow .fCode{white-space:pre-wrap;color:var(--dim)}
+  .frameRow.mine .fCode{color:var(--txt)}
+  .frameRow .fDeco{white-space:pre;color:var(--warn);opacity:.85}
+  .frameRow.clickable{cursor:pointer}
+  .frameRow.clickable:hover{border-color:var(--accent);background:rgba(76,201,240,.06)}
+  .frameRow.picked.ok{border-color:var(--ok);background:rgba(61,220,151,.1)}
+  .frameRow.picked.bad{border-color:var(--bad);background:rgba(255,107,107,.1)}
+  .frameRow.correct-mark{border-color:var(--ok)}
+  .frameRow:not(.clickable){cursor:default}
+  #errorLine,#errorLine *{cursor:default}
+  #errorLine{font-family:var(--mono);font-size:.8rem;color:var(--bad);white-space:pre-wrap;font-weight:650}
+  #noTb{font-family:var(--mono);font-size:.8rem;color:var(--ok);background:var(--panel2);border:1px dashed var(--line2);
+    border-radius:6px;padding:6px 8px}
+  #noTb,#noTb *{cursor:default}
+
+  .qBlock{display:none;flex-direction:column;gap:4px;background:var(--panel2);border:1px solid var(--line);
+    border-radius:7px;padding:5px 8px}
+  .qBlock.on{display:flex}
+  .qBlock h3{font-size:.72rem;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--faint)}
+  .qOpts{display:flex;flex-direction:column;gap:4px}
+  .qChip{cursor:pointer;text-align:left;border:1px solid var(--line);border-radius:7px;background:var(--panel);
+    color:var(--txt);padding:3px 8px;font-size:.78rem;transition:border-color .15s,background .15s}
+  .qChip:hover:not(:disabled){border-color:var(--accent)}
+  .qChip:disabled{cursor:default;opacity:.6}
+  .qChip.picked.ok{border-color:var(--ok);background:rgba(61,220,151,.12);opacity:1}
+  .qChip.picked.bad{border-color:var(--bad);background:rgba(255,107,107,.1);opacity:1}
+  .qChip.correct-mark{border-color:var(--ok);opacity:1}
+  .qExplain{font-size:.76rem;color:var(--dim);line-height:1.35}
+
+  #consequences{display:none;background:rgba(245,185,66,.08);border:1px solid #6d5a26;border-radius:7px;
+    padding:5px 8px;font-size:.78rem;color:var(--txt);line-height:1.35}
+  #consequences,#consequences *{cursor:default}
+  #consequences.on{display:block}
+  #consequences .clabel{color:var(--warn);font-weight:700;font-size:.72rem;text-transform:uppercase;
+    letter-spacing:.4px;display:block;margin-bottom:2px}
+
+  /* -- event log -- */
+  #eventsPanel{grid-column:1/-1;flex:0 0 clamp(96px,8.2rem,132px)}
+  #evList,#evList *{cursor:default}
+  #evList{flex:1;overflow-y:auto;font-family:var(--mono);font-size:.75rem;line-height:1.58;scrollbar-width:thin}
+  .ev{display:flex;gap:8px;white-space:nowrap;overflow:hidden}
+  .ev .et{color:var(--faint);flex:0 0 2.6rem}
+  .ev .er{flex:0 0 6.4rem;overflow:hidden;text-overflow:ellipsis;color:var(--ok)}
+  .ev.warn .er{color:var(--warn)}
+  .ev.bad .er{color:var(--bad)}
+  .ev.info .er{color:var(--accent2)}
+  .ev .em{flex:1;color:var(--txt);opacity:.85;overflow:hidden;text-overflow:ellipsis}
+  .ev.new{animation:evin .4s ease-out}
+  @keyframes evin{0%{background:rgba(76,201,240,.12)}100%{background:transparent}}
+
+  #note{cursor:help !important;font-size:.68rem;line-height:1.3;color:var(--faint);flex:0 0 auto}
+  #note .i{color:var(--accent);font-style:normal}
+
+  @media (max-width:620px){
+    body{overflow:auto}
+    #main{grid-template-columns:1fr}
+    #eventsPanel{grid-column:auto}
+    #app{height:auto;min-height:100%}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important;transition:none !important}
+  }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <header>
+    <h1><span class="ic">&#128269;</span> Traceback Detective</h1>
+    <div id="stats" title="Your run so far">
+      <span>frame streak <b id="hStreak">0</b></span>
+      <span>cases solved <b id="hSolved">0</b>/<b id="hSolvedTotal">8</b></span>
+    </div>
+    <button id="reset" title="Reset the simulator">&#8630; Reset</button>
+  </header>
+
+  <div id="challenge">
+    <span class="tag">Try this</span>
+    <span class="steps">
+      <span class="dot" id="d1">1</span><span class="dot" id="d2">2</span><span class="dot" id="d3">3</span>
+    </span>
+    <span class="txt" id="chTxt"></span>
+    <span id="chPredict"></span>
+  </div>
+
+  <div id="main">
+    <div class="panel" id="queuePanel">
+      <h2>Incident queue</h2>
+      <div id="queueList"></div>
+    </div>
+
+    <div class="panel" id="casePanel">
+      <div id="caseEmpty">&larr; open a ticket to see its traceback.</div>
+      <div id="caseBody">
+        <div id="cmdLine"></div>
+        <div id="tbArea"></div>
+        <div id="errorLine"></div>
+        <div class="qBlock" id="q1Block">
+          <h3 id="q1Title">Q1 &mdash; which frame actually crashed?</h3>
+          <div class="qExplain" id="q1Prompt"></div>
+          <div class="qOpts" id="q1Opts"></div>
+          <div class="qExplain" id="q1Explain"></div>
+        </div>
+        <div class="qBlock" id="q2Block">
+          <h3>Q2 &mdash; what kind of error is this?</h3>
+          <div class="qOpts" id="q2Opts"></div>
+          <div class="qExplain" id="q2Explain"></div>
+        </div>
+        <div class="qBlock" id="q3Block">
+          <h3>Q3 &mdash; where does the real fix belong?</h3>
+          <div class="qOpts" id="q3Opts"></div>
+          <div class="qExplain" id="q3Explain"></div>
+        </div>
+        <div id="consequences"><span class="clabel">If you "fix" the wrong frame</span><span id="consText"></span></div>
+      </div>
+    </div>
+
+    <div class="panel" id="eventsPanel">
+      <h2>Incident log <span id="events">&mdash; what an on-call channel would show</span>
+        <span id="note" title="Every traceback here is real captured output from python3 -- not hand-typed. The sim simplifies real incidents: one script, one bug, no timeouts or flaky retries, no line noise from a real production stack that is fifty files deep. Reading a real traceback bottom-up and separating your code from a library's is a skill this teaches; guessing right every time on a real incident is not guaranteed.">
+          <span class="i">&#9432;</span> teaching model &mdash; real captured tracebacks, simplified incidents
+        </span>
+      </h2>
+      <div id="evList"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var $=function(id){return document.getElementById(id)};
+
+  /* ============================================================ CASE DATA (real captured tracebacks) */
+  var CASES=[
+    {
+      id:'c1', ticket:'INC-2201', title:'nightly alert-paging job crashed', file:'alerts.py',
+      hasTraceback:true, chained:false, exitCode:1,
+      blocks:[{frames:[
+        {file:'incident/alerts.py',line:19,func:'<module>',code:'main()',deco:'    ~~~~^^',lib:false},
+        {file:'incident/alerts.py',line:16,func:'main',code:'print(summarize(cfg))',deco:'          ~~~~~~~~~^^^^^',lib:false},
+        {file:'incident/alerts.py',line:10,func:'summarize',code:'channel = format_alert_channel(cfg)',deco:null,lib:false},
+        {file:'incident/alerts.py',line:6,func:'format_alert_channel',code:'return cfg["observability"]["alert_channel"]',deco:'           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^',lib:false}
+      ]}],
+      error:"KeyError: 'alert_channel'",
+      crashKey:'b0f3',
+      crashExplain:'format_alert_channel() is genuinely where Python raised KeyError -- that read is correct. But "crashed here" and "the fix belongs here" are two different questions.',
+      category:1,
+      catExplain:'A KeyError only happens the moment this exact line runs and the key is missing -- valid Python, a real dict, just no "alert_channel" key this time. That is a runtime error, not a typo Python could have caught up front, and not a wrong-but-silent answer either -- it crashed loudly.',
+      q3:{opts:[
+        {label:'format_alert_channel() -- catch the KeyError here and return a placeholder channel',ok:false},
+        {label:'summarize() -- validate that cfg has observability.alert_channel before calling format_alert_channel()',ok:true},
+        {label:'main() -- wrap the whole call in a bare except so nothing ever crashes here again',ok:false}
+      ],explain:'The narrow-catch rule from the lesson: format_alert_channel() is a generic helper -- it should not know or care why a key might be missing. summarize() is the first place that has the full cfg and a reason to insist it is complete before going further.'},
+      consequence:'Patch format_alert_channel() to swallow the KeyError and return a placeholder like "unknown", and every future service missing alert_channel goes on paging nobody -- silently -- while the tool reports success. The incomplete service.yaml that caused this never gets flagged.'
+    },
+    {
+      id:'c2', ticket:'INC-2202', title:'service loader crashed on a teammate’s edit', file:'service_loader.py',
+      hasTraceback:true, chained:false, exitCode:1,
+      blocks:[{frames:[
+        {file:'incident/service_loader.py',line:17,func:'<module>',code:'main()',deco:'    ~~~~^^',lib:false},
+        {file:'incident/service_loader.py',line:14,func:'main',code:'load_config("service-badregion.yaml")',deco:'    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^',lib:false},
+        {file:'incident/service_loader.py',line:10,func:'load_config',code:'return yaml.safe_load(text)',deco:'           ~~~~~~~~~~~~~~^^^^^^',lib:false},
+        {file:'yaml/__init__.py',line:125,func:'safe_load',code:'return load(stream, SafeLoader)',deco:null,lib:true},
+        {file:'yaml/__init__.py',line:81,func:'load',code:'return loader.get_single_data()',deco:'           ~~~~~~~~~~~~~~~~~~~~~~^^',lib:true},
+        {file:'yaml/constructor.py',line:49,func:'get_single_data',code:'node = self.get_single_node()',deco:null,lib:true},
+        {file:'yaml/composer.py',line:36,func:'get_single_node',code:'document = self.compose_document()',deco:null,lib:true},
+        {file:'yaml/composer.py',line:55,func:'compose_document',code:'node = self.compose_node(None, None)',deco:null,lib:true},
+        {file:'yaml/composer.py',line:84,func:'compose_node',code:'node = self.compose_mapping_node(anchor)',deco:null,lib:true},
+        {file:'yaml/composer.py',line:127,func:'compose_mapping_node',code:'while not self.check_event(MappingEndEvent):',deco:'              ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^',lib:true},
+        {file:'yaml/parser.py',line:98,func:'check_event',code:'self.current_event = self.state()',deco:'                         ~~~~~~~~~~^^',lib:true},
+        {file:'yaml/parser.py',line:428,func:'parse_block_mapping_key',code:'if self.check_token(KeyToken):',deco:'       ~~~~~~~~~~~~~~~~^^^^^^^^^^',lib:true},
+        {file:'yaml/scanner.py',line:116,func:'check_token',code:'self.fetch_more_tokens()',deco:'    ~~~~~~~~~~~~~~~~~~~~~~^^',lib:true},
+        {file:'yaml/scanner.py',line:223,func:'fetch_more_tokens',code:'return self.fetch_value()',deco:'           ~~~~~~~~~~~~~~~~^^',lib:true},
+        {file:'yaml/scanner.py',line:577,func:'fetch_value',code:'raise ScannerError(None, None,',deco:'            "mapping values are not allowed here",\n            self.get_mark())',lib:true}
+      ]}],
+      error:'yaml.scanner.ScannerError: mapping values are not allowed here\n  in "<unicode string>", line 5, column 8:\n      extra: not allowed here\n           ^',
+      crashKey:'b0f14',
+      crashExplain:'yaml/scanner.py:577 is genuinely where PyYAML raised ScannerError -- eleven frames deep. Real, but it is not code you own or could ship a fix into.',
+      category:1,
+      catExplain:'Valid Python, invalid YAML data. Nothing is wrong with this script until it actually tries to parse that file -- a runtime error, discovered the moment yaml.safe_load() runs, not before.',
+      q3:{opts:[
+        {label:'yaml/scanner.py -- patch PyYAML’s own scanner to accept the file as-is',ok:false},
+        {label:'load_config() -- catch yaml.YAMLError around yaml.safe_load() and raise a clear, named error',ok:true},
+        {label:'main() -- catch bare Exception around the whole load_config() call',ok:false}
+      ],explain:'Your-code frame (load_config, 3 frames deep) is the boundary between your code and the library. That is where a YAML problem should turn into a message someone can act on -- not eleven frames further down, and not a bare except that also hides bugs that are actually yours.'},
+      consequence:'Add a broad except Exception in main() instead of a narrow one in load_config(), and the next real bug in your own code -- a typo in a variable name, a wrong argument -- gets swallowed by the same catch-all and reported as "something went wrong with the file," which it did not.'
+    },
+    {
+      id:'c3', ticket:'INC-2203', title:'port loader crashed twice in one run', file:'port_config.py',
+      hasTraceback:true, chained:true, exitCode:1,
+      blocks:[
+        {frames:[
+          {file:'incident/port_config.py',line:13,func:'load_port',code:'return int(cfg["port"])',deco:null,lib:false}
+        ], error:"ValueError: invalid literal for int() with base 10: 'https'"},
+        {frames:[
+          {file:'incident/port_config.py',line:23,func:'<module>',code:'main()',deco:'    ~~~~^^',lib:false},
+          {file:'incident/port_config.py',line:20,func:'main',code:'load_port(cfg)',deco:'    ~~~~~~~~~^^^^^',lib:false},
+          {file:'incident/port_config.py',line:15,func:'load_port',code:'raise ConfigError("port must be numeric")',deco:null,lib:false}
+        ], error:'ConfigError: port must be numeric'}
+      ],
+      dividerText:'During handling of the above exception, another exception occurred:',
+      error:'ConfigError: port must be numeric',
+      crashKey:'b1f2',
+      crashExplain:'ConfigError at port_config.py:15 is the one Python never caught -- the program exits on this one. ValueError above it is real too, but that except already handled it; this is the exception that actually ends the run.',
+      wrongBlockExplain:'ValueError at port_config.py:13 really happened -- but look at the line above the divider: "During handling of the above exception..." means Python already caught that one. Look at the block below it for the exception that actually ends the run, uncaught.',
+      category:1,
+      catExplain:'Two exceptions, back to back, both at runtime: int("https") fails the moment it runs, and the except block that catches it raises a second one. Still a runtime error either way -- Python parsed and started this file fine.',
+      q3:{opts:[
+        {label:'port_config.py:15 -- inside the except, just reword the ConfigError message',ok:false},
+        {label:'Wherever cfg["port"] is built -- validate the raw value before load_port() ever sees it, and add "from exc" so the ValueError is not discarded',ok:true},
+        {label:'port_config.py:13 -- delete the try/except entirely',ok:false}
+      ],explain:'Rewording the message treats the symptom. The real fix is upstream: stop a URL scheme from reaching a port field at all, and chain the exceptions with "from exc" so the original evidence (what the bad value actually was) survives for whoever debugs the next one.'},
+      consequence:'Reword the ConfigError message without adding "from exc" and the next bad value here -- a stray space, a hostname -- still throws away its own root cause. A future debugger sees "port must be numeric" and has no idea a URL scheme was pasted in by mistake; the evidence in the ValueError is gone the moment it is not chained.'
+    },
+    {
+      id:'c4', ticket:'INC-2204', title:'threshold summary crashed with a scope error', file:'thresholds.py',
+      hasTraceback:true, chained:false, exitCode:1,
+      blocks:[{frames:[
+        {file:'incident/thresholds.py',line:27,func:'<module>',code:'main()',deco:'    ~~~~^^',lib:false},
+        {file:'incident/thresholds.py',line:24,func:'main',code:'print(summarize_thresholds("thresholds-missing.yaml"))',deco:'          ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^',lib:false},
+        {file:'incident/thresholds.py',line:19,func:'summarize_thresholds',code:'thresholds = load_thresholds(path)',deco:null,lib:false},
+        {file:'incident/thresholds.py',line:15,func:'load_thresholds',code:'return thresholds',deco:'           ^^^^^^^^^^',lib:false}
+      ]}],
+      error:"UnboundLocalError: cannot access local variable 'thresholds' where it is not associated with a value",
+      crashKey:'b0f3',
+      crashExplain:'load_thresholds() line 15 is genuinely where Python raised UnboundLocalError. But "thresholds" was never assigned because the real failure happened a few lines up, and nothing said so.',
+      category:1,
+      catExplain:'This is a runtime error, and a classic misleading one: the error type and message describe a scoping accident, but the actual cause is a totally different exception (a missing file) that got swallowed before this line ever ran.',
+      q3:{opts:[
+        {label:'load_thresholds() -- wrap the return in a try/except to supply a default value',ok:false},
+        {label:'load_thresholds() -- stop the bare "except Exception: pass" around the file read; let the real error propagate or convert it to a named one',ok:true},
+        {label:'summarize_thresholds() -- check "if thresholds is None" before using it',ok:false}
+      ],explain:'A bare except: pass is what actually failed here -- it hid the real FileNotFoundError. Guarding against None one frame up just changes which confusing symptom shows up next time; it does not stop the real error from being thrown away.'},
+      consequence:'Add a None-check in summarize_thresholds() and the crash goes away -- but the bare except in load_thresholds() still swallows every kind of failure the same way. Next time it is a permission error or a bad YAML file, and it will look exactly like this, because the real error is never allowed to say what it actually was.'
+    },
+    {
+      id:'c5', ticket:'INC-2205', title:'replica guard says OK, on-call does not believe it', file:'replica_guard.py',
+      hasTraceback:false, exitCode:0, stdout:'OK',
+      trap:{q:'replica_guard.py ran clean, printed "OK", and exited 0. Is there still a bug?',
+        opts:[
+          {label:'No bug -- no traceback, no crash, nothing to fix',ok:false},
+          {label:'Yes -- a real problem got through and the tool never said a word',ok:true}
+        ],
+        explain:'The lesson’s worst outcome: a logic error. The code runs start to finish, produces an answer, and the answer is wrong. Nothing stops to tell you -- you only find out by checking the answer against reality.'},
+      category:2,
+      catExplain:'No traceback, no crash, a clean exit 0 -- this is the one kind of failure Python itself cannot catch, because nothing in the code is invalid. It is a logic error: the wrong result, produced on purpose by the code as written.',
+      q3:{opts:[
+        {label:'sys.exit() -- change the exit code from 0 to 1',ok:false},
+        {label:'validate_replica_count() -- fix the condition: prod needs replicas >= 2 for real high availability, not just replicas > 0',ok:true},
+        {label:'main() -- add a print() statement to see what is happening',ok:false}
+      ],explain:'The exit code is only the messenger. validate_replica_count() checks replicas > 0 when it should check replicas >= 2 -- that is the actual rule that is wrong, and it is the only place fixing the code changes the answer instead of just the label on it.'},
+      consequence:'Flip the exit code to 1 without fixing the condition, and the tool now fails every prod service with exactly one replica -- including ones that later scale to two or more and are actually fine, because the >= 2 rule was never coded at all. You changed the messenger, not the message.'
+    },
+    {
+      id:'c6', ticket:'INC-2206', title:'paging script crashed mid-page', file:'oncall.py',
+      hasTraceback:true, chained:false, exitCode:1,
+      blocks:[{frames:[
+        {file:'incident/oncall.py',line:23,func:'<module>',code:'main()',deco:'    ~~~~^^',lib:false},
+        {file:'incident/oncall.py',line:20,func:'main',code:'notify(cfg, "billing-api")',deco:'    ~~~~~~^^^^^^^^^^^^^^^^^^^^',lib:false},
+        {file:'incident/oncall.py',line:15,func:'notify',code:'print(f"paging {owner.upper()}")',deco:'                    ^^^^^^^^^^^',lib:false}
+      ]}],
+      error:"AttributeError: 'NoneType' object has no attribute 'upper'",
+      crashKey:'b0f2',
+      crashExplain:'notify() is genuinely where AttributeError raised -- owner was None there. But nothing that ran before this line ever raised an error when owner first became None.',
+      category:1,
+      catExplain:'A runtime error -- but the interesting part is where it is NOT: find_owner_team() returned None instead of raising, so it finished "successfully" and never shows up in this traceback at all.',
+      q3:{opts:[
+        {label:'notify() -- check "if owner is not None" before calling .upper()',ok:false},
+        {label:'find_owner_team() -- it returned None because the service was not found, and it does not appear in this traceback at all; raise a clear error there instead of falling off the end of the loop',ok:true},
+        {label:'main() -- call notify() with a different, existing service name',ok:false}
+      ],explain:'find_owner_team() is not even a frame in this traceback, because returning None is not an error Python can see -- only a bug a human has to notice. That silent, wrong return is the actual defect; notify() just inherited it.'},
+      consequence:'Guard owner.upper() with "if owner is not None" and the crash disappears -- but so does the evidence. notify() now does nothing for a service that does not exist, and nobody pages for billing-api’s real incident. The bug is still in find_owner_team(); you just made it quieter.'
+    },
+    {
+      id:'c7', ticket:'INC-2207', title:'region picker crashed on the third environment', file:'regions.py',
+      hasTraceback:true, chained:false, exitCode:1,
+      blocks:[{frames:[
+        {file:'incident/regions.py',line:16,func:'<module>',code:'main()',deco:'    ~~~~^^',lib:false},
+        {file:'incident/regions.py',line:13,func:'main',code:'print(region_for_env(regions, env_index))',deco:'          ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^',lib:false},
+        {file:'incident/regions.py',line:7,func:'region_for_env',code:'return regions[env_index]',deco:'           ~~~~~~~^^^^^^^^^^^',lib:false}
+      ]}],
+      error:'IndexError: list index out of range',
+      crashKey:'b0f2',
+      crashExplain:'region_for_env() is where IndexError raised -- and this time, that really is also where the bug lives. Not every case is a red herring.',
+      category:1,
+      catExplain:'A runtime error: perfectly valid Python, but index 2 does not exist in a 2-item list the moment this line runs.',
+      q3:{opts:[
+        {label:'region_for_env() -- this is genuinely it: add a bounds check (or look up by name instead of a fragile index) right where the crash happened',ok:true},
+        {label:'main() -- catch IndexError there instead and move on',ok:false},
+        {label:'regions.py -- rename the variable env_index to something clearer',ok:false}
+      ],explain:'Sometimes the crash frame really is the guilty frame. Catching the error one frame up in main() stops the crash but region_for_env() still has no third region to return -- you would trade a loud crash for a silent, wrong value flowing downstream instead.'},
+      consequence:'Catch IndexError in main() and move on, and region_for_env() is still missing a region for env_index 2 -- now that gap produces no visible error at all, just a skipped step, which is worse than a crash that at least told you exactly where to look.'
+    },
+    {
+      id:'c8', ticket:'INC-2208', title:'status emitter crashed writing to the log', file:'status_emit.py',
+      hasTraceback:true, chained:false, exitCode:1,
+      blocks:[{frames:[
+        {file:'incident/status_emit.py',line:22,func:'<module>',code:'main()',deco:'    ~~~~^^',lib:false},
+        {file:'incident/status_emit.py',line:19,func:'main',code:'emit({"name": "checkout-api"})',deco:'    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^',lib:false},
+        {file:'incident/status_emit.py',line:15,func:'emit',code:'print(json.dumps(payload))',deco:'          ~~~~~~~~~~^^^^^^^^^',lib:false},
+        {file:'json/__init__.py',line:231,func:'dumps',code:'return _default_encoder.encode(obj)',deco:'           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^',lib:true},
+        {file:'json/encoder.py',line:200,func:'encode',code:'chunks = self.iterencode(o, _one_shot=True)',deco:null,lib:true},
+        {file:'json/encoder.py',line:261,func:'iterencode',code:'return _iterencode(o, 0)',deco:null,lib:true},
+        {file:'json/encoder.py',line:180,func:'default',code:"raise TypeError(f'Object of type {o.__class__.__name__} '",deco:"                    f'is not JSON serializable')",lib:true}
+      ]}],
+      error:'TypeError: Object of type datetime is not JSON serializable',
+      crashKey:'b0f6',
+      crashExplain:'json/encoder.py:180 is genuinely where TypeError raised, deep in Python’s own standard library this time, not a third-party package -- real, but still not yours to patch.',
+      category:1,
+      catExplain:'A runtime error: valid Python, valid dict, but json.dumps() only discovers it cannot serialize a datetime the moment it actually tries.',
+      q3:{opts:[
+        {label:'json/encoder.py -- patch Python’s own json module to accept datetime objects',ok:false},
+        {label:'build_status_payload() -- convert the datetime to a string (e.g. .isoformat()) before it ever reaches json.dumps()',ok:true},
+        {label:'emit() -- wrap json.dumps() in a try/except TypeError and print nothing',ok:false}
+      ],explain:'Same rule as the library case: you do not own json’s encoder any more than you own PyYAML. The fix belongs where the datetime object was put into the payload in the first place -- build_status_payload().'},
+      consequence:'Swallow the TypeError in emit() and print nothing, and the status line for checkout-api simply never appears in the log for that run -- with no error at all to explain why. Silence is not the same as a fix.'
+    }
+  ];
+  var CAT_LABELS=['Syntax error','Runtime error (exception)','Logic error'];
+
+  /* ============================================================ STATE */
+  var S={
+    active:null,
+    cases:{},
+    streak:0,
+    solved:0,
+    t0:Date.now()
+  };
+  CASES.forEach(function(c){ S.cases[c.id]={q1:null,q1ok:null,q2:null,q3:null,solved:false}; });
+
+  /* ============================================================ EVENTS */
+  var evList=$('evList');
+  function clock(){var s=Math.floor((Date.now()-S.t0)/1000);return Math.floor(s/60)+':'+('0'+s%60).slice(-2)}
+  function logEv(kind,reason,msg){
+    var d=document.createElement('div');
+    d.className='ev new '+(kind==='warn'?'warn':kind==='bad'?'bad':kind==='info'?'info':'');
+    d.innerHTML='<span class="et"></span><span class="er"></span><span class="em"></span>';
+    d.children[0].textContent=clock();
+    d.children[1].textContent=reason;d.children[2].textContent=msg;
+    d.title=reason+'  --  '+msg;
+    evList.appendChild(d);
+    while(evList.children.length>140)evList.removeChild(evList.firstChild);
+    evList.scrollTop=evList.scrollHeight;
+  }
+
+  /* ============================================================ CHALLENGE */
+  var CH={step:1,done:[false,false,false],predPicked:[null,null,null],
+    preds:[
+      {q:'In a traceback, is the frame that raised the exception always the frame where the real fix belongs?',
+       opts:['Yes -- the crash frame is always the guilty one','No -- the crash frame is often just where the damage surfaced, not where it started'],ok:1,
+       explain:'Most of the time the crash frame and the guilty frame are different. A handful of cases below are the exception -- literally -- so check each one, do not assume.'},
+      {q:'Two tracebacks are chained with "During handling of the above exception...". Which one does the program actually exit on?',
+       opts:['The first one -- it happened first, so it is the real cause','The second one -- it is the exception still unhandled when the program ends'],ok:1,
+       explain:'Python chains automatically the moment a new exception is raised while handling another. The first exception is real evidence, but the second is the one that actually ends the program -- read both, but the second is what a caller sees.'},
+      {q:'A tool exits 0 and prints nothing scary. Can it still ship a real bug to production?',
+       opts:['No -- exit 0 means the run genuinely found nothing wrong','Yes -- exit code only reflects what the tool decided to check, not what is actually true'],ok:1,
+       explain:'Exit 0 means "this tool did not detect a problem" -- not "there is no problem." A logic error runs clean, produces a wrong answer, and reports success the whole way, because nothing in the code ever asked the right question.'}
+    ]};
+  var CH_TEXT=[
+    'Step 1 &mdash; Get <b>3 "which frame crashed" picks right in a row</b>, on any tickets in the queue.',
+    'Step 2 &mdash; Open <b>INC-2203</b> (the chained exception) and answer all three questions correctly.',
+    'Step 3 &mdash; Open <b>INC-2205</b> (exit code 0, no traceback) and correctly call whether it still has a bug.'
+  ];
+  var SUCCESS='Challenge complete! You read the crash frame, the guilty frame, <b>and</b> the case where there was no frame at all &mdash; a clean exit does not mean a clean result, and the loudest line in a traceback is not always the one to fix.';
+
+  function predict(i){
+    if(CH.step>3)return;
+    var s=CH.step;
+    if(CH.predPicked[s-1]!==null)return;
+    if(i<0||i>=CH.preds[s-1].opts.length)return;
+    CH.predPicked[s-1]=i;
+    logEv('info','prediction','you predicted: “'+CH.preds[s-1].opts[i]+'”');
+    renderChallenge();
+  }
+  function predVerdict(s){
+    var pick=CH.predPicked[s-1];
+    if(pick===null)return;
+    var pr=CH.preds[s-1];
+    if(pick===pr.ok)logEv('ok','prediction','Prediction right -- '+pr.explain);
+    else logEv('warn','prediction','Not what you predicted -- '+pr.explain);
+  }
+  function updateChallenge(){
+    var moved=true;
+    while(moved){
+      moved=false;
+      if(CH.step===1&&!CH.done[0]&&S.streak>=3){CH.done[0]=true;predVerdict(1);CH.step=2;moved=true;}
+      else if(CH.step===2&&!CH.done[1]&&S.cases.c3.solved){CH.done[1]=true;predVerdict(2);CH.step=3;moved=true;}
+      else if(CH.step===3&&!CH.done[2]&&S.cases.c5.solved){CH.done[2]=true;predVerdict(3);CH.step=4;moved=true;}
+    }
+    renderChallenge();
+  }
+  function renderChallenge(){
+    for(var i=1;i<=3;i++){
+      var d=$('d'+i);d.className='dot'+(CH.done[i-1]?' done':CH.step===i?' cur':'');
+      d.textContent=CH.done[i-1]?'✓':i;
+    }
+    var box=$('challenge'),txt=$('chTxt'),pr=$('chPredict');
+    pr.innerHTML='';
+    if(CH.step===4){box.classList.add('success');txt.innerHTML=SUCCESS;return;}
+    var s=CH.step,p=CH.preds[s-1];
+    if(CH.predPicked[s-1]===null){
+      txt.innerHTML='<span class="dim">Predict first --</span> '+p.q;
+      p.opts.forEach(function(o,i){
+        var c=document.createElement('span');
+        c.className='chip';c.textContent=o;c.title='Lock in this prediction';
+        c.addEventListener('click',function(){predict(i)});
+        pr.appendChild(c);
+      });
+    }else{
+      txt.innerHTML=CH_TEXT[s-1]+' <span class="dim">(you predicted: “'+p.opts[CH.predPicked[s-1]]+'”)</span>';
+    }
+  }
+
+  /* ============================================================ QUEUE */
+  var ticketEls={};
+  function renderQueue(){
+    var wrap=$('queueList');wrap.innerHTML='';ticketEls={};
+    CASES.forEach(function(c){
+      var b=document.createElement('button');b.className='ticket'+(S.active===c.id?' active':'');
+      b.title='Open '+c.ticket+': '+c.title;
+      var cs=S.cases[c.id];
+      var mark=cs.q1===null?'':(cs.solved?'<span class="tmark ok">&#10003;</span>':(cs.q3!==null?'<span class="tmark bad">reviewed</span>':''));
+      b.innerHTML='<span class="tid">'+c.ticket+'</span>'+mark+'<div class="ttitle">'+esc(c.title)+'</div>';
+      b.addEventListener('click',function(){openCase(c.id)});
+      wrap.appendChild(b);
+      ticketEls[c.id]=b;
+    });
+  }
+
+  /* ============================================================ CASE VIEW */
+  function caseById(id){for(var i=0;i<CASES.length;i++)if(CASES[i].id===id)return CASES[i];}
+  function frameKey(bi,fi){return 'b'+bi+'f'+fi}
+
+  function openCase(id){
+    S.active=id;
+    $('caseEmpty').style.display='none';
+    $('caseBody').classList.add('on');
+    renderQueue();
+    renderCase();
+    logEv('info','ticket','opened '+caseById(id).ticket+' -- '+caseById(id).file);
+  }
+
+  function renderCase(){
+    var c=caseById(S.active),cs=S.cases[c.id];
+    $('cmdLine').textContent='$ python3 '+c.file+'; echo "exit code: $?"'+
+      (c.hasTraceback?'':'\n'+c.stdout)+'\nexit code: '+c.exitCode;
+
+    var tb=$('tbArea');tb.innerHTML='';
+    if(!c.hasTraceback){
+      var nt=document.createElement('div');nt.id='noTb';
+      nt.textContent='(no traceback -- the process printed "'+c.stdout+'" and exited '+c.exitCode+')';
+      tb.appendChild(nt);
+      $('errorLine').textContent='';
+    }else{
+      c.blocks.forEach(function(block,bi){
+        if(bi>0&&c.dividerText){
+          var div=document.createElement('div');div.className='tbDivider';div.textContent=c.dividerText;
+          tb.appendChild(div);
+        }
+        var bwrap=document.createElement('div');bwrap.className='tbBlock';
+        block.frames.forEach(function(f,fi){
+          bwrap.appendChild(buildFrameRow(c,bi,fi,f));
+        });
+        tb.appendChild(bwrap);
+      });
+      $('errorLine').textContent=c.error;
+    }
+    renderQ1(c,cs);
+    renderQ2(c,cs);
+    renderQ3(c,cs);
+    renderConsequence(c,cs);
+  }
+
+  function buildFrameRow(c,bi,fi,f){
+    var cs=S.cases[c.id];
+    var row=document.createElement('div');
+    row.className='frameRow '+(f.lib?'lib':'mine');
+    var key=frameKey(bi,fi);
+    var canClick=c.hasTraceback&&cs.q1===null;
+    if(canClick){
+      row.classList.add('clickable');
+      row.title='Click if you think this is the frame that crashed';
+      row.addEventListener('click',function(){pickFrame(key,f)});
+    }
+    if(cs.q1===key)row.classList.add('picked',cs.q1ok?'ok':'bad');
+    if(cs.q1!==null&&key===c.crashKey)row.classList.add('correct-mark');
+    var loc=document.createElement('div');loc.className='fLoc';
+    loc.textContent='File "'+f.file+'", line '+f.line+', in '+f.func;
+    row.appendChild(loc);
+    var code=document.createElement('div');code.className='fCode';code.textContent='    '+f.code;
+    row.appendChild(code);
+    if(f.deco){
+      var deco=document.createElement('div');deco.className='fDeco';deco.textContent=f.deco;
+      row.appendChild(deco);
+    }
+    return row;
+  }
+
+  function pickFrame(key,f){
+    var c=caseById(S.active),cs=S.cases[c.id];
+    if(cs.q1!==null)return;
+    var correct=(key===c.crashKey);
+    cs.q1=key;cs.q1ok=correct;
+    if(correct){S.streak++;}else{S.streak=0;}
+    if(correct)logEv('ok','frame-pick',c.ticket+': correct -- '+c.crashExplain);
+    else{
+      var wrongExplain=(c.chained&&c.wrongBlockExplain)?c.wrongBlockExplain:c.crashExplain;
+      logEv('warn','frame-pick',c.ticket+': not the crash frame -- '+wrongExplain);
+    }
+    if(f.lib)logEv('info','library','frame is library code ('+f.file+') -- not something you maintain. It can be exactly where the exception raises, but the fix essentially never lives here.');
+    renderStats();
+    renderCase();
+    updateChallenge();
+  }
+
+  function renderQ1(c,cs){
+    var block=$('q1Block');
+    if(!c.hasTraceback){
+      block.classList.add('on');
+      $('q1Title').textContent='Q1 -- is there really a bug here?';
+      $('q1Prompt').textContent=c.trap.q;
+      var opts=$('q1Opts');opts.innerHTML='';
+      c.trap.opts.forEach(function(o,i){
+        var b=document.createElement('button');b.className='qChip';b.textContent=o.label;
+        b.title='Lock in this answer';
+        b.disabled=cs.q1!==null;
+        if(cs.q1===String(i))b.classList.add('picked',o.ok?'ok':'bad');
+        if(cs.q1!==null&&o.ok)b.classList.add('correct-mark');
+        b.addEventListener('click',function(){pickTrap(i)});
+        opts.appendChild(b);
+      });
+      $('q1Explain').textContent=cs.q1!==null?c.trap.explain:'';
+      return;
+    }
+    $('q1Title').textContent='Q1 -- which frame actually crashed?';
+    $('q1Prompt').textContent='Click a frame in the traceback above.';
+    block.classList.add('on');
+    $('q1Opts').innerHTML='';
+    $('q1Explain').textContent=cs.q1!==null?(cs.q1ok?c.crashExplain:((c.chained&&c.wrongBlockExplain)?c.wrongBlockExplain:c.crashExplain)):'';
+  }
+
+  function pickTrap(i){
+    var c=caseById(S.active),cs=S.cases[c.id];
+    if(cs.q1!==null)return;
+    var correct=c.trap.opts[i].ok;
+    cs.q1=String(i);cs.q1ok=correct;
+    if(correct){S.streak++;logEv('ok','trap',c.ticket+': correct -- '+c.trap.explain);}
+    else{S.streak=0;logEv('bad','trap',c.ticket+': not quite -- '+c.trap.explain);}
+    renderStats();
+    renderCase();
+    updateChallenge();
+  }
+
+  function renderQ2(c,cs){
+    var block=$('q2Block');
+    if(cs.q1===null){block.classList.remove('on');return;}
+    block.classList.add('on');
+    var opts=$('q2Opts');opts.innerHTML='';
+    CAT_LABELS.forEach(function(label,i){
+      var b=document.createElement('button');b.className='qChip';b.textContent=label;
+      b.title='Lock in this category';
+      b.disabled=cs.q2!==null;
+      if(cs.q2===i)b.classList.add('picked',i===c.category?'ok':'bad');
+      if(cs.q2!==null&&i===c.category)b.classList.add('correct-mark');
+      b.addEventListener('click',function(){pickCategory(i)});
+      opts.appendChild(b);
+    });
+    $('q2Explain').textContent=cs.q2!==null?c.catExplain:'';
+  }
+  function pickCategory(i){
+    var c=caseById(S.active),cs=S.cases[c.id];
+    if(cs.q2!==null)return;
+    var correct=(i===c.category);
+    cs.q2=i;
+    logEv(correct?'ok':'warn','category',c.ticket+': called '+CAT_LABELS[i]+' -- '+(correct?'correct.':'actual: '+CAT_LABELS[c.category]+'.'));
+    renderCase();
+  }
+
+  function renderQ3(c,cs){
+    var block=$('q3Block');
+    if(cs.q2===null){block.classList.remove('on');return;}
+    block.classList.add('on');
+    var opts=$('q3Opts');opts.innerHTML='';
+    c.q3.opts.forEach(function(o,i){
+      var b=document.createElement('button');b.className='qChip';b.textContent=o.label;
+      b.title='Lock in this fix location';
+      b.disabled=cs.q3!==null;
+      if(cs.q3===i)b.classList.add('picked',o.ok?'ok':'bad');
+      if(cs.q3!==null&&o.ok)b.classList.add('correct-mark');
+      b.addEventListener('click',function(){pickFix(i)});
+      opts.appendChild(b);
+    });
+    $('q3Explain').textContent=cs.q3!==null?c.q3.explain:'';
+  }
+  function pickFix(i){
+    var c=caseById(S.active),cs=S.cases[c.id];
+    if(cs.q3!==null)return;
+    var correct=c.q3.opts[i].ok;
+    cs.q3=i;
+    var wasSolved=cs.solved;
+    cs.solved=(cs.q1ok===true&&cs.q2===c.category&&correct);
+    if(cs.solved&&!wasSolved){S.solved++;}
+    logEv(correct?'ok':'bad','fix-pick',c.ticket+': '+(correct?'correct fix location -- ':'not the fix -- ')+c.q3.explain);
+    logEv('warn','postmortem',c.ticket+' case '+(cs.solved?'closed clean.':'closed -- review the miss above.'));
+    renderStats();renderQueue();renderCase();
+    updateChallenge();
+  }
+
+  function renderConsequence(c,cs){
+    var box=$('consequences');
+    if(cs.q3===null){box.classList.remove('on');return;}
+    box.classList.add('on');
+    $('consText').textContent=' '+c.consequence;
+  }
+
+  /* ============================================================ MISC */
+  function esc(s){return String(s).replace(/[&<>]/g,function(ch){return ch==='&'?'&amp;':ch==='<'?'&lt;':'&gt;'});}
+  function renderStats(){
+    $('hStreak').textContent=S.streak;
+    $('hSolved').textContent=S.solved;
+  }
+
+  $('reset').addEventListener('click',function(){location.reload()});
+
+  /* ============================================================ BOOT */
+  renderQueue();
+  renderStats();
+  logEv('info','boot','8 tickets in the incident queue. Open one, click the frame you think crashed, then answer category and fix location.');
+  renderChallenge();
+
+  function clickFrameByKey(id,key){
+    var c=caseById(id);
+    if(S.active!==id)openCase(id);
+    for(var bi=0;bi<c.blocks.length;bi++){
+      for(var fi=0;fi<c.blocks[bi].frames.length;fi++){
+        if(frameKey(bi,fi)===key){pickFrame(key,c.blocks[bi].frames[fi]);return;}
+      }
+    }
+  }
+
+  /* test hook */
+  window.__sim={S:S,CH:CH,CASES:CASES,
+    openCase:openCase,pickFrame:pickFrame,pickTrap:pickTrap,pickCategory:pickCategory,pickFix:pickFix,predict:predict,
+    caseById:caseById,clickFrameByKey:clickFrameByKey};
+})();
+</script>
+</body>
+</html>

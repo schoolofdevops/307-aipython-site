@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Config Resolver</title>
+<style>
+  :root{
+    --bg:#0d1220; --panel:#151c2e; --panel2:#111827; --line:#26324e; --line2:#1c2740;
+    --txt:#dbe4f5; --dim:#8494b3; --faint:#5a6a8c;
+    --accent:#4cc9f0; --accent2:#7b6cf6;
+    --ok:#3ddc97; --warn:#f5b942; --bad:#ff6b6b;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:clamp(10.5px,0.4vw + 9.1px,16px);color-scheme:dark}
+  html,body{height:100%}
+  body{
+    background:var(--bg); color:var(--txt);
+    font:1rem/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    overflow:hidden;
+  }
+  #app{display:flex;flex-direction:column;height:100%;padding:8px 10px;gap:6px}
+
+  /* ---------- header ---------- */
+  header{display:flex;align-items:center;gap:10px;flex:0 0 auto;flex-wrap:wrap}
+  header h1{font-size:1.02rem;font-weight:650;letter-spacing:.2px;white-space:nowrap}
+  header h1 .ic{color:var(--accent)}
+  #stats,#stats *{cursor:default}
+  #stats{font-family:var(--mono);font-size:.78rem;color:var(--faint);display:flex;gap:10px;white-space:nowrap}
+  #stats b{color:var(--txt);font-weight:600}
+  #stats .streakon b{color:var(--ok)}
+  #reset{margin-left:auto;background:none;border:1px solid var(--line);color:var(--dim);border-radius:6px;
+    padding:3px 9px;font-size:.88rem;cursor:pointer;min-height:24px}
+  #reset:hover{color:var(--txt);border-color:var(--faint)}
+
+  /* ---------- challenge banner ---------- */
+  #challenge{flex:0 0 auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    background:linear-gradient(90deg,rgba(123,108,246,.14),rgba(76,201,240,.07));
+    border:1px solid #3a3f6e;border-radius:8px;padding:4px 11px;min-height:30px}
+  #challenge .tag{font-size:.78rem;font-weight:700;letter-spacing:.8px;color:var(--accent2);
+    text-transform:uppercase;white-space:nowrap}
+  #challenge .steps{display:flex;gap:5px}
+  #challenge .dot{width:1.3rem;height:1.3rem;border-radius:50%;border:1.5px solid var(--faint);
+    font-size:.76rem;display:flex;align-items:center;justify-content:center;color:var(--faint);font-weight:700}
+  #challenge .dot.cur{border-color:var(--accent);color:var(--accent)}
+  #challenge .dot.done{border-color:var(--ok);background:rgba(61,220,151,.15);color:var(--ok)}
+  #challenge .txt{flex:1;color:var(--txt);font-size:.88rem;min-width:16rem}
+  #challenge .txt .dim{color:var(--faint);font-size:.8rem}
+  #challenge .txt b{color:var(--accent)}
+  #chPredict{display:flex;gap:6px;flex-wrap:wrap}
+  #chPredict .chip{cursor:pointer;border:1px solid var(--accent2);color:#a89cf8;background:rgba(123,108,246,.1);
+    border-radius:12px;padding:2px 10px;font-size:.82rem;transition:background .15s,color .15s}
+  #chPredict .chip:hover{background:rgba(123,108,246,.28);color:#d6cfff}
+  #challenge.success{background:linear-gradient(90deg,rgba(61,220,151,.16),rgba(61,220,151,.05));border-color:#2c7a5b}
+  #challenge.success .tag{color:var(--ok)}
+  #challenge.success .txt{line-height:1.3}
+
+  /* ---------- main grid: two linked panels ---------- */
+  #main{flex:1 1 auto;display:grid;grid-template-columns:1fr 1fr;gap:6px;min-height:0}
+  #main>*{min-width:0}
+  .panel{background:var(--panel);border:1px solid var(--line2);border-radius:10px;padding:7px 10px;
+    display:flex;flex-direction:column;min-height:0;overflow:hidden}
+  .panel h2{font-size:.74rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--faint);margin-bottom:4px}
+  .panel h2 span{letter-spacing:0;text-transform:none;color:var(--accent);font-family:var(--mono);font-size:.78rem}
+
+  /* -- precedence layers -- */
+  #precLayers{display:flex;flex-direction:column;gap:4px;flex:0 0 auto}
+  .layerRow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;background:var(--panel2);
+    border:1px solid var(--line);border-radius:7px;padding:4px 7px}
+  .layerToggle{cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--dim);
+    border-radius:6px;padding:2px 8px;font-size:.78rem;font-weight:700;letter-spacing:.3px;min-height:22px;
+    transition:background .15s,color .15s,border-color .15s}
+  .layerToggle:hover{color:var(--txt)}
+  .layerToggle.on{color:var(--accent);border-color:var(--accent);background:rgba(76,201,240,.14)}
+  .layerLabel{font-size:.72rem;color:var(--faint);flex:1;min-width:8rem}
+  .chips{display:flex;gap:3px;flex-wrap:wrap}
+  .chip{cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--dim);
+    border-radius:10px;padding:1px 7px;font-size:.74rem;font-family:var(--mono);transition:background .15s,color .15s,border-color .15s}
+  .chip:hover{color:var(--txt);border-color:var(--faint)}
+  .chip.active{border-color:var(--accent2);background:rgba(123,108,246,.18);color:#cfc7ff}
+
+  /* -- call buttons (shared between precedence + crash panels) -- */
+  .callWrap{flex:0 0 auto;margin-top:5px}
+  .callWrap h3{font-size:.72rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--faint);margin-bottom:3px}
+  .opts{display:flex;flex-direction:column;gap:4px}
+  .opt{display:flex;align-items:center;gap:8px;text-align:left;min-height:2.1rem;
+    border:1px solid var(--line);border-radius:7px;background:var(--panel2);color:var(--txt);
+    padding:3px 9px;cursor:pointer;position:relative;transition:border-color .15s,background .15s}
+  .opt:hover:not(:disabled){border-color:var(--accent);background:rgba(76,201,240,.07)}
+  .opt:disabled{cursor:default;opacity:.55}
+  .opt:disabled.picked,.opt:disabled.correct{opacity:1}
+  .opt .oname{flex:0 0 6.6rem;font-family:var(--mono);font-size:.82rem;font-weight:650}
+  .opt .odesc{flex:1;font-size:.74rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .opt .mark{font-size:.66rem;font-weight:700;letter-spacing:.3px;white-space:nowrap;
+    padding:1px 5px;border-radius:6px;display:none}
+  .opt.picked .mark.you{display:inline-block}
+  .opt.correct .mark.rs{display:inline-block;background:rgba(61,220,151,.16);color:var(--ok);border:1px solid rgba(61,220,151,.4)}
+  .opt.picked.ok{border-color:var(--ok);background:rgba(61,220,151,.1)}
+  .opt.picked.bad{border-color:var(--bad);background:rgba(255,107,107,.1)}
+  .opt.picked.ok .mark.you{background:rgba(61,220,151,.16);color:var(--ok);border:1px solid rgba(61,220,151,.4)}
+  .opt.picked.bad .mark.you{background:rgba(255,107,107,.14);color:var(--bad);border:1px solid rgba(255,107,107,.4)}
+  .opt.picked.correct .mark.rs{display:none}
+
+  /* -- reveal / result blocks (inert readouts) -- */
+  .result,.result *{cursor:default}
+  .result{margin-top:5px;flex:1 1 auto;min-height:0;overflow-y:auto;scrollbar-width:thin}
+  .rLabel{font-family:var(--mono);font-size:.86rem;font-weight:700;min-height:1.2rem;color:var(--faint)}
+  .rLabel.ok{color:var(--ok)} .rLabel.warn{color:var(--warn)} .rLabel.bad{color:var(--bad)}
+  .rNote{font-size:.78rem;line-height:1.4;color:var(--txt);opacity:.92;margin-top:3px}
+  .rDetail{font-family:var(--mono);font-size:.72rem;color:var(--dim);margin-top:3px;white-space:pre-wrap}
+
+  /* -- strategy switch + timeline -- */
+  #stratSwitch{display:flex;gap:5px;flex:0 0 auto;margin-bottom:5px}
+  .stratBtn{cursor:pointer;flex:1;border:1px solid var(--line);background:var(--panel2);color:var(--dim);
+    border-radius:7px;padding:4px 6px;font-size:.8rem;font-weight:650;min-height:26px;transition:background .15s,color .15s}
+  .stratBtn:hover{color:var(--txt)}
+  .stratBtn.active{border-color:var(--accent2);color:#cfc7ff;background:rgba(123,108,246,.16)}
+  #timelineWrap{flex:0 0 auto}
+  #timeline{display:flex;align-items:center;gap:2px}
+  .tStop{cursor:pointer;flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;
+    border:none;background:none;padding:3px 1px;min-height:2.6rem}
+  .tStop .dotmark{width:.85rem;height:.85rem;border-radius:50%;border:2px solid var(--line);background:var(--panel2)}
+  .tStop:hover .dotmark{border-color:var(--faint)}
+  .tStop.cur .dotmark{border-color:var(--accent);background:var(--accent);box-shadow:0 0 0 3px rgba(76,201,240,.2)}
+  .tStop .tlabel{font-size:.62rem;color:var(--faint);text-align:center;line-height:1.2}
+  .tStop.cur .tlabel{color:var(--accent)}
+  .tLine{height:2px;background:var(--line);flex:0 0 auto;width:100%;margin-top:-1.5rem;z-index:-1}
+
+  #diskView,#diskView *{cursor:default}
+  #diskView{flex:0 0 auto;margin-top:4px;font-family:var(--mono);font-size:.72rem;background:var(--panel2);
+    border:1px dashed var(--line2);border-radius:6px;padding:5px 7px;min-height:2.6rem;white-space:pre-wrap;color:var(--dim)}
+  #diskView .fname{color:var(--accent);font-weight:700}
+  #diskView .tname{color:var(--warn);font-weight:700}
+
+  /* -- event log -- */
+  #eventsPanel{grid-column:1/-1;flex:0 0 clamp(96px,8.2rem,132px)}
+  #evList,#evList *{cursor:default}
+  #evList{flex:1;overflow-y:auto;font-family:var(--mono);font-size:.75rem;line-height:1.58;scrollbar-width:thin}
+  .ev{display:flex;gap:8px;white-space:nowrap;overflow:hidden}
+  .ev .et{color:var(--faint);flex:0 0 2.6rem}
+  .ev .er{flex:0 0 5.6rem;overflow:hidden;text-overflow:ellipsis;color:var(--ok)}
+  .ev.warn .er{color:var(--warn)}
+  .ev.bad .er{color:var(--bad)}
+  .ev.info .er{color:var(--accent2)}
+  .ev .em{flex:1;color:var(--txt);opacity:.85;overflow:hidden;text-overflow:ellipsis}
+  .ev.new{animation:evin .4s ease-out}
+  @keyframes evin{0%{background:rgba(76,201,240,.12)}100%{background:transparent}}
+
+  #note{cursor:help !important;font-size:.68rem;line-height:1.3;color:var(--faint);flex:0 0 auto}
+  #note .i{color:var(--accent);font-style:normal}
+
+  @media (max-width:620px){
+    body{overflow:auto}
+    #main{grid-template-columns:1fr}
+    #eventsPanel{grid-column:auto}
+    #app{height:auto;min-height:100%}
+    .opt .odesc{white-space:normal}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important;transition:none !important}
+  }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <header>
+    <h1><span class="ic">&#9881;</span> Config Resolver</h1>
+    <div id="stats" title="Your run so far">
+      <span>precedence <b id="hPrecStreak">0</b> streak</span>
+      <span>crash calls <b id="hCrash">0</b>/<b id="hCrashTotal">0</b></span>
+    </div>
+    <button id="reset" title="Reset the simulator">&#8630; Reset</button>
+  </header>
+
+  <div id="challenge">
+    <span class="tag">Try this</span>
+    <span class="steps">
+      <span class="dot" id="d1">1</span><span class="dot" id="d2">2</span><span class="dot" id="d3">3</span>
+    </span>
+    <span class="txt" id="chTxt"></span>
+    <span id="chPredict"></span>
+  </div>
+
+  <div id="main">
+    <div class="panel" id="precPanel">
+      <h2>Precedence Resolver <span>-- environment</span></h2>
+      <div id="precLayers"></div>
+      <div class="callWrap">
+        <h3>Predict: which layer wins?</h3>
+        <div class="opts" id="precOpts"></div>
+      </div>
+      <div class="result" id="precResultWrap">
+        <div class="rLabel" id="precLabel">&mdash; set the layers, then predict</div>
+        <div class="rNote" id="precNote"></div>
+        <div class="rDetail" id="precDetail"></div>
+      </div>
+    </div>
+
+    <div class="panel" id="atomicPanel">
+      <h2>Atomic-write Timeline <span>-- service.resolved.yaml</span></h2>
+      <div id="stratSwitch">
+        <button class="stratBtn active" id="stratDirect" title="Write straight to the target file: open(path,'w') or path.write_text(...)">Direct write</button>
+        <button class="stratBtn" id="stratAtomic" title="Write to a temp file in the same folder, then os.replace() it into place">Atomic (temp+replace)</button>
+      </div>
+      <div id="timelineWrap">
+        <div id="timeline"></div>
+        <div class="tLine"></div>
+      </div>
+      <div id="diskView"></div>
+      <div class="callWrap">
+        <h3>Pull the plug here -- predict the file state</h3>
+        <div class="opts" id="crashOpts"></div>
+      </div>
+      <div class="result" id="crashResultWrap">
+        <div class="rLabel" id="crashLabel">&mdash; pick an instant, then pull the plug</div>
+        <div class="rNote" id="crashNote"></div>
+        <div class="rDetail" id="crashDetail"></div>
+      </div>
+    </div>
+
+    <div class="panel" id="eventsPanel">
+      <h2>Ops log <span id="events">&mdash; what config.py and your shell would tell you</span>
+        <span id="note" title="Real filesystems have more failure modes than these three snapshots -- partial fsync durability, concurrent readers, filesystem-specific rename semantics. flush() is enough for other processes on this machine to see new bytes; fsync buys survival against the machine itself losing power, which this sim does not model.">
+          <span class="i">&#9432;</span> teaching model -- verified against real v0.4 platformops/config.py, not every filesystem failure mode
+        </span>
+      </h2>
+      <div id="evList"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var $=function(id){return document.getElementById(id)};
+
+  /* ============================================================ PRECEDENCE MODEL */
+  var PRESETS=['dev','staging','prod',''];
+  function chipLabel(v){return v===''?'""':v}
+
+  var PREC_LABEL={DEFAULT:'DEFAULT wins',FILE:'FILE wins',ENV:'ENV wins',NONE:'nothing set'};
+  var PREC_DESC={
+    DEFAULT:'the built-in default supplies the value',
+    FILE:'service.yaml supplies it, ENV is not exported',
+    ENV:'the exported env var supplies it -- even if blank',
+    NONE:'no layer supplies a value at all'
+  };
+  var PREC_ORDER=['DEFAULT','FILE','ENV','NONE'];
+
+  function winner(){
+    var L=S.layers;
+    if(L.env.on)return{layer:'ENV',value:L.env.value};
+    if(L.file.on)return{layer:'FILE',value:L.file.value};
+    if(L.default.on)return{layer:'DEFAULT',value:L.default.value};
+    return{layer:'NONE',value:undefined};
+  }
+  function noteFor(w){
+    if(w.layer==='ENV'){
+      if(w.value===''){
+        return{
+          logline:'PLATFORMOPS_ENVIRONMENT is exported and set to "" -- apply_env_overrides() checks `if env_name in environ`, not whether the value is truthy, so an exported-but-empty env var still overrides the file.',
+          note:'ENV wins even though its value is blank -- presence beats truthiness in the real config.py. (Downstream, Module 5\'s validator would reject "" against Literal[\'dev\',\'staging\',\'prod\'] -- but that is the next step\'s job, not this resolver\'s.)'
+        };
+      }
+      return{
+        logline:'PLATFORMOPS_ENVIRONMENT="'+w.value+'" exported -- apply_env_overrides() overwrote environment with it.',
+        note:'ENV is the highest-precedence layer whenever it is exported, regardless of what FILE or DEFAULT say.'
+      };
+    }
+    if(w.layer==='FILE')return{
+      logline:'service.yaml sets environment: '+(w.value===''?'""':w.value)+'; PLATFORMOPS_ENVIRONMENT is not exported, so the file value stands.',
+      note:'FILE only wins when ENV is entirely absent from os.environ.'
+    };
+    if(w.layer==='DEFAULT')return{
+      logline:'Neither service.yaml nor PLATFORMOPS_ENVIRONMENT set environment -- the teaching model\'s built-in default applies: '+(w.value===''?'""':w.value)+'.',
+      note:'Heads up: v0.4\'s real ServiceDefinition.environment has NO code-level default -- it is a required field. This DEFAULT layer mirrors the lesson\'s general 3-layer rule; the real lab jumps straight to the NONE case below when nothing else supplies it.'
+    };
+    return{
+      logline:'environment is not set by any layer -- real v0.4: ServiceDefinition.model_validate() raises "Field required" here, config.py never gets to write a resolved file.',
+      note:'This is what actually happens in the lab when a required field has nothing behind it -- no silent fallback to any built-in value.'
+    };
+  }
+
+  /* ============================================================ CRASH MODEL */
+  var STAGES={
+    direct:[
+      {label:'before script runs'},
+      {label:'open() truncates service.yaml'},
+      {label:'mid-write -- some new bytes on disk'},
+      {label:'write complete, file closed'}
+    ],
+    atomic:[
+      {label:'before script runs'},
+      {label:'temp file created'},
+      {label:'mid-write -- some new bytes in the temp file'},
+      {label:'temp file complete, closed'},
+      {label:'os.replace() swaps temp into place'}
+    ]
+  };
+  var VERDICTS={
+    direct:['intact-old','corrupt-partial','corrupt-partial','intact-new'],
+    atomic:['intact-old','intact-old','intact-old','intact-old','intact-new']
+  };
+  var CRASH_LABEL={'intact-old':'INTACT-OLD','corrupt-partial':'CORRUPT-PARTIAL','intact-new':'INTACT-NEW'};
+  var CRASH_DESC={
+    'intact-old':'crash landed before anything overwrote the real file -- old content, complete',
+    'corrupt-partial':'crash landed while the real file itself was mid-overwrite -- neither version, unreadable',
+    'intact-new':'the write (and, for atomic, the swap) finished before anything crashed -- new content, complete'
+  };
+  var OLD_YAML='name: checkout-api\nenvironment: prod\nregion: us-east-1';
+  var NEW_FULL='name: checkout-api\nenvironment: staging\nregion: us-east-1';
+  var NEW_PARTIAL='name: checkout-api\nenvironment: staging\nregi';
+
+  function diskState(strategy,pos){
+    if(strategy==='direct'){
+      var target=[OLD_YAML,'',NEW_PARTIAL,NEW_FULL][pos];
+      return{target:target,temp:null};
+    }
+    var target=(pos===4)?NEW_FULL:OLD_YAML;
+    var temp=(pos===0||pos===4)?null:['','',NEW_PARTIAL,NEW_FULL][pos]; // pos1='',pos2=partial,pos3=full
+    if(pos===1)temp='';
+    if(pos===2)temp=NEW_PARTIAL;
+    if(pos===3)temp=NEW_FULL;
+    return{target:target,temp:temp};
+  }
+  function crashLogLines(strategy,pos,actual){
+    var lines=[];
+    if(strategy==='direct'){
+      if(pos===0){
+        lines.push(['info','shell','$ (script has not run yet) -- service.yaml still holds the last good write.']);
+      }else if(pos===3){
+        lines.push(['ok','shell','$ python3 crash_direct_write.py service.yaml; echo "exit code: $?"  ->  exit code: 0 (write finished cleanly -- nothing actually crashed here)']);
+        lines.push(['ok','shell','$ cat service.yaml  ->  new content, complete']);
+      }else{
+        lines.push(['bad','shell','$ python3 crash_direct_write.py service.yaml; echo "exit code: $?"  ->  exit code: 1']);
+        lines.push(['bad','shell','$ cat service.yaml  ->  '+(pos===1?'(0 bytes -- open(path,"w") truncated it before a single byte of new content landed)':'"'+NEW_PARTIAL.replace(/\n/g,'\\n')+'" -- cut off mid-value, not valid YAML')]);
+      }
+    }else{
+      if(pos===0){
+        lines.push(['info','shell','$ (script has not run yet) -- service.yaml still holds the last good write, no temp file exists.']);
+      }else if(pos===4){
+        lines.push(['ok','shell','$ python3 crash_atomic_write.py service.yaml; echo "exit code: $?"  ->  exit code: 0 (os.replace() completed before anything crashed)']);
+        lines.push(['ok','shell','$ cat service.yaml  ->  new content, complete; temp file is gone (renamed away)']);
+      }else{
+        lines.push(['warn','shell','$ python3 crash_atomic_write.py service.yaml; echo "exit code: $?"  ->  exit code: 1']);
+        lines.push(['ok','shell','$ cat service.yaml  ->  old content, unchanged -- os.replace() never ran']);
+        lines.push(['warn','shell','$ ls .service.yaml.*.tmp | wc -l  ->  1 (a half-written temp file is left behind -- nothing ever reads it)']);
+      }
+    }
+    return lines;
+  }
+
+  /* ============================================================ STATE */
+  var S={
+    layers:{default:{on:true,value:'dev'},file:{on:true,value:'prod'},env:{on:false,value:'staging'}},
+    precAnswered:false,precPrediction:null,precStreak:0,precEmptyEdgeInStreak:false,precCorrect:0,precTotal:0,
+    strategy:'direct',pos:0,
+    crashAnswered:false,crashPrediction:null,crashCorrect:0,crashTotal:0,
+    t0:Date.now()
+  };
+
+  /* ============================================================ EVENTS */
+  var evList=$('evList');
+  function clock(){var s=Math.floor((Date.now()-S.t0)/1000);return Math.floor(s/60)+':'+('0'+s%60).slice(-2)}
+  function logEv(kind,reason,msg){
+    var d=document.createElement('div');
+    d.className='ev new '+(kind==='warn'?'warn':kind==='bad'?'bad':kind==='info'?'info':'');
+    d.innerHTML='<span class="et"></span><span class="er"></span><span class="em"></span>';
+    d.children[0].textContent=clock();
+    d.children[1].textContent=reason;d.children[2].textContent=msg;
+    d.title=reason+'  --  '+msg;
+    evList.appendChild(d);
+    while(evList.children.length>110)evList.removeChild(evList.firstChild);
+    evList.scrollTop=evList.scrollHeight;
+  }
+
+  /* ============================================================ CHALLENGE */
+  var CH={step:1,done:[false,false,false],predPicked:[null,null,null],step2OK:false,step3OK:false,
+    preds:[
+      {q:'PLATFORMOPS_ENVIRONMENT is exported and set to an empty string (""). service.yaml also sets environment: staging. Which value does the resolved config end up with?',
+       opts:['staging -- an empty override does not count','"" (empty string) -- an exported env var wins even when its value is blank'],ok:1,
+       explain:'apply_env_overrides() only checks `if env_name in environ` -- it never asks whether the value is truthy. An env var that is exported but empty still overrides the file, and the resolved value becomes the empty string.'},
+      {q:'In the Atomic-write Timeline, you crash the DIRECT write right in the middle of writing new bytes to service.yaml. What is left on disk?',
+       opts:['A corrupt, half-written file -- neither the old version nor the new one','The old file, untouched, because the write had not finished'],ok:0,
+       explain:'A direct write truncates the target the moment it opens. Kill it mid-write and disk holds whatever fragment made it out before the crash -- which is neither version.'},
+      {q:'Now crash at the exact same mid-write instant, but through the ATOMIC (temp file + os.replace) strategy instead. What is left in service.yaml this time?',
+       opts:['Still corrupt -- a crash mid-write is a crash mid-write no matter the strategy','The old file, completely intact -- the crash landed on the temp file, not the real one'],ok:1,
+       explain:'The atomic strategy never opens service.yaml for writing until the final os.replace() swap. A crash mid-write only corrupts the disposable temp file; the real file is untouched.'}
+    ]};
+  var CH_TEXT=[
+    'Step 1 -- Get <b>3 predictions right in a row</b> in the Precedence Resolver. One of those three correct calls must be exactly this trap: ENV exported empty, and it still wins.',
+    'Step 2 -- Set the strategy to <b>Direct write</b>, click the <b>mid-write</b> instant, and predict the file state. Beat it: call <b>CORRUPT-PARTIAL</b> correctly.',
+    'Step 3 -- Same instant, new strategy. Set it to <b>Atomic (temp+replace)</b>, keep <b>mid-write</b> selected, and predict again. Beat it: call <b>INTACT-OLD</b> correctly.'
+  ];
+  var SUCCESS='Challenge complete! You felt both halves of safe config handling: <b>ENV beats FILE beats DEFAULT</b> whenever it is exported -- even empty -- and <b>only the temp-file-then-replace pattern survives a crash mid-write</b>. A direct write can leave a corrupt file; an atomic write never can.';
+
+  function predict(i){
+    if(CH.step>3)return;
+    var s=CH.step;
+    if(CH.predPicked[s-1]!==null)return;
+    if(i<0||i>=CH.preds[s-1].opts.length)return;
+    CH.predPicked[s-1]=i;
+    logEv('info','prediction','you predicted: “'+CH.preds[s-1].opts[i]+'”');
+    renderChallenge();
+  }
+  function predVerdict(s){
+    var pick=CH.predPicked[s-1];
+    if(pick===null)return; /* skipped -- formative, never blocking */
+    var pr=CH.preds[s-1];
+    if(pick===pr.ok)logEv('ok','prediction','Prediction right -- '+pr.explain);
+    else logEv('warn','prediction','Not what you predicted (“'+pr.opts[pick]+'”) -- '+pr.explain);
+  }
+  function updateChallenge(){
+    var moved=true;
+    while(moved){
+      moved=false;
+      if(CH.step===1&&!CH.done[0]&&S.precStreak>=3&&S.precEmptyEdgeInStreak){CH.done[0]=true;predVerdict(1);CH.step=2;moved=true;}
+      else if(CH.step===2&&!CH.done[1]&&CH.step2OK){CH.done[1]=true;predVerdict(2);CH.step=3;moved=true;}
+      else if(CH.step===3&&!CH.done[2]&&CH.step3OK){CH.done[2]=true;predVerdict(3);CH.step=4;moved=true;}
+    }
+    renderChallenge();
+  }
+  function renderChallenge(){
+    for(var i=1;i<=3;i++){
+      var d=$('d'+i);d.className='dot'+(CH.done[i-1]?' done':CH.step===i?' cur':'');
+      d.textContent=CH.done[i-1]?'✓':i;
+    }
+    var box=$('challenge'),txt=$('chTxt'),pr=$('chPredict');
+    pr.innerHTML='';
+    if(CH.step===4){box.classList.add('success');txt.innerHTML=SUCCESS;return;}
+    var s=CH.step,p=CH.preds[s-1];
+    if(CH.predPicked[s-1]===null){
+      txt.innerHTML='<span class="dim">Predict first --</span> '+p.q;
+      p.opts.forEach(function(o,i){
+        var c=document.createElement('span');
+        c.className='chip';c.textContent=o;c.title='Lock in this prediction';
+        c.addEventListener('click',function(){predict(i)});
+        pr.appendChild(c);
+      });
+    }else{
+      txt.innerHTML=CH_TEXT[s-1]+' <span class="dim">(you predicted: “'+p.opts[CH.predPicked[s-1]]+'”)</span>';
+    }
+  }
+
+  /* ============================================================ RENDER: PRECEDENCE */
+  function renderPrecLayers(){
+    var wrap=$('precLayers');wrap.innerHTML='';
+    [['default','DEFAULT','the built-in fallback (teaching model)'],
+     ['file','FILE','service.yaml -- checked into the repo'],
+     ['env','ENV','PLATFORMOPS_ENVIRONMENT -- set for this run only']
+    ].forEach(function(row){
+      var key=row[0],name=row[1],desc=row[2];
+      var l=S.layers[key];
+      var r=document.createElement('div');r.className='layerRow';
+      var t=document.createElement('button');t.className='layerToggle'+(l.on?' on':'');
+      t.textContent=name+' '+(l.on?'ON':'OFF');
+      t.title='Toggle whether the '+name+' layer supplies a value. '+desc;
+      t.addEventListener('click',function(){setLayerOn(key,!S.layers[key].on)});
+      r.appendChild(t);
+      var lab=document.createElement('span');lab.className='layerLabel';lab.textContent=desc;
+      r.appendChild(lab);
+      var chipsWrap=document.createElement('div');chipsWrap.className='chips';
+      PRESETS.forEach(function(v){
+        var c=document.createElement('button');c.className='chip'+(l.value===v?' active':'');
+        c.textContent=chipLabel(v);
+        c.title=v===''?'set '+name+' to an empty string -- still counts as exported':'set '+name+' to "'+v+'"';
+        c.addEventListener('click',function(){setLayerValue(key,v)});
+        chipsWrap.appendChild(c);
+      });
+      r.appendChild(chipsWrap);
+      wrap.appendChild(r);
+    });
+  }
+  function setLayerOn(key,val){
+    if(S.layers[key].on===val)return;
+    S.layers[key].on=val;
+    logEv('info','layer',key.toUpperCase()+' turned '+(val?'ON':'OFF')+'.');
+    rearmPrec();
+    renderPrecLayers();
+  }
+  function setLayerValue(key,v){
+    if(S.layers[key].value===v)return;
+    S.layers[key].value=v;
+    logEv('info','layer',key.toUpperCase()+' value set to '+(v===''?'"" (empty string)':v)+'.');
+    rearmPrec();
+    renderPrecLayers();
+  }
+  function rearmPrec(){
+    if(S.precAnswered){
+      S.precAnswered=false;S.precPrediction=null;
+      renderPrecResult();renderPrecOptions();
+      logEv('info','layer','config changed -- predict again.');
+    }
+  }
+
+  var precOptEls={};
+  function buildPrecOptions(){
+    var wrap=$('precOpts');
+    PREC_ORDER.forEach(function(layer){
+      var b=document.createElement('button');b.className='opt';
+      b.title='Predict '+PREC_LABEL[layer]+': '+PREC_DESC[layer];
+      b.innerHTML='<span class="oname"></span><span class="odesc"></span>'+
+        '<span class="mark you">your call</span><span class="mark rs">&#9664; actual</span>';
+      b.querySelector('.oname').textContent=PREC_LABEL[layer];
+      b.querySelector('.odesc').textContent=PREC_DESC[layer];
+      b.addEventListener('click',function(){pickPrec(layer)});
+      wrap.appendChild(b);
+      precOptEls[layer]=b;
+    });
+  }
+  function renderPrecOptions(){
+    PREC_ORDER.forEach(function(layer){
+      var b=precOptEls[layer];b.disabled=S.precAnswered;b.classList.remove('picked','correct','ok','bad');
+    });
+    if(S.precAnswered){
+      var actual=winner().layer;
+      precOptEls[actual].classList.add('correct');
+      precOptEls[S.precPrediction].classList.add('picked',S.precPrediction===actual?'ok':'bad');
+    }
+  }
+  function renderPrecResult(){
+    if(!S.precAnswered){
+      $('precLabel').textContent='— set the layers, then predict';$('precLabel').className='rLabel';
+      $('precNote').textContent='';$('precDetail').textContent='';
+      return;
+    }
+    var w=winner(),info=noteFor(w);
+    var cls=w.layer==='NONE'?'bad':w.layer==='DEFAULT'?'warn':'ok';
+    var correct=S.precPrediction===w.layer;
+    $('precLabel').innerHTML=PREC_LABEL[w.layer]+' <span class="dim">(you called '+PREC_LABEL[S.precPrediction]+' — '+(correct?'right':'wrong')+')</span>';
+    $('precLabel').className='rLabel '+cls;
+    $('precNote').textContent=info.note;
+    $('precDetail').textContent=w.layer==='NONE'?'No value at all.':'effective environment = '+(w.value===''?'"" (empty string)':w.value);
+  }
+  function pickPrec(layer){
+    if(S.precAnswered)return;
+    var w=winner(),correct=(layer===w.layer),info=noteFor(w);
+    S.precAnswered=true;S.precPrediction=layer;S.precTotal++;
+    if(correct){
+      S.precCorrect++;S.precStreak++;
+      if(w.layer==='ENV'&&w.value==='')S.precEmptyEdgeInStreak=true;
+      logEv('ok','resolve',info.logline);
+    }else{
+      S.precStreak=0;S.precEmptyEdgeInStreak=false;
+      logEv(w.layer==='NONE'?'bad':'warn','resolve','you called '+PREC_LABEL[layer]+'; the resolver actually said '+PREC_LABEL[w.layer]+' — '+info.logline);
+    }
+    renderPrecResult();renderPrecOptions();renderStats();updateChallenge();
+  }
+
+  /* ============================================================ RENDER: ATOMIC TIMELINE */
+  function renderStrat(){
+    $('stratDirect').classList.toggle('active',S.strategy==='direct');
+    $('stratAtomic').classList.toggle('active',S.strategy==='atomic');
+  }
+  function setStrategy(s){
+    if(S.strategy===s)return;
+    S.strategy=s;
+    if(S.pos>=STAGES[s].length)S.pos=STAGES[s].length-1;
+    logEv('info','strategy','strategy set to '+(s==='direct'?'DIRECT write':'ATOMIC (temp+replace)')+'.');
+    rearmCrash();
+    renderStrat();renderTimeline();renderDisk();
+  }
+  function renderTimeline(){
+    var wrap=$('timeline');wrap.innerHTML='';
+    STAGES[S.strategy].forEach(function(st,i){
+      var b=document.createElement('button');b.className='tStop'+(S.pos===i?' cur':'');
+      b.title='Pull the plug '+st.label;
+      var dm=document.createElement('span');dm.className='dotmark';
+      var lb=document.createElement('span');lb.className='tlabel';lb.textContent=st.label;
+      b.appendChild(dm);b.appendChild(lb);
+      b.addEventListener('click',function(){setPos(i)});
+      wrap.appendChild(b);
+    });
+  }
+  function setPos(i){
+    if(S.pos===i)return;
+    S.pos=i;
+    logEv('info','instant','crash instant set to: '+STAGES[S.strategy][i].label+'.');
+    rearmCrash();
+    renderTimeline();renderDisk();
+  }
+  function rearmCrash(){
+    if(S.crashAnswered){
+      S.crashAnswered=false;S.crashPrediction=null;
+      renderCrashResult();renderCrashOptions();
+    }
+  }
+  function renderDisk(){
+    var el=$('diskView');
+    if(!S.crashAnswered){
+      el.textContent='— pull the plug to see what is on disk —';
+      return;
+    }
+    var d=diskState(S.strategy,S.pos);
+    var html='<span class="fname">service.yaml</span>\n'+esc(d.target||'(empty file)');
+    if(S.strategy==='atomic'){
+      html+='\n\n<span class="tname">.service.yaml.&lt;rand&gt;.tmp</span>\n'+(d.temp===null?'(does not exist)':esc(d.temp||'(empty file)'));
+    }
+    el.innerHTML=html;
+  }
+
+  var crashOptEls={};
+  function buildCrashOptions(){
+    var wrap=$('crashOpts');
+    ['intact-old','corrupt-partial','intact-new'].forEach(function(v){
+      var b=document.createElement('button');b.className='opt';
+      b.title='Predict '+CRASH_LABEL[v]+': '+CRASH_DESC[v];
+      b.innerHTML='<span class="oname"></span><span class="odesc"></span>'+
+        '<span class="mark you">your call</span><span class="mark rs">&#9664; actual</span>';
+      b.querySelector('.oname').textContent=CRASH_LABEL[v];
+      b.querySelector('.odesc').textContent=CRASH_DESC[v];
+      b.addEventListener('click',function(){pickCrash(v)});
+      wrap.appendChild(b);
+      crashOptEls[v]=b;
+    });
+  }
+  function renderCrashOptions(){
+    ['intact-old','corrupt-partial','intact-new'].forEach(function(v){
+      var b=crashOptEls[v];b.disabled=S.crashAnswered;b.classList.remove('picked','correct','ok','bad');
+    });
+    if(S.crashAnswered){
+      var actual=VERDICTS[S.strategy][S.pos];
+      crashOptEls[actual].classList.add('correct');
+      crashOptEls[S.crashPrediction].classList.add('picked',S.crashPrediction===actual?'ok':'bad');
+    }
+  }
+  function renderCrashResult(){
+    if(!S.crashAnswered){
+      $('crashLabel').textContent='— pick an instant, then pull the plug';$('crashLabel').className='rLabel';
+      $('crashNote').textContent='';$('crashDetail').textContent='';
+      return;
+    }
+    var actual=VERDICTS[S.strategy][S.pos];
+    var cls=actual==='corrupt-partial'?'bad':actual==='intact-old'?'ok':'ok';
+    var correct=S.crashPrediction===actual;
+    $('crashLabel').innerHTML=CRASH_LABEL[actual]+' <span class="dim">(you called '+CRASH_LABEL[S.crashPrediction]+' — '+(correct?'right':'wrong')+')</span>';
+    $('crashLabel').className='rLabel '+cls;
+    $('crashNote').textContent=CRASH_DESC[actual];
+    var d=diskState(S.strategy,S.pos);
+    $('crashDetail').textContent='service.yaml on disk: '+(d.target===''?'(0 bytes)':d.target);
+  }
+  function pickCrash(v){
+    if(S.crashAnswered)return;
+    var actual=VERDICTS[S.strategy][S.pos],correct=(v===actual);
+    S.crashAnswered=true;S.crashPrediction=v;S.crashTotal++;
+    if(correct)S.crashCorrect++;
+    crashLogLines(S.strategy,S.pos,actual).forEach(function(l){logEv(l[0],l[1],l[2])});
+    logEv(correct?'ok':(actual==='corrupt-partial'?'bad':'warn'),'verdict',
+      'you called '+CRASH_LABEL[v]+'; actual state is '+CRASH_LABEL[actual]+' — '+(correct?'correct.':'not what you predicted.'));
+    if(S.strategy==='direct'&&S.pos===2&&correct&&actual==='corrupt-partial')CH.step2OK=true;
+    if(S.strategy==='atomic'&&S.pos===2&&correct&&actual==='intact-old')CH.step3OK=true;
+    renderDisk();renderCrashResult();renderCrashOptions();renderStats();updateChallenge();
+  }
+
+  /* ============================================================ MISC */
+  function esc(s){return String(s).replace(/[&<>]/g,function(c){return c==='&'?'&amp;':c==='<'?'&lt;':'&gt;'});}
+  function renderStats(){
+    $('hPrecStreak').textContent=S.precStreak;
+    $('hCrash').textContent=S.crashCorrect;
+    $('hCrashTotal').textContent=S.crashTotal;
+  }
+
+  $('stratDirect').addEventListener('click',function(){setStrategy('direct')});
+  $('stratAtomic').addEventListener('click',function(){setStrategy('atomic')});
+  $('reset').addEventListener('click',function(){location.reload()});
+
+  /* ============================================================ BOOT */
+  buildPrecOptions();
+  buildCrashOptions();
+  renderPrecLayers();
+  renderPrecResult();
+  renderPrecOptions();
+  renderStrat();
+  renderTimeline();
+  renderDisk();
+  renderCrashResult();
+  renderCrashOptions();
+  renderStats();
+  logEv('info','boot','environment layers loaded (DEFAULT=dev, FILE=prod, ENV off). Predict which layer wins before you reveal.');
+  renderChallenge();
+
+  /* test hook */
+  window.__sim={S:S,CH:CH,winner:winner,
+    setLayerOn:setLayerOn,setLayerValue:setLayerValue,pickPrec:pickPrec,
+    setStrategy:setStrategy,setPos:setPos,pickCrash:pickCrash,predict:predict,
+    crashVerdict:function(){return VERDICTS[S.strategy][S.pos]}};
+})();
+</script>
+</body>
+</html>

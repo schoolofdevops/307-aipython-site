@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pick the Right Structure</title>
+<style>
+  :root{
+    --bg:#0d1220; --panel:#151c2e; --panel2:#111827; --line:#26324e; --line2:#1c2740;
+    --txt:#dbe4f5; --dim:#8494b3; --faint:#5a6a8c;
+    --accent:#4cc9f0; --accent2:#7b6cf6;
+    --ok:#3ddc97; --warn:#f5b942; --bad:#ff6b6b;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  /* fluid type scale: ~12.3px @800w -> 16px @>=1750w, floor 10.5px */
+  html{font-size:clamp(10.5px,0.4vw + 9.1px,16px);color-scheme:dark}
+  html,body{height:100%}
+  body{
+    background:var(--bg); color:var(--txt);
+    font:1rem/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    overflow:hidden;
+  }
+  #app{display:flex;flex-direction:column;height:100%;padding:8px 10px;gap:6px}
+
+  /* ---------- header ---------- */
+  header{display:flex;align-items:center;gap:12px;flex:0 0 auto}
+  header h1{font-size:1.02rem;font-weight:650;letter-spacing:.2px;white-space:nowrap}
+  header h1 .ic{color:var(--accent)}
+  #stats,#stats *{cursor:default}
+  #stats{margin-left:auto;font-family:var(--mono);font-size:.82rem;color:var(--faint);display:flex;gap:12px;white-space:nowrap}
+  #stats b{color:var(--txt);font-weight:600}
+  #stats .streakon b{color:var(--ok)}
+  #reset{background:none;border:1px solid var(--line);color:var(--dim);border-radius:6px;
+    padding:3px 9px;font-size:.88rem;cursor:pointer;min-height:24px}
+  #reset:hover{color:var(--txt);border-color:var(--faint)}
+
+  /* ---------- challenge banner ---------- */
+  #challenge{flex:0 0 auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    background:linear-gradient(90deg,rgba(123,108,246,.14),rgba(76,201,240,.07));
+    border:1px solid #3a3f6e;border-radius:8px;padding:4px 11px;min-height:30px}
+  #challenge .tag{font-size:.78rem;font-weight:700;letter-spacing:.8px;color:var(--accent2);
+    text-transform:uppercase;white-space:nowrap}
+  #challenge .steps{display:flex;gap:5px}
+  #challenge .dot{width:1.3rem;height:1.3rem;border-radius:50%;border:1.5px solid var(--faint);
+    font-size:.76rem;display:flex;align-items:center;justify-content:center;color:var(--faint);font-weight:700}
+  #challenge .dot.cur{border-color:var(--accent);color:var(--accent)}
+  #challenge .dot.done{border-color:var(--ok);background:rgba(61,220,151,.15);color:var(--ok)}
+  #challenge .txt{flex:1;color:var(--txt);font-size:.92rem;min-width:14rem}
+  #challenge .txt .dim{color:var(--faint);font-size:.84rem}
+  #challenge .txt b{color:var(--accent)}
+  #chPredict{display:flex;gap:6px;flex-wrap:wrap}
+  #chPredict .chip{cursor:pointer;border:1px solid var(--accent2);color:#a89cf8;background:rgba(123,108,246,.1);
+    border-radius:12px;padding:2px 10px;font-size:.84rem;transition:background .15s,color .15s}
+  #chPredict .chip:hover{background:rgba(123,108,246,.28);color:#d6cfff}
+  #challenge.success{background:linear-gradient(90deg,rgba(61,220,151,.16),rgba(61,220,151,.05));border-color:#2c7a5b}
+  #challenge.success .tag{color:var(--ok)}
+  #challenge.success .txt{line-height:1.3}
+
+  /* ---------- main grid ---------- */
+  #main{flex:1 1 auto;display:grid;grid-template-columns:clamp(250px,25rem,380px) 1fr;gap:6px;min-height:0}
+  #main>*{min-width:0}
+  #left>*{min-width:0}
+  .opt{min-width:0}
+  .panel{background:var(--panel);border:1px solid var(--line2);border-radius:10px;padding:7px 10px;min-height:0}
+  .panel h2{font-size:.74rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--faint);margin-bottom:4px}
+
+  #left{display:flex;flex-direction:column;gap:6px;min-height:0}
+
+  /* scenario card -- read-only ticket, deliberately non-interactive */
+  #card,#card *{cursor:default}
+  #card{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+  #card h2 span{color:var(--accent);text-transform:none;letter-spacing:0;font-family:var(--mono);font-size:.86rem}
+  #cardTitle{font-size:.98rem;font-weight:650;margin:1px 0 3px}
+  #cardBody{font-size:.85rem;line-height:1.42;color:var(--txt);opacity:.92;flex:0 1 auto;min-height:4.6rem;overflow-y:auto;scrollbar-width:thin}
+  #cardSigs{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
+  .sig{cursor:help !important;font-family:var(--mono);font-size:.72rem;color:var(--warn);
+    border:1px dashed rgba(245,185,66,.5);border-radius:6px;padding:1px 6px;white-space:nowrap}
+  #nextBtn{margin-top:auto;width:100%;min-height:2.3rem;border-radius:8px;border:1px solid var(--accent);
+    background:rgba(76,201,240,.1);color:var(--accent);font-size:.94rem;font-weight:600;cursor:pointer;
+    display:none;align-items:center;justify-content:center;gap:7px;animation:pulse 1.4s ease-in-out infinite}
+  #nextBtn.show{display:flex}
+  #nextBtn:hover{background:rgba(76,201,240,.22)}
+  @keyframes pulse{50%{box-shadow:0 0 10px rgba(76,201,240,.5)}}
+
+  /* consequences meter -- read-only readout */
+  #meter,#meter *{cursor:default}
+  #meter{flex:0 0 auto}
+  #verdict{font-family:var(--mono);font-size:.86rem;font-weight:700;min-height:1.2rem;margin-bottom:4px;color:var(--faint)}
+  #verdict.ok{color:var(--ok)} #verdict.bad{color:var(--bad)}
+  .mrow{display:flex;align-items:center;gap:7px;padding:2px 0}
+  .mrow .mlbl{flex:0 0 6.6rem;font-family:var(--mono);font-size:.74rem;color:var(--dim)}
+  .mrow .bar{flex:1;height:.78rem;background:var(--panel2);border:1px solid var(--line);border-radius:5px;position:relative;overflow:visible}
+  .mrow .fill{display:block;height:100%;width:0;border-radius:4px;background:var(--bad);transition:width .5s ease,background .3s}
+  .mrow .tick{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ok);opacity:0;transition:opacity .3s,left .5s ease}
+  .mrow .tick.show{opacity:1}
+  .mrow .mval{flex:0 0 2.2rem;text-align:right;font-family:var(--mono);font-size:.78rem;color:var(--txt)}
+  #mLegend{font-size:.7rem;color:var(--faint);margin-top:2px}
+  #mLegend .tk{color:var(--ok)}
+  #note{margin-top:4px;padding-top:4px;border-top:1px dashed var(--line2);font-size:.72rem;line-height:1.35;color:var(--faint);cursor:help !important}
+  #note .i{color:var(--accent);font-style:normal}
+
+  /* the four structures -- pick one */
+  #structures{display:flex;flex-direction:column;min-height:0}
+  #opts{flex:1;display:flex;flex-direction:column;gap:6px;min-height:0}
+  .opt{flex:1;display:flex;align-items:center;gap:9px;text-align:left;min-height:2.6rem;
+    border:1px solid var(--line);border-radius:8px;background:var(--panel2);color:var(--txt);
+    padding:3px 10px;cursor:pointer;position:relative;transition:border-color .15s,background .15s}
+  .opt:hover:not(:disabled){border-color:var(--accent);background:rgba(76,201,240,.07)}
+  .opt:disabled{cursor:default;opacity:.55}
+  .opt:disabled.picked,.opt:disabled.correct{opacity:1}
+  .opt .oname{flex:0 0 4.6rem;font-family:var(--mono);font-size:.9rem;font-weight:650}
+  .opt .odesc{flex:1;font-size:.78rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-left:6px}
+  .opt .mark{font-size:.7rem;font-weight:700;letter-spacing:.4px;white-space:nowrap;
+    padding:1px 6px;border-radius:7px;display:none}
+  .opt.picked .mark.you{display:inline-block}
+  .opt.correct .mark.rs{display:inline-block;background:rgba(61,220,151,.16);color:var(--ok);border:1px solid rgba(61,220,151,.4)}
+  .opt.picked.ok{border-color:var(--ok);background:rgba(61,220,151,.1)}
+  .opt.picked.bad{border-color:var(--bad);background:rgba(255,107,107,.1)}
+  .opt.picked.ok .mark.you{background:rgba(61,220,151,.16);color:var(--ok);border:1px solid rgba(61,220,151,.4)}
+  .opt.picked.bad .mark.you{background:rgba(255,107,107,.14);color:var(--bad);border:1px solid rgba(255,107,107,.4)}
+  .opt.picked.correct .mark.rs{display:none}
+
+  /* event log -- read-only stream, deliberately non-interactive */
+  #events{flex:0 0 clamp(96px,8.4rem,140px);display:flex;flex-direction:column;min-height:0}
+  #events,#events *{cursor:default}
+  #events h2 span{letter-spacing:0;text-transform:none;color:var(--line)}
+  #evList{flex:1;overflow-y:auto;font-family:var(--mono);font-size:.78rem;line-height:1.65;scrollbar-width:thin}
+  .ev{display:flex;gap:8px;white-space:nowrap;overflow:hidden}
+  .ev .et{color:var(--faint);flex:0 0 2.6rem}
+  .ev .er{flex:0 0 6.6rem;overflow:hidden;text-overflow:ellipsis;color:var(--ok)}
+  .ev.warn .er{color:var(--warn)}
+  .ev.bad .er{color:var(--bad)}
+  .ev.info .er{color:var(--accent2)}
+  .ev .em{flex:1;color:var(--txt);opacity:.85;overflow:hidden;text-overflow:ellipsis}
+  .ev.new{animation:evin .4s ease-out}
+  @keyframes evin{0%{background:rgba(76,201,240,.12)}100%{background:transparent}}
+
+  /* narrow fallback: stack + allow scroll rather than clip */
+  @media (max-width:620px){
+    body{overflow:auto}
+    #main{grid-template-columns:1fr}
+    #app{height:auto;min-height:100%}
+    .opt .odesc{white-space:normal}
+    .ev .er{flex-basis:5rem}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important;transition:none !important}
+  }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <header>
+    <h1><span class="ic">&#9638;</span> Pick the Right Structure</h1>
+    <div id="stats" title="Your run so far -- solved scenarios and current correct streak">
+      <span>solved <b id="hRet">0</b>/10</span>
+      <span id="hStreakWrap">streak <b id="hStreak">0</b></span>
+    </div>
+    <button id="reset" title="Reset the simulator">&#8630; Reset</button>
+  </header>
+
+  <div id="challenge">
+    <span class="tag">Try this</span>
+    <span class="steps">
+      <span class="dot" id="d1">1</span><span class="dot" id="d2">2</span><span class="dot" id="d3">3</span>
+    </span>
+    <span class="txt" id="chTxt"></span>
+    <span id="chPredict"></span>
+  </div>
+
+  <div id="main">
+    <div id="left">
+      <div class="panel" id="card">
+        <h2>Scenario <span id="cardId">DS-000</span></h2>
+        <div id="cardTitle"></div>
+        <div id="cardBody"></div>
+        <div id="cardSigs"></div>
+        <button id="nextBtn" title="Deal the next scenario">Next scenario &#9656;</button>
+      </div>
+      <div class="panel" id="meter">
+        <h2>Consequences</h2>
+        <div id="verdict">&mdash; pick a structure</div>
+        <div class="mrow"><span class="mlbl">lookup cost</span>
+          <span class="bar"><span class="fill" id="fLookup"></span><span class="tick" id="tLookup"></span></span>
+          <span class="mval" id="vLookup">&mdash;</span></div>
+        <div class="mrow"><span class="mlbl">duplicate risk</span>
+          <span class="bar"><span class="fill" id="fDup"></span><span class="tick" id="tDup"></span></span>
+          <span class="mval" id="vDup">&mdash;</span></div>
+        <div class="mrow"><span class="mlbl">mutation risk</span>
+          <span class="bar"><span class="fill" id="fMut"></span><span class="tick" id="tMut"></span></span>
+          <span class="mval" id="vMut">&mdash;</span></div>
+        <div class="mrow"><span class="mlbl">order-loss risk</span>
+          <span class="bar"><span class="fill" id="fOrder"></span><span class="tick" id="tOrder"></span></span>
+          <span class="mval" id="vOrder">&mdash;</span></div>
+        <div id="mLegend">bar = your pick &middot; <span class="tk">&#9612;green tick</span> = the structure that actually fits</div>
+        <div id="note" title="Real code mixes structures constantly -- a dict of lists, a list of dicts, a set built temporarily inside one function. Teams also pick on team fluency and existing conventions, not just this chart.">
+          <span class="i">&#9432;</span> Teaching model, not gospel: this sim scores single-structure fit only.
+          Real code mixes list / dict / tuple / set inside the same function all the time.
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" id="structures">
+      <h2>The four structures &mdash; pick the one that fits how this data is used</h2>
+      <div id="opts"></div>
+    </div>
+  </div>
+
+  <div class="panel" id="events">
+    <h2>Ops log <span>&mdash; what Python (and your teammates) would tell you</span></h2>
+    <div id="evList"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var $=function(id){return document.getElementById(id)};
+
+  /* ------------------------------------------------------------------ model */
+  var NAMES=['List','Dict','Tuple','Set'];
+  var DESC=[
+    'ordered, mutable -- grows and shrinks by position',
+    'key to value lookup, mutable -- ask for the label, not the position',
+    'ordered, locked after creation -- no append, no edit',
+    'no duplicates, no order -- only "is it in here?"'
+  ];
+  /* structural cost table: 0-100, higher = worse. Definitional, not per-scenario. */
+  var COST=[
+    {lookup:70,dup:80,mut:75,order:5},   /* list  */
+    {lookup:8, dup:20,mut:75,order:12},  /* dict  */
+    {lookup:70,dup:80,mut:5, order:5},   /* tuple */
+    {lookup:15,dup:5, mut:75,order:95}   /* set   */
+  ];
+
+  var GENERIC={
+    0:{ /* ans = list */
+      1:'a dict has no idea what "first" or "next" means -- you would be inventing numeric keys (0, 1, 2...) to fake an order a list already gives you for free.',
+      2:'a tuple can’t grow once made -- the moment this needs one more item, the code throws <code>AttributeError: \'tuple\' object has no attribute \'append\'</code>.',
+      3:'a set throws away order entirely -- the exact sequence this data depends on is gone the moment it becomes a set.'
+    },
+    1:{ /* ans = dict */
+      0:'a list has no way to jump straight to the answer -- every lookup scans from the top, and it gets slower call after call as the list grows.',
+      2:'a tuple only has positions, not names -- you’d have to remember that slot 2 always means the same thing, which breaks the moment a field gets added.',
+      3:'a set only knows what is present, not what it maps to -- you’d have the names but nowhere to hang a value next to each one.'
+    },
+    2:{ /* ans = tuple */
+      0:'a list is mutable -- anyone holding a reference to it can quietly <code>.append()</code> or <code>.sort()</code> it, and nothing raises an error to tell you it happened.',
+      1:'a dict needs named keys for a fixed handful of values that were never meant to have labels -- you’d be inventing key names for something that is really just values in order.',
+      3:'a set has no order and no fixed positions -- the exact sequence this data is supposed to guarantee is gone.'
+    },
+    3:{ /* ans = set */
+      0:'a list keeps every duplicate -- the check now scans a growing pile, and repeats slip through if you forget to test before adding.',
+      1:'a dict needs a key and a value for every entry -- you only needed a yes/no presence check, so now you are inventing values nobody reads.',
+      2:'a tuple can’t grow after creation -- a job that should be one <code>add()</code> call becomes rebuild-the-whole-tuple every time.'
+    }
+  };
+
+  var CARDS=[
+    {id:'DS-101',t:'Owner lookup on every deploy',ans:1,trap:null,sev:'warn',
+     b:'The deploy pipeline needs to answer "who owns checkout-api?" for hundreds of services, on every single deploy, in under a millisecond.',
+     sig:[['owner for a name','A lookup by name is exactly what a labeled folder is for'],['called constantly','A slow lookup here means a slow pipeline for everyone'],['one answer per name','Each service name maps to exactly one owner']],
+     v:{}, right:'one <code>OWNERS["checkout-api"]</code>, answered instantly, however many services you add.'},
+    {id:'DS-114',t:'Patch queue, canary host first',ans:0,trap:null,sev:'bad',
+     b:'Tonight’s patch run must hit the canary host first, wait for it to come back healthy, then work through the rest in the exact order ops queued them.',
+     sig:[['canary first','The very first item matters -- that is an ordered, position-aware structure'],['work through in order','One at a time, front to back'],['queued on purpose','Someone chose this order deliberately']],
+     v:{}, right:'host[0] patches, waits, reports healthy -- then the loop moves to host[1]. The canary-first plan survives exactly because the order is guaranteed.'},
+    {id:'DS-127',t:'Dashboard: servers grouped by environment',ans:1,trap:null,sev:'warn',
+     b:'The dashboard refreshes every few seconds and asks, by name, "which servers are in prod?", "which are in staging?" -- over and over, for a fleet that keeps growing.',
+     sig:[['looked up by name','"prod" is a label you ask for directly, not a position you count to'],['every few seconds','A slow lookup here means a laggy dashboard'],['fleet keeps growing','The lookup cost should not grow with the fleet']],
+     v:{}, right:'<code>by_env["prod"]</code> answers instantly regardless of fleet size -- the dashboard stays snappy at 40 servers or 4,000.'},
+    {id:'DS-133',t:'De-dup IPs in a live log stream',ans:3,trap:'dedup',sev:'bad',
+     b:'Your log-shipper streams lines nonstop. For every IP address it sees, you just need to know: have I already logged this one, or is it new? Order does not matter -- only "seen before, yes or no".',
+     sig:[['seen before?','A presence check is a membership question, not an order question'],['no duplicates wanted','Logging the same IP twice tells you nothing new'],['never care about order','Nothing here reads "which IP came first"']],
+     v:{}, right:'one <code>seen_ips.add(ip)</code>, one <code>if ip in seen_ips</code>, both instant even at ten million lines. The dedup question stays cheap forever.'},
+    {id:'DS-145',t:'Cache key: (region, availability zone) pair',ans:2,trap:'needkey',sev:'bad',
+     b:'A placement cache needs to remember "have I already computed a plan for (us-east-1, us-east-1a)?" so it can skip the work next time. The pair is the dict key.',
+     sig:[['used as a dict key','A dict key must be hashable -- that rules out anything mutable'],['a fixed pair','Two values that always travel together'],['never edited after lookup','Once you look it up, this pair is done']],
+     v:{0:'the moment this list is used as a dict key, Python refuses it flat out: <code>TypeError: unhashable type: \'list\'</code>. The whole placement cache breaks before it ever caches anything.'},
+     right:'<code>cache[(region, az)]</code> just works -- a tuple is hashable, so it can sit on the left side of a dict lookup with zero drama.'},
+    {id:'DS-152',t:'Unique packages across the fleet',ans:3,trap:null,sev:'bad',
+     b:'A security audit wants one flat answer: which distinct package names exist anywhere across the fleet? The same package on 40 servers should count once, not 40 times.',
+     sig:[['distinct package names','Counting the same name 40 times is the bug, not the feature'],['across 40 servers','Every server contributes to one pooled answer'],['no ordering asked for','The audit wants a pile of names, not a sequence']],
+     v:{}, right:'one <code>all_packages.update(pkgs_on_host)</code> per server; the audit gets a clean, duplicate-free count no matter how many servers repeat the same package.'},
+    {id:'DS-160',t:'Signed-off deploy runbook steps',ans:2,trap:null,sev:'bad',
+     b:'Security reviewed and signed off this exact five-step deploy sequence. It must run in this order, every time, and nobody should be able to slot in a step nobody reviewed.',
+     sig:[['signed off','A reviewed sequence should not silently change'],['exact order','The sequence itself is part of the requirement'],['nobody should edit it','Immutability is the whole point here, not a side effect']],
+     v:{}, right:'the five steps run in the order security actually reviewed, every single time -- because there is no <code>.append()</code> or <code>.insert()</code> to sneak a sixth step in unreviewed.'},
+    {id:'DS-171',t:'Approved regions the deploy script checks',ans:2,trap:null,sev:'bad',
+     b:'Ops wrote down three approved regions the deploy script must always check pushes against. It is meant to be a fixed rule, not something anyone edits casually.',
+     sig:[['meant to never change','A rule that is supposed to be fixed deserves a structure that enforces it'],['checked on every push','A cheap membership check against a small, fixed set of values'],['"approved" implies frozen','If it can be edited quietly, it stops being a rule']],
+     v:{0:'your "constant" list of approved regions just got <code>.append()</code>ed by a bugfix -- nobody noticed, and the next push to an unapproved region sailed straight through.'},
+     right:'the tuple has no <code>.append()</code> to misuse -- the only way to add a region is to change the code, in a diff someone actually reviews.'},
+    {id:'DS-183',t:'Retry back-off delays, occasionally extended',ans:0,trap:null,sev:'bad',
+     b:'A retry loop walks through back-off delays in order -- 1s, then 2s, then 4s, then 8s. Every few months a new retry policy adds one more, slower step to the end.',
+     sig:[['walked in order','Attempt 1 uses delay 1, attempt 2 uses delay 2 -- position matters'],['occasionally extended','Something that grows later should not be locked down now'],['a policy adds a step','That is a real, ongoing edit, not a one-time fact']],
+     v:{2:'the next policy update tries to add a slower step and Python throws <code>AttributeError: \'tuple\' object has no attribute \'append\'</code> -- a tuple locked this down before anyone asked it to.'},
+     right:'<code>delays.append(16)</code> when the new policy lands -- no rewrite, no drama, the retry loop just gets one more rung.'},
+    {id:'DS-190',t:'Unhealthy hosts, checked before paging',ans:3,trap:null,sev:'bad',
+     b:'The monitor flags unhealthy hosts continuously during an incident. Before paging on-call, it checks "have I already paged for this host this minute?" -- fast, and no host should trigger two pages for the same minute.',
+     sig:[['checked before paging','A membership test that runs constantly during an incident'],['no double-paging','The same host flagged twice must not fire twice'],['no ordering asked for','Nobody reads "which host was flagged first"']],
+     v:{}, right:'<code>if host not in paged_this_minute:</code> stays fast even as the incident throws dozens of hosts at it, and every host pages exactly once.'}
+  ];
+
+  var S={queue:CARDS.map(function(_,i){return i}),retired:[],card:null,answered:false,
+         picked:-1,streak:0,t0:Date.now()};
+
+  /* ------------------------------------------------------------------ events */
+  var evList=$('evList');
+  function clock(){var s=Math.floor((Date.now()-S.t0)/1000);return Math.floor(s/60)+':'+('0'+s%60).slice(-2)}
+  function logEv(kind,reason,msg){
+    var d=document.createElement('div');
+    d.className='ev new '+(kind==='warn'?'warn':kind==='bad'?'bad':kind==='info'?'info':'');
+    d.innerHTML='<span class="et">'+clock()+'</span><span class="er"></span><span class="em"></span>';
+    d.children[1].textContent=reason; d.children[2].innerHTML=msg;
+    d.title=reason+'  --  '+msg.replace(/<[^>]+>/g,'');
+    evList.appendChild(d);
+    while(evList.children.length>90)evList.removeChild(evList.firstChild);
+    evList.scrollTop=evList.scrollHeight;
+  }
+
+  /* ------------------------------------------------------------------ challenge */
+  var CH={step:1,done:[false,false,false],streak:0,dedupOK:false,keyOK:false,
+    predPicked:[null,null,null],
+    preds:[
+      {q:'What should decide which structure you reach for?',
+       opts:['How the data looks on the page','What operation you will actually run on it (lookup? keep order? dedupe? never change?)'],ok:1,
+       explain:'the right structure follows the operation -- fast lookup, fixed order, no duplicates, or "never changes" -- never how the data happens to look written down.'},
+      {q:'You only need to know "have I seen this IP before?" -- does the order you saw them in matter?',
+       opts:['Yes, order matters here','No -- presence is all that matters'],ok:1,
+       explain:'a set is built for exactly this: no order, no duplicates, and the check stays fast no matter how big the pile gets.'},
+      {q:'This pair becomes a dict key. Can a plain list be a dict key?',
+       opts:['Yes, a list works fine as a key','No -- a dict key must be hashable, and a mutable list is not'],ok:1,
+       explain:'Python refuses a list as a dict key outright -- TypeError: unhashable type: \'list\'. A tuple is the immutable stand-in that works.'}
+    ]};
+  var CH_TEXT=[
+    'Step 1 -- Classify <b>3 scenarios correctly in a row</b>: read what operation the data actually needs, then pick the structure.',
+    'Step 2 -- One scenario only needs a yes/no presence check. Beat the <b>dedup &rarr; set, not list</b> trap.',
+    'Step 3 -- One scenario needs this pair as a dict key. Beat the <b>dict key &rarr; tuple, not list</b> trap.'
+  ];
+  var SUCCESS='Challenge complete! You felt the rule: pick the structure that matches the <b>operation</b> the data actually needs &mdash; fast named lookup wants a dict, no-duplicates wants a set, a fixed pair wants a tuple, a worked queue wants a list. Name the operation before you pick the box.';
+
+  function predict(i){
+    if(CH.step>3)return;
+    var s=CH.step;
+    if(CH.predPicked[s-1]!==null)return;
+    if(i<0||i>=CH.preds[s-1].opts.length)return;
+    CH.predPicked[s-1]=i;
+    logEv('info','prediction','you predicted: “'+CH.preds[s-1].opts[i]+'”');
+    renderChallenge();
+  }
+  function predVerdict(s){
+    var pick=CH.predPicked[s-1];
+    if(pick===null)return; /* skipped -- formative, never blocking */
+    var pr=CH.preds[s-1];
+    if(pick===pr.ok)logEv('ok','prediction','Prediction right -- '+pr.explain);
+    else logEv('warn','prediction','Not what you predicted (“'+pr.opts[pick]+'”) -- '+pr.explain);
+  }
+  function updateChallenge(){
+    var moved=true;
+    while(moved){
+      moved=false;
+      if(CH.step===1&&!CH.done[0]&&CH.streak>=3){CH.done[0]=true;predVerdict(1);CH.step=2;moved=true;}
+      else if(CH.step===2&&!CH.done[1]&&CH.dedupOK){CH.done[1]=true;predVerdict(2);CH.step=3;moved=true;}
+      else if(CH.step===3&&!CH.done[2]&&CH.keyOK){CH.done[2]=true;predVerdict(3);CH.step=4;moved=true;}
+    }
+    renderChallenge();
+  }
+  function renderChallenge(){
+    for(var i=1;i<=3;i++){
+      var d=$('d'+i); d.className='dot'+(CH.done[i-1]?' done':CH.step===i?' cur':'');
+      d.textContent=CH.done[i-1]?'✓':i;
+    }
+    var box=$('challenge'),txt=$('chTxt'),pr=$('chPredict');
+    pr.innerHTML='';
+    if(CH.step===4){box.classList.add('success');txt.innerHTML=SUCCESS;return;}
+    var s=CH.step,p=CH.preds[s-1];
+    if(CH.predPicked[s-1]===null){
+      txt.innerHTML='<span class="dim">Predict first --</span> '+p.q;
+      p.opts.forEach(function(o,i){
+        var c=document.createElement('span');
+        c.className='chip';c.textContent=o;c.title='Lock in this prediction';
+        c.addEventListener('click',function(){predict(i)});
+        pr.appendChild(c);
+      });
+    }else{
+      txt.innerHTML=CH_TEXT[s-1]+' <span class="dim">(you predicted: “'+p.opts[CH.predPicked[s-1]]+'”)</span>';
+    }
+  }
+
+  /* ------------------------------------------------------------------ render */
+  var optEls=[];
+  function buildOptions(){
+    var wrap=$('opts');
+    for(var i=0;i<4;i++){
+      (function(i){
+        var b=document.createElement('button');
+        b.className='opt';
+        b.title='Pick this structure: '+NAMES[i]+' -- '+DESC[i];
+        b.innerHTML='<span class="oname"></span><span class="odesc"></span>'+
+          '<span class="mark you">your pick</span><span class="mark rs">&#9664; fits</span>';
+        b.querySelector('.oname').textContent=NAMES[i];
+        b.querySelector('.odesc').textContent=DESC[i];
+        b.addEventListener('click',function(){pick(i)});
+        wrap.appendChild(b);
+        optEls[i]=b;
+      })(i);
+    }
+  }
+  function renderCard(){
+    var c=S.card;
+    $('cardId').textContent=c.id;
+    $('cardTitle').textContent=c.t;
+    $('cardBody').textContent=c.b;
+    var sw=$('cardSigs');sw.innerHTML='';
+    c.sig.forEach(function(s){
+      var e=document.createElement('span');
+      e.className='sig';e.textContent=s[0];e.title=s[1];
+      sw.appendChild(e);
+    });
+  }
+  function renderMeter(m,rm){
+    if(!m){
+      $('verdict').textContent='— pick a structure';$('verdict').className='';
+      ['Lookup','Dup','Mut','Order'].forEach(function(k){$('f'+k).style.width='0';$('v'+k).textContent='—';$('t'+k).classList.remove('show')});
+      return;
+    }
+    $('fLookup').style.width=m.lookup+'%'; $('vLookup').textContent=m.lookup;
+    $('fDup').style.width=m.dup+'%';       $('vDup').textContent=m.dup;
+    $('fMut').style.width=m.mut+'%';       $('vMut').textContent=m.mut;
+    $('fOrder').style.width=m.order+'%';   $('vOrder').textContent=m.order;
+    [['Lookup',rm.lookup],['Dup',rm.dup],['Mut',rm.mut],['Order',rm.order]].forEach(function(p){
+      var t=$('t'+p[0]);t.style.left='calc('+p[1]+'% - 1px)';t.classList.add('show');
+      t.title='fits: '+p[1];
+    });
+  }
+  function renderStats(){
+    $('hRet').textContent=S.retired.length;
+    $('hStreak').textContent=S.streak;
+    $('hStreakWrap').className=S.streak>=3?'streakon':'';
+  }
+  function renderOpts(){
+    optEls.forEach(function(b,i){
+      b.disabled=S.answered;
+      b.classList.remove('picked','correct','ok','bad');
+      if(S.answered){
+        if(i===S.card.ans)b.classList.add('correct');
+        if(i===S.picked){
+          b.classList.add('picked',S.picked===S.card.ans?'ok':'bad');
+        }
+      }
+    });
+    $('nextBtn').classList.toggle('show',S.answered);
+  }
+
+  /* ------------------------------------------------------------------ actions */
+  function deal(){
+    if(!S.queue.length){
+      S.queue=CARDS.map(function(_,i){return i});
+      S.retired=[];
+      logEv('info','reshuffle','deck cleared -- reshuffling for free play. The pick-the-structure question never retires.');
+    }
+    S.card=CARDS[S.queue.shift()];
+    S.answered=false;S.picked=-1;
+    logEv('info','dealt',S.card.id+' -- '+S.card.t);
+    renderCard();renderMeter(null);renderOpts();renderStats();
+  }
+  function pick(i){
+    if(S.answered||!S.card)return;
+    var card=S.card,r=card.ans,m=COST[i],rm=COST[r];
+    S.answered=true;S.picked=i;
+    var correct=(i===r);
+    if(correct){
+      S.streak++;CH.streak=S.streak;
+      S.retired.push(card.id);
+      if(card.trap==='dedup')CH.dedupOK=true;
+      if(card.trap==='needkey')CH.keyOK=true;
+      logEv('ok',card.id,'right structure: '+NAMES[i]+' -- '+(card.right||'matches the operation this data actually needs.'));
+    }else{
+      S.streak=0;CH.streak=0;
+      S.queue.push(CARDS.indexOf(card));
+      var flavor=(card.v&&card.v[i])||GENERIC[r][i];
+      logEv(card.sev==='bad'?'bad':'warn',card.id,
+        'wrong structure ('+NAMES[i]+' vs '+NAMES[r]+'): '+flavor);
+      logEv('info',card.id,'returns to the bottom of the deck -- you will see it again.');
+    }
+    logEv('info','cost',NAMES[i]+': lookup '+m.lookup+' &middot; dup '+m.dup+' &middot; mutation '+m.mut+' &middot; order-loss '+m.order+
+      (correct?'':' (fits: lookup '+rm.lookup+' &middot; dup '+rm.dup+' &middot; mutation '+rm.mut+' &middot; order-loss '+rm.order+')'));
+    var v=$('verdict');
+    if(correct){v.textContent='RIGHT STRUCTURE ✓ -- fits how this data is actually used';v.className='ok';}
+    else{v.textContent='WRONG STRUCTURE ✗ -- picked '+NAMES[i]+', needed '+NAMES[r];v.className='bad';}
+    renderMeter(m,rm);renderOpts();renderStats();
+    updateChallenge();
+  }
+  $('nextBtn').addEventListener('click',function(){if(S.answered)deal()});
+  $('reset').addEventListener('click',function(){location.reload()});
+
+  /* ------------------------------------------------------------------ boot */
+  buildOptions();
+  logEv('info','backlog','10 scenarios loaded. Rule: match the structure to the operation -- lookup, order, dedup, or "never changes".');
+  deal();
+  renderChallenge();
+
+  /* test hook */
+  window.__sim={S:S,CH:CH,NAMES:NAMES,CARDS:CARDS,COST:COST,
+    costs:function(p,r){return {pick:COST[p],right:COST[r]};},
+    pick:pick,deal:deal,predict:predict,
+    next:function(){if(S.answered)deal()},
+    currentCard:function(){return S.card}};
+})();
+</script>
+</body>
+</html>
