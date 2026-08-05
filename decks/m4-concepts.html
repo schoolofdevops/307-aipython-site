@@ -171,6 +171,12 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M4&middot;01</div>
 </section>
 
+<!-- ============ DIVIDER — a function is one job ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">1 &middot; A function is one job, done the same way every time</h2>
+  <div class="pageno">M4&middot;02</div>
+</section>
+
 <!-- ============ SLIDE 2 — a function is one job ============ -->
 <section>
   <h2 class="t">A function is one job, done the same way every time</h2>
@@ -199,7 +205,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="952" y="160" text-anchor="middle" class="lbl">list of names (out)</text>
     <text x="550" y="290" text-anchor="middle" class="lbl-g" fill="#2e7d32">no return statement -&gt; the function still runs, it just hands back None</text>
   </svg>
-  <div class="pageno">M4&middot;02</div>
+  <div class="pageno">M4&middot;03</div>
+</section>
+
+<!-- ============ DIVIDER — arguments ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">2 &middot; Positional, keyword and default arguments</h2>
+  <div class="pageno">M4&middot;04</div>
 </section>
 
 <!-- ============ SLIDE 3 — positional, keyword, default args ============ -->
@@ -225,7 +237,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="550" y="240" text-anchor="middle" class="lbl-g">a default (min_memory_gb=8 in the def line) lets a caller write neither</text>
     <text x="550" y="270" text-anchor="middle" class="lbl-sm">find_low_memory_prod(inventory) &nbsp; -- uses 8 automatically</text>
   </svg>
-  <div class="pageno">M4&middot;03</div>
+  <div class="pageno">M4&middot;05</div>
 </section>
 
 <!-- ============ SLIDE 4 — the mutable default trap ============ -->
@@ -253,7 +265,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="830" y="155" text-anchor="middle" class="lbl-sm">    findings = []</text>
     <text x="830" y="195" text-anchor="middle" class="lbl" fill="#2e7d32">a fresh list, every call that needs one</text>
   </svg>
-  <div class="pageno">M4&middot;04</div>
+  <div class="pageno">M4&middot;06</div>
+</section>
+
+<!-- ============ DIVIDER — scope ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">3 &middot; Scope — where a name is visible</h2>
+  <div class="pageno">M4&middot;07</div>
 </section>
 
 <!-- ============ SLIDE 5 — scope: notebook vs hallway whiteboard ============ -->
@@ -276,7 +294,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="830" y="180" text-anchor="middle" class="lbl-sm">every function in this file can read it</text>
     <text x="830" y="215" text-anchor="middle" class="lbl" fill="#c62828">writing to it here leaks everywhere</text>
   </svg>
-  <div class="pageno">M4&middot;05</div>
+  <div class="pageno">M4&middot;08</div>
+</section>
+
+<!-- ============ DIVIDER — modules and packages ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">4 &middot; Modules and packages — a file, then a folder of files</h2>
+  <div class="pageno">M4&middot;09</div>
 </section>
 
 <!-- ============ SLIDE 6 — module vs package ============ -->
@@ -309,7 +333,7 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="830" y="255" text-anchor="middle" class="lbl" fill="#2e7d32">__init__.py + __main__.py -- the two files that make it work as a package</text>
   </svg>
-  <div class="pageno">M4&middot;06</div>
+  <div class="pageno">M4&middot;10</div>
 </section>
 
 <!-- ============ SLIDE 7 — the module map ============ -->
@@ -343,7 +367,13 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="545" y="268" text-anchor="middle" class="lbl-sm">__init__.py -- re-exports the public names</text>
   </svg>
-  <div class="pageno">M4&middot;07</div>
+  <div class="pageno">M4&middot;11</div>
+</section>
+
+<!-- ============ DIVIDER — pure functions and testability ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">5 &middot; Separate input, processing and output — the testability argument</h2>
+  <div class="pageno">M4&middot;12</div>
 </section>
 
 <!-- ============ SLIDE 8 — pure functions and testability ============ -->
@@ -377,7 +407,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="415" y="245" text-anchor="middle" class="lbl-sm">almost all output</text>
     <text x="720" y="225" text-anchor="middle" class="lbl" fill="#c62828">nothing meaningful returned to assert on</text>
   </svg>
-  <div class="pageno">M4&middot;08</div>
+  <div class="pageno">M4&middot;13</div>
+</section>
+
+<!-- ============ DIVIDER — signature and docstring ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">6 &middot; A function signature and its docstring are a contract</h2>
+  <div class="pageno">M4&middot;14</div>
 </section>
 
 <!-- ============ SLIDE 9 — signature + docstring as a contract ============ -->
@@ -392,7 +428,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="550" y="135" text-anchor="middle" class="lbl-sm">"""Return the names of prod servers with less than min_memory_gb memory."""</text>
     <text x="550" y="185" text-anchor="middle" class="lbl-g" fill="#2e7d32">a list in, one tunable default, a list of names out -- known before reading the body</text>
   </svg>
-  <div class="pageno">M4&middot;09</div>
+  <div class="pageno">M4&middot;15</div>
+</section>
+
+<!-- ============ DIVIDER — when not to reach for a class ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">7 &middot; When not to reach for a class</h2>
+  <div class="pageno">M4&middot;16</div>
 </section>
 
 <!-- ============ SLIDE 10 — when not to reach for a class ============ -->
@@ -417,7 +459,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="830" y="165" text-anchor="middle" class="lbl-sm">no behavior varies per instance</text>
     <text x="830" y="200" text-anchor="middle" class="lbl" fill="#c62828">extra layer, no benefit</text>
   </svg>
-  <div class="pageno">M4&middot;10</div>
+  <div class="pageno">M4&middot;17</div>
 </section>
 
 <!-- ============ SLIDE 11 — common pitfalls recap ============ -->
@@ -440,7 +482,7 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="80" y="266">forgetting __init__.py &#8594; re-exported names stop resolving</text>
     </g>
   </svg>
-  <div class="pageno">M4&middot;11</div>
+  <div class="pageno">M4&middot;18</div>
 </section>
 
 <!-- ============ SLIDE 12 — closing / build it ============ -->
@@ -464,7 +506,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="800" y="185" text-anchor="middle" class="lbl-sm" fill="#2e7d32">git diff --cached, gates green, v0.2</text>
   </svg>
   <p class="credit">Now open <b>Module 4 &middot; Lab</b>. &nbsp;·&nbsp; <b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M4&middot;12</div>
+  <div class="pageno">M4&middot;19</div>
 </section>
 
 </div></div>

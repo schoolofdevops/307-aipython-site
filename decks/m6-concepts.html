@@ -9,7 +9,7 @@
      CourseSmith whiteboard deck skeleton (self-contained).
      Style contract: templates/deck/whiteboard-style-guide.md
      Course: AI-Powered Python for DevOps, Platform Engineering & SRE
-     Module: 6 -- Files, YAML, JSON and Configuration
+     Module: 6 — Files, YAML, JSON and Configuration
      Zero external requests: reveal.js 5.x runtime + Patrick Hand
      woff2 are inlined below. Keep it that way.
      ============================================================ -->
@@ -137,8 +137,8 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- ============ SLIDE 1 — TITLE / SCENE: the power-cut incident ============ -->
 <section data-auto-animate>
   <p class="kicker">MODULE 6 &nbsp;·&nbsp; AI-POWERED PYTHON FOR DEVOPS, PLATFORM ENGINEERING &amp; SRE</p>
-  <h2 class="t" style="font-size:1.55em">A script died halfway through writing the file -- and nobody noticed</h2>
-  <p class="s" style="font-size:1.2em">not the old file, not the new one -- just whatever bytes made it</p>
+  <h2 class="t" style="font-size:1.55em">A script died halfway through writing the file &mdash; and nobody noticed</h2>
+  <p class="s" style="font-size:1.2em">not the old file, not the new one &mdash; just whatever bytes made it</p>
   <svg viewBox="0 0 1100 380" role="img" aria-label="A deploy script figure writes into a service dot yaml box that is cut off mid-write by a killed process mark; the box now holds a truncated fragment; a red YAML error box sits between it and an on-call engineer figure on the right who is paged later, wrong image wrong region.">
     <text x="140" y="45" text-anchor="middle" class="lbl-g">deploy script writes service.yaml</text>
     <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
@@ -152,7 +152,7 @@ footer, header, hgroup, main, menu, nav, section {
     <g filter="url(#rough)" fill="#ffe6cc" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
       <rect x="40" y="230" width="200" height="55" rx="8"/>
     </g>
-    <text x="140" y="263" text-anchor="middle" class="lbl-sm">os._exit() -- crash</text>
+    <text x="140" y="263" text-anchor="middle" class="lbl-sm">os._exit() &mdash; crash</text>
     <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
       <path d="M190,150 C230,150 250,150 288,150" marker-end="url(#ah)"/>
     </g>
@@ -190,10 +190,16 @@ footer, header, hgroup, main, menu, nav, section {
       <rect x="850" y="230" width="200" height="55" rx="8"/>
     </g>
     <text x="950" y="263" text-anchor="middle" class="lbl-sm">wrong image, wrong region</text>
-    <text x="550" y="345" text-anchor="middle" class="lbl" fill="#c62828">not the old file, not the new one -- just whatever bytes made it</text>
+    <text x="550" y="345" text-anchor="middle" class="lbl" fill="#c62828">not the old file, not the new one &mdash; just whatever bytes made it</text>
   </svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI &nbsp;·&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M6&middot;01</div>
+</section>
+
+<!-- ============ DIVIDER — a path is an object, not a string ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">1 &middot; A path is an object, not a piece of string</h2>
+  <div class="pageno">M6&middot;02</div>
 </section>
 
 <!-- ============ SLIDE 2 — a path is a labeled address ============ -->
@@ -209,7 +215,7 @@ footer, header, hgroup, main, menu, nav, section {
       <rect x="110" y="130" width="310" height="55" rx="8"/>
     </g>
     <text x="265" y="163" text-anchor="middle" class="lbl-sm">configs//checkout-api/config.yaml</text>
-    <text x="265" y="215" text-anchor="middle" class="lbl-g" fill="#c62828">a double slash, or a missing one --</text>
+    <text x="265" y="215" text-anchor="middle" class="lbl-g" fill="#c62828">a double slash, or a missing one</text>
     <text x="265" y="240" text-anchor="middle" class="lbl-g" fill="#c62828">just characters until parsed again</text>
     <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="3" stroke-linecap="round">
       <rect x="560" y="60" width="490" height="220" rx="14"/>
@@ -223,7 +229,13 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="805" y="255" text-anchor="middle" class="lbl-g">same code, right separator on every OS</text>
   </svg>
-  <div class="pageno">M6&middot;02</div>
+  <div class="pageno">M6&middot;03</div>
+</section>
+
+<!-- ============ DIVIDER — reading and writing text ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">2 &middot; Reading and writing text &mdash; and why write_text is dangerous on its own</h2>
+  <div class="pageno">M6&middot;04</div>
 </section>
 
 <!-- ============ SLIDE 3 — read/write one call each ============ -->
@@ -252,9 +264,9 @@ footer, header, hgroup, main, menu, nav, section {
       <rect x="845" y="105" width="195" height="70" rx="10"/>
     </g>
     <text x="942" y="145" text-anchor="middle" class="lbl-sm">new content, in memory</text>
-    <text x="550" y="255" text-anchor="middle" class="lbl-g">one call, whole file -- fine for a one-off script</text>
+    <text x="550" y="255" text-anchor="middle" class="lbl-g">one call, whole file &mdash; fine for a one-off script</text>
   </svg>
-  <div class="pageno">M6&middot;03</div>
+  <div class="pageno">M6&middot;05</div>
 </section>
 
 <!-- ============ SLIDE 4 — write_text truncates first ============ -->
@@ -267,7 +279,7 @@ footer, header, hgroup, main, menu, nav, section {
       <rect x="140" y="70" width="300" height="120" rx="12"/>
     </g>
     <text x="290" y="120" text-anchor="middle" class="lbl-b">service.yaml</text>
-    <text x="290" y="150" text-anchor="middle" class="lbl-sm" fill="#c62828">0 bytes -- old content already gone</text>
+    <text x="290" y="150" text-anchor="middle" class="lbl-sm" fill="#c62828">0 bytes &mdash; old content already gone</text>
     <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
       <path d="M445,130 C500,130 520,130 560,130" marker-end="url(#ah)"/>
     </g>
@@ -279,15 +291,21 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="800" y="112" text-anchor="middle" class="lbl-sm">name: checkout-api</text>
     <text x="800" y="138" text-anchor="middle" class="lbl-sm">regi</text>
     <path d="M845,122 L865,110 L850,138 L870,126" fill="none" stroke="#c62828" stroke-width="2.4" stroke-linecap="round"/>
-    <text x="800" y="170" text-anchor="middle" class="lbl-sm" fill="#c62828">killed here -- new content never arrives</text>
+    <text x="800" y="170" text-anchor="middle" class="lbl-sm" fill="#c62828">killed here &mdash; new content never arrives</text>
     <text x="550" y="255" text-anchor="middle" class="lbl-g" fill="#c62828">same danger as the incident on slide 1</text>
   </svg>
-  <div class="pageno">M6&middot;04</div>
+  <div class="pageno">M6&middot;06</div>
+</section>
+
+<!-- ============ DIVIDER — three formats you will parse constantly ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">3 &middot; Three formats you will parse constantly</h2>
+  <div class="pageno">M6&middot;07</div>
 </section>
 
 <!-- ============ SLIDE 5 — three formats ============ -->
 <section>
-  <h2 class="t">Three formats, picked by who -- or what -- is editing them</h2>
+  <h2 class="t">Three formats, picked by who &mdash; or what &mdash; is editing them</h2>
   <p class="s">JSON for machines, YAML for humans, CSV for rows</p>
   <svg viewBox="0 0 1100 300" role="img" aria-label="Three column comparison: JSON strict no comments for APIs and lockfiles, YAML comments and indentation for teams to hand edit, CSV one row each watch for a stray comma.">
     <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
@@ -307,9 +325,9 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="900" y="130" text-anchor="middle" class="lbl-sm">one row each</text>
     <text x="900" y="160" text-anchor="middle" class="lbl-sm">csv.DictReader/Writer</text>
     <text x="900" y="200" text-anchor="middle" class="lbl-g">tabular exports, reports</text>
-    <text x="550" y="280" text-anchor="middle" class="lbl-g">service.yaml is YAML for exactly one reason -- a human edits it</text>
+    <text x="550" y="280" text-anchor="middle" class="lbl-g">service.yaml is YAML for exactly one reason &mdash; a human edits it</text>
   </svg>
-  <div class="pageno">M6&middot;05</div>
+  <div class="pageno">M6&middot;08</div>
 </section>
 
 <!-- ============ SLIDE 6 — safe_load refuses ============ -->
@@ -330,7 +348,7 @@ footer, header, hgroup, main, menu, nav, section {
       <rect x="80" y="205" width="340" height="90" rx="10"/>
     </g>
     <text x="250" y="240" text-anchor="middle" class="lbl-b">yaml.safe_load()</text>
-    <text x="250" y="267" text-anchor="middle" class="lbl-sm">only ever plain data -- refuses anything else</text>
+    <text x="250" y="267" text-anchor="middle" class="lbl-sm">only ever plain data &mdash; refuses anything else</text>
     <g filter="url(#rough)" fill="#f8cecc" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
       <rect x="680" y="205" width="340" height="90" rx="10"/>
     </g>
@@ -338,12 +356,18 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="850" y="267" text-anchor="middle" class="lbl-sm" fill="#c62828">the format itself can ask for more</text>
     <text x="550" y="320" text-anchor="middle" class="lbl-g">the Deep Dive shows exactly what "more" looks like, safely</text>
   </svg>
-  <div class="pageno">M6&middot;06</div>
+  <div class="pageno">M6&middot;09</div>
+</section>
+
+<!-- ============ DIVIDER — where a setting's value comes from ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">4 &middot; Where a setting's value actually comes from &mdash; the three-layer rule</h2>
+  <div class="pageno">M6&middot;10</div>
 </section>
 
 <!-- ============ SLIDE 7 — SCENE: three-layer precedence, recipe card ============ -->
 <section>
-  <h2 class="t">Three places a setting's value can come from -- and only one order that works</h2>
+  <h2 class="t">Three places a setting's value can come from &mdash; and only one order that works</h2>
   <p class="s">the recipe card on the kitchen wall</p>
   <svg viewBox="0 0 1100 400" role="img" aria-label="A recipe card pinned to a kitchen wall shows a printed base recipe as the default, pen edits on the card for today's batch as the config file, and a cook figure tasting the pot and calling out more salt as the environment variable, which wins over everything printed or written.">
     <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-linecap="round">
@@ -358,12 +382,12 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="250" y="105" text-anchor="middle" class="lbl-b">recipe card</text>
     <text x="250" y="140" text-anchor="middle" class="lbl-sm">base recipe: 1 tsp salt</text>
-    <text x="250" y="170" text-anchor="middle" class="lbl-g">printed -- the default</text>
+    <text x="250" y="170" text-anchor="middle" class="lbl-g">printed &mdash; the default</text>
     <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2" stroke-dasharray="4 6" stroke-linecap="round">
       <line x1="140" y1="195" x2="360" y2="195"/>
     </g>
     <text x="250" y="220" text-anchor="middle" class="lbl-sm">2 tsp, this batch</text>
-    <text x="250" y="248" text-anchor="middle" class="lbl-g">pen edit -- the config file</text>
+    <text x="250" y="248" text-anchor="middle" class="lbl-g">pen edit &mdash; the config file</text>
     <text x="250" y="272" text-anchor="middle" class="lbl-g">overrides the print, if written</text>
     <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
       <circle cx="700" cy="140" r="18"/>
@@ -384,17 +408,17 @@ footer, header, hgroup, main, menu, nav, section {
     <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
       <path d="M745,175 C770,175 780,178 795,180" marker-end="url(#ah)"/>
     </g>
-    <text x="930" y="240" text-anchor="middle" class="lbl-g">spoken -- the environment variable</text>
+    <text x="930" y="240" text-anchor="middle" class="lbl-g">spoken &mdash; the environment variable</text>
     <text x="930" y="265" text-anchor="middle" fill="#2e7d32" class="lbl-sm">wins over everything printed or written</text>
     <text x="930" y="290" text-anchor="middle" class="lbl-g">only for as long as this batch cooks</text>
   </svg>
-  <div class="pageno">M6&middot;07</div>
+  <div class="pageno">M6&middot;11</div>
 </section>
 
 <!-- ============ SLIDE 8 — the exact order, real names ============ -->
 <section>
   <h2 class="t">This is that exact order, with the real names</h2>
-  <p class="s">3 of 3 -- each layer overrides everything to its left</p>
+  <p class="s">3 of 3 &mdash; each layer overrides everything to its left</p>
   <svg viewBox="0 0 1100 300" role="img" aria-label="A pipeline built up in three fragments: a built-in default box, then service dot yaml file box overriding it if set, then an environment variable box overriding both if set, ending in the effective value used right now.">
     <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
       <rect x="40" y="100" width="200" height="100" rx="12"/>
@@ -440,7 +464,13 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="550" y="255" text-anchor="middle" class="lbl-g">an env var you never set leaves the file's value untouched</text>
   </svg>
-  <div class="pageno">M6&middot;08</div>
+  <div class="pageno">M6&middot;12</div>
+</section>
+
+<!-- ============ DIVIDER — a file that might not be there ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">5 &middot; A file that might not be there</h2>
+  <div class="pageno">M6&middot;13</div>
 </section>
 
 <!-- ============ SLIDE 9 — a file that might not be there ============ -->
@@ -451,7 +481,7 @@ footer, header, hgroup, main, menu, nav, section {
     <g filter="url(#rough)" fill="#d5e8d4" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
       <rect x="60" y="60" width="440" height="210" rx="12"/>
     </g>
-    <text x="280" y="95" text-anchor="middle" class="lbl-b">path.exists() -- checked first</text>
+    <text x="280" y="95" text-anchor="middle" class="lbl-b">path.exists() &mdash; checked first</text>
     <text x="280" y="140" text-anchor="middle" class="lbl-sm">config not found at</text>
     <text x="280" y="168" text-anchor="middle" class="lbl-sm">configs/checkout-api/service.yaml</text>
     <text x="280" y="215" text-anchor="middle" fill="#2e7d32" class="lbl-sm">a message someone can act on</text>
@@ -462,15 +492,21 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="820" y="140" text-anchor="middle" class="lbl-sm">wrong file permissions</text>
     <text x="820" y="180" text-anchor="middle" class="lbl-b">PermissionError</text>
     <text x="820" y="215" text-anchor="middle" class="lbl-g">a different problem, a different fix</text>
-    <text x="550" y="300" text-anchor="middle" class="lbl-g">a raw traceback tells nobody what to do next -- a checked message does</text>
+    <text x="550" y="300" text-anchor="middle" class="lbl-g">a raw traceback tells nobody what to do next &mdash; a checked message does</text>
   </svg>
-  <div class="pageno">M6&middot;09</div>
+  <div class="pageno">M6&middot;14</div>
+</section>
+
+<!-- ============ DIVIDER — never leave a half-written file on disk ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">6 &middot; Never leave a half-written file on disk &mdash; temp file, then rename</h2>
+  <div class="pageno">M6&middot;15</div>
 </section>
 
 <!-- ============ SLIDE 10 — never leave a half-written file, write aside then swap ============ -->
 <section>
-  <h2 class="t">Never leave a half-written file on disk -- write aside, then swap</h2>
-  <p class="s">3 of 3 -- readers always see the old file or the new one</p>
+  <h2 class="t">Never leave a half-written file on disk &mdash; write aside, then swap</h2>
+  <p class="s">3 of 3 &mdash; readers always see the old file or the new one</p>
   <svg viewBox="0 0 1100 320" role="img" aria-label="Three fragments: full new content is written to a temp file off to the side while service dot yaml stays untouched; os dot replace swaps the temp file over the real one in one atomic step; a green caption confirms readers always see either the old file or the new file, never a half-drawn one.">
     <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
       <rect x="60" y="70" width="260" height="120" rx="12"/>
@@ -496,10 +532,16 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
 
     <g class="fragment">
-      <text x="550" y="345" text-anchor="middle" fill="#2e7d32" class="lbl">readers always see the old file or the new one -- never half-drawn</text>
+      <text x="550" y="345" text-anchor="middle" fill="#2e7d32" class="lbl">readers always see the old file or the new one &mdash; never half-drawn</text>
     </g>
   </svg>
-  <div class="pageno">M6&middot;10</div>
+  <div class="pageno">M6&middot;16</div>
+</section>
+
+<!-- ============ DIVIDER — a backup is only a backup once restored ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">7 &middot; A backup is only a backup once you have restored from it</h2>
+  <div class="pageno">M6&middot;17</div>
 </section>
 
 <!-- ============ SLIDE 11 — a backup is only a backup once restored ============ -->
@@ -522,9 +564,15 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="655" y="112" text-anchor="middle" class="lbl-b">service.yaml.bak</text>
     <text x="655" y="140" text-anchor="middle" class="lbl-g">costs almost nothing</text>
     <path d="M60,220 L100,240 M100,220 L60,240" stroke="#c62828" stroke-width="2.6" stroke-linecap="round"/>
-    <text x="500" y="235" text-anchor="middle" fill="#c62828" class="lbl-sm">never restored, never rehearsed -- still just a guess</text>
+    <text x="500" y="235" text-anchor="middle" fill="#c62828" class="lbl-sm">never restored, never rehearsed &mdash; still just a guess</text>
   </svg>
-  <div class="pageno">M6&middot;11</div>
+  <div class="pageno">M6&middot;18</div>
+</section>
+
+<!-- ============ DIVIDER — a config file is not a safe or a vault ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">8 &middot; A config file is not a safe or a vault</h2>
+  <div class="pageno">M6&middot;19</div>
 </section>
 
 <!-- ============ SLIDE 12 — not a safe or a vault ============ -->
@@ -553,17 +601,17 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="930" y="95" text-anchor="middle" class="lbl-b">.env.example</text>
     <text x="930" y="128" text-anchor="middle" class="lbl-sm">DATABASE_PASSWORD=</text>
-    <text x="930" y="155" text-anchor="middle" class="lbl-g">committed -- no real value</text>
+    <text x="930" y="155" text-anchor="middle" class="lbl-g">committed &mdash; no real value</text>
     <text x="550" y="255" text-anchor="middle" class="lbl-g">once a secret is in git history, it is there permanently</text>
   </svg>
-  <div class="pageno">M6&middot;12</div>
+  <div class="pageno">M6&middot;20</div>
 </section>
 
 <!-- ============ SLIDE 13 — five habits that undo the rules ============ -->
 <section>
   <h2 class="t">Five habits that undo the rules above</h2>
   <p class="s">each one has a one-line fix</p>
-  <svg viewBox="0 0 1100 300" role="img" aria-label="A five row trap grid: plain yaml dot load on an untrusted file, write text or open with w straight to the destination, hand built paths with string concatenation, assuming a config file exists, and committing a real dot env instead of dot env dot example -- each with its fix.">
+  <svg viewBox="0 0 1100 300" role="img" aria-label="A five row trap grid: plain yaml dot load on an untrusted file, write text or open with w straight to the destination, hand built paths with string concatenation, assuming a config file exists, and committing a real dot env instead of dot env dot example, each with its fix.">
     <g filter="url(#rough)" fill="#ffe6cc" stroke="#1e1e1e" stroke-width="1.8" stroke-linecap="round">
       <rect x="60" y="30" width="980" height="46" rx="6"/>
       <rect x="60" y="82" width="980" height="46" rx="6"/>
@@ -579,12 +627,12 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="80" y="266">committing a real .env instead of .env.example &#8594; rotate the credential, don't just delete the line</text>
     </g>
   </svg>
-  <div class="pageno">M6&middot;13</div>
+  <div class="pageno">M6&middot;21</div>
 </section>
 
 <!-- ============ SLIDE 14 — closing / build it ============ -->
 <section>
-  <h2 class="t">One file, one swap, one truth -- now build it</h2>
+  <h2 class="t">One file, one swap, one truth &mdash; now build it</h2>
   <p class="s">same boundary and atomic-write habits, now on the whole config</p>
   <svg viewBox="0 0 1100 300" role="img" aria-label="A closing hand-off card: load service dot yaml with pathlib and safe_load, validate through ServiceDefinition, layer environment variable overrides using the precedence rule, then write the resolved config back atomically and tag v0.4.">
     <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
@@ -598,12 +646,12 @@ footer, header, hgroup, main, menu, nav, section {
       <rect x="580" y="40" width="440" height="220" rx="12"/>
     </g>
     <text x="800" y="80" text-anchor="middle" class="lbl-b">3. layer env overrides</text>
-    <text x="800" y="115" text-anchor="middle" class="lbl-sm">the precedence rule from slide 7</text>
+    <text x="800" y="115" text-anchor="middle" class="lbl-sm">the precedence rule from slide 11</text>
     <text x="800" y="150" text-anchor="middle" class="lbl-b">4. write back, then tag</text>
     <text x="800" y="185" text-anchor="middle" class="lbl-sm" fill="#2e7d32">atomic write, gates green, v0.4</text>
   </svg>
   <p class="credit">Now open <b>Module 6 &middot; Lab</b>. &nbsp;·&nbsp; <b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M6&middot;14</div>
+  <div class="pageno">M6&middot;22</div>
 </section>
 
 </div></div>

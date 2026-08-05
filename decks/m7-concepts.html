@@ -192,6 +192,12 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M7&middot;01</div>
 </section>
 
+<!-- ============ DIVIDER — three kinds of errors ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">1 &middot; Three kinds of errors, and when each one shows up</h2>
+  <div class="pageno">M7&middot;02</div>
+</section>
+
 <!-- ============ SLIDE 2 — SCENE: a recipe fails three different ways ============ -->
 <section>
   <h2 class="t">A recipe fails three different ways -- so does code</h2>
@@ -252,7 +258,13 @@ footer, header, hgroup, main, menu, nav, section {
 
     <text x="550" y="360" text-anchor="middle" class="lbl" fill="#c62828">the third one is the most dangerous -- nothing announces it</text>
   </svg>
-  <div class="pageno">M7&middot;02</div>
+  <div class="pageno">M7&middot;03</div>
+</section>
+
+<!-- ============ DIVIDER — reading a traceback bottom-up ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">2 &middot; Reading a traceback bottom-up</h2>
+  <div class="pageno">M7&middot;04</div>
 </section>
 
 <!-- ============ SLIDE 3 — read the crash report bottom-up ============ -->
@@ -293,7 +305,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="910" y="175" text-anchor="middle" class="lbl-g">never reaches the real cause</text>
     <text x="910" y="220" text-anchor="middle" class="lbl-b" fill="#2e7d32">bottom-up: every time</text>
   </svg>
-  <div class="pageno">M7&middot;03</div>
+  <div class="pageno">M7&middot;05</div>
+</section>
+
+<!-- ============ DIVIDER — try/except/else/finally ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">3 &middot; try / except / else / finally -- and the narrow-catch rule</h2>
+  <div class="pageno">M7&middot;06</div>
 </section>
 
 <!-- ============ SLIDE 4 — four blocks, four jobs ============ -->
@@ -343,7 +361,7 @@ footer, header, hgroup, main, menu, nav, section {
 
     <text x="550" y="235" text-anchor="middle" class="lbl-g">the right place for cleanup, like closing a file</text>
   </svg>
-  <div class="pageno">M7&middot;04</div>
+  <div class="pageno">M7&middot;07</div>
 </section>
 
 <!-- ============ SLIDE 5 — catch what you understand ============ -->
@@ -369,7 +387,13 @@ footer, header, hgroup, main, menu, nav, section {
 
     <text x="550" y="300" text-anchor="middle" class="lbl-g">a doctor sorts patients by what's actually wrong -- this is that same sort</text>
   </svg>
-  <div class="pageno">M7&middot;05</div>
+  <div class="pageno">M7&middot;08</div>
+</section>
+
+<!-- ============ DIVIDER — raising your own exceptions ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">4 &middot; Raising your own exceptions -- the ConfigError family</h2>
+  <div class="pageno">M7&middot;09</div>
 </section>
 
 <!-- ============ SLIDE 6 — your own exception types ============ -->
@@ -400,7 +424,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="750" y="248" text-anchor="middle" class="lbl-b">ConfigPermissionError</text>
     <text x="750" y="275" text-anchor="middle" class="lbl-sm">this process cannot read the file</text>
   </svg>
-  <div class="pageno">M7&middot;06</div>
+  <div class="pageno">M7&middot;10</div>
+</section>
+
+<!-- ============ DIVIDER — exit codes ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">5 &middot; Exit codes -- the contract a machine actually reads</h2>
+  <div class="pageno">M7&middot;11</div>
 </section>
 
 <!-- ============ SLIDE 7 — print is for a person, exit code for a machine ============ -->
@@ -426,7 +456,7 @@ footer, header, hgroup, main, menu, nav, section {
 
     <text x="550" y="270" text-anchor="middle" class="lbl" fill="#c62828">a tool that only checks "did it print an error" gets fooled</text>
   </svg>
-  <div class="pageno">M7&middot;07</div>
+  <div class="pageno">M7&middot;12</div>
 </section>
 
 <!-- ============ SLIDE 8 — three numbers, three meanings ============ -->
@@ -467,7 +497,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="850" y="150" text-anchor="middle" class="lbl-g">the number is the contract --</text>
     <text x="850" y="175" text-anchor="middle" class="lbl-g">not the words printed around it</text>
   </svg>
-  <div class="pageno">M7&middot;08</div>
+  <div class="pageno">M7&middot;13</div>
+</section>
+
+<!-- ============ DIVIDER — logging ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">6 &middot; Logging -- a note for right now versus an entry in the log</h2>
+  <div class="pageno">M7&middot;14</div>
 </section>
 
 <!-- ============ SLIDE 9 — print now, log for later ============ -->
@@ -493,14 +529,14 @@ footer, header, hgroup, main, menu, nav, section {
 
     <text x="550" y="270" text-anchor="middle" class="lbl-g">use print() for the answer your tool exists to give -- log everything else</text>
   </svg>
-  <div class="pageno">M7&middot;09</div>
+  <div class="pageno">M7&middot;15</div>
 </section>
 
 <!-- ============ SLIDE 10 — levels say how loud an entry is ============ -->
 <section>
   <h2 class="t">Levels say how loud an entry is</h2>
   <p class="s">--verbose usually turns DEBUG on</p>
-  <svg viewBox="0 0 1100 300" role="img" aria-label="Four stacked rungs from bottom to top: DEBUG, outline only, detail only an investigator wants; INFO, a normal note; WARNING, worth a second look; ERROR, something broke. A dashed threshold line separates shown by default above from needs verbose below.">
+  <svg viewBox="0 0 1100 300" role="img" aria-label="Four stacked levels from bottom to top: DEBUG, outline only, detail only an investigator wants; INFO, a normal note; WARNING, worth a second look; ERROR, something broke. A dashed threshold line separates shown by default above from needs verbose below.">
     <g filter="url(#rough)" fill="#f8cecc" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
       <rect x="200" y="30" width="700" height="55" rx="8"/>
     </g>
@@ -533,7 +569,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="1010" y="245" text-anchor="middle" class="lbl-g">needs</text>
     <text x="1010" y="265" text-anchor="middle" class="lbl-g">--verbose</text>
   </svg>
-  <div class="pageno">M7&middot;10</div>
+  <div class="pageno">M7&middot;16</div>
 </section>
 
 <!-- ============ SLIDE 11 — log the field's name, never its value ============ -->
@@ -562,14 +598,20 @@ footer, header, hgroup, main, menu, nav, section {
 
     <text x="550" y="280" text-anchor="middle" class="lbl" fill="#c62828">never log the value itself -- only the file path and the field name</text>
   </svg>
-  <div class="pageno">M7&middot;11</div>
+  <div class="pageno">M7&middot;17</div>
 </section>
 
-<!-- ============ SLIDE 12 — climb the ladder one rung at a time ============ -->
+<!-- ============ DIVIDER — the debugging ladder ============ -->
 <section>
-  <h2 class="t">Climb the ladder one rung at a time</h2>
+  <h2 class="t" style="font-size:2.2em">7 &middot; The debugging ladder</h2>
+  <div class="pageno">M7&middot;18</div>
+</section>
+
+<!-- ============ SLIDE 12 — climb the ladder one step at a time ============ -->
+<section>
+  <h2 class="t">Climb the ladder one step at a time</h2>
   <p class="s">skipping to step 3 is how an hour disappears</p>
-  <svg viewBox="0 0 1100 330" role="img" aria-label="A four rung ladder built up in three fragments, bottom to top: read the error fully, then reproduce it, then look inside with print or breakpoint, then write a failing test so the bug cannot silently come back.">
+  <svg viewBox="0 0 1100 330" role="img" aria-label="A four-step ladder built up in three fragments, bottom to top: read the error fully, then reproduce it, then look inside with print or breakpoint, then write a failing test so the bug cannot silently come back.">
     <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
       <circle cx="90" cy="270" r="18"/>
     </g>
@@ -627,7 +669,7 @@ footer, header, hgroup, main, menu, nav, section {
 
     <text x="500" y="320" text-anchor="middle" class="lbl-g" fill="#c62828">skipping straight to step 3 is how an hour disappears</text>
   </svg>
-  <div class="pageno">M7&middot;12</div>
+  <div class="pageno">M7&middot;19</div>
 </section>
 
 <!-- ============ SLIDE 13 — four habits that undo everything above ============ -->
@@ -648,7 +690,7 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="80" y="226">leftover print() debugging statements &#8594; convert to logger.debug(), gated behind --verbose</text>
     </g>
   </svg>
-  <div class="pageno">M7&middot;13</div>
+  <div class="pageno">M7&middot;20</div>
 </section>
 
 <!-- ============ SLIDE 14 — closing / build it ============ -->
@@ -673,7 +715,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="800" y="185" text-anchor="middle" class="lbl-sm" fill="#2e7d32">six scenarios fixed, v0.5</text>
   </svg>
   <p class="credit">Now open <b>Module 7 &middot; Lab</b>. &nbsp;·&nbsp; <b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M7&middot;14</div>
+  <div class="pageno">M7&middot;21</div>
 </section>
 </div></div>
 

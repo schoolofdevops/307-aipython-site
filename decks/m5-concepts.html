@@ -137,8 +137,8 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- ============ SLIDE 1 — TITLE: the wrong-type incident (SCENE) ============ -->
 <section>
   <p class="kicker">MODULE 5 &nbsp;·&nbsp; AI-POWERED PYTHON FOR DEVOPS &amp; SRE</p>
-  <h2 class="t" style="font-size:1.55em">A quoted number didn&#8217;t crash the script -- it just lied about the answer</h2>
-  <p class="s" style="font-size:1.2em">expected 6, got 33 -- and nothing complained</p>
+  <h2 class="t" style="font-size:1.55em">A quoted number didn&#8217;t crash the script &mdash; it just lied about the answer</h2>
+  <p class="s" style="font-size:1.2em">expected 6, got 33, and nothing complained</p>
   <svg viewBox="0 0 1100 380" role="img" aria-label="A teammate figure hand-edits a YAML file with replicas in quotes; an arrow runs into a total_cpu function box; the output is a red 33 tag; an on-call engineer figure on the right reads it and trusts it; a red caption below reads no crash, no traceback, just wrong.">
     <text x="140" y="45" text-anchor="middle" class="lbl-g">teammate edits the YAML</text>
     <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
@@ -163,7 +163,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="420" y="115" text-anchor="middle" class="lbl-b">total_cpu(</text>
     <text x="420" y="145" text-anchor="middle" class="lbl-sm">replicas,</text>
     <text x="420" y="170" text-anchor="middle" class="lbl-sm">cpu_per_replica)</text>
-    <text x="420" y="205" text-anchor="middle" class="lbl-g">"3" * 2 -- string repeat</text>
+    <text x="420" y="205" text-anchor="middle" class="lbl-g">"3" * 2 &mdash; string repeat</text>
     <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
       <path d="M555,150 C580,150 590,150 608,150" marker-end="url(#ah)"/>
     </g>
@@ -190,10 +190,16 @@ footer, header, hgroup, main, menu, nav, section {
       <rect x="850" y="230" width="200" height="55" rx="8"/>
     </g>
     <text x="950" y="263" text-anchor="middle" class="lbl-sm">"looks fine..."</text>
-    <text x="550" y="345" text-anchor="middle" class="lbl" fill="#c62828">no crash, no traceback -- just wrong</text>
+    <text x="550" y="345" text-anchor="middle" class="lbl" fill="#c62828">no crash, no traceback, just wrong</text>
   </svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI &nbsp;·&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M5&middot;01</div>
+</section>
+
+<!-- ============ DIVIDER — annotations on functions ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">1 &middot; Annotations on functions &mdash; documentation a tool can read</h2>
+  <div class="pageno">M5&middot;02</div>
 </section>
 
 <!-- ============ SLIDE 2 — annotations are documentation a tool can read ============ -->
@@ -223,9 +229,15 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="942" y="160" text-anchor="middle" class="lbl-sm">list[str] (out)</text>
     <text x="550" y="275" text-anchor="middle" class="lbl-g" fill="#2e7d32">editor underlines a mismatched call before you run it</text>
-    <text x="550" y="303" text-anchor="middle" class="lbl-g" fill="#c62828">python still lets you call it wrong -- same as the number above</text>
+    <text x="550" y="303" text-anchor="middle" class="lbl-g" fill="#c62828">python still lets you call it wrong, same as the number above</text>
   </svg>
-  <div class="pageno">M5&middot;02</div>
+  <div class="pageno">M5&middot;03</div>
+</section>
+
+<!-- ============ DIVIDER — typed containers, Optional, unions ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">2 &middot; Typed containers, Optional, and unions</h2>
+  <div class="pageno">M5&middot;04</div>
 </section>
 
 <!-- ============ SLIDE 3 — typed containers ============ -->
@@ -252,7 +264,7 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="550" y="292" text-anchor="middle" class="lbl-g">each dict is one record; the list can hold any number of them</text>
   </svg>
-  <div class="pageno">M5&middot;03</div>
+  <div class="pageno">M5&middot;05</div>
 </section>
 
 <!-- ============ SLIDE 4 — Optional / dict | None ============ -->
@@ -265,7 +277,7 @@ footer, header, hgroup, main, menu, nav, section {
       <rect x="80" y="70" width="380" height="90" rx="12"/>
     </g>
     <text x="270" y="105" text-anchor="middle" class="lbl-sm">service = find_service(name, services)</text>
-    <text x="270" y="135" text-anchor="middle" class="lbl-sm" fill="#2e7d32">service["name"] -- safe</text>
+    <text x="270" y="135" text-anchor="middle" class="lbl-sm" fill="#2e7d32">service["name"] &mdash; safe</text>
     <text x="830" y="45" text-anchor="middle" class="lbl-g">not found</text>
     <g filter="url(#rough)" fill="#ffe6cc" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
       <rect x="620" y="70" width="420" height="90" rx="12"/>
@@ -275,12 +287,12 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="550" y="230" text-anchor="middle" class="lbl-g" fill="#c62828">skip the check -&gt; service["name"] raises AttributeError on None</text>
     <text x="550" y="265" text-anchor="middle" class="lbl-g">dict | None (same as Optional[dict]) tells the reader to check first</text>
   </svg>
-  <div class="pageno">M5&middot;04</div>
+  <div class="pageno">M5&middot;06</div>
 </section>
 
 <!-- ============ SLIDE 5 — unions generally ============ -->
 <section>
-  <h2 class="t">A union says: it's one of these shapes -- handle either</h2>
+  <h2 class="t">A union says: it's one of these shapes, handle either</h2>
   <p class="s">int | str means the caller must handle both</p>
   <svg viewBox="0 0 1100 300" role="img" aria-label="A box labeled int or str fans out into two branches, an int path and a str path, which converge into a box saying the caller must handle either.">
     <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
@@ -295,9 +307,9 @@ footer, header, hgroup, main, menu, nav, section {
       <rect x="450" y="35" width="300" height="70" rx="10"/>
       <rect x="450" y="185" width="300" height="70" rx="10"/>
     </g>
-    <text x="600" y="65" text-anchor="middle" class="lbl-sm">int path -- e.g. retry_count</text>
+    <text x="600" y="65" text-anchor="middle" class="lbl-sm">int path &mdash; e.g. retry_count</text>
     <text x="600" y="90" text-anchor="middle" class="lbl-g">a whole number</text>
-    <text x="600" y="215" text-anchor="middle" class="lbl-sm">str path -- e.g. status message</text>
+    <text x="600" y="215" text-anchor="middle" class="lbl-sm">str path &mdash; e.g. status message</text>
     <text x="600" y="240" text-anchor="middle" class="lbl-g">free text</text>
     <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-dasharray="9 7" stroke-linecap="round">
       <path d="M755,80 C830,100 860,110 890,125" marker-end="url(#ahg)"/>
@@ -309,7 +321,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="975" y="140" text-anchor="middle" class="lbl-sm">caller must</text>
     <text x="975" y="165" text-anchor="middle" class="lbl-sm">handle either</text>
   </svg>
-  <div class="pageno">M5&middot;05</div>
+  <div class="pageno">M5&middot;07</div>
+</section>
+
+<!-- ============ DIVIDER — dataclasses ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">3 &middot; Dataclasses &mdash; a typed record, still on the honour system</h2>
+  <div class="pageno">M5&middot;08</div>
 </section>
 
 <!-- ============ SLIDE 6 — dataclass gives a free record ============ -->
@@ -323,16 +341,16 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="270" y="105" text-anchor="middle" class="lbl-sm">svc = {"name": "db-01",</text>
     <text x="270" y="130" text-anchor="middle" class="lbl-sm">"envrionment": "prod"}</text>
-    <text x="270" y="165" text-anchor="middle" class="lbl" fill="#c62828">typo key -- fails silently</text>
+    <text x="270" y="165" text-anchor="middle" class="lbl" fill="#c62828">typo key &mdash; fails silently</text>
     <text x="830" y="45" text-anchor="middle" class="lbl-g">@dataclass</text>
     <g filter="url(#rough)" fill="#d5e8d4" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
       <rect x="620" y="70" width="420" height="150" rx="12"/>
     </g>
     <text x="830" y="100" text-anchor="middle" class="lbl-sm">@dataclass class ServerRecord:</text>
     <text x="830" y="130" text-anchor="middle" class="lbl-sm">name: str &middot; env: str &middot; memory_gb: int = 8</text>
-    <text x="830" y="165" text-anchor="middle" class="lbl" fill="#2e7d32">__init__, __repr__, __eq__ -- generated free</text>
+    <text x="830" y="165" text-anchor="middle" class="lbl" fill="#2e7d32">__init__, __repr__, __eq__ &mdash; generated free</text>
   </svg>
-  <div class="pageno">M5&middot;06</div>
+  <div class="pageno">M5&middot;09</div>
 </section>
 
 <!-- ============ SLIDE 7 — dataclass honor system ============ -->
@@ -346,10 +364,16 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="550" y="85" text-anchor="middle" class="lbl-sm">ServerRecord(name="db-01",</text>
     <text x="550" y="115" text-anchor="middle" class="lbl-sm">env="prod", memory_gb="lots")</text>
     <text x="550" y="150" text-anchor="middle" class="lbl-sm">builds without complaint</text>
-    <text x="550" y="230" text-anchor="middle" class="lbl" fill="#c62828">field says int -- python isn't enforcing it</text>
-    <text x="550" y="262" text-anchor="middle" class="lbl-g">a container for values you already trust -- not a checkpoint</text>
+    <text x="550" y="230" text-anchor="middle" class="lbl" fill="#c62828">field says int, python isn't enforcing it</text>
+    <text x="550" y="262" text-anchor="middle" class="lbl-g">a container for values you already trust, not a checkpoint</text>
   </svg>
-  <div class="pageno">M5&middot;07</div>
+  <div class="pageno">M5&middot;10</div>
+</section>
+
+<!-- ============ DIVIDER — Pydantic ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">4 &middot; Pydantic &mdash; a model that actually checks</h2>
+  <div class="pageno">M5&middot;11</div>
 </section>
 
 <!-- ============ SLIDE 8 — Pydantic enforces at construction ============ -->
@@ -373,7 +397,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="830" y="152" text-anchor="middle" class="lbl-sm">"Input should be a valid integer"</text>
     <text x="830" y="185" text-anchor="middle" class="lbl" fill="#2e7d32">raises immediately</text>
   </svg>
-  <div class="pageno">M5&middot;08</div>
+  <div class="pageno">M5&middot;12</div>
 </section>
 
 <!-- ============ SLIDE 9 — required vs optional fields ============ -->
@@ -400,7 +424,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="330" y="199" class="lbl-sm">memory_gb: int = 8</text>
     <text x="550" y="310" text-anchor="middle" class="lbl-g">the "= 8" syntax you already know from dataclasses marks it optional here too</text>
   </svg>
-  <div class="pageno">M5&middot;09</div>
+  <div class="pageno">M5&middot;13</div>
 </section>
 
 <!-- ============ SLIDE 10 — nested model ============ -->
@@ -423,7 +447,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="750" y="200" text-anchor="middle" class="lbl-sm">alert_channel: str</text>
     <text x="750" y="230" text-anchor="middle" class="lbl-g" fill="#2e7d32">one field, a whole validated shape</text>
   </svg>
-  <div class="pageno">M5&middot;10</div>
+  <div class="pageno">M5&middot;14</div>
 </section>
 
 <!-- ============ SLIDE 11 — ValidationError.errors() structured ============ -->
@@ -446,17 +470,23 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="440" y="100" class="lbl-sm">environment &middot; literal_error &middot; "production" not allowed</text>
     <text x="440" y="122" class="lbl-g">must be one of "dev", "staging", "prod"</text>
     <text x="440" y="185" class="lbl-sm">aws_account &middot; string_type &middot; got an int, not str</text>
-    <text x="440" y="207" class="lbl-g">111122223333 -- a number, not the expected string</text>
-    <text x="550" y="270" text-anchor="middle" class="lbl-g">log it, display it, or return it -- it's already structured</text>
+    <text x="440" y="207" class="lbl-g">111122223333, a number, not the expected string</text>
+    <text x="550" y="270" text-anchor="middle" class="lbl-g">log it, display it, or return it, it's already structured</text>
   </svg>
-  <div class="pageno">M5&middot;11</div>
+  <div class="pageno">M5&middot;15</div>
+</section>
+
+<!-- ============ DIVIDER — the boundary rule ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">5 &middot; The boundary rule &mdash; validate at the edge, trust inside</h2>
+  <div class="pageno">M5&middot;16</div>
 </section>
 
 <!-- ============ SLIDE 12 — the boundary rule (SCENE) ============ -->
 <section>
-  <h2 class="t">Validate once, at the edge -- trust completely inside</h2>
+  <h2 class="t">Validate once, at the edge, trust completely inside</h2>
   <p class="s">one gate, checked once, trusted everywhere after</p>
-  <svg viewBox="0 0 1100 400" role="img" aria-label="Three untrusted sources -- a YAML file, an API request body, and an agent tool-call argument -- arrive through a gated archway with a figure holding a stamp; a green path leads to a trusted ServiceDefinition box, a red path leads to a rejected ValidationError box.">
+  <svg viewBox="0 0 1100 400" role="img" aria-label="Three untrusted sources, a YAML file, an API request body, and an agent tool-call argument, arrive through a gated archway with a figure holding a stamp; a green path leads to a trusted ServiceDefinition box, a red path leads to a rejected ValidationError box.">
     <text x="130" y="20" text-anchor="middle" class="lbl-g">untrusted</text>
     <g filter="url(#rough)" fill="#ffe6cc" stroke="#757575" stroke-width="2" stroke-dasharray="9 7" stroke-linecap="round">
       <rect x="40" y="40" width="180" height="65" rx="8"/>
@@ -506,9 +536,9 @@ footer, header, hgroup, main, menu, nav, section {
       <rect x="720" y="230" width="330" height="90" rx="12"/>
     </g>
     <text x="885" y="265" text-anchor="middle" class="lbl-b">ValidationError.errors()</text>
-    <text x="885" y="293" text-anchor="middle" class="lbl-g" fill="#c62828">kicked back -- structured, loggable</text>
+    <text x="885" y="293" text-anchor="middle" class="lbl-g" fill="#c62828">kicked back &mdash; structured, loggable</text>
   </svg>
-  <div class="pageno">M5&middot;12</div>
+  <div class="pageno">M5&middot;17</div>
 </section>
 
 <!-- ============ SLIDE 13 — mirrors the lesson's mermaid flow (fragments) ============ -->
@@ -562,15 +592,21 @@ footer, header, hgroup, main, menu, nav, section {
       <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
         <path d="M830,170 C830,250 830,300 830,320" marker-end="url(#ah)"/>
       </g>
-      <text x="830" y="355" text-anchor="middle" class="lbl-g">rest of the toolkit reads typed fields -- no re-checking</text>
+      <text x="830" y="355" text-anchor="middle" class="lbl-g">rest of the toolkit reads typed fields, no re-checking</text>
     </g>
   </svg>
-  <div class="pageno">M5&middot;13</div>
+  <div class="pageno">M5&middot;18</div>
+</section>
+
+<!-- ============ DIVIDER — dict vs dataclass vs Pydantic ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">6 &middot; dict vs. dataclass vs. Pydantic &mdash; picking the right one</h2>
+  <div class="pageno">M5&middot;19</div>
 </section>
 
 <!-- ============ SLIDE 14 — dict vs dataclass vs Pydantic decision ============ -->
 <section>
-  <h2 class="t">dict, dataclass or Pydantic -- pick the one the data earns</h2>
+  <h2 class="t">dict, dataclass or Pydantic, pick the one the data earns</h2>
   <p class="s">throwaway, trusted, or crossing a boundary</p>
   <svg viewBox="0 0 1100 340" role="img" aria-label="Three columns compare dict for throwaway or internal data, dataclass for already-trusted data, and Pydantic BaseModel for data crossing a boundary you don't control.">
     <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
@@ -591,16 +627,16 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="910" y="110" text-anchor="middle" class="lbl-b">Pydantic BaseModel</text>
     <text x="910" y="150" text-anchor="middle" class="lbl-sm">data crossing a boundary</text>
     <text x="910" y="180" text-anchor="middle" class="lbl-sm">you don't control</text>
-    <text x="550" y="315" text-anchor="middle" class="lbl-g">the question isn't which is fancier -- it's where did this data come from</text>
+    <text x="550" y="315" text-anchor="middle" class="lbl-g">the question isn't which is fancier, it's where did this data come from</text>
   </svg>
-  <div class="pageno">M5&middot;14</div>
+  <div class="pageno">M5&middot;20</div>
 </section>
 
 <!-- ============ SLIDE 15 — common pitfalls recap ============ -->
 <section>
   <h2 class="t">Five habits that undo the rules above</h2>
   <p class="s">each one has a one-line fix</p>
-  <svg viewBox="0 0 1100 300" role="img" aria-label="A five-row trap grid: trusting an annotation as a check, forgetting or-None, a dataclass on unvalidated data, a mutable dataclass default, and logging a ValidationError's string form -- each with its recovery move.">
+  <svg viewBox="0 0 1100 300" role="img" aria-label="A five-row trap grid: trusting an annotation as a check, forgetting or-None, a dataclass on unvalidated data, a mutable dataclass default, and logging a ValidationError's string form, each with its recovery move.">
     <g filter="url(#rough)" fill="#ffe6cc" stroke="#1e1e1e" stroke-width="1.8" stroke-linecap="round">
       <rect x="60" y="30" width="980" height="46" rx="6"/>
       <rect x="60" y="82" width="980" height="46" rx="6"/>
@@ -616,19 +652,19 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="80" y="266">catching ValidationError and only logging its string &#8594; use .errors() for the structure</text>
     </g>
   </svg>
-  <div class="pageno">M5&middot;15</div>
+  <div class="pageno">M5&middot;21</div>
 </section>
 
 <!-- ============ SLIDE 16 — closing / build it ============ -->
 <section>
-  <h2 class="t">One model, one boundary, one habit -- now build it</h2>
+  <h2 class="t">One model, one boundary, one habit, now build it</h2>
   <p class="s">validate once, then let the rest of the code trust it</p>
   <svg viewBox="0 0 1100 300" role="img" aria-label="A closing hand-off card: build ServiceDefinition and a nested ObservabilityRefs by hand, delegate three field constraints to a coding agent, review the diff, tag v0.3.">
     <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
       <rect x="80" y="40" width="440" height="220" rx="12"/>
     </g>
     <text x="300" y="80" text-anchor="middle" class="lbl-b">1. build ServiceDefinition</text>
-    <text x="300" y="115" text-anchor="middle" class="lbl-sm">one Pydantic model, by hand -- Phase A</text>
+    <text x="300" y="115" text-anchor="middle" class="lbl-sm">one Pydantic model, by hand &mdash; Phase A</text>
     <text x="300" y="150" text-anchor="middle" class="lbl-b">2. add ObservabilityRefs</text>
     <text x="300" y="185" text-anchor="middle" class="lbl-sm">nested: dashboard_url, alert_channel</text>
     <g filter="url(#rough)" fill="#ffe6cc" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
@@ -640,7 +676,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="800" y="185" text-anchor="middle" class="lbl-sm" fill="#2e7d32">git diff --cached, gates green, v0.3</text>
   </svg>
   <p class="credit">Now open <b>Module 5 &middot; Lab</b>. &nbsp;·&nbsp; <b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M5&middot;16</div>
+  <div class="pageno">M5&middot;22</div>
 </section>
 
 </div></div>
