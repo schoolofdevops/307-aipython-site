@@ -192,6 +192,12 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M12&middot;01</div>
 </section>
 
+<!-- ============ DIVIDER — how pytest finds and runs your tests ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">2 &middot; How pytest finds and runs your tests</h2>
+  <div class="pageno">M12&middot;02</div>
+</section>
+
 <!-- ============ SLIDE 2 — pytest finds your tests automatically ============ -->
 <section>
   <h2 class="t">pytest finds your tests automatically</h2>
@@ -231,7 +237,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="965" y="190" class="lbl-b" text-anchor="middle">tests</text>
     <text x="965" y="215" class="lbl-sm" text-anchor="middle" fill="#2e7d32">&rarr; run</text>
   </svg>
-  <div class="pageno">M12&middot;02</div>
+  <div class="pageno">M12&middot;03</div>
+</section>
+
+<!-- ============ DIVIDER — fixtures ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">3 &middot; Fixtures: the stage crew for your tests</h2>
+  <div class="pageno">M12&middot;04</div>
 </section>
 
 <!-- ============ SLIDE 3 — The stage crew hands the actor everything (SCENE) ============ -->
@@ -292,7 +304,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="860" y="205" class="lbl-g" text-anchor="start">WINGS</text>
     <text x="90" y="160" class="lbl-sm" text-anchor="middle">setup &rarr; scene &rarr; teardown</text>
   </svg>
-  <div class="pageno">M12&middot;03</div>
+  <div class="pageno">M12&middot;05</div>
 </section>
 
 <!-- ============ SLIDE 4 — monkeypatch replaces one thing, then puts it back ============ -->
@@ -334,7 +346,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="860" y="245" class="lbl" text-anchor="middle">real function</text>
     <text x="990" y="200" class="lbl-sm" text-anchor="start" fill="#2e7d32">automatic</text>
   </svg>
-  <div class="pageno">M12&middot;04</div>
+  <div class="pageno">M12&middot;06</div>
+</section>
+
+<!-- ============ DIVIDER — mocking ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">4 &middot; Mocking: replacing the outside world with a scripted answer</h2>
+  <div class="pageno">M12&middot;07</div>
 </section>
 
 <!-- ============ SLIDE 5 — Mock at the boundary your code calls ============ -->
@@ -382,7 +400,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="720" y="250" class="lbl-b" text-anchor="middle" fill="#2e7d32">hit</text>
     <text x="490" y="340" class="lbl-sm" text-anchor="middle">mock targets here</text>
   </svg>
-  <div class="pageno">M12&middot;05</div>
+  <div class="pageno">M12&middot;08</div>
 </section>
 
 <!-- ============ SLIDE 6 — MockTransport and respx — two tools, two jobs ============ -->
@@ -428,7 +446,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="925" y="257" class="lbl" text-anchor="middle">200</text>
     <text x="820" y="300" class="lbl-sm" text-anchor="middle">retry sequence testing</text>
   </svg>
-  <div class="pageno">M12&middot;06</div>
+  <div class="pageno">M12&middot;09</div>
+</section>
+
+<!-- ============ DIVIDER — parametrize ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">5 &middot; Parametrize: one test, many inputs</h2>
+  <div class="pageno">M12&middot;10</div>
 </section>
 
 <!-- ============ SLIDE 7 — One test, many inputs: @pytest.mark.parametrize (fragments) ============ -->
@@ -473,7 +497,13 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="550" y="365" class="lbl-b" text-anchor="middle">4 separate pass/fail lines from 1 function</text>
     </g>
   </svg>
-  <div class="pageno">M12&middot;07</div>
+  <div class="pageno">M12&middot;11</div>
+</section>
+
+<!-- ============ DIVIDER — what makes a test meaningful ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">6 &middot; What makes a test meaningful</h2>
+  <div class="pageno">M12&middot;12</div>
 </section>
 
 <!-- ============ SLIDE 8 — The test that proves nothing ============ -->
@@ -510,7 +540,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="820" y="195" class="lbl" text-anchor="middle">    assert "timed out" in result.error</text>
     <text x="820" y="298" class="lbl-sm" text-anchor="middle" fill="#2e7d32">&check; passes AND verifies</text>
   </svg>
-  <div class="pageno">M12&middot;08</div>
+  <div class="pageno">M12&middot;13</div>
 </section>
 
 <!-- ============ SLIDE 9 — Coverage is not correctness ============ -->
@@ -554,7 +584,7 @@ footer, header, hgroup, main, menu, nav, section {
     <!-- arrow between gauges -->
     <text x="820" y="125" class="lbl-b" text-anchor="middle">&ne;</text>
   </svg>
-  <div class="pageno">M12&middot;09</div>
+  <div class="pageno">M12&middot;14</div>
 </section>
 
 <!-- ============ SLIDE 10 — The delete-the-assertion litmus test (fragments) ============ -->
@@ -611,7 +641,7 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="1010" y="252" class="lbl-b" text-anchor="middle" fill="#2e7d32">no &rarr; real test</text>
     </g>
   </svg>
-  <div class="pageno">M12&middot;10</div>
+  <div class="pageno">M12&middot;15</div>
 </section>
 
 <!-- ============ SLIDE 11 — Mocking too much hides real bugs ============ -->
@@ -647,7 +677,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="820" y="195" class="lbl-g" text-anchor="middle"># proves the function handled it</text>
     <text x="820" y="300" class="lbl-b" text-anchor="middle" fill="#2e7d32">result verified</text>
   </svg>
-  <div class="pageno">M12&middot;11</div>
+  <div class="pageno">M12&middot;16</div>
 </section>
 
 <!-- ============ SLIDE 12 — Six traps that undo your test suite ============ -->
@@ -694,7 +724,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="50" y="335" class="lbl-sm" text-anchor="start">trusting passing suite blindly</text>
     <text x="570" y="335" class="lbl-sm" text-anchor="start">read the diff, not just the green bar</text>
   </svg>
-  <div class="pageno">M12&middot;12</div>
+  <div class="pageno">M12&middot;17</div>
 </section>
 
 <!-- ============ SLIDE 13 — Now build v1.0 — the Tested Automation Core (CLOSING) ============ -->
@@ -729,7 +759,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="815" y="280" class="lbl-b" text-anchor="middle">8. v1.0 &mdash; Tested Automation Core</text>
   </svg>
   <p class="credit">Now open <b>Module 12 &middot; Lab</b>. &nbsp;&middot;&nbsp; <b>Gourav Shah</b> &nbsp;&middot;&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M12&middot;13</div>
+  <div class="pageno">M12&middot;18</div>
 </section>
 
 </content>

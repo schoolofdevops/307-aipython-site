@@ -166,7 +166,7 @@ footer, header, hgroup, main, menu, nav, section {
       <path d="M225,180 C170,140 130,110 90,85" marker-end="url(#ahg)"/>
       <path d="M265,180 C330,140 380,110 440,85" marker-end="url(#ahg)"/>
     </g>
-    <text x="245" y="345" text-anchor="middle" class="lbl-sm" fill="#c62828">click, wait, click again -- five tabs, still not sure</text>
+    <text x="245" y="345" text-anchor="middle" class="lbl-sm" fill="#c62828">click, wait, click again &mdash; five tabs, still not sure</text>
 
     <g filter="url(#rough)" fill="#d5e8d4" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
       <rect x="620" y="40" width="420" height="270" rx="14"/>
@@ -177,16 +177,22 @@ footer, header, hgroup, main, menu, nav, section {
       <circle cx="830" cy="175" r="30"/>
       <path d="M814,176 L826,190 L850,158"/>
     </g>
-    <text x="830" y="240" text-anchor="middle" class="lbl-b" fill="#2e7d32">OK -- exit 0</text>
+    <text x="830" y="240" text-anchor="middle" class="lbl-b" fill="#2e7d32">OK &mdash; exit 0</text>
     <text x="830" y="270" text-anchor="middle" class="lbl-sm">one request, one answer</text>
   </svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI &nbsp;·&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M9&middot;01</div>
 </section>
 
+<!-- ============ DIVIDER — timeouts ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">1 &middot; Timeouts: the setting that quietly isn't set</h2>
+  <div class="pageno">M9&middot;02</div>
+</section>
+
 <!-- ============ SLIDE 2 — hang up eventually, don't hold the line forever ============ -->
 <section>
-  <h2 class="t">Hang up eventually -- don't hold the line forever</h2>
+  <h2 class="t">Hang up eventually &mdash; don't hold the line forever</h2>
   <p class="s">requests has no default timeout; httpx does</p>
   <svg viewBox="0 0 1100 320" role="img" aria-label="Left, requests dot get with no timeout set, crossed out, waits forever. Right, httpx client with an explicit timeout, waits five seconds by default, then gives up.">
     <g filter="url(#rough)" fill="#f8cecc" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
@@ -197,7 +203,7 @@ footer, header, hgroup, main, menu, nav, section {
     <g filter="url(#rough)" fill="none" stroke="#c62828" stroke-width="2.6" stroke-linecap="round">
       <line x1="90" y1="90" x2="470" y2="230"/>
     </g>
-    <text x="280" y="200" text-anchor="middle" class="lbl-sm" fill="#c62828">waits forever -- the worst way to learn a service is down</text>
+    <text x="280" y="200" text-anchor="middle" class="lbl-sm" fill="#c62828">waits forever &mdash; the worst way to learn a service is down</text>
 
     <g filter="url(#rough)" fill="#d5e8d4" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
       <rect x="600" y="60" width="440" height="200" rx="12"/>
@@ -206,7 +212,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="820" y="135" text-anchor="middle" class="lbl-sm">an explicit policy, in code you can read</text>
     <text x="820" y="200" text-anchor="middle" class="lbl-sm" fill="#2e7d32">waits 5s by default, then gives up</text>
   </svg>
-  <div class="pageno">M9&middot;02</div>
+  <div class="pageno">M9&middot;03</div>
 </section>
 
 <!-- ============ SLIDE 3 — one timeout, four different ways to run out ============ -->
@@ -241,13 +247,19 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="900" y="155" text-anchor="middle" class="lbl-sm">waiting for a</text>
     <text x="900" y="178" text-anchor="middle" class="lbl-sm">free connection</text>
   </svg>
-  <div class="pageno">M9&middot;03</div>
+  <div class="pageno">M9&middot;04</div>
+</section>
+
+<!-- ============ DIVIDER — two ways a call can fail ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">2 &middot; Two different ways a call can fail</h2>
+  <div class="pageno">M9&middot;05</div>
 </section>
 
 <!-- ============ SLIDE 4 — the phone rings forever, or someone answers "no" (SCENE) ============ -->
 <section>
   <h2 class="t">The phone rings forever, or someone answers "no"</h2>
-  <p class="s">ConnectError vs. HTTPStatusError -- not the same fix</p>
+  <p class="s">ConnectError vs. HTTPStatusError &mdash; not the same fix</p>
   <svg viewBox="0 0 1100 340" role="img" aria-label="Left, a phone ringing on an empty desk with nobody answering, labelled ConnectError or TimeoutException, never reached the server. Right, a phone answered by a voice saying no we don't do that here, labelled HTTPStatusError, the server answered and the answer is a problem.">
     <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
       <rect x="170" y="150" width="120" height="50" rx="8"/>
@@ -258,7 +270,7 @@ footer, header, hgroup, main, menu, nav, section {
       <path d="M190,85 C178,65 195,52 205,65"/>
       <path d="M255,65 C270,50 288,58 278,78"/>
     </g>
-    <text x="230" y="245" text-anchor="middle" class="lbl">rings and rings --</text>
+    <text x="230" y="245" text-anchor="middle" class="lbl">rings and rings &mdash;</text>
     <text x="230" y="270" text-anchor="middle" class="lbl">nobody picks up</text>
     <text x="230" y="300" text-anchor="middle" class="lbl-sm" fill="#757575">never reached the server</text>
     <text x="230" y="325" text-anchor="middle" class="lbl-sm" fill="#c62828">ConnectError / TimeoutException</text>
@@ -273,17 +285,23 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="1010" y="45" text-anchor="middle" class="lbl-sm">"no, we don't</text>
     <text x="1010" y="67" text-anchor="middle" class="lbl-sm">do that here"</text>
-    <text x="810" y="245" text-anchor="middle" class="lbl">the server answered --</text>
+    <text x="810" y="245" text-anchor="middle" class="lbl">the server answered &mdash;</text>
     <text x="810" y="270" text-anchor="middle" class="lbl">the answer is a problem</text>
     <text x="810" y="300" text-anchor="middle" class="lbl-sm" fill="#757575">a 4xx or 5xx status code</text>
     <text x="810" y="325" text-anchor="middle" class="lbl-sm" fill="#c62828">HTTPStatusError</text>
   </svg>
-  <div class="pageno">M9&middot;04</div>
+  <div class="pageno">M9&middot;06</div>
+</section>
+
+<!-- ============ DIVIDER — trust the shape ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">3 &middot; Trust the shape, not just the bytes</h2>
+  <div class="pageno">M9&middot;07</div>
 </section>
 
 <!-- ============ SLIDE 5 — JSON text is not proof, validate the shape ============ -->
 <section>
-  <h2 class="t">JSON text is not proof -- validate the shape</h2>
+  <h2 class="t">JSON text is not proof &mdash; validate the shape</h2>
   <p class="s">the same discipline M5 taught for YAML</p>
   <svg viewBox="0 0 1100 320" role="img" aria-label="Raw response bytes flow into dot json, becoming an untyped dict, then into a Pydantic model which fails loudly if the shape is wrong. A dashed red path shows the untyped dict skipping the model and reaching a KeyError three functions later instead.">
     <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
@@ -321,7 +339,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="985" y="235" text-anchor="middle" class="lbl-sm" fill="#c62828">KeyError,</text>
     <text x="985" y="257" text-anchor="middle" class="lbl-sm" fill="#c62828">three functions later</text>
   </svg>
-  <div class="pageno">M9&middot;05</div>
+  <div class="pageno">M9&middot;08</div>
+</section>
+
+<!-- ============ DIVIDER — pagination ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">4 &middot; Pagination: when one page is not the whole answer</h2>
+  <div class="pageno">M9&middot;09</div>
 </section>
 
 <!-- ============ SLIDE 6 — one page is not the whole answer ============ -->
@@ -342,7 +366,7 @@ footer, header, hgroup, main, menu, nav, section {
       <line x1="360" y1="120" x2="360" y2="220"/>
       <line x1="395" y1="120" x2="395" y2="220"/>
     </g>
-    <text x="280" y="270" text-anchor="middle" class="lbl-b">page 1 -- a drawer of results</text>
+    <text x="280" y="270" text-anchor="middle" class="lbl-b">page 1 &mdash; a drawer of results</text>
 
     <g filter="url(#rough)" fill="#ffe6cc" stroke="#1e1e1e" stroke-width="2" stroke-dasharray="5 5" stroke-linecap="round">
       <rect x="460" y="140" width="210" height="70" rx="8"/>
@@ -360,7 +384,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="880" y="160" text-anchor="middle" class="lbl-sm" fill="#757575">Link: rel="next"</text>
     <text x="880" y="185" text-anchor="middle" class="lbl-sm" fill="#757575">names the URL</text>
   </svg>
-  <div class="pageno">M9&middot;06</div>
+  <div class="pageno">M9&middot;10</div>
 </section>
 
 <!-- ============ SLIDE 7 — follow the Link header until it stops (3 fragments) ============ -->
@@ -405,23 +429,29 @@ footer, header, hgroup, main, menu, nav, section {
       <g filter="url(#rough)" fill="#d5e8d4" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
         <rect x="130" y="240" width="260" height="70" rx="10"/>
       </g>
-      <text x="260" y="268" text-anchor="middle" class="lbl-sm">no next link --</text>
+      <text x="260" y="268" text-anchor="middle" class="lbl-sm">no next link &mdash;</text>
       <text x="260" y="290" text-anchor="middle" class="lbl-sm" fill="#2e7d32">all results collected</text>
     </g>
   </svg>
-  <div class="pageno">M9&middot;07</div>
+  <div class="pageno">M9&middot;11</div>
+</section>
+
+<!-- ============ DIVIDER — retrying ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">5 &middot; Retrying: knowing when trying again is safe</h2>
+  <div class="pageno">M9&middot;12</div>
 </section>
 
 <!-- ============ SLIDE 8 — press again only if it might actually help ============ -->
 <section>
   <h2 class="t">Press again only if it might actually help</h2>
   <p class="s">429/5xx retry with backoff; 404/401 don't</p>
-  <svg viewBox="0 0 1100 300" role="img" aria-label="Left, a transient failure -- 429 or 5xx -- waits a little longer each time then retries. Right, a permanent failure -- 404 or 401 -- fails immediately because retrying wastes time.">
+  <svg viewBox="0 0 1100 300" role="img" aria-label="Left, a transient failure &mdash; 429 or 5xx &mdash; waits a little longer each time then retries. Right, a permanent failure &mdash; 404 or 401 &mdash; fails immediately because retrying wastes time.">
     <g filter="url(#rough)" fill="#ffe6cc" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
       <rect x="60" y="50" width="460" height="200" rx="12"/>
     </g>
     <text x="290" y="90" text-anchor="middle" class="lbl-b">429 rate limited / 5xx server trouble</text>
-    <text x="290" y="130" text-anchor="middle" class="lbl-sm">transient -- likely to change</text>
+    <text x="290" y="130" text-anchor="middle" class="lbl-sm">transient &mdash; likely to change</text>
     <text x="290" y="165" text-anchor="middle" class="lbl-sm">wait a little longer each time,</text>
     <text x="290" y="188" text-anchor="middle" class="lbl-sm">then retry</text>
     <text x="290" y="225" text-anchor="middle" class="lbl-sm" fill="#2e7d32">worth pressing the button again</text>
@@ -430,19 +460,25 @@ footer, header, hgroup, main, menu, nav, section {
       <rect x="600" y="50" width="460" height="200" rx="12"/>
     </g>
     <text x="830" y="90" text-anchor="middle" class="lbl-b">404 not found / 401 unauthorized</text>
-    <text x="830" y="130" text-anchor="middle" class="lbl-sm">permanent -- will not change</text>
+    <text x="830" y="130" text-anchor="middle" class="lbl-sm">permanent &mdash; will not change</text>
     <text x="830" y="165" text-anchor="middle" class="lbl-sm">fail immediately,</text>
     <text x="830" y="188" text-anchor="middle" class="lbl-sm">no retry</text>
     <text x="830" y="225" text-anchor="middle" class="lbl-sm" fill="#c62828">retrying just delays the real answer</text>
   </svg>
-  <div class="pageno">M9&middot;08</div>
+  <div class="pageno">M9&middot;13</div>
+</section>
+
+<!-- ============ DIVIDER — credentials never appear in a log line ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">6 &middot; Credentials never appear in a log line</h2>
+  <div class="pageno">M9&middot;14</div>
 </section>
 
 <!-- ============ SLIDE 9 — say the room number out loud, never the keycard code ============ -->
 <section>
   <h2 class="t">Say the room number out loud, never the keycard code</h2>
   <p class="s">the request is fine to log; the token is not</p>
-  <svg viewBox="0 0 1100 320" role="img" aria-label="Left, a hotel front desk figure saying a room number aloud -- the request being made is fine to log. Right, a keycard held close with its code never spoken -- the Authorization header value never appears in a log line.">
+  <svg viewBox="0 0 1100 320" role="img" aria-label="Left, a hotel front desk figure saying a room number aloud &mdash; the request being made is fine to log. Right, a keycard held close with its code never spoken &mdash; the Authorization header value never appears in a log line.">
     <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
       <rect x="70" y="120" width="180" height="90" rx="10"/>
       <circle cx="330" cy="130" r="22"/>
@@ -465,7 +501,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="920" y="260" text-anchor="middle" class="lbl">Authorization: Bearer &lt;token&gt;</text>
     <text x="920" y="285" text-anchor="middle" class="lbl-sm" fill="#c62828">the value never appears in a log line</text>
   </svg>
-  <div class="pageno">M9&middot;09</div>
+  <div class="pageno">M9&middot;15</div>
+</section>
+
+<!-- ============ DIVIDER — one client, wired into the CLI ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">7 &middot; One client, wired into the CLI you already have</h2>
+  <div class="pageno">M9&middot;16</div>
 </section>
 
 <!-- ============ SLIDE 10 — two more commands, the same shape as M8 ============ -->
@@ -511,7 +553,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="980" y="228" text-anchor="middle" class="lbl-sm">repo-info --json</text>
     <text x="980" y="250" text-anchor="middle" class="lbl-sm" fill="#2e7d32">new</text>
   </svg>
-  <div class="pageno">M9&middot;10</div>
+  <div class="pageno">M9&middot;17</div>
 </section>
 
 <!-- ============ SLIDE 11 — same three numbers, checked before any network call ============ -->
@@ -547,9 +589,9 @@ footer, header, hgroup, main, menu, nav, section {
       <rect x="780" y="210" width="260" height="80" rx="10"/>
     </g>
     <text x="910" y="240" text-anchor="middle" class="lbl-b">exit 2</text>
-    <text x="910" y="265" text-anchor="middle" class="lbl-sm">malformed URL/slug -- caught before dialing</text>
+    <text x="910" y="265" text-anchor="middle" class="lbl-sm">malformed URL/slug &mdash; caught before dialing</text>
   </svg>
-  <div class="pageno">M9&middot;11</div>
+  <div class="pageno">M9&middot;18</div>
 </section>
 
 <!-- ============ SLIDE 12 — six habits that undo everything above ============ -->
@@ -580,15 +622,15 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="700" y="292" class="lbl-sm" fill="#2e7d32">only retry failures actually likely to change</text>
 
     <text x="60" y="355" class="lbl-sm" fill="#c62828">logging a header dict that includes Authorization</text>
-    <text x="700" y="355" class="lbl-sm" fill="#2e7d32">build headers in one place -- the only place a token is touched</text>
+    <text x="700" y="355" class="lbl-sm" fill="#2e7d32">build headers in one place &mdash; the only place a token is touched</text>
   </svg>
-  <div class="pageno">M9&middot;12</div>
+  <div class="pageno">M9&middot;19</div>
 </section>
 
 <!-- ============ SLIDE 13 — closing: now build v0.7 ============ -->
 <section>
   <p class="kicker">MODULE 9 &nbsp;·&nbsp; AI-POWERED PYTHON FOR DEVOPS, PLATFORM ENGINEERING &amp; SRE</p>
-  <h2 class="t" style="font-size:1.8em">Now build v0.7 -- an HTTP client you can trust</h2>
+  <h2 class="t" style="font-size:1.8em">Now build v0.7 &mdash; an HTTP client you can trust</h2>
   <p class="s" style="font-size:1.2em">same discipline, now reaching outside your machine</p>
   <svg viewBox="0 0 1100 300" role="img" aria-label="Two panel hand-off card. Left: explicit timeouts and two exception families handled separately, plus Pydantic validating every response body. Right: pagination follows Link until it stops and retries only transient failures, plus http-check and repo-info wired with exit codes 0, 1, 2, tagged v0.7.">
     <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
@@ -605,10 +647,10 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="805" y="75" text-anchor="middle" class="lbl-b">3. pagination follows Link</text>
     <text x="805" y="105" text-anchor="middle" class="lbl-sm">retries only transient failures</text>
     <text x="805" y="145" text-anchor="middle" class="lbl-b">4. http-check / repo-info</text>
-    <text x="805" y="175" text-anchor="middle" class="lbl-sm" fill="#2e7d32">exit 0 / 1 / 2 -- v0.7</text>
+    <text x="805" y="175" text-anchor="middle" class="lbl-sm" fill="#2e7d32">exit 0 / 1 / 2 &mdash; v0.7</text>
   </svg>
   <p class="credit">Now open <b>Module 9 &middot; Lab</b>. &nbsp;·&nbsp; <b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M9&middot;13</div>
+  <div class="pageno">M9&middot;20</div>
 </section>
 
 </div></div>

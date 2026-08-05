@@ -172,7 +172,7 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="205" y="115" text-anchor="middle" class="lbl-sm" fill="#757575">ringing now</text>
     <text x="250" y="290" text-anchor="middle" class="lbl-sm" fill="#757575">call 2 waits for call 1 to finish</text>
-    <text x="250" y="325" text-anchor="middle" class="lbl-b" fill="#c62828">10 calls, ~10 seconds -- one at a time</text>
+    <text x="250" y="325" text-anchor="middle" class="lbl-b" fill="#c62828">10 calls, ~10 seconds &mdash; one at a time</text>
 
     <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
       <circle cx="690" cy="70" r="20"/>
@@ -200,10 +200,16 @@ footer, header, hgroup, main, menu, nav, section {
       <path d="M663,140 C780,100 950,80 1072,80" marker-end="url(#ah)"/>
     </g>
     <text x="930" y="290" text-anchor="middle" class="lbl-sm" fill="#757575">all five lines ring at once</text>
-    <text x="930" y="325" text-anchor="middle" class="lbl-b" fill="#2e7d32">10 calls, ~1 second -- the slowest call sets the pace</text>
+    <text x="930" y="325" text-anchor="middle" class="lbl-b" fill="#2e7d32">10 calls, ~1 second &mdash; the slowest call sets the pace</text>
   </svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI &nbsp;·&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M10&middot;01</div>
+</section>
+
+<!-- ============ DIVIDER — waiting is not working ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">1 &middot; Waiting is not working</h2>
+  <div class="pageno">M10&middot;02</div>
 </section>
 
 <!-- ============ SLIDE 2 — waiting is not working ============ -->
@@ -253,9 +259,15 @@ footer, header, hgroup, main, menu, nav, section {
       <path d="M840,215 C900,190 920,165 936,155" marker-end="url(#ahg)"/>
     </g>
     <text x="770" y="270" text-anchor="middle" class="lbl-sm" fill="#757575">all three start together</text>
-    <text x="770" y="300" text-anchor="middle" class="lbl-b" fill="#2e7d32">~300ms total -- overlapped, not queued</text>
+    <text x="770" y="300" text-anchor="middle" class="lbl-b" fill="#2e7d32">~300ms total &mdash; overlapped, not queued</text>
   </svg>
-  <div class="pageno">M10&middot;02</div>
+  <div class="pageno">M10&middot;03</div>
+</section>
+
+<!-- ============ DIVIDER — two ways to overlap the wait ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">2 &middot; Two ways to overlap the wait: threads and asyncio</h2>
+  <div class="pageno">M10&middot;04</div>
 </section>
 
 <!-- ============ SLIDE 3 — a thread pool is several phone lines put on hold at once ============ -->
@@ -288,7 +300,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="875" y="185" text-anchor="middle" class="lbl-sm" fill="#757575">blocked on socket read</text>
     <text x="875" y="210" text-anchor="middle" class="lbl-sm" fill="#2e7d32">GIL already released</text>
   </svg>
-  <div class="pageno">M10&middot;03</div>
+  <div class="pageno">M10&middot;05</div>
 </section>
 
 <!-- ============ SLIDE 4 — a single receptionist juggling every line on one phone (SCENE) ============ -->
@@ -321,7 +333,7 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="300" y="290" text-anchor="middle" class="lbl-b" fill="#2e7d32">one thread, switches to whichever line is ready</text>
   </svg>
-  <div class="pageno">M10&middot;04</div>
+  <div class="pageno">M10&middot;06</div>
 </section>
 
 <!-- ============ SLIDE 5 — neither wins until the fleet gets big enough to notice ============ -->
@@ -344,7 +356,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="830" y="130" text-anchor="middle" class="lbl-sm" fill="#c62828">a thread per check gets expensive in memory</text>
     <text x="830" y="165" text-anchor="middle" class="lbl-sm" fill="#2e7d32">asyncio's cost stays cheap</text>
   </svg>
-  <div class="pageno">M10&middot;05</div>
+  <div class="pageno">M10&middot;07</div>
+</section>
+
+<!-- ============ DIVIDER — bounded concurrency ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">3 &middot; Bounded concurrency: the cap that keeps you a good citizen</h2>
+  <div class="pageno">M10&middot;08</div>
 </section>
 
 <!-- ============ SLIDE 6 — ten phone lines dialing is fine, ten thousand looks like an attack (SCENE) ============ -->
@@ -366,7 +384,7 @@ footer, header, hgroup, main, menu, nav, section {
       <line x1="410" y1="130" x2="410" y2="230"/>
       <line x1="450" y1="130" x2="450" y2="230"/>
     </g>
-    <text x="280" y="250" text-anchor="middle" class="lbl-sm" fill="#2e7d32">calm -- capped, healthy</text>
+    <text x="280" y="250" text-anchor="middle" class="lbl-sm" fill="#2e7d32">calm &mdash; capped, healthy</text>
 
     <g filter="url(#rough)" fill="#f8cecc" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
       <rect x="600" y="60" width="440" height="200" rx="12"/>
@@ -391,12 +409,12 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="820" y="250" text-anchor="middle" class="lbl-sm" fill="#c62828">looks like an attack on the switchboard</text>
   </svg>
-  <div class="pageno">M10&middot;06</div>
+  <div class="pageno">M10&middot;09</div>
 </section>
 
 <!-- ============ SLIDE 7 — the cap admits a request or parks it (3 fragments) ============ -->
 <section>
-  <h2 class="t">The cap admits a request or parks it -- never turns it away</h2>
+  <h2 class="t">The cap admits a request or parks it, never turns it away</h2>
   <p class="s">Semaphore(2): admitted, admitted, waits, then admitted</p>
   <svg viewBox="0 0 1100 320" role="img" aria-label="A semaphore with a cap of two admits request A, then admits request B filling the cap, then request C arrives and waits, then when A responds a slot frees and C is admitted.">
     <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
@@ -429,7 +447,7 @@ footer, header, hgroup, main, menu, nav, section {
         <rect x="880" y="130" width="180" height="60" rx="8"/>
       </g>
       <text x="970" y="155" text-anchor="middle" class="lbl-sm">request C</text>
-      <text x="970" y="177" text-anchor="middle" class="lbl-sm" fill="#c62828">cap reached -- waits</text>
+      <text x="970" y="177" text-anchor="middle" class="lbl-sm" fill="#c62828">cap reached, waits</text>
       <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="1.8" stroke-dasharray="4 6" stroke-linecap="round">
         <path d="M880,160 C800,130 720,90 660,65" marker-end="url(#ahg)"/>
       </g>
@@ -443,7 +461,13 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="970" y="205" text-anchor="middle" class="lbl-b" fill="#2e7d32">admitted, fires</text>
     </g>
   </svg>
-  <div class="pageno">M10&middot;07</div>
+  <div class="pageno">M10&middot;10</div>
+</section>
+
+<!-- ============ DIVIDER — every request still has its own timeout ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">4 &middot; Every request still has its own timeout</h2>
+  <div class="pageno">M10&middot;11</div>
 </section>
 
 <!-- ============ SLIDE 8 — every request still has its own timeout ============ -->
@@ -481,7 +505,13 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="550" y="260" text-anchor="middle" class="lbl-b" fill="#c62828">one slow request never drags the others out</text>
   </svg>
-  <div class="pageno">M10&middot;08</div>
+  <div class="pageno">M10&middot;12</div>
+</section>
+
+<!-- ============ DIVIDER — cancellation ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">5 &middot; Cancellation: giving up on the whole batch, not just one request</h2>
+  <div class="pageno">M10&middot;13</div>
 </section>
 
 <!-- ============ SLIDE 9 — giving up on a call takes a moment ============ -->
@@ -512,9 +542,9 @@ footer, header, hgroup, main, menu, nav, section {
       <rect x="440" y="60" width="220" height="70" rx="8"/>
       <rect x="440" y="150" width="220" height="70" rx="8"/>
     </g>
-    <text x="550" y="90" text-anchor="middle" class="lbl-sm">unwinding --</text>
+    <text x="550" y="90" text-anchor="middle" class="lbl-sm">unwinding &mdash;</text>
     <text x="550" y="112" text-anchor="middle" class="lbl-sm">a moment to actually stop</text>
-    <text x="550" y="180" text-anchor="middle" class="lbl-sm">unwinding --</text>
+    <text x="550" y="180" text-anchor="middle" class="lbl-sm">unwinding &mdash;</text>
     <text x="550" y="202" text-anchor="middle" class="lbl-sm">a moment to actually stop</text>
 
     <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2" stroke-linecap="round">
@@ -527,14 +557,20 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="940" y="145" text-anchor="middle" class="lbl-sm">cancelled</text>
     <text x="940" y="167" text-anchor="middle" class="lbl-sm" fill="#c62828">reported, never dropped</text>
   </svg>
-  <div class="pageno">M10&middot;09</div>
+  <div class="pageno">M10&middot;14</div>
+</section>
+
+<!-- ============ DIVIDER — partial failure is the normal case ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">6 &middot; Partial failure is the normal case, not an exception</h2>
+  <div class="pageno">M10&middot;15</div>
 </section>
 
 <!-- ============ SLIDE 10 — forty-seven healthy, three not ============ -->
 <section>
-  <h2 class="t">Forty-seven healthy, three not -- for three different reasons</h2>
+  <h2 class="t">Forty-seven healthy, three not, for three different reasons</h2>
   <p class="s">one result per URL, never an exception on the first failure</p>
-  <svg viewBox="0 0 1100 300" role="img" aria-label="A grid of small squares, most green for healthy, a few red labelled with distinct reasons -- timeout, connection refused, and a five hundred status -- all returned in one pass with no exception thrown.">
+  <svg viewBox="0 0 1100 300" role="img" aria-label="A grid of small squares, most green for healthy, a few red labelled with distinct reasons: timeout, connection refused, and a five hundred status, all returned in one pass with no exception thrown.">
     <g filter="url(#rough)" fill="#d5e8d4" stroke="#1e1e1e" stroke-width="1.4" stroke-linecap="round">
       <rect x="60" y="40" width="34" height="34" rx="4"/><rect x="104" y="40" width="34" height="34" rx="4"/><rect x="148" y="40" width="34" height="34" rx="4"/><rect x="192" y="40" width="34" height="34" rx="4"/><rect x="236" y="40" width="34" height="34" rx="4"/><rect x="280" y="40" width="34" height="34" rx="4"/><rect x="324" y="40" width="34" height="34" rx="4"/><rect x="368" y="40" width="34" height="34" rx="4"/><rect x="412" y="40" width="34" height="34" rx="4"/><rect x="456" y="40" width="34" height="34" rx="4"/>
       <rect x="60" y="84" width="34" height="34" rx="4"/><rect x="104" y="84" width="34" height="34" rx="4"/><rect x="148" y="84" width="34" height="34" rx="4"/><rect x="192" y="84" width="34" height="34" rx="4"/><rect x="236" y="84" width="34" height="34" rx="4"/><rect x="280" y="84" width="34" height="34" rx="4"/><rect x="324" y="84" width="34" height="34" rx="4"/><rect x="368" y="84" width="34" height="34" rx="4"/><rect x="412" y="84" width="34" height="34" rx="4"/><rect x="456" y="84" width="34" height="34" rx="4"/>
@@ -552,13 +588,19 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="700" y="220" text-anchor="middle" class="lbl-b" fill="#2e7d32">one pass, the whole fleet's status</text>
     <text x="700" y="250" text-anchor="middle" class="lbl-sm" fill="#757575">no exception thrown</text>
   </svg>
-  <div class="pageno">M10&middot;10</div>
+  <div class="pageno">M10&middot;16</div>
+</section>
+
+<!-- ============ DIVIDER — choosing sequential, threaded or asyncio ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">7 &middot; Choosing sequential, threaded or asyncio</h2>
+  <div class="pageno">M10&middot;17</div>
 </section>
 
 <!-- ============ SLIDE 11 — three modes, one honest guide for choosing ============ -->
 <section>
   <h2 class="t">Three modes, one honest guide for choosing</h2>
-  <p class="s">sequential, threaded, asyncio -- not one universal best</p>
+  <p class="s">sequential, threaded, asyncio — not one universal best</p>
   <svg viewBox="0 0 1100 300" role="img" aria-label="A staircase of three steps. Step one, sequential, for a handful of checks. Step two, threaded, the default for dozens to a few hundred checks. Step three, asyncio, for hundreds to thousands of checks or an already async codebase.">
     <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
       <rect x="60" y="190" width="280" height="80" rx="10"/>
@@ -583,7 +625,7 @@ footer, header, hgroup, main, menu, nav, section {
       <path d="M680,155 C710,120 720,110 740,95" marker-end="url(#ahg)"/>
     </g>
   </svg>
-  <div class="pageno">M10&middot;11</div>
+  <div class="pageno">M10&middot;18</div>
 </section>
 
 <!-- ============ SLIDE 12 — six habits that undo everything above ============ -->
@@ -602,13 +644,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="700" y="40" class="lbl-sm" fill="#2e7d32">pass a max_workers/max_concurrency you thought about</text>
 
     <text x="60" y="103" class="lbl-sm" fill="#c62828">opening a fresh client per request in a tight loop</text>
-    <text x="700" y="103" class="lbl-sm" fill="#2e7d32">reuse one client across the batch -- keep the connections</text>
+    <text x="700" y="103" class="lbl-sm" fill="#2e7d32">reuse one client across the batch, keep the connections</text>
 
     <text x="60" y="166" class="lbl-sm" fill="#c62828">treating batch_timeout as the same thing as timeout</text>
-    <text x="700" y="166" class="lbl-sm" fill="#2e7d32">set both -- they answer two different questions</text>
+    <text x="700" y="166" class="lbl-sm" fill="#2e7d32">set both, they answer two different questions</text>
 
     <text x="60" y="229" class="lbl-sm" fill="#c62828">dropping a cancelled check from the results</text>
-    <text x="700" y="229" class="lbl-sm" fill="#2e7d32">report it as cancelled -- never silently drop it</text>
+    <text x="700" y="229" class="lbl-sm" fill="#2e7d32">report it as cancelled, never silently drop it</text>
 
     <text x="60" y="292" class="lbl-sm" fill="#c62828">letting one failure abort the whole batch</text>
     <text x="700" y="292" class="lbl-sm" fill="#2e7d32">catch and report each check's own failure</text>
@@ -616,13 +658,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="60" y="355" class="lbl-sm" fill="#c62828">assuming asyncio is always faster than threads</text>
     <text x="700" y="355" class="lbl-sm" fill="#2e7d32">the gap only opens at hundreds or thousands of checks</text>
   </svg>
-  <div class="pageno">M10&middot;12</div>
+  <div class="pageno">M10&middot;19</div>
 </section>
 
 <!-- ============ SLIDE 13 — closing: now build v0.8 ============ -->
 <section>
   <p class="kicker">MODULE 10 &nbsp;·&nbsp; AI-POWERED PYTHON FOR DEVOPS, PLATFORM ENGINEERING &amp; SRE</p>
-  <h2 class="t" style="font-size:1.8em">Now build v0.8 -- a health checker for a whole fleet</h2>
+  <h2 class="t" style="font-size:1.8em">Now build v0.8, a health checker for a whole fleet</h2>
   <p class="s" style="font-size:1.2em">same discipline, now answering for many endpoints at once</p>
   <svg viewBox="0 0 1100 300" role="img" aria-label="Two panel hand-off card. Left: sequential, threaded and async modes chosen deliberately, plus a concurrency cap that never turns into a load test. Right: every request keeps its own timeout plus a batch deadline, and one result per URL healthy or not, tagged v0.8.">
     <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
@@ -639,10 +681,10 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="805" y="75" text-anchor="middle" class="lbl-b">3. per-request + batch timeout</text>
     <text x="805" y="105" text-anchor="middle" class="lbl-sm">two different questions, both answered</text>
     <text x="805" y="145" text-anchor="middle" class="lbl-b">4. health-check-many</text>
-    <text x="805" y="175" text-anchor="middle" class="lbl-sm" fill="#2e7d32">one result per URL -- v0.8</text>
+    <text x="805" y="175" text-anchor="middle" class="lbl-sm" fill="#2e7d32">one result per URL &mdash; v0.8</text>
   </svg>
   <p class="credit">Now open <b>Module 10 &middot; Lab</b>. &nbsp;·&nbsp; <b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M10&middot;13</div>
+  <div class="pageno">M10&middot;20</div>
 </section>
 
 </div></div>

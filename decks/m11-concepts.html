@@ -191,6 +191,12 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M11&middot;01</div>
 </section>
 
+<!-- ============ DIVIDER — running a program and reading its answer ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">1 &middot; Running a program and reading its answer</h2>
+  <div class="pageno">M11&middot;02</div>
+</section>
+
 <!-- ============ SLIDE 2 — subprocess.run() asks, waits, and brings back the answer ============ -->
 <section>
   <h2 class="t">subprocess.run() asks, waits, and brings back</h2>
@@ -226,7 +232,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="870" y="218" class="lbl" text-anchor="middle">rc = 0</text>
     <text x="980" y="218" class="lbl" text-anchor="middle">rc &ne; 0</text>
   </svg>
-  <div class="pageno">M11&middot;02</div>
+  <div class="pageno">M11&middot;03</div>
+</section>
+
+<!-- ============ DIVIDER — never let the shell reinterpret ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">2 &middot; Never let the shell reinterpret what you meant to say</h2>
+  <div class="pageno">M11&middot;04</div>
 </section>
 
 <!-- ============ SLIDE 3 — A written list versus a noisy phone line (SCENE) ============ -->
@@ -281,7 +293,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="780" y="270" class="lbl-sm" text-anchor="middle">f"git log {path}"</text>
     <text x="780" y="295" class="lbl-sm" text-anchor="middle">shell splits on ;</text>
   </svg>
-  <div class="pageno">M11&middot;03</div>
+  <div class="pageno">M11&middot;05</div>
 </section>
 
 <!-- ============ SLIDE 4 — What an attacker-controlled path can actually do ============ -->
@@ -326,7 +338,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="845" y="302" class="lbl-sm" text-anchor="middle" fill="#2e7d32">no shell involved</text>
     <text x="100" y="325" class="lbl-b" text-anchor="start" fill="#2e7d32">OS starts git directly</text>
   </svg>
-  <div class="pageno">M11&middot;04</div>
+  <div class="pageno">M11&middot;06</div>
+</section>
+
+<!-- ============ DIVIDER — CLI, SDK, or not Python ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">3 &middot; Deciding: wrap a CLI, call an SDK, or step back from Python entirely</h2>
+  <div class="pageno">M11&middot;07</div>
 </section>
 
 <!-- ============ SLIDE 5 — CLI vs SDK vs not-Python ============ -->
@@ -373,7 +391,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="910" y="315" class="lbl-sm" text-anchor="middle" fill="#c62828">while True: sleep(300)</text>
     <text x="910" y="335" class="lbl-sm" text-anchor="middle" fill="#c62828">is never the answer</text>
   </svg>
-  <div class="pageno">M11&middot;05</div>
+  <div class="pageno">M11&middot;08</div>
+</section>
+
+<!-- ============ DIVIDER — a deadline for every external command ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">4 &middot; A deadline for every external command</h2>
+  <div class="pageno">M11&middot;09</div>
 </section>
 
 <!-- ============ SLIDE 6 — A deadline for every external command ============ -->
@@ -422,7 +446,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="900" y="228" class="lbl-sm" text-anchor="middle">TimeoutExpired raised</text>
     <text x="780" y="290" class="lbl-sm" text-anchor="middle">your script continues</text>
   </svg>
-  <div class="pageno">M11&middot;06</div>
+  <div class="pageno">M11&middot;10</div>
+</section>
+
+<!-- ============ DIVIDER — git and docker, from Python ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">5 &middot; git and docker, from Python</h2>
+  <div class="pageno">M11&middot;11</div>
 </section>
 
 <!-- ============ SLIDE 7 — Errors are data, not exceptions (3 fragments) ============ -->
@@ -480,7 +510,7 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="920" y="210" class="lbl-b" text-anchor="middle">always returned</text>
     </g>
   </svg>
-  <div class="pageno">M11&middot;07</div>
+  <div class="pageno">M11&middot;12</div>
 </section>
 
 <!-- ============ SLIDE 8 — git status --porcelain: the stable output format ============ -->
@@ -519,7 +549,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="820" y="230" class="lbl-sm" text-anchor="middle">parse with .splitlines()</text>
     <text x="820" y="295" class="lbl-sm" text-anchor="middle" fill="#2e7d32">stable across git versions</text>
   </svg>
-  <div class="pageno">M11&middot;08</div>
+  <div class="pageno">M11&middot;13</div>
 </section>
 
 <!-- ============ SLIDE 9 — docker info --format json: structured data ============ -->
@@ -558,7 +588,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="820" y="225" class="lbl-sm" text-anchor="middle">json.loads()</text>
     <text x="820" y="290" class="lbl-b" text-anchor="middle">Python dict</text>
   </svg>
-  <div class="pageno">M11&middot;09</div>
+  <div class="pageno">M11&middot;14</div>
 </section>
 
 <!-- ============ SLIDE 10 — NDJSON: one object per line, not one array ============ -->
@@ -613,7 +643,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="870" y="125" class="lbl-g" text-anchor="start">newline-delimited</text>
     <text x="870" y="150" class="lbl-g" text-anchor="start">JSON</text>
   </svg>
-  <div class="pageno">M11&middot;10</div>
+  <div class="pageno">M11&middot;15</div>
 </section>
 
 <!-- ============ SLIDE 11 — The three-rule contract ============ -->
@@ -664,7 +694,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="940" y="205" class="lbl-b" text-anchor="middle">predictable</text>
     <text x="940" y="230" class="lbl-b" text-anchor="middle">testable</text>
   </svg>
-  <div class="pageno">M11&middot;11</div>
+  <div class="pageno">M11&middot;16</div>
 </section>
 
 <!-- ============ SLIDE 12 — Six habits that break subprocess safety ============ -->
@@ -709,7 +739,7 @@ footer, header, hgroup, main, menu, nav, section {
     <!-- column headers -->
     <text x="15" y="41" class="lbl-b" text-anchor="start" fill="#c62828">&crarr;</text>
   </svg>
-  <div class="pageno">M11&middot;12</div>
+  <div class="pageno">M11&middot;17</div>
 </section>
 
 <!-- ============ SLIDE 13 — Now build v0.9 (closing) ============ -->
@@ -745,7 +775,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="815" y="255" class="lbl-b" text-anchor="middle">Adapter</text>
   </svg>
   <p class="credit">Now open <b>Module 11 &middot; Lab</b>. &nbsp;&middot;&nbsp; <b>Gourav Shah</b> &nbsp;&middot;&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M11&middot;13</div>
+  <div class="pageno">M11&middot;18</div>
 </section>
 
 </div></div>
