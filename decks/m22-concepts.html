@@ -133,7 +133,7 @@ footer, header, hgroup, main, menu, nav, section {
 </svg>
 
 <div class="reveal"><div class="slides">
-<!-- ============ SLIDE 1 — TITLE ============ -->
+
 <section data-auto-animate>
   <p class="kicker">MODULE 22 &nbsp;&middot;&nbsp; AI-Powered Python for DevOps, Platform Engineering &amp; SRE</p>
   <h2 class="t" style="font-size:2.1em">Local AWS Automation with Floci</h2>
@@ -160,7 +160,6 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M22&middot;01</div>
 </section>
 
-<!-- ============ SLIDE 2 ============ -->
 <section>
   <h2 class="t">moto vanishes when the function returns</h2>
   <p class="s">Floci keeps running between commands</p>
@@ -195,7 +194,11 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M22&middot;02</div>
 </section>
 
-<!-- ============ SLIDE 3 ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">1 &middot; A flight simulator, not the real plane</h2>
+  <div class="pageno">M22&middot;03</div>
+</section>
+
 <section>
   <h2 class="t">A flight simulator has the same controls</h2>
   <p class="s">Not the same stakes as the real plane</p>
@@ -222,14 +225,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="820" y="210" text-anchor="middle" class="lbl-g">crosswind approach</text>
     <text x="820" y="240" text-anchor="middle" fill="#2e7d32" class="lbl-g">over and over, no real risk</text>
   </svg>
-  <div class="pageno">M22&middot;03</div>
+  <div class="pageno">M22&middot;04</div>
 </section>
 
-<!-- ============ SLIDE 4 ============ -->
 <section>
   <h2 class="t">Floci is a flight simulator for AWS</h2>
   <p class="s">Same APIs — not proof against real AWS</p>
-  <svg viewBox="0 0 1100 320" role="img" aria-label="The same three controls, now labeled S3, DynamoDB and SQS, with a small real plane box connected by a dashed line, annotated that a pass here is not proof against real AWS -- see the Deep Dive.">
+  <svg viewBox="0 0 1100 320" role="img" aria-label="The same three controls, now labeled S3, DynamoDB and SQS, with a small real plane box connected by a dashed line, annotated that a pass here is not proof against real AWS, see the Deep Dive.">
     <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6">
       <rect x="80" y="60" width="500" height="200" rx="20" fill="var(--p-blue)"/>
     </g>
@@ -251,10 +253,14 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="905" y="175" text-anchor="middle" fill="#c62828" class="lbl-sm">not proof it's safe there</text>
     <text x="905" y="240" text-anchor="middle" class="lbl-g">see the Deep Dive</text>
   </svg>
-  <div class="pageno">M22&middot;04</div>
+  <div class="pageno">M22&middot;05</div>
 </section>
 
-<!-- ============ SLIDE 5 ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">2 &middot; Installing and starting Floci</h2>
+  <div class="pageno">M22&middot;06</div>
+</section>
+
 <section>
   <h2 class="t">One command starts Floci, backed by Docker</h2>
   <p class="s">floci start needs Docker already running</p>
@@ -283,10 +289,9 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="945" y="145" text-anchor="middle" class="lbl-sm">listening at</text>
     <text x="945" y="168" text-anchor="middle" class="lbl-sm">localhost:4566</text>
   </svg>
-  <div class="pageno">M22&middot;05</div>
+  <div class="pageno">M22&middot;07</div>
 </section>
 
-<!-- ============ SLIDE 6 ============ -->
 <section>
   <h2 class="t">floci doctor proves it is actually listening</h2>
   <p class="s">Every line green, before writing any code</p>
@@ -306,10 +311,9 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="100" y="248" class="lbl-g">http://localhost:4566 is reachable</text>
     <text x="100" y="290" fill="#757575" class="lbl-sm">2 AWS CLI warnings below — safe to ignore for this module</text>
   </svg>
-  <div class="pageno">M22&middot;06</div>
+  <div class="pageno">M22&middot;08</div>
 </section>
 
-<!-- ============ SLIDE 7 ============ -->
 <section>
   <h2 class="t">floci stop empties every bucket, table and queue</h2>
   <p class="s">Not a pause — leave it running between sessions</p>
@@ -339,10 +343,14 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="900" y="140" text-anchor="middle" class="lbl-b">leave it running</text>
     <text x="900" y="170" text-anchor="middle" fill="#2e7d32" class="lbl-sm">between sessions and modules</text>
   </svg>
-  <div class="pageno">M22&middot;07</div>
+  <div class="pageno">M22&middot;09</div>
 </section>
 
-<!-- ============ SLIDE 8 ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">3 &middot; Credentials &mdash; any non-empty string works</h2>
+  <div class="pageno">M22&middot;10</div>
+</section>
+
 <section>
   <h2 class="t">Floci accepts anything; the rule doesn't</h2>
   <p class="s">Still never a real key, even a fake one</p>
@@ -363,10 +371,14 @@ footer, header, hgroup, main, menu, nav, section {
     <line x1="650" y1="180" x2="990" y2="130" stroke="#c62828" stroke-width="2.4"/>
     <text x="820" y="225" text-anchor="middle" fill="#c62828" class="lbl-g">never — no exceptions</text>
   </svg>
-  <div class="pageno">M22&middot;08</div>
+  <div class="pageno">M22&middot;11</div>
 </section>
 
-<!-- ============ SLIDE 9 ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">4 &middot; The endpoint_url &mdash; the one thing that changes</h2>
+  <div class="pageno">M22&middot;12</div>
+</section>
+
 <section>
   <h2 class="t">One argument decides which AWS you reach</h2>
   <p class="s">endpoint_url — everything else stays the same</p>
@@ -386,10 +398,14 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="820" y="190" text-anchor="middle" fill="#2e7d32" class="lbl-sm">endpoint_url="http://localhost:4566")</text>
     <text x="550" y="280" text-anchor="middle" fill="#757575" class="lbl-g">same method names, same request shapes, otherwise</text>
   </svg>
-  <div class="pageno">M22&middot;09</div>
+  <div class="pageno">M22&middot;13</div>
 </section>
 
-<!-- ============ SLIDE 10 ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">5 &middot; One client factory, not endpoint_url scattered everywhere</h2>
+  <div class="pageno">M22&middot;14</div>
+</section>
+
 <section>
   <h2 class="t">Scattered across every call, it is one edit from breaking</h2>
   <p class="s">Switching back to real AWS means finding every one</p>
@@ -411,10 +427,9 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="550" y="180" text-anchor="middle" fill="#c62828" class="lbl-b">find and edit every one</text>
     <text x="550" y="215" text-anchor="middle" fill="#c62828" class="lbl-g">and it's easy to miss one</text>
   </svg>
-  <div class="pageno">M22&middot;10</div>
+  <div class="pageno">M22&middot;15</div>
 </section>
 
-<!-- ============ SLIDE 11 ============ -->
 <section>
   <h2 class="t">One function every AWS-backed module goes through</h2>
   <p class="s">get_aws_client() — the one door in and out</p>
@@ -448,10 +463,14 @@ footer, header, hgroup, main, menu, nav, section {
     </g>
     <text x="960" y="260" text-anchor="middle" class="lbl-b">Floci</text>
   </svg>
-  <div class="pageno">M22&middot;11</div>
+  <div class="pageno">M22&middot;16</div>
 </section>
 
-<!-- ============ SLIDE 12 ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">6 &middot; Explicit argument, then an environment variable &mdash; never silent global behavior</h2>
+  <div class="pageno">M22&middot;17</div>
+</section>
+
 <section>
   <h2 class="t">An explicit argument always outranks the environment</h2>
   <p class="s">The answer lives in one function's arguments</p>
@@ -476,10 +495,14 @@ footer, header, hgroup, main, menu, nav, section {
     <line x1="800" y1="205" x2="1030" y2="105" stroke="#c62828" stroke-width="2"/>
     <text x="915" y="195" text-anchor="middle" fill="#c62828" class="lbl-g">silently redirected — not this project</text>
   </svg>
-  <div class="pageno">M22&middot;12</div>
+  <div class="pageno">M22&middot;18</div>
 </section>
 
-<!-- ============ SLIDE 13 ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">7 &middot; S3, DynamoDB and SQS &mdash; three different shapes of storage</h2>
+  <div class="pageno">M22&middot;19</div>
+</section>
+
 <section>
   <h2 class="t">S3, DynamoDB and SQS solve different storage problems</h2>
   <p class="s">A whole file, a fast lookup, a queued task</p>
@@ -510,10 +533,14 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="900" y="150" text-anchor="middle" class="lbl-g">key-value / document db</text>
     <text x="900" y="242" text-anchor="middle" class="lbl-g">message queue</text>
   </svg>
-  <div class="pageno">M22&middot;13</div>
+  <div class="pageno">M22&middot;20</div>
 </section>
 
-<!-- ============ SLIDE 14 ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">8 &middot; Dead-letter queues &mdash; what happens when processing keeps failing</h2>
+  <div class="pageno">M22&middot;21</div>
+</section>
+
 <section>
   <h2 class="t">A stuck message needs somewhere besides forever or gone</h2>
   <p class="s">Not retried forever, not dropped silently</p>
@@ -535,10 +562,9 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="905" y="165" text-anchor="middle" class="lbl-sm">somewhere, and stays</text>
     <text x="905" y="190" text-anchor="middle" fill="#2e7d32" class="lbl-sm">visible</text>
   </svg>
-  <div class="pageno">M22&middot;14</div>
+  <div class="pageno">M22&middot;22</div>
 </section>
 
-<!-- ============ SLIDE 15 ============ -->
 <section>
   <h2 class="t">Two settings turn the DLQ from idea to rule</h2>
   <p class="s">VisibilityTimeout and maxReceiveCount</p>
@@ -558,10 +584,9 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="820" y="165" text-anchor="middle" class="lbl-sm">before SQS gives up</text>
     <text x="820" y="210" text-anchor="middle" fill="#757575" class="lbl-g">then moves it to the DLQ instead</text>
   </svg>
-  <div class="pageno">M22&middot;15</div>
+  <div class="pageno">M22&middot;23</div>
 </section>
 
-<!-- ============ SLIDE 16 ============ -->
 <section>
   <h2 class="t">Two failed receives, then the DLQ takes it</h2>
   <p class="s">ApproximateReceiveCount climbs with every attempt</p>
@@ -597,10 +622,14 @@ footer, header, hgroup, main, menu, nav, section {
       <path d="M270,175 C500,180 700,180 870,170" fill="none" stroke="#c62828" stroke-width="2.4" marker-end="url(#ah)"/>
     </g>
   </svg>
-  <div class="pageno">M22&middot;16</div>
+  <div class="pageno">M22&middot;24</div>
 </section>
 
-<!-- ============ SLIDE 17 ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Common pitfalls</h2>
+  <div class="pageno">M22&middot;25</div>
+</section>
+
 <section>
   <h2 class="t">Common pitfalls</h2>
   <p class="s">Every one of these looks fine until it doesn't</p>
@@ -630,10 +659,9 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="100" y="302" class="lbl-b">Never checking ApproximateReceiveCount</text>
     <text x="100" y="324" class="lbl-g">without a RedrivePolicy, a bad message blocks or vanishes</text>
   </svg>
-  <div class="pageno">M22&middot;17</div>
+  <div class="pageno">M22&middot;26</div>
 </section>
 
-<!-- ============ SLIDE 18 — CLOSING ============ -->
 <section data-auto-animate>
   <p class="kicker">MODULE 22 &nbsp;&middot;&nbsp; AI-Powered Python for DevOps, Platform Engineering &amp; SRE</p>
   <h2 class="t">One factory, three services, one honest DLQ</h2>
@@ -651,8 +679,9 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="155" y="228" class="lbl-b">A dead-letter queue stops one bad message from blocking or vanishing</text>
   </svg>
   <p class="credit">Now open <b>Module 22 &middot; Lab</b>. &nbsp;&middot;&nbsp; <b>Gourav Shah</b> &nbsp;&middot;&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M22&middot;18</div>
+  <div class="pageno">M22&middot;27</div>
 </section>
+
 </div></div>
 
 

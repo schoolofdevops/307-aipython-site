@@ -9,7 +9,7 @@
      CourseSmith whiteboard deck skeleton (self-contained).
      Style contract: templates/deck/whiteboard-style-guide.md
      Tokens: AI-Powered Python for DevOps, Platform Engineering &amp; SRE 23 Multi-Region Cloud Inventory
-             One report, every region -- even when one fails. M23 (e.g. M1)
+             One report, every region — even when one fails. M23 (e.g. M1)
      Zero external requests: reveal.js 5.x runtime + Patrick Hand
      woff2 are inlined below. Keep it that way.
      ============================================================ -->
@@ -182,6 +182,12 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M23&middot;02</div>
 </section>
 
+<!-- ============ DIVIDER ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">1 &middot; The health inspector who covers many branches</h2>
+  <div class="pageno">M23&middot;03</div>
+</section>
+
 <!-- ============ SLIDE 3 ============ -->
 <section>
   <h2 class="t">Not too few, not too many</h2>
@@ -205,7 +211,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="905" y="152" text-anchor="middle" class="lbl-sm">drawn from a pool</text>
     <text x="905" y="195" text-anchor="middle" fill="#2e7d32" class="lbl-g">fast, without overwhelming the city</text>
   </svg>
-  <div class="pageno">M23&middot;03</div>
+  <div class="pageno">M23&middot;04</div>
 </section>
 
 <!-- ============ SLIDE 4 ============ -->
@@ -252,7 +258,13 @@ footer, header, hgroup, main, menu, nav, section {
       <text x="600" y="313" text-anchor="middle" fill="#c62828" class="lbl-sm">ap-south-1: FAILED (expired token)</text>
     </g>
   </svg>
-  <div class="pageno">M23&middot;04</div>
+  <div class="pageno">M23&middot;05</div>
+</section>
+
+<!-- ============ DIVIDER ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">2 &middot; Bounded concurrency — a small pool, never one thread per region</h2>
+  <div class="pageno">M23&middot;06</div>
 </section>
 
 <!-- ============ SLIDE 5 ============ -->
@@ -272,7 +284,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="820" y="210" text-anchor="middle" fill="#c62828" class="lbl-g">twenty threads, twenty connections —</text>
     <text x="820" y="232" text-anchor="middle" fill="#c62828" class="lbl-g">growing with every new region</text>
   </svg>
-  <div class="pageno">M23&middot;05</div>
+  <div class="pageno">M23&middot;07</div>
+</section>
+
+<!-- ============ DIVIDER ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">3 &middot; Five AWS APIs, five different response shapes, one record</h2>
+  <div class="pageno">M23&middot;08</div>
 </section>
 
 <!-- ============ SLIDE 6 ============ -->
@@ -309,7 +327,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="960" y="68" text-anchor="middle" class="lbl-sm">to_markdown()</text>
     <text x="960" y="228" text-anchor="middle" class="lbl-sm">to_csv()</text>
   </svg>
-  <div class="pageno">M23&middot;06</div>
+  <div class="pageno">M23&middot;09</div>
 </section>
 
 <!-- ============ SLIDE 7 ============ -->
@@ -330,14 +348,20 @@ footer, header, hgroup, main, menu, nav, section {
     <line x1="750" y1="200" x2="950" y2="150" stroke="#c62828" stroke-width="2"/>
     <text x="850" y="230" text-anchor="middle" fill="#c62828" class="lbl-sm">not a missing field or bug</text>
   </svg>
-  <div class="pageno">M23&middot;07</div>
+  <div class="pageno">M23&middot;10</div>
+</section>
+
+<!-- ============ DIVIDER ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">4 &middot; Elastic IPs — a real AWS quirk, not a bug</h2>
+  <div class="pageno">M23&middot;11</div>
 </section>
 
 <!-- ============ SLIDE 8 ============ -->
 <section>
   <h2 class="t">Elastic IPs don't paginate like the rest</h2>
   <p class="s">can_paginate() says so — call it directly</p>
-  <svg viewBox="0 0 1100 300" role="img" aria-label="client.can_paginate of describe_addresses returns False -- no paginator was ever registered for this operation. describe_addresses is called once, directly, with a green check.">
+  <svg viewBox="0 0 1100 300" role="img" aria-label="client.can_paginate of describe_addresses returns False, no paginator was ever registered for this operation. describe_addresses is called once, directly, with a green check.">
     <g filter="url(#rough)" fill="none" stroke="#c62828" stroke-width="2.4"><rect x="60" y="50" width="440" height="200" rx="12" fill="var(--p-red)"/></g>
     <text x="280" y="95" text-anchor="middle" class="lbl-b" style="font-size:20px">can_paginate("describe_addresses")</text>
     <text x="280" y="150" text-anchor="middle" class="lbl-b" style="font-size:26px">False</text>
@@ -349,7 +373,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="820" y="175" text-anchor="middle" class="lbl-sm">no paginator involved</text>
     <text x="820" y="215" text-anchor="middle" fill="#2e7d32" class="lbl-g">a fact about the API, not a shortcut</text>
   </svg>
-  <div class="pageno">M23&middot;08</div>
+  <div class="pageno">M23&middot;12</div>
+</section>
+
+<!-- ============ DIVIDER ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">5 &middot; S3 is not region-scoped — a different discovery shape entirely</h2>
+  <div class="pageno">M23&middot;13</div>
 </section>
 
 <!-- ============ SLIDE 9 ============ -->
@@ -370,7 +400,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="820" y="200" text-anchor="middle" fill="#c62828" class="lbl-g">every bucket comes back —</text>
     <text x="820" y="222" text-anchor="middle" fill="#c62828" class="lbl-g">even one whose data lives elsewhere</text>
   </svg>
-  <div class="pageno">M23&middot;09</div>
+  <div class="pageno">M23&middot;14</div>
 </section>
 
 <!-- ============ SLIDE 10 ============ -->
@@ -394,7 +424,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="550" y="200" text-anchor="middle" fill="#c62828" class="lbl-b">N calls, zero new information</text>
     <text x="550" y="235" text-anchor="middle" fill="#c62828" class="lbl-g">never learns which region each bucket lives in</text>
   </svg>
-  <div class="pageno">M23&middot;10</div>
+  <div class="pageno">M23&middot;15</div>
 </section>
 
 <!-- ============ SLIDE 11 ============ -->
@@ -419,7 +449,13 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="920" y="210" text-anchor="middle" class="lbl-b">"us-east-1"</text>
     <text x="920" y="235" text-anchor="middle" fill="#2e7d32" class="lbl-sm">AWS's own historical default</text>
   </svg>
-  <div class="pageno">M23&middot;11</div>
+  <div class="pageno">M23&middot;16</div>
+</section>
+
+<!-- ============ DIVIDER ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">6 &middot; Partial regional failure — the report always returns what succeeded</h2>
+  <div class="pageno">M23&middot;17</div>
 </section>
 
 <!-- ============ SLIDE 12 ============ -->
@@ -448,7 +484,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="970" y="150" text-anchor="middle" class="lbl-b">final report</text>
     <text x="970" y="173" text-anchor="middle" class="lbl-g">2 ok, 1 failed</text>
   </svg>
-  <div class="pageno">M23&middot;12</div>
+  <div class="pageno">M23&middot;18</div>
 </section>
 
 <!-- ============ SLIDE 13 ============ -->
@@ -469,7 +505,13 @@ footer, header, hgroup, main, menu, nav, section {
     <line x1="730" y1="105" x2="1020" y2="155" stroke="#757575" stroke-width="2"/>
     <text x="875" y="200" text-anchor="middle" fill="#2e7d32" class="lbl-g">only when every region succeeded</text>
   </svg>
-  <div class="pageno">M23&middot;13</div>
+  <div class="pageno">M23&middot;19</div>
+</section>
+
+<!-- ============ DIVIDER ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">7 &middot; Expired credentials are not the same problem as "access denied"</h2>
+  <div class="pageno">M23&middot;20</div>
 </section>
 
 <!-- ============ SLIDE 14 ============ -->
@@ -487,14 +529,20 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="820" y="162" text-anchor="middle" class="lbl-sm">region-support problem</text>
     <text x="820" y="205" text-anchor="middle" fill="#757575" class="lbl-g">a different fix entirely</text>
   </svg>
-  <div class="pageno">M23&middot;14</div>
+  <div class="pageno">M23&middot;21</div>
+</section>
+
+<!-- ============ DIVIDER ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">8 &middot; Missing tags are not errors</h2>
+  <div class="pageno">M23&middot;22</div>
 </section>
 
 <!-- ============ SLIDE 15 ============ -->
 <section>
   <h2 class="t">Missing tags are normal, not an error</h2>
   <p class="s">Empty Tags key vs S3's NoSuchTagSet</p>
-  <svg viewBox="0 0 1100 300" role="img" aria-label="Two panels. Left: EC2, EBS, security groups and elastic IPs -- a missing or empty Tags key becomes an empty dict, green check. Right: S3 -- get_bucket_tagging raises NoSuchTagSet, caught and treated as an empty dict too, green check.">
+  <svg viewBox="0 0 1100 300" role="img" aria-label="Two panels. Left: EC2, EBS, security groups and elastic IPs, a missing or empty Tags key becomes an empty dict, green check. Right: S3, get_bucket_tagging raises NoSuchTagSet, caught and treated as an empty dict too, green check.">
     <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4"><rect x="60" y="40" width="440" height="220" rx="12" fill="var(--p-blue)"/></g>
     <text x="280" y="80" text-anchor="middle" class="lbl-b" style="font-size:19px">EC2 · EBS · SGs · EIPs</text>
     <text x="280" y="130" text-anchor="middle" class="lbl-sm">Tags key missing, or []</text>
@@ -509,7 +557,13 @@ footer, header, hgroup, main, menu, nav, section {
     <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2"><rect x="760" y="185" width="120" height="45" rx="8" fill="var(--p-green)"/></g>
     <text x="820" y="213" text-anchor="middle" class="lbl-b">{}</text>
   </svg>
-  <div class="pageno">M23&middot;15</div>
+  <div class="pageno">M23&middot;23</div>
+</section>
+
+<!-- ============ DIVIDER ============ -->
+<section>
+  <h2 class="t" style="font-size:2.2em">Common pitfalls</h2>
+  <div class="pageno">M23&middot;24</div>
 </section>
 
 <!-- ============ SLIDE 16 ============ -->
@@ -547,7 +601,7 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="100" y="370" class="lbl-b">Letting one failed region blank the whole report</text>
     <text x="100" y="392" class="lbl-g">failed_regions exists so the rest still comes back</text>
   </svg>
-  <div class="pageno">M23&middot;16</div>
+  <div class="pageno">M23&middot;25</div>
 </section>
 
 <!-- ============ SLIDE 17 — CLOSING ============ -->
@@ -568,8 +622,9 @@ footer, header, hgroup, main, menu, nav, section {
     <text x="155" y="228" class="lbl-b">A failed region is one entry in failed_regions, never a crash — the report returns what succeeded</text>
   </svg>
   <p class="credit">Now open <b>Module 23 &middot; Lab</b>. &nbsp;&middot;&nbsp; <b>Gourav Shah</b> &nbsp;&middot;&nbsp; School of DevOps &amp; AI</p>
-  <div class="pageno">M23&middot;17</div>
+  <div class="pageno">M23&middot;26</div>
 </section>
+
 </div></div>
 
 
