@@ -101,6 +101,9 @@ footer, header, hgroup, main, menu, nav, section {
   .reveal .credit{ order:4; font-size:.85em; color:var(--gray); margin-top:16px; }
   .reveal .credit b{ color:var(--ink); font-weight:700; }
   .reveal .pageno{ position:absolute; bottom:14px; right:22px; font-size:.6em; color:#bdbdbd; }
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:2; font-size:1.1em; max-width:76%; }
+  .reveal .slides section.divider svg{ order:1; }
   .reveal .slide-number{ font-family:'Patrick Hand',cursive; }
   .reveal code{ font-family:'Patrick Hand',cursive; color:var(--ink); }
   .reveal em{ font-style:italic; }
@@ -140,61 +143,19 @@ footer, header, hgroup, main, menu, nav, section {
   <p class="kicker">MODULE 12 &nbsp;&middot;&nbsp; AI-POWERED PYTHON FOR DEVOPS, PLATFORM ENGINEERING &amp; SRE</p>
   <h2 class="t" style="font-size:1.8em">The guardrail nobody notices</h2>
   <p class="s" style="font-size:1.2em">a test suite is invisible until someone drifts</p>
-  <svg viewBox="0 0 1100 380" role="img" aria-label="A mountain road with a guardrail along the edge. A car drives past normally, the guardrail faded into the background. A faint scuff mark on the rail shows it already stopped one car before.">
-    <!-- mountain background -->
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-linecap="round">
-      <path d="M0,250 L200,80 L350,160 L550,40 L700,150 L900,60 L1100,200" fill="#f5f5f5"/>
-      <path d="M0,380 L0,250 L200,80 L350,160 L550,40 L700,150 L900,60 L1100,200 L1100,380 Z" fill="#f5f5f5" stroke="none"/>
-    </g>
-    <!-- road surface -->
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <path d="M0,330 Q300,290 550,310 Q800,330 1100,300" stroke="#757575" stroke-width="3" fill="#e0e0e0"/>
-      <path d="M0,370 Q300,340 550,355 Q800,370 1100,350" stroke="#757575" stroke-width="2" fill="#e0e0e0"/>
-      <!-- center line dashes -->
-      <line x1="100" y1="345" x2="170" y2="342" stroke="#bdbdbd" stroke-dasharray="8,12"/>
-      <line x1="250" y1="338" x2="320" y2="335" stroke="#bdbdbd" stroke-dasharray="8,12"/>
-      <line x1="400" y1="333" x2="470" y2="332" stroke="#bdbdbd" stroke-dasharray="8,12"/>
-      <line x1="550" y1="332" x2="620" y2="333" stroke="#bdbdbd" stroke-dasharray="8,12"/>
-      <line x1="700" y1="336" x2="770" y2="338" stroke="#bdbdbd" stroke-dasharray="8,12"/>
-      <line x1="850" y1="340" x2="920" y2="340" stroke="#bdbdbd" stroke-dasharray="8,12"/>
-    </g>
-    <!-- guardrail posts (faded gray — invisible on normal day) -->
-    <g filter="url(#rough)" fill="none" stroke="#bdbdbd" stroke-width="2" stroke-linecap="round">
-      <line x1="150" y1="290" x2="150" y2="320"/>
-      <line x1="250" y1="286" x2="250" y2="315"/>
-      <line x1="350" y1="283" x2="350" y2="310"/>
-      <line x1="450" y1="282" x2="450" y2="308"/>
-      <line x1="550" y1="283" x2="550" y2="308"/>
-      <line x1="650" y1="285" x2="650" y2="310"/>
-      <line x1="750" y1="289" x2="750" y2="314"/>
-      <line x1="850" y1="292" x2="850" y2="316"/>
-      <line x1="950" y1="294" x2="950" y2="318"/>
-      <!-- rail -->
-      <path d="M130,295 Q550,270 970,298"/>
-    </g>
-    <!-- scuff mark on rail (the one time it mattered) -->
-    <g filter="url(#rough)" fill="none" stroke-linecap="round">
-      <line x1="440" y1="284" x2="480" y2="282" stroke="#757575" stroke-width="4"/>
-      <line x1="445" y1="288" x2="475" y2="286" stroke="#757575" stroke-width="2"/>
-    </g>
-    <!-- car driving past normally -->
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <rect x="680" y="295" width="120" height="40" rx="12" fill="#dae8fc"/>
-      <rect x="695" y="280" width="80" height="22" rx="8" fill="#dae8fc"/>
-      <circle cx="705" cy="340" r="10"/>
-      <circle cx="775" cy="342" r="10"/>
-    </g>
-    <!-- labels -->
-    <text x="460" y="268" class="lbl-g" text-anchor="middle">scuff mark</text>
-    <text x="740" y="288" class="lbl-sm" text-anchor="middle">normal day</text>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A mountain road with a guardrail along the edge, a faint scuff mark on the rail from a past incident, a car driving past normally.">
+    <image href="../img/decks/m12/title-guardrail.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
   </svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;&middot;&nbsp; School of DevOps &amp; AI &nbsp;&middot;&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M12&middot;01</div>
 </section>
 
 <!-- ============ DIVIDER — how pytest finds and runs your tests ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">2 &middot; How pytest finds and runs your tests</h2>
+<section class="divider">
+  <h2 class="t">How pytest finds and runs your tests</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="An inspector walking down a long hallway of identical doors, checking each one systematically, pausing at a door marked with a small tag.">
+    <image href="../img/decks/m12/divider-1-inspector-doors.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M12&middot;02</div>
 </section>
 
@@ -241,8 +202,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — fixtures ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">3 &middot; Fixtures: the stage crew for your tests</h2>
+<section class="divider">
+  <h2 class="t">Fixtures: the stage crew for your tests</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="Theater stage crew setting up props and furniture on an empty stage before the actors arrive.">
+    <image href="../img/decks/m12/divider-2-stage-crew.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M12&middot;04</div>
 </section>
 
@@ -350,8 +314,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — mocking ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">4 &middot; Mocking: replacing the outside world with a scripted answer</h2>
+<section class="divider">
+  <h2 class="t">Mocking: replacing the outside world with a scripted answer</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A stunt double standing in for the lead actor during a rehearsal, reading from a small script card — a scripted stand-in for the real thing.">
+    <image href="../img/decks/m12/divider-3-stunt-double.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M12&middot;07</div>
 </section>
 
@@ -450,8 +417,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — parametrize ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">5 &middot; Parametrize: one test, many inputs</h2>
+<section class="divider">
+  <h2 class="t">Parametrize: one test, many inputs</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A cookie cutter stamping the same shape into a row of several different sheets of rolled dough — one shape, many inputs.">
+    <image href="../img/decks/m12/divider-4-cookie-cutter.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M12&middot;10</div>
 </section>
 
@@ -501,8 +471,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — what makes a test meaningful ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">6 &middot; What makes a test meaningful</h2>
+<section class="divider">
+  <h2 class="t">What makes a test meaningful</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A person firmly gripping and testing a ladder rung with both hands before climbing, checking that it truly holds weight — not just glancing, but actually testing.">
+    <image href="../img/decks/m12/divider-5-ladder-test.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M12&middot;12</div>
 </section>
 
@@ -762,8 +735,7 @@ footer, header, hgroup, main, menu, nav, section {
   <div class="pageno">M12&middot;18</div>
 </section>
 
-</content>
-</invoke></div></div>
+</div></div>
 
 <script>/* reveal.js 5.x (inlined) */
 /*!
@@ -799,7 +771,7 @@ footer, header, hgroup, main, menu, nav, section {
       if(!sec) return;
       var svg = sec.querySelector('svg');
       if(!svg) return;
-      var mh = 58;
+      var mh = sec.classList.contains('divider') ? 80 : 58;
       svg.style.maxHeight = mh + '%';
       var guard = 0;
       while (sec.scrollHeight > sec.clientHeight + 2 && mh > 18 && guard++ < 20){
