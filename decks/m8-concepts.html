@@ -101,6 +101,9 @@ footer, header, hgroup, main, menu, nav, section {
   .reveal .credit{ order:4; font-size:.85em; color:var(--gray); margin-top:16px; }
   .reveal .credit b{ color:var(--ink); font-weight:700; }
   .reveal .pageno{ position:absolute; bottom:14px; right:22px; font-size:.6em; color:#bdbdbd; }
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:2; font-size:1.1em; max-width:76%; }
+  .reveal .slides section.divider svg{ order:1; }
   .reveal .slide-number{ font-family:'Patrick Hand',cursive; }
   .reveal code{ font-family:'Patrick Hand',cursive; color:var(--ink); }
   .reveal em{ font-style:italic; }
@@ -138,71 +141,19 @@ footer, header, hgroup, main, menu, nav, section {
   <p class="kicker">MODULE 8 &nbsp;·&nbsp; AI-POWERED PYTHON FOR DEVOPS, PLATFORM ENGINEERING &amp; SRE</p>
   <h2 class="t" style="font-size:1.8em">A script is a friend — a CLI is a vending machine</h2>
   <p class="s" style="font-size:1.2em">correct on the first try, for anyone</p>
-  <svg viewBox="0 0 1100 380" role="img" aria-label="Two panel scene. Left: a friend figure hands a snack to another figure who says the blue one please, labelled a script, works only if you already know the module path. Right: a vending machine box with labelled buttons and a person figure pressing one, labelled a CLI, correct on the first try with no shared history needed.">
-    <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <rect x="40" y="70" width="460" height="250" rx="14"/>
-    </g>
-    <text x="270" y="45" text-anchor="middle" class="lbl-g">python -m platformops.diagnostics service.yaml</text>
-    <text x="270" y="105" text-anchor="middle" class="lbl-b">a script</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
-      <circle cx="170" cy="165" r="15"/>
-      <line x1="170" y1="180" x2="170" y2="222"/>
-      <line x1="170" y1="195" x2="145" y2="210"/>
-      <line x1="170" y1="195" x2="195" y2="210"/>
-      <line x1="170" y1="222" x2="150" y2="258"/>
-      <line x1="170" y1="222" x2="190" y2="258"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
-      <circle cx="335" cy="165" r="15"/>
-      <line x1="335" y1="180" x2="335" y2="222"/>
-      <line x1="335" y1="195" x2="310" y2="210"/>
-      <line x1="335" y1="195" x2="360" y2="210"/>
-      <line x1="335" y1="222" x2="315" y2="258"/>
-      <line x1="335" y1="222" x2="355" y2="258"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-dasharray="4 6" stroke-linecap="round">
-      <path d="M198,195 C235,175 275,175 308,195" marker-end="url(#ahg)"/>
-    </g>
-    <text x="253" y="168" text-anchor="middle" class="lbl-sm">"the blue one, please"</text>
-    <text x="270" y="292" text-anchor="middle" class="lbl-sm" fill="#c62828">works — if you already know the module path</text>
-
-    <g filter="url(#rough)" fill="#d5e8d4" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <rect x="600" y="70" width="460" height="250" rx="14"/>
-    </g>
-    <text x="830" y="45" text-anchor="middle" class="lbl-g">platformops validate service.yaml</text>
-    <text x="830" y="105" text-anchor="middle" class="lbl-b">a CLI</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <rect x="750" y="140" width="160" height="120" rx="10"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="1.8" stroke-linecap="round">
-      <rect x="765" y="155" width="55" height="30" rx="4"/>
-      <rect x="825" y="155" width="55" height="30" rx="4"/>
-      <rect x="765" y="195" width="55" height="30" rx="4"/>
-      <rect x="825" y="195" width="55" height="30" rx="4"/>
-    </g>
-    <text x="792" y="176" text-anchor="middle" class="lbl-sm">validate</text>
-    <text x="852" y="176" text-anchor="middle" class="lbl-sm">inspect</text>
-    <text x="792" y="216" text-anchor="middle" class="lbl-sm">version</text>
-    <text x="852" y="216" text-anchor="middle" class="lbl-sm">--help</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
-      <circle cx="965" cy="185" r="15"/>
-      <line x1="965" y1="200" x2="965" y2="242"/>
-      <line x1="965" y1="212" x2="940" y2="225"/>
-      <line x1="965" y1="212" x2="922" y2="192"/>
-      <line x1="965" y1="242" x2="945" y2="278"/>
-      <line x1="965" y1="242" x2="985" y2="278"/>
-    </g>
-    <text x="830" y="292" text-anchor="middle" class="lbl-sm" fill="#2e7d32">correct on the first try, no shared history needed</text>
-
-    <text x="550" y="358" text-anchor="middle" class="lbl" fill="#2e7d32">same button, same result — every time, for anyone</text>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A hand pressing a button on a vending machine, a snack dropping into the tray below — the same button always gives the same result, for anyone, unlike a script that only works if you already know its secret.">
+    <image href="../img/decks/m8/title-vending-machine.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
   </svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI &nbsp;·&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M8&middot;01</div>
 </section>
 
 <!-- ============ DIVIDER — Typer: a command is a typed function ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">2 &middot; Typer: a command is a typed function</h2>
+<section class="divider">
+  <h2 class="t">Typer: a command is a typed function</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A mechanical stamping press, a metal die shaped like a gear descending onto a blank metal disc — a typed function stamped into a command.">
+    <image href="../img/decks/m8/divider-1-stamping-press.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M8&middot;02</div>
 </section>
 
@@ -283,8 +234,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — arguments, options and flags ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">3 &middot; Arguments, options and flags</h2>
+<section class="divider">
+  <h2 class="t">Arguments, options and flags</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A control panel with three different types of controls mounted side by side — a lever, a rotary dial, and a toggle switch — standing for an argument, an option, and a flag.">
+    <image href="../img/decks/m8/divider-2-control-levers.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M8&middot;05</div>
 </section>
 
@@ -329,8 +283,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — --help is documentation your users actually read ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">4 &middot; --help is documentation your users actually read</h2>
+<section class="divider">
+  <h2 class="t">--help is documentation your users actually read</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A person reading a small folded instruction leaflet held open in both hands, standing at an information counter.">
+    <image href="../img/decks/m8/divider-3-leaflet-reading.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M8&middot;07</div>
 </section>
 
@@ -380,8 +337,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — exit codes ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">5 &middot; Exit codes: the contract a script cannot see, but a CI job lives by</h2>
+<section class="divider">
+  <h2 class="t">Exit codes: the contract a script cannot see, but a CI job lives by</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A traffic light pole with three signal lamps stacked vertically, a robotic arm reaching toward it from below — an exit code a CI job reads and acts on.">
+    <image href="../img/decks/m8/divider-4-traffic-light.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M8&middot;09</div>
 </section>
 
@@ -425,8 +385,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — output has two audiences ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">6 &middot; Output has two audiences</h2>
+<section class="divider">
+  <h2 class="t">Output has two audiences</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A single sheet of paper being read simultaneously by a person on one side and being fed into a machine's paper-tape reader on the other side — one command output, two audiences.">
+    <image href="../img/decks/m8/divider-5-paper-two-readers.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M8&middot;11</div>
 </section>
 
@@ -502,8 +465,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — confirmation prompts and --yes ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">7 &middot; Confirmation prompts, and --yes for the script that cannot type "y"</h2>
+<section class="divider">
+  <h2 class="t">Confirmation prompts, and --yes for the script that cannot type "y"</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A gate with a manual latch a hand is lifting, and beside it a small automatic sensor panel letting a beam of light pass through unattended — a confirmation prompt, and an unattended escape hatch.">
+    <image href="../img/decks/m8/divider-6-gate-sensor.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M8&middot;14</div>
 </section>
 
@@ -550,8 +516,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — dry-run ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">8 &middot; Dry-run: showing the plan without touching anything</h2>
+<section class="divider">
+  <h2 class="t">Dry-run: showing the plan without touching anything</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A theater stage rehearsal, a director watching two actors walk through their positions with empty audience seats in the foreground — a dry run, nothing performed for real yet.">
+    <image href="../img/decks/m8/divider-7-stage-rehearsal.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M8&middot;16</div>
 </section>
 
@@ -595,8 +564,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — designing for a human and a script ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">9 &middot; Designing for a human and a script, with the same command</h2>
+<section class="divider">
+  <h2 class="t">Designing for a human and a script, with the same command</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A single push-button control panel with a human hand reaching from one side and a mechanical robotic arm reaching from the other side, both approaching the same button.">
+    <image href="../img/decks/m8/divider-8-shared-button.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M8&middot;18</div>
 </section>
 
@@ -725,7 +697,7 @@ footer, header, hgroup, main, menu, nav, section {
       if(!sec) return;
       var svg = sec.querySelector('svg');
       if(!svg) return;
-      var mh = 58;
+      var mh = sec.classList.contains('divider') ? 80 : 58;
       svg.style.maxHeight = mh + '%';
       var guard = 0;
       while (sec.scrollHeight > sec.clientHeight + 2 && mh > 18 && guard++ < 20){
