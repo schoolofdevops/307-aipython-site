@@ -100,6 +100,9 @@ footer, header, hgroup, main, menu, nav, section {
   .reveal .credit{ order:4; font-size:.85em; color:var(--gray); margin-top:16px; }
   .reveal .credit b{ color:var(--ink); font-weight:700; }
   .reveal .pageno{ position:absolute; bottom:14px; right:22px; font-size:.6em; color:#bdbdbd; }
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:2; font-size:1.1em; max-width:76%; }
+  .reveal .slides section.divider svg{ order:1; }
   .reveal .slide-number{ font-family:'Patrick Hand',cursive; }
   .reveal code{ font-family:'Patrick Hand',cursive; color:var(--ink); }
   .reveal em{ font-style:italic; }
@@ -138,42 +141,19 @@ footer, header, hgroup, main, menu, nav, section {
   <p class="kicker">MODULE 4 &nbsp;·&nbsp; AI-POWERED PYTHON FOR DEVOPS &amp; SRE</p>
   <h2 class="t" style="font-size:1.8em">One working file becomes six small ones</h2>
   <p class="s" style="font-size:1.2em">same behavior &middot; better organized</p>
-  <svg viewBox="0 0 1100 340" role="img" aria-label="inventory.py fans out into six package files: data, rules, summary, report, __init__ and __main__.">
-    <g filter="url(#rough)" fill="#f8cecc" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <rect x="60" y="70" width="220" height="90" rx="12"/>
-    </g>
-    <text x="170" y="110" text-anchor="middle" class="lbl-b">inventory.py</text>
-    <text x="170" y="140" text-anchor="middle" class="lbl-sm">v0.1 — one file</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <path d="M290,115 C340,115 360,115 400,115" marker-end="url(#ah)"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.2" stroke-linecap="round">
-      <path d="M420,120 L490,220" marker-end="url(#ahg)"/>
-      <path d="M420,120 L650,220" marker-end="url(#ahg)"/>
-      <path d="M420,120 L810,220" marker-end="url(#ahg)"/>
-      <path d="M420,120 L970,220" marker-end="url(#ahg)"/>
-    </g>
-    <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
-      <rect x="420" y="225" width="140" height="55" rx="10"/>
-      <rect x="580" y="225" width="140" height="55" rx="10"/>
-      <rect x="740" y="225" width="140" height="55" rx="10"/>
-      <rect x="900" y="225" width="140" height="55" rx="10"/>
-    </g>
-    <g class="lbl-sm" text-anchor="middle">
-      <text x="490" y="257">data.py</text>
-      <text x="650" y="257">rules.py</text>
-      <text x="810" y="257">summary.py</text>
-      <text x="970" y="257">report.py</text>
-    </g>
-    <text x="695" y="315" text-anchor="middle" class="lbl-g" fill="#2e7d32">plus __init__.py (public surface) and __main__.py (entry point)</text>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A single thick stack of papers on a desk splitting apart into six smaller neat stacks fanned out beside it.">
+    <image href="../img/decks/m4/title-splitting-files.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
   </svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI &nbsp;·&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M4&middot;01</div>
 </section>
 
 <!-- ============ DIVIDER — a function is one job ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">1 &middot; A function is one job, done the same way every time</h2>
+<section class="divider">
+  <h2 class="t">A function is one job, done the same way every time</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A clerk's hands stamping a single form at a service counter window, other blank forms waiting untouched in a tray beside it.">
+    <image href="../img/decks/m4/divider-1-clerk-form.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M4&middot;02</div>
 </section>
 
@@ -209,8 +189,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — arguments ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">2 &middot; Positional, keyword and default arguments</h2>
+<section class="divider">
+  <h2 class="t">Positional, keyword and default arguments</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A hand tying a blank luggage tag onto a suitcase handle at an airport.">
+    <image href="../img/decks/m4/divider-2-luggage-tag.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M4&middot;04</div>
 </section>
 
@@ -269,8 +252,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — scope ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">3 &middot; Scope — where a name is visible</h2>
+<section class="divider">
+  <h2 class="t">Scope — where a name is visible</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A closed personal notebook resting on a desk beside a large blank whiteboard mounted on a hallway wall in the background.">
+    <image href="../img/decks/m4/divider-3-notebook-whiteboard.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M4&middot;07</div>
 </section>
 
@@ -298,8 +284,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — modules and packages ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">4 &middot; Modules and packages — a file, then a folder of files</h2>
+<section class="divider">
+  <h2 class="t">Modules and packages — a file, then a folder of files</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="An open folder standing upright revealing several smaller folders neatly organized inside it.">
+    <image href="../img/decks/m4/divider-4-folder-door.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M4&middot;09</div>
 </section>
 
@@ -371,8 +360,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — pure functions and testability ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">5 &middot; Separate input, processing and output — the testability argument</h2>
+<section class="divider">
+  <h2 class="t">Separate input, processing and output — the testability argument</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A funnel pouring liquid through a mesh strainer into a clear glass jar sitting below it on a table.">
+    <image href="../img/decks/m4/divider-5-funnel-jar.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M4&middot;12</div>
 </section>
 
@@ -411,8 +403,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — signature and docstring ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">6 &middot; A function signature and its docstring are a contract</h2>
+<section class="divider">
+  <h2 class="t">A function signature and its docstring are a contract</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A hand signing a folded paper document with a fountain pen on a table, a wax seal resting beside it.">
+    <image href="../img/decks/m4/divider-6-contract-sign.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M4&middot;14</div>
 </section>
 
@@ -432,8 +427,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — when not to reach for a class ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">7 &middot; When not to reach for a class</h2>
+<section class="divider">
+  <h2 class="t">When not to reach for a class</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A small simple toolbox with hand tools sitting next to a large unused machine covered by a dust sheet.">
+    <image href="../img/decks/m4/divider-7-toolbox-machine.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M4&middot;16</div>
 </section>
 
@@ -487,6 +485,7 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ SLIDE 12 — closing / build it ============ -->
 <section>
+  <p class="kicker">MODULE 4 &nbsp;·&nbsp; AI-POWERED PYTHON FOR DEVOPS &amp; SRE</p>
   <h2 class="t">One file, six jobs, one review habit -- now build it</h2>
   <p class="s">split it by hand, then review what your agent deduplicates</p>
   <svg viewBox="0 0 1100 300" role="img" aria-label="A closing hand-off card: split inventory.py into a package, keep the public surface unchanged, delegate the duplication cleanup to a coding agent, review the diff, tag v0.2.">
@@ -544,7 +543,7 @@ footer, header, hgroup, main, menu, nav, section {
       if(!sec) return;
       var svg = sec.querySelector('svg');
       if(!svg) return;
-      var mh = 58;
+      var mh = sec.classList.contains('divider') ? 80 : 58;
       svg.style.maxHeight = mh + '%';
       var guard = 0;
       while (sec.scrollHeight > sec.clientHeight + 2 && mh > 18 && guard++ < 20){
