@@ -101,6 +101,9 @@ footer, header, hgroup, main, menu, nav, section {
   .reveal .credit{ order:4; font-size:.85em; color:var(--gray); margin-top:16px; }
   .reveal .credit b{ color:var(--ink); font-weight:700; }
   .reveal .pageno{ position:absolute; bottom:14px; right:22px; font-size:.6em; color:#bdbdbd; }
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:2; font-size:1.1em; max-width:76%; }
+  .reveal .slides section.divider svg{ order:1; }
   .reveal .slide-number{ font-family:'Patrick Hand',cursive; }
   .reveal code{ font-family:'Patrick Hand',cursive; color:var(--ink); }
   .reveal em{ font-style:italic; }
@@ -139,24 +142,8 @@ footer, header, hgroup, main, menu, nav, section {
   <p class="kicker">MODULE 21 &nbsp;&middot;&nbsp; AI-Powered Python for DevOps, Platform Engineering &amp; SRE</p>
   <h2 class="t" style="font-size:2.1em">AWS Automation Fundamentals with Boto3</h2>
   <p class="s" style="font-size:1.2em">One concierge for every AWS department</p>
-  <svg viewBox="0 0 1100 340" role="img" aria-label="Your code on the left sends a request to a concierge desk labeled Boto3 in the middle, which sends a signed request on to a box labeled AWS on the right.">
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4">
-      <rect x="40" y="145" width="220" height="90" rx="10" fill="var(--p-blue)"/>
-    </g>
-    <text x="150" y="196" text-anchor="middle" class="lbl-b">your code</text>
-    <path d="M270,190 C320,190 330,190 375,190" fill="none" stroke="#1e1e1e" stroke-width="2.4" marker-end="url(#ah)"/>
-    <text x="320" y="170" text-anchor="middle" class="lbl-g">asks</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="3">
-      <rect x="385" y="80" width="320" height="220" rx="16" fill="var(--p-purple)"/>
-    </g>
-    <text x="545" y="180" text-anchor="middle" class="lbl-b" style="font-size:26px">Boto3</text>
-    <text x="545" y="215" text-anchor="middle" class="lbl-g">the concierge</text>
-    <path d="M715,190 C760,190 770,190 815,190" fill="none" stroke="#1e1e1e" stroke-width="2.4" marker-end="url(#ah)"/>
-    <text x="765" y="170" text-anchor="middle" class="lbl-g">signed request</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4">
-      <rect x="825" y="145" width="220" height="90" rx="10" fill="var(--p-blue)"/>
-    </g>
-    <text x="935" y="196" text-anchor="middle" class="lbl-b">AWS</text>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A hotel concierge desk, standing in for Boto3 as the one place that handles every AWS request.">
+    <image href="../img/decks/m21/title-hotel-concierge-desk.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
   </svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;&middot;&nbsp; School of DevOps &amp; AI &nbsp;&middot;&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M21&middot;01</div>
@@ -195,8 +182,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — a concierge, not a phone book ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">1 &middot; A concierge, not a phone book</h2>
+<section class="divider">
+  <h2 class="t">1 &middot; A concierge, not a phone book</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A hotel concierge answering a phone at the front desk, standing in for Boto3 as one concierge for every AWS department.">
+    <image href="../img/decks/m21/divider-1-concierge-phone.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M21&middot;03</div>
 </section>
 
@@ -204,26 +194,8 @@ footer, header, hgroup, main, menu, nav, section {
 <section>
   <h2 class="t">One phone book, one extension per department</h2>
   <p class="s">Learn each department's rules yourself</p>
-  <svg viewBox="0 0 1100 360" role="img" aria-label="A guest figure facing three separate boxes labeled housekeeping, room service and the garage, each connected by its own dashed line, annotated that the guest must learn each department's rules alone.">
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2">
-      <circle cx="120" cy="130" r="28"/>
-      <path d="M120,158 L120,230 M120,180 L80,210 M120,180 L160,210 M120,230 L90,290 M120,230 L150,290"/>
-    </g>
-    <text x="120" y="315" text-anchor="middle" class="lbl-sm">guest</text>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-dasharray="6 5">
-      <path d="M280,110 C420,60 520,50 620,60" marker-end="url(#ahg)"/>
-      <path d="M280,150 C420,150 520,150 620,150" marker-end="url(#ahg)"/>
-      <path d="M280,190 C420,240 520,250 620,250" marker-end="url(#ahg)"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2">
-      <rect x="630" y="20" width="280" height="80" rx="10" fill="var(--p-blue)"/>
-      <rect x="630" y="110" width="280" height="80" rx="10" fill="var(--p-blue)"/>
-      <rect x="630" y="210" width="280" height="80" rx="10" fill="var(--p-blue)"/>
-    </g>
-    <text x="770" y="65" text-anchor="middle" class="lbl-sm">housekeeping</text>
-    <text x="770" y="155" text-anchor="middle" class="lbl-sm">room service</text>
-    <text x="770" y="255" text-anchor="middle" class="lbl-sm">the garage</text>
-    <text x="770" y="330" text-anchor="middle" fill="#c62828" class="lbl-g">learn each department's rules yourself</text>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A hotel guest looking confused at a phone with many extension buttons, standing in for calling each AWS service separately and learning each one's own rules.">
+    <image href="../img/decks/m21/analogy-guest-confused-extensions.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
   </svg>
   <div class="pageno">M21&middot;04</div>
 </section>
@@ -287,8 +259,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — sessions, profiles, credential chain ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">2 &middot; Sessions, profiles and the credential chain</h2>
+<section class="divider">
+  <h2 class="t">2 &middot; Sessions, profiles and the credential chain</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A key and an ID card side by side, standing in for the credential chain Boto3 checks before a session is ready.">
+    <image href="../img/decks/m21/divider-2-key-and-id.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M21&middot;07</div>
 </section>
 
@@ -358,8 +333,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — client vs resource ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">3 &middot; Client vs. resource — two ways to ask the concierge</h2>
+<section class="divider">
+  <h2 class="t">3 &middot; Client vs. resource — two ways to ask the concierge</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="Two different remote controls on a coffee table pointed at the same television, standing in for client and resource as two different ways to talk to the same AWS service.">
+    <image href="../img/decks/m21/divider-3-two-remotes.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M21&middot;10</div>
 </section>
 
@@ -385,8 +363,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — region always explicit ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">4 &middot; Region — always explicit, never assumed</h2>
+<section class="divider">
+  <h2 class="t">4 &middot; Region — always explicit, never assumed</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A world map with a single pushpin marking one location, standing in for a region that must always be named explicitly, never assumed.">
+    <image href="../img/decks/m21/divider-4-world-map-pin.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M21&middot;12</div>
 </section>
 
@@ -419,8 +400,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — pagination ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">5 &middot; Pagination — one page is not the whole answer</h2>
+<section class="divider">
+  <h2 class="t">5 &middot; Pagination — one page is not the whole answer</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A hand turning a page in a large open book, standing in for pagination — one page is never the whole answer.">
+    <image href="../img/decks/m21/divider-5-turning-pages.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M21&middot;14</div>
 </section>
 
@@ -480,8 +464,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — tag filtering ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">6 &middot; Tag filtering — let AWS do the filtering</h2>
+<section class="divider">
+  <h2 class="t">6 &middot; Tag filtering — let AWS do the filtering</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A row of suitcases at an airport, each with a luggage tag, standing in for tags AWS can filter on so it only returns what matches.">
+    <image href="../img/decks/m21/divider-6-luggage-tags.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M21&middot;17</div>
 </section>
 
@@ -507,8 +494,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — botocore exceptions ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">7 &middot; Botocore exceptions — catch what you expect, by name</h2>
+<section class="divider">
+  <h2 class="t">7 &middot; Botocore exceptions — catch what you expect, by name</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A traffic light at a city intersection, standing in for catching each botocore exception by its specific name rather than a bare except.">
+    <image href="../img/decks/m21/divider-7-stoplight.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M21&middot;19</div>
 </section>
 
@@ -533,8 +523,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — retries and idempotency ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">8 &middot; Retries and idempotency</h2>
+<section class="divider">
+  <h2 class="t">8 &middot; Retries and idempotency</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A hand knocking on a closed door, standing in for retrying a request and asking whether knocking again is safe to repeat.">
+    <image href="../img/decks/m21/divider-8-knocking.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M21&middot;21</div>
 </section>
 
@@ -578,8 +571,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — what cloudinventory.py reports ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">9 &middot; What cloudinventory.py reports</h2>
+<section class="divider">
+  <h2 class="t">9 &middot; What cloudinventory.py reports</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A clipboard holding a written report with a pen resting on top, standing in for the JSON-safe report cloudinventory.py produces every time.">
+    <image href="../img/decks/m21/divider-9-clipboard-report.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M21&middot;24</div>
 </section>
 
@@ -698,7 +694,7 @@ footer, header, hgroup, main, menu, nav, section {
       if(!sec) return;
       var svg = sec.querySelector('svg');
       if(!svg) return;
-      var mh = 58;
+      var mh = sec.classList.contains('divider') ? 80 : 58;
       svg.style.maxHeight = mh + '%';
       var guard = 0;
       while (sec.scrollHeight > sec.clientHeight + 2 && mh > 18 && guard++ < 20){
