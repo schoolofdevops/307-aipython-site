@@ -101,6 +101,9 @@ footer, header, hgroup, main, menu, nav, section {
   .reveal .credit{ order:4; font-size:.85em; color:var(--gray); margin-top:16px; }
   .reveal .credit b{ color:var(--ink); font-weight:700; }
   .reveal .pageno{ position:absolute; bottom:14px; right:22px; font-size:.6em; color:#bdbdbd; }
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:2; font-size:1.1em; max-width:76%; }
+  .reveal .slides section.divider svg{ order:1; }
   .reveal .slide-number{ font-family:'Patrick Hand',cursive; }
   .reveal code{ font-family:'Patrick Hand',cursive; color:var(--ink); }
   .reveal em{ font-style:italic; }
@@ -181,8 +184,9 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — a changelog is the project's incident timeline ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">1 &middot; A changelog is the project's incident timeline</h2>
+<section class="divider">
+  <h2 class="t">A changelog is the project's incident timeline</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A spiral-bound logbook lying open on a desk, its pages covered with handwritten diary-style scribbled lines, a pen resting beside it."><image href="../img/decks/m13/divider-1-logbook.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M13&middot;02</div>
 </section>
 
@@ -289,8 +293,9 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — a version number is a promise, not just a label ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">2 &middot; A version number is a promise, not just a label</h2>
+<section class="divider">
+  <h2 class="t">A version number is a promise, not just a label</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A hand pressing a wax seal stamp onto a rolled parchment scroll, the stamped emblem impression visible on the wax."><image href="../img/decks/m13/divider-2-wax-seal.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M13&middot;05</div>
 </section>
 
@@ -368,8 +373,9 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — quality gates: one fixed order, every time ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">3 &middot; Quality gates: one fixed order, every single time</h2>
+<section class="divider">
+  <h2 class="t">Quality gates: one fixed order, every single time</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A row of three turnstile gates in a straight line at a station, a person walking through the first turnstile toward the next two."><image href="../img/decks/m13/divider-3-turnstiles.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M13&middot;08</div>
 </section>
 
@@ -492,8 +498,9 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — type checking: catching a mismatch before it runs ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">4 &middot; Type checking: catching a mismatch before it runs</h2>
+<section class="divider">
+  <h2 class="t">Type checking: catching a mismatch before it runs</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A hand test-fitting a jigsaw puzzle piece against a gap in a large puzzle, checking the shape before pressing it into place."><image href="../img/decks/m13/divider-4-puzzle-fit.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M13&middot;11</div>
 </section>
 
@@ -565,8 +572,9 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — secret scanning: one detector, one specific thing ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">5 &middot; Secret scanning: one detector, one specific thing</h2>
+<section class="divider">
+  <h2 class="t">Secret scanning: one detector, one specific thing</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A security guard using a handheld metal detector wand to scan an open suitcase resting on a table."><image href="../img/decks/m13/divider-5-metal-detector.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M13&middot;14</div>
 </section>
 
@@ -657,8 +665,9 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — dependency security: your supply chain, not just your code ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">6 &middot; Dependency security: your supply chain, not just your code</h2>
+<section class="divider">
+  <h2 class="t">Dependency security: your supply chain, not just your code</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A chain of shipping containers linked together on a dock, an inspector examining one container closely with a magnifying glass."><image href="../img/decks/m13/divider-6-container-inspect.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M13&middot;17</div>
 </section>
 
@@ -746,6 +755,7 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ SLIDE 14 — CLOSING ============ -->
 <section>
+  <p class="kicker">MODULE 13 &nbsp;·&nbsp; AI-Powered Python for DevOps, Platform Engineering &amp; SRE</p>
   <h2 class="t">Guardrails around code that already works</h2>
   <p class="s">Six checks, one script, before every push</p>
   <svg viewBox="0 0 1100 360" role="img" aria-label="Four numbered takeaways: a changelog records what changed, a version number promises what kind of change, quality gates catch mistakes before they ship, and one script runs all six gates in order.">
@@ -813,7 +823,7 @@ footer, header, hgroup, main, menu, nav, section {
       if(!sec) return;
       var svg = sec.querySelector('svg');
       if(!svg) return;
-      var mh = 58;
+      var mh = sec.classList.contains('divider') ? 80 : 58;
       svg.style.maxHeight = mh + '%';
       var guard = 0;
       while (sec.scrollHeight > sec.clientHeight + 2 && mh > 18 && guard++ < 20){
