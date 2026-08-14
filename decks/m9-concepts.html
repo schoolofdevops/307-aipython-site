@@ -101,6 +101,9 @@ footer, header, hgroup, main, menu, nav, section {
   .reveal .credit{ order:4; font-size:.85em; color:var(--gray); margin-top:16px; }
   .reveal .credit b{ color:var(--ink); font-weight:700; }
   .reveal .pageno{ position:absolute; bottom:14px; right:22px; font-size:.6em; color:#bdbdbd; }
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:2; font-size:1.1em; max-width:76%; }
+  .reveal .slides section.divider svg{ order:1; }
   .reveal .slide-number{ font-family:'Patrick Hand',cursive; }
   .reveal code{ font-family:'Patrick Hand',cursive; color:var(--ink); }
   .reveal em{ font-style:italic; }
@@ -139,54 +142,19 @@ footer, header, hgroup, main, menu, nav, section {
   <p class="kicker">MODULE 9 &nbsp;·&nbsp; AI-POWERED PYTHON FOR DEVOPS, PLATFORM ENGINEERING &amp; SRE</p>
   <h2 class="t" style="font-size:1.8em">One CLI call replaces five open dashboard tabs</h2>
   <p class="s" style="font-size:1.2em">the toolkit now asks a live API directly</p>
-  <svg viewBox="0 0 1100 380" role="img" aria-label="Left, a person figure clicking through five labelled browser tabs one at a time. Right, a single terminal typing platformops http-check against a live endpoint, returning a green checkmark and exit 0.">
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
-      <rect x="40" y="40" width="78" height="42" rx="6"/>
-      <rect x="132" y="40" width="78" height="42" rx="6"/>
-      <rect x="224" y="40" width="78" height="42" rx="6"/>
-      <rect x="316" y="40" width="78" height="42" rx="6"/>
-      <rect x="408" y="40" width="78" height="42" rx="6"/>
-    </g>
-    <g class="lbl-sm" text-anchor="middle">
-      <text x="79" y="66">payments</text>
-      <text x="171" y="66">build</text>
-      <text x="263" y="66">logs</text>
-      <text x="355" y="66">alerts</text>
-      <text x="447" y="66">status</text>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <circle cx="245" cy="190" r="20"/>
-      <line x1="245" y1="210" x2="245" y2="270"/>
-      <line x1="245" y1="230" x2="210" y2="250"/>
-      <line x1="245" y1="230" x2="280" y2="250"/>
-      <line x1="245" y1="270" x2="215" y2="310"/>
-      <line x1="245" y1="270" x2="275" y2="310"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="1.8" stroke-dasharray="4 6" stroke-linecap="round">
-      <path d="M225,180 C170,140 130,110 90,85" marker-end="url(#ahg)"/>
-      <path d="M265,180 C330,140 380,110 440,85" marker-end="url(#ahg)"/>
-    </g>
-    <text x="245" y="345" text-anchor="middle" class="lbl-sm" fill="#c62828">click, wait, click again &mdash; five tabs, still not sure</text>
-
-    <g filter="url(#rough)" fill="#d5e8d4" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <rect x="620" y="40" width="420" height="270" rx="14"/>
-    </g>
-    <text x="830" y="80" text-anchor="middle" class="lbl-b">$ platformops http-check \</text>
-    <text x="830" y="108" text-anchor="middle" class="lbl-sm">https://payments.internal</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <circle cx="830" cy="175" r="30"/>
-      <path d="M814,176 L826,190 L850,158"/>
-    </g>
-    <text x="830" y="240" text-anchor="middle" class="lbl-b" fill="#2e7d32">OK &mdash; exit 0</text>
-    <text x="830" y="270" text-anchor="middle" class="lbl-sm">one request, one answer</text>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A person standing before a wall of many small screens, reaching toward one screen showing a clear checkmark — one direct answer, instead of checking many dashboards one at a time.">
+    <image href="../img/decks/m9/title-screen-wall.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
   </svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI &nbsp;·&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M9&middot;01</div>
 </section>
 
 <!-- ============ DIVIDER — timeouts ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">1 &middot; Timeouts: the setting that quietly isn't set</h2>
+<section class="divider">
+  <h2 class="t">Timeouts: the setting that quietly isn't set</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A person sitting at an old telephone booth, holding the receiver to their ear, waiting, with a cobweb forming on the phone cord — a call with no timeout, waiting forever.">
+    <image href="../img/decks/m9/divider-1-phone-booth.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M9&middot;02</div>
 </section>
 
@@ -251,8 +219,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — two ways a call can fail ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">2 &middot; Two different ways a call can fail</h2>
+<section class="divider">
+  <h2 class="t">Two different ways a call can fail</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A road forking into two paths, one ending at a blank brick wall, the other blocked by a closed iron gate — two different ways a call can fail.">
+    <image href="../img/decks/m9/divider-2-fork-road.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M9&middot;05</div>
 </section>
 
@@ -294,8 +265,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — trust the shape ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">3 &middot; Trust the shape, not just the bytes</h2>
+<section class="divider">
+  <h2 class="t">Trust the shape, not just the bytes</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A customs inspector holding a sealed parcel against a shaped outline template on a wall, checking whether the parcel's silhouette matches before waving it through.">
+    <image href="../img/decks/m9/divider-3-customs-template.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M9&middot;07</div>
 </section>
 
@@ -343,8 +317,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — pagination ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">4 &middot; Pagination: when one page is not the whole answer</h2>
+<section class="divider">
+  <h2 class="t">Pagination: when one page is not the whole answer</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A librarian pulling one book from a very long shelf of identical books that continues beyond the edges of the frame — one page is not the whole answer.">
+    <image href="../img/decks/m9/divider-4-librarian-shelf.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M9&middot;09</div>
 </section>
 
@@ -437,8 +414,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — retrying ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">5 &middot; Retrying: knowing when trying again is safe</h2>
+<section class="divider">
+  <h2 class="t">Retrying: knowing when trying again is safe</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A person knocking gently on a door a second time, pausing calmly with a hand raised, waiting.">
+    <image href="../img/decks/m9/divider-5-knocking.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M9&middot;12</div>
 </section>
 
@@ -469,8 +449,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — credentials never appear in a log line ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">6 &middot; Credentials never appear in a log line</h2>
+<section class="divider">
+  <h2 class="t">Credentials never appear in a log line</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A courier slipping a sealed envelope through a locked mail slot in a door without unsealing it, an open notebook and pen sitting untouched on a table beside them — the credential passes through, but is never written down.">
+    <image href="../img/decks/m9/divider-6-mail-slot.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M9&middot;14</div>
 </section>
 
@@ -505,8 +488,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — one client, wired into the CLI ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">7 &middot; One client, wired into the CLI you already have</h2>
+<section class="divider">
+  <h2 class="t">One client, wired into the CLI you already have</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A thick cable being plugged from a large wall-mounted switchboard into a small handheld remote control device — one client, wired into the tool you already carry.">
+    <image href="../img/decks/m9/divider-7-plug-switchboard.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M9&middot;16</div>
 </section>
 
@@ -689,7 +675,7 @@ footer, header, hgroup, main, menu, nav, section {
       if(!sec) return;
       var svg = sec.querySelector('svg');
       if(!svg) return;
-      var mh = 58;
+      var mh = sec.classList.contains('divider') ? 80 : 58;
       svg.style.maxHeight = mh + '%';
       var guard = 0;
       while (sec.scrollHeight > sec.clientHeight + 2 && mh > 18 && guard++ < 20){
