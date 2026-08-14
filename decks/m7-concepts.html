@@ -101,6 +101,9 @@ footer, header, hgroup, main, menu, nav, section {
   .reveal .credit{ order:4; font-size:.85em; color:var(--gray); margin-top:16px; }
   .reveal .credit b{ color:var(--ink); font-weight:700; }
   .reveal .pageno{ position:absolute; bottom:14px; right:22px; font-size:.6em; color:#bdbdbd; }
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:2; font-size:1.1em; max-width:76%; }
+  .reveal .slides section.divider svg{ order:1; }
   .reveal .slide-number{ font-family:'Patrick Hand',cursive; }
   .reveal code{ font-family:'Patrick Hand',cursive; color:var(--ink); }
   .reveal em{ font-style:italic; }
@@ -193,8 +196,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — three kinds of errors ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">1 &middot; Three kinds of errors, and when each one shows up</h2>
+<section class="divider">
+  <h2 class="t">Three kinds of errors, and when each one shows up</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A handwritten recipe card propped against a kitchen jar, most lines neat but one line scribbled into an illegible tangle.">
+    <image href="../img/decks/m7/divider-1-recipe.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M7&middot;02</div>
 </section>
 
@@ -262,8 +268,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — reading a traceback bottom-up ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">2 &middot; Reading a traceback bottom-up</h2>
+<section class="divider">
+  <h2 class="t">Reading a traceback bottom-up</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A magnifying glass held over the bottom line of a long unrolled paper receipt, a hand tracing upward from the bottom.">
+    <image href="../img/decks/m7/divider-2-magnifier-receipt.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M7&middot;04</div>
 </section>
 
@@ -309,8 +318,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — try/except/else/finally ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">3 &middot; try / except / else / finally -- and the narrow-catch rule</h2>
+<section class="divider">
+  <h2 class="t">try / except / else / finally -- and the narrow-catch rule</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A doctor in a white coat standing at a hospital triage desk with empty gurneys behind, sorting through patient forms.">
+    <image href="../img/decks/m7/divider-3-triage-doctor.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M7&middot;06</div>
 </section>
 
@@ -391,8 +403,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — raising your own exceptions ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">4 &middot; Raising your own exceptions -- the ConfigError family</h2>
+<section class="divider">
+  <h2 class="t">Raising your own exceptions -- the ConfigError family</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A gloved investigator's hand placing a small object into a clear evidence bag, several other labeled evidence bags already sealed in a row.">
+    <image href="../img/decks/m7/divider-4-evidence-bags.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M7&middot;09</div>
 </section>
 
@@ -428,8 +443,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — exit codes ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">5 &middot; Exit codes -- the contract a machine actually reads</h2>
+<section class="divider">
+  <h2 class="t">Exit codes -- the contract a machine actually reads</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A mechanical robot arm on a factory line picking up a single small token from a conveyor belt, a gauge dial mounted beside it.">
+    <image href="../img/decks/m7/divider-5-robot-token.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M7&middot;11</div>
 </section>
 
@@ -501,8 +519,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — logging ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">6 &middot; Logging -- a note for right now versus an entry in the log</h2>
+<section class="divider">
+  <h2 class="t">Logging -- a note for right now versus an entry in the log</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="An open ship captain's logbook on a wooden desk beside a porthole window, a quill pen resting across the open pages.">
+    <image href="../img/decks/m7/divider-6-shiplog.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M7&middot;14</div>
 </section>
 
@@ -602,8 +623,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — the debugging ladder ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">7 &middot; The debugging ladder</h2>
+<section class="divider">
+  <h2 class="t">The debugging ladder</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A person climbing a tall wooden ladder holding a flashlight, looking closely at one rung, investigating one step at a time.">
+    <image href="../img/decks/m7/divider-7-ladder-flashlight.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M7&middot;18</div>
 </section>
 
@@ -695,6 +719,7 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ SLIDE 14 — closing / build it ============ -->
 <section>
+  <p class="kicker">MODULE 7 &nbsp;·&nbsp; AI-POWERED PYTHON FOR DEVOPS, PLATFORM ENGINEERING &amp; SRE</p>
   <h2 class="t">Now make the tool tell the truth -- build v0.5</h2>
   <p class="s">same discipline, one broken tool, six scenarios</p>
   <svg viewBox="0 0 1100 300" role="img" aria-label="A closing hand-off card: read tracebacks bottom-up, catch only ConfigError, raise your own exception types, exit 0 1 2 on purpose, and log with levels and structured fields -- six scenarios fixed, v0.5.">
@@ -753,7 +778,7 @@ footer, header, hgroup, main, menu, nav, section {
       if(!sec) return;
       var svg = sec.querySelector('svg');
       if(!svg) return;
-      var mh = 58;
+      var mh = sec.classList.contains('divider') ? 80 : 58;
       svg.style.maxHeight = mh + '%';
       var guard = 0;
       while (sec.scrollHeight > sec.clientHeight + 2 && mh > 18 && guard++ < 20){

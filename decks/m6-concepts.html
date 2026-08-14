@@ -101,6 +101,9 @@ footer, header, hgroup, main, menu, nav, section {
   .reveal .credit{ order:4; font-size:.85em; color:var(--gray); margin-top:16px; }
   .reveal .credit b{ color:var(--ink); font-weight:700; }
   .reveal .pageno{ position:absolute; bottom:14px; right:22px; font-size:.6em; color:#bdbdbd; }
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:2; font-size:1.1em; max-width:76%; }
+  .reveal .slides section.divider svg{ order:1; }
   .reveal .slide-number{ font-family:'Patrick Hand',cursive; }
   .reveal code{ font-family:'Patrick Hand',cursive; color:var(--ink); }
   .reveal em{ font-style:italic; }
@@ -197,8 +200,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — a path is an object, not a string ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">1 &middot; A path is an object, not a piece of string</h2>
+<section class="divider">
+  <h2 class="t">A path is an object, not a piece of string</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A neatly labeled luggage tag tied to a suitcase handle, beside a loose tangled piece of plain string.">
+    <image href="../img/decks/m6/divider-1-luggage-tag-string.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M6&middot;02</div>
 </section>
 
@@ -233,8 +239,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — reading and writing text ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">2 &middot; Reading and writing text &mdash; and why write_text is dangerous on its own</h2>
+<section class="divider">
+  <h2 class="t">Reading and writing text &mdash; and why write_text is dangerous on its own</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A hand wiping a whiteboard completely clean with an eraser, the board now blank.">
+    <image href="../img/decks/m6/divider-2-whiteboard-erase.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M6&middot;04</div>
 </section>
 
@@ -298,8 +307,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — three formats you will parse constantly ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">3 &middot; Three formats you will parse constantly</h2>
+<section class="divider">
+  <h2 class="t">Three formats you will parse constantly</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="Three different folders on a shelf, each bound in a different way — one with a metal clasp, one tied with string, one as loose stapled sheets.">
+    <image href="../img/decks/m6/divider-3-three-folders.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M6&middot;07</div>
 </section>
 
@@ -360,8 +372,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — where a setting's value comes from ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">4 &middot; Where a setting's value actually comes from &mdash; the three-layer rule</h2>
+<section class="divider">
+  <h2 class="t">Where a setting's value actually comes from &mdash; the three-layer rule</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="Three blank index cards stacked slightly offset on top of each other on a table, each casting a small shadow so the layering is clear.">
+    <image href="../img/decks/m6/divider-4-stacked-cards.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M6&middot;10</div>
 </section>
 
@@ -369,48 +384,8 @@ footer, header, hgroup, main, menu, nav, section {
 <section>
   <h2 class="t">Three places a setting's value can come from &mdash; and only one order that works</h2>
   <p class="s">the recipe card on the kitchen wall</p>
-  <svg viewBox="0 0 1100 400" role="img" aria-label="A recipe card pinned to a kitchen wall shows a printed base recipe as the default, pen edits on the card for today's batch as the config file, and a cook figure tasting the pot and calling out more salt as the environment variable, which wins over everything printed or written.">
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-linecap="round">
-      <line x1="60" y1="40" x2="60" y2="330"/>
-      <line x1="60" y1="40" x2="440" y2="40"/>
-      <line x1="440" y1="40" x2="440" y2="330"/>
-      <line x1="60" y1="330" x2="440" y2="330"/>
-    </g>
-    <text x="250" y="30" text-anchor="middle" class="lbl-g">kitchen wall</text>
-    <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
-      <rect x="100" y="70" width="300" height="220" rx="8"/>
-    </g>
-    <text x="250" y="105" text-anchor="middle" class="lbl-b">recipe card</text>
-    <text x="250" y="140" text-anchor="middle" class="lbl-sm">base recipe: 1 tsp salt</text>
-    <text x="250" y="170" text-anchor="middle" class="lbl-g">printed &mdash; the default</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2" stroke-dasharray="4 6" stroke-linecap="round">
-      <line x1="140" y1="195" x2="360" y2="195"/>
-    </g>
-    <text x="250" y="220" text-anchor="middle" class="lbl-sm">2 tsp, this batch</text>
-    <text x="250" y="248" text-anchor="middle" class="lbl-g">pen edit &mdash; the config file</text>
-    <text x="250" y="272" text-anchor="middle" class="lbl-g">overrides the print, if written</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <circle cx="700" cy="140" r="18"/>
-      <line x1="700" y1="158" x2="700" y2="225"/>
-      <line x1="700" y1="178" x2="670" y2="205"/>
-      <line x1="700" y1="178" x2="730" y2="205"/>
-      <line x1="700" y1="225" x2="678" y2="270"/>
-      <line x1="700" y1="225" x2="722" y2="270"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
-      <ellipse cx="700" cy="300" rx="55" ry="16"/>
-    </g>
-    <text x="700" y="80" text-anchor="middle" class="lbl-g">tastes the pot</text>
-    <g filter="url(#rough)" fill="#ffe6cc" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <rect x="800" y="150" width="260" height="70" rx="30"/>
-    </g>
-    <text x="930" y="192" text-anchor="middle" class="lbl-b">"more salt!"</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
-      <path d="M745,175 C770,175 780,178 795,180" marker-end="url(#ah)"/>
-    </g>
-    <text x="930" y="240" text-anchor="middle" class="lbl-g">spoken &mdash; the environment variable</text>
-    <text x="930" y="265" text-anchor="middle" fill="#2e7d32" class="lbl-sm">wins over everything printed or written</text>
-    <text x="930" y="290" text-anchor="middle" class="lbl-g">only for as long as this batch cooks</text>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A recipe card on a kitchen counter, with a sticky note stuck on top of it, and a small correction slip pinned over both.">
+    <image href="../img/decks/m6/analogy-recipe-card.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
   </svg>
   <div class="pageno">M6&middot;11</div>
 </section>
@@ -468,8 +443,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — a file that might not be there ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">5 &middot; A file that might not be there</h2>
+<section class="divider">
+  <h2 class="t">A file that might not be there</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A person opening a cabinet door to find the shelf inside completely empty.">
+    <image href="../img/decks/m6/divider-5-empty-cabinet.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M6&middot;13</div>
 </section>
 
@@ -498,8 +476,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — never leave a half-written file on disk ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">6 &middot; Never leave a half-written file on disk &mdash; temp file, then rename</h2>
+<section class="divider">
+  <h2 class="t">Never leave a half-written file on disk &mdash; temp file, then rename</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A hand swapping a finished wooden shop sign into place, taking down a blank sign that was there before.">
+    <image href="../img/decks/m6/divider-6-sign-swap.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M6&middot;15</div>
 </section>
 
@@ -539,8 +520,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — a backup is only a backup once restored ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">7 &middot; A backup is only a backup once you have restored from it</h2>
+<section class="divider">
+  <h2 class="t">A backup is only a backup once you have restored from it</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A sealed cardboard box covered in a thick layer of dust, sitting untouched in the corner of a dim attic.">
+    <image href="../img/decks/m6/divider-7-dusty-box.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M6&middot;17</div>
 </section>
 
@@ -570,8 +554,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — a config file is not a safe or a vault ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">8 &middot; A config file is not a safe or a vault</h2>
+<section class="divider">
+  <h2 class="t">A config file is not a safe or a vault</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="An unlocked filing cabinet drawer standing open in a hallway, papers visible inside, no lock on it.">
+    <image href="../img/decks/m6/divider-8-unlocked-cabinet.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M6&middot;19</div>
 </section>
 
@@ -632,6 +619,7 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ SLIDE 14 — closing / build it ============ -->
 <section>
+  <p class="kicker">MODULE 6 &nbsp;·&nbsp; AI-POWERED PYTHON FOR DEVOPS, PLATFORM ENGINEERING &amp; SRE</p>
   <h2 class="t">One file, one swap, one truth &mdash; now build it</h2>
   <p class="s">same boundary and atomic-write habits, now on the whole config</p>
   <svg viewBox="0 0 1100 300" role="img" aria-label="A closing hand-off card: load service dot yaml with pathlib and safe_load, validate through ServiceDefinition, layer environment variable overrides using the precedence rule, then write the resolved config back atomically and tag v0.4.">
@@ -690,7 +678,7 @@ footer, header, hgroup, main, menu, nav, section {
       if(!sec) return;
       var svg = sec.querySelector('svg');
       if(!svg) return;
-      var mh = 58;
+      var mh = sec.classList.contains('divider') ? 80 : 58;
       svg.style.maxHeight = mh + '%';
       var guard = 0;
       while (sec.scrollHeight > sec.clientHeight + 2 && mh > 18 && guard++ < 20){
