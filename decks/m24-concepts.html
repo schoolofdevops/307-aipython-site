@@ -101,6 +101,9 @@ footer, header, hgroup, main, menu, nav, section {
   .reveal .credit{ order:4; font-size:.85em; color:var(--gray); margin-top:16px; }
   .reveal .credit b{ color:var(--ink); font-weight:700; }
   .reveal .pageno{ position:absolute; bottom:14px; right:22px; font-size:.6em; color:#bdbdbd; }
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:2; font-size:1.1em; max-width:76%; }
+  .reveal .slides section.divider svg{ order:1; }
   .reveal .slide-number{ font-family:'Patrick Hand',cursive; }
   .reveal code{ font-family:'Patrick Hand',cursive; color:var(--ink); }
   .reveal em{ font-style:italic; }
@@ -139,51 +142,19 @@ footer, header, hgroup, main, menu, nav, section {
   <p class="kicker">MODULE 24 &nbsp;&middot;&nbsp; AI-POWERED PYTHON FOR DEVOPS &amp; SRE</p>
   <h2 class="t" style="font-size:1.8em">Cloud Governance and Compliance Automation</h2>
   <p class="s" style="font-size:1.2em">find every violation, fix none of them</p>
-  <svg viewBox="0 0 1100 300" role="img" aria-label="A policy file and real AWS resources both feed into cloudaudit.py, which produces a findings report; two labels underneath read detect and never fix.">
-    <g filter="url(#rough)" fill="#e1d5e7" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <rect x="55" y="35" width="230" height="64" rx="10"/>
-    </g>
-    <text x="170" y="62" text-anchor="middle" class="lbl-b">policy.yaml</text>
-    <text x="170" y="87" text-anchor="middle" class="lbl-g">written rules</text>
-    <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <rect x="55" y="150" width="230" height="64" rx="10"/>
-    </g>
-    <text x="170" y="177" text-anchor="middle" class="lbl-b">real AWS resources</text>
-    <text x="170" y="202" text-anchor="middle" class="lbl-g">read-only calls</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <path d="M285,67 C360,75 400,95 428,112" marker-end="url(#ah)"/>
-      <path d="M285,182 C360,175 400,150 428,132" marker-end="url(#ah)"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="3" stroke-linecap="round">
-      <rect x="435" y="90" width="230" height="110" rx="12"/>
-    </g>
-    <text x="550" y="135" text-anchor="middle" class="lbl-b">cloudaudit.py</text>
-    <text x="550" y="165" text-anchor="middle" class="lbl-g">the inspector</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <path d="M665,145 L730,145" marker-end="url(#ah)"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
-      <path d="M745,80 L915,80 L955,120 L955,225 L745,225 Z"/>
-      <path d="M915,80 L915,120 L955,120"/>
-      <line x1="770" y1="150" x2="930" y2="150"/>
-      <line x1="770" y1="175" x2="930" y2="175"/>
-      <line x1="770" y1="200" x2="895" y2="200"/>
-    </g>
-    <text x="850" y="248" text-anchor="middle" class="lbl-sm">findings report</text>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-dasharray="5 6" stroke-linecap="round">
-      <path d="M500,200 L470,255" marker-end="url(#ahg)"/>
-      <path d="M600,200 L640,255" marker-end="url(#ahg)"/>
-    </g>
-    <text x="450" y="278" text-anchor="middle" class="lbl-g" fill="#2e7d32">detect</text>
-    <text x="655" y="278" text-anchor="middle" class="lbl-g" fill="#c62828">never fix</text>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="An inspector attaches a blank warning tag to a locked door; the padlock is left untouched.">
+    <image href="../img/decks/m24/title-inspector-tag.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
   </svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;&middot;&nbsp; School of DevOps &amp; AI &nbsp;&middot;&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M24&middot;01</div>
 </section>
 
 <!-- ============ DIVIDER — section 1 ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">1 &middot; The inspector's checklist, not the repair crew</h2>
+<section class="divider">
+  <h2 class="t">The inspector's checklist, not the repair crew</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A clipboard holding a blank citation report and a hard hat, resting against a tool bag on a table.">
+    <image href="../img/decks/m24/divider-1-citation-report.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M24&middot;02</div>
 </section>
 
@@ -191,55 +162,8 @@ footer, header, hgroup, main, menu, nav, section {
 <section>
   <h2 class="t">The inspector checks the site; a separate crew fixes it</h2>
   <p class="s">same building, two separate jobs</p>
-  <svg viewBox="0 0 1100 360" role="img" aria-label="An inspector stands outside a building holding a clipboard, pointing to a blocked exit; an arrow leads to a citation report card, and a dashed arrow leads on to a faded maintenance crew box, marked as a separate job for later.">
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <rect x="80" y="60" width="330" height="220" rx="6"/>
-      <path d="M80,60 L245,14 L410,60"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-linecap="round">
-      <line x1="80" y1="140" x2="410" y2="140"/>
-      <line x1="80" y1="210" x2="410" y2="210"/>
-    </g>
-    <g filter="url(#rough)" fill="#f8cecc" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
-      <rect x="220" y="215" width="55" height="60" rx="4"/>
-    </g>
-    <text x="247" y="298" text-anchor="middle" class="lbl-sm" fill="#c62828">exit blocked, 3rd floor</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <circle cx="500" cy="110" r="16"/>
-      <line x1="500" y1="126" x2="500" y2="180"/>
-      <line x1="500" y1="140" x2="465" y2="170"/>
-      <line x1="500" y1="140" x2="540" y2="160"/>
-      <line x1="500" y1="180" x2="478" y2="220"/>
-      <line x1="500" y1="180" x2="522" y2="220"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
-      <rect x="530" y="150" width="46" height="62" rx="4"/>
-      <line x1="538" y1="164" x2="568" y2="164"/>
-      <line x1="538" y1="178" x2="568" y2="178"/>
-      <line x1="538" y1="192" x2="558" y2="192"/>
-    </g>
-    <text x="510" y="250" text-anchor="middle" class="lbl">the inspector</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <path d="M580,175 C650,165 700,155 748,148" marker-end="url(#ah)"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <path d="M760,70 L930,70 L968,108 L968,215 L760,215 Z"/>
-      <path d="M930,70 L930,108 L968,108"/>
-      <line x1="785" y1="135" x2="945" y2="135"/>
-      <line x1="785" y1="160" x2="945" y2="160"/>
-      <line x1="785" y1="185" x2="905" y2="185"/>
-    </g>
-    <text x="864" y="240" text-anchor="middle" class="lbl-sm">citation report</text>
-    <text x="864" y="262" text-anchor="middle" class="lbl-g">exact evidence, not just "fail"</text>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-dasharray="9 7" stroke-linecap="round">
-      <path d="M968,150 C1010,150 1030,160 1050,175" marker-end="url(#ahg)"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-dasharray="9 7" stroke-linecap="round">
-      <rect x="985" y="180" width="90" height="90" rx="8"/>
-    </g>
-    <text x="1030" y="220" text-anchor="middle" class="lbl-sm" fill="#757575">maintenance</text>
-    <text x="1030" y="238" text-anchor="middle" class="lbl-sm" fill="#757575">crew</text>
-    <text x="1030" y="258" text-anchor="middle" class="lbl-g">later, a separate tool</text>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="An inspector with a clipboard points at a blocked corridor while a separate maintenance worker with a tool cart waits down the hallway, not yet moving.">
+    <image href="../img/decks/m24/analogy-inspector-crew.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
   </svg>
   <div class="pageno">M24&middot;03</div>
 </section>
@@ -329,8 +253,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — section 2 ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">2 &middot; Policy as data &mdash; rules you can read without reading Python</h2>
+<section class="divider">
+  <h2 class="t">Policy as data &mdash; rules you can read without reading Python</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="An open rulebook on a desk, reading glasses resting on its blank pages.">
+    <image href="../img/decks/m24/divider-2-rulebook.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M24&middot;06</div>
 </section>
 
@@ -409,8 +336,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — section 3 ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">3 &middot; Evidence composes with the inventory, it does not duplicate it</h2>
+<section class="divider">
+  <h2 class="t">Evidence composes with the inventory, it does not duplicate it</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A small wooden crate nested inside a larger open wooden crate.">
+    <image href="../img/decks/m24/divider-3-nested-box.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M24&middot;10</div>
 </section>
 
@@ -487,8 +417,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — section 4 ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">4 &middot; Detection is pure &mdash; provably, not just by convention</h2>
+<section class="divider">
+  <h2 class="t">Detection is pure &mdash; provably, not just by convention</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A scientist observing through a glass window into a sealed room, notepad in hand, not touching anything.">
+    <image href="../img/decks/m24/divider-4-observation-window.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M24&middot;13</div>
 </section>
 
@@ -554,8 +487,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — section 5 ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">5 &middot; A finding carries evidence, not a bare verdict</h2>
+<section class="divider">
+  <h2 class="t">A finding carries evidence, not a bare verdict</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A sealed evidence bag with a blank tag, next to a magnifying glass on a table.">
+    <image href="../img/decks/m24/divider-5-evidence-bag.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M24&middot;16</div>
 </section>
 
@@ -610,8 +546,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — section 6 ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">6 &middot; Exceptions suppress, they never delete</h2>
+<section class="divider">
+  <h2 class="t">Exceptions suppress, they never delete</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="An hourglass nearly empty, next to a closed folder on a table.">
+    <image href="../img/decks/m24/divider-6-hourglass-folder.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M24&middot;19</div>
 </section>
 
@@ -705,8 +644,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — common pitfalls ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Common pitfalls</h2>
+<section class="divider">
+  <h2 class="t">Common pitfalls</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A blank diamond-shaped warning road sign at a construction site.">
+    <image href="../img/decks/m24/divider-7-pitfalls-sign.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M24&middot;23</div>
 </section>
 
@@ -817,7 +759,7 @@ footer, header, hgroup, main, menu, nav, section {
       if(!sec) return;
       var svg = sec.querySelector('svg');
       if(!svg) return;
-      var mh = 58;
+      var mh = sec.classList.contains('divider') ? 80 : 58;
       svg.style.maxHeight = mh + '%';
       var guard = 0;
       while (sec.scrollHeight > sec.clientHeight + 2 && mh > 18 && guard++ < 20){
