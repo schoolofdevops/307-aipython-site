@@ -114,7 +114,8 @@ footer, header, hgroup, main, menu, nav, section {
   .num{ fill:var(--ink); font-size:24px; font-weight:700; }
   /* Section divider slides (style guide §3a) — title only, centered */
   .reveal .slides section.divider{ justify-content:center; align-items:center; }
-  .reveal .slides section.divider h2.t{ order:0; font-size:2.2em; max-width:88%; }
+  .reveal .slides section.divider h2.t{ order:2; font-size:1.1em; max-width:76%; }
+  .reveal .slides section.divider svg{ order:1; }
 </style>
 </head>
 <body>
@@ -139,34 +140,14 @@ footer, header, hgroup, main, menu, nav, section {
   <p class="kicker">MODULE 32 &nbsp;&middot;&nbsp; AI-POWERED PYTHON FOR DEVOPS &amp; SRE</p>
   <h2 class="t" style="font-size:1.6em">Every capability gets a self-service front door</h2>
   <p class="s" style="font-size:1.2em">same function, called from the CLI and from the API</p>
-  <svg viewBox="0 0 1100 300" role="img" aria-label="A single validate_service function is called from two doors: the platformops CLI on the left and a new HTTP API on the right, both reaching the exact same function.">
-    <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <rect x="40" y="110" width="230" height="70" rx="12"/>
-    </g>
-    <text x="155" y="142" text-anchor="middle" class="lbl-b">platformops CLI</text>
-    <text x="155" y="166" text-anchor="middle" class="lbl-sm">validate service.yaml</text>
-    <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <rect x="830" y="110" width="230" height="70" rx="12"/>
-    </g>
-    <text x="945" y="142" text-anchor="middle" class="lbl-b">POST /services/validate</text>
-    <text x="945" y="166" text-anchor="middle" class="lbl-sm">the new API door</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <path d="M270,145 C370,145 400,145 430,145" marker-end="url(#ah)"/>
-      <path d="M830,145 C730,145 700,145 670,145" marker-end="url(#ah)"/>
-    </g>
-    <g filter="url(#rough)" fill="#d5e8d4" stroke="#1e1e1e" stroke-width="3" stroke-linecap="round">
-      <rect x="435" y="95" width="230" height="100" rx="12"/>
-    </g>
-    <text x="550" y="135" text-anchor="middle" class="lbl-b">validate_service()</text>
-    <text x="550" y="163" text-anchor="middle" class="lbl-sm">one function</text>
-    <text x="550" y="183" text-anchor="middle" class="lbl-sm">written once</text>
-  </svg>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A cook stands at one large pot on a stove and ladles from that same single pot two ways at once: onto his own plate on the left, and out through a restaurant service window on the right where waiting customers hold up empty plates."><image href="../img/decks/m32/title.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;&middot;&nbsp; School of DevOps &amp; AI &nbsp;&middot;&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M32&middot;01</div>
 </section>
 
 <section class="divider">
-  <h2 class="t">1. A recipe you cook, and a dish anyone can order</h2>
+  <h2 class="t">A recipe you cook, and a dish anyone can order</h2>
+<svg viewBox="0 0 1600 900" role="img" aria-label="On the left a lone home cook stirs a pot at a cramped home stove with a blank recipe card propped up; on the right, through a restaurant pass-through window, a waiter carries the same finished plate out to a seated diner who simply points at a blank menu."><image href="../img/decks/m32/d1-menu-item.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M32&middot;02</div>
 </section>
 
@@ -250,7 +231,8 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <section class="divider">
-  <h2 class="t">2. Every route is a thin wrapper -- never a second recipe</h2>
+  <h2 class="t">Every route is a thin wrapper -- never a second recipe</h2>
+<svg viewBox="0 0 1600 900" role="img" aria-label="Two chefs cook what should be the same dish at two separate stoves, each reading their own separate blank recipe card, and the two finished plates on the counter between them look clearly different while a puzzled waiter looks from one to the other."><image href="../img/decks/m32/d2-second-recipe.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M32&middot;06</div>
 </section>
 
@@ -339,7 +321,8 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <section class="divider">
-  <h2 class="t">3. Who can call this, and why -- API keys, and what a bigger system would add</h2>
+  <h2 class="t">Who can call this, and why -- API keys, and what a bigger system would add</h2>
+<svg viewBox="0 0 1600 900" role="img" aria-label="A doorman holds a restaurant's staff entrance half open while checking a small key a visitor holds out, raising his other palm to turn away a second visitor who has no key, with an unattended side door standing open beside them."><image href="../img/decks/m32/d3-api-keys.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M32&middot;10</div>
 </section>
 
@@ -415,7 +398,8 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <section class="divider">
-  <h2 class="t">4. An audit trail -- who called what, when, with what result</h2>
+  <h2 class="t">An audit trail -- who called what, when, with what result</h2>
+<svg viewBox="0 0 1600 900" role="img" aria-label="A kitchen ticket printer spools a long blank paper ribbon that curls down and coils across the floor while a cook tears off one ticket and holds it up, more still printing behind him."><image href="../img/decks/m32/d4-audit-trail.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M32&middot;13</div>
 </section>
 
@@ -475,7 +459,8 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <section class="divider">
-  <h2 class="t">5. A protocol status and a business verdict are two different things</h2>
+  <h2 class="t">A protocol status and a business verdict are two different things</h2>
+<svg viewBox="0 0 1600 900" role="img" aria-label="A waiter beams as he delivers a covered dish to a restaurant table while the seated diner, having already lifted the lid, frowns down at a nearly empty plate."><image href="../img/decks/m32/d5-status-verdict.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M32&middot;16</div>
 </section>
 
@@ -500,7 +485,8 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <section class="divider">
-  <h2 class="t">6. Plan, never execute -- the same safety line Module 25 already drew</h2>
+  <h2 class="t">Plan, never execute -- the same safety line Module 25 already drew</h2>
+<svg viewBox="0 0 1600 900" role="img" aria-label="A chef stands at a prep table writing the whole dish out on a blank notepad, ingredients laid out untouched in front of him and the stove burners behind him dark and unlit."><image href="../img/decks/m32/d6-plan-not-execute.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M32&middot;18</div>
 </section>
 
@@ -534,6 +520,7 @@ footer, header, hgroup, main, menu, nav, section {
 
 <section class="divider">
   <h2 class="t">Common pitfalls</h2>
+<svg viewBox="0 0 1600 900" role="img" aria-label="A waiter strides across a restaurant floor carrying a tall stack of plates on a tray, unable to see the spilled puddle, the loose tipped-up floor tile, the low stool in his path and the open floor hatch just ahead of his next step."><image href="../img/decks/m32/d7-pitfalls.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M32&middot;20</div>
 </section>
 
@@ -567,21 +554,21 @@ footer, header, hgroup, main, menu, nav, section {
   <p class="kicker">MODULE 32 &nbsp;&middot;&nbsp; TAKEAWAYS</p>
   <h2 class="t" style="font-size:1.8em">One door for you, a second door for everyone else</h2>
   <p class="s" style="font-size:1.2em">reused logic, real auth, a real audit trail</p>
-  <svg viewBox="0 0 1100 250" role="img" aria-label="Four takeaways: every route is a thin wrapper around an already-tested function; an API key gates every route except health; every request is audited; and remediation stays plan-only, with no execute route.">
+  <svg viewBox="0 0 1100 275" role="img" aria-label="Four takeaways: every route is a thin wrapper around an already-tested function; an API key gates every route except health; every request is audited; and remediation stays plan-only, with no execute route.">
     <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
-      <circle cx="70" cy="55" r="20"/>
-      <circle cx="70" cy="120" r="20"/>
-      <circle cx="70" cy="185" r="20"/>
-      <circle cx="600" cy="55" r="20"/>
+      <circle cx="70" cy="45" r="20"/>
+      <circle cx="70" cy="110" r="20"/>
+      <circle cx="70" cy="175" r="20"/>
+      <circle cx="70" cy="240" r="20"/>
     </g>
-    <text x="70" y="63" text-anchor="middle" class="num">1</text>
-    <text x="70" y="128" text-anchor="middle" class="num">2</text>
-    <text x="70" y="193" text-anchor="middle" class="num">3</text>
-    <text x="600" y="63" text-anchor="middle" class="num">4</text>
-    <text x="105" y="62" class="lbl">Every route is a thin wrapper around an already-tested function.</text>
-    <text x="105" y="127" class="lbl">X-API-Key gates every route except /health.</text>
-    <text x="105" y="192" class="lbl">Every request is audited -- accepted or rejected.</text>
-    <text x="635" y="62" class="lbl">Remediation stays plan-only -- no execute route.</text>
+    <text x="70" y="53" text-anchor="middle" class="num">1</text>
+    <text x="70" y="118" text-anchor="middle" class="num">2</text>
+    <text x="70" y="183" text-anchor="middle" class="num">3</text>
+    <text x="70" y="248" text-anchor="middle" class="num">4</text>
+    <text x="105" y="52" class="lbl">Every route is a thin wrapper around an already-tested function.</text>
+    <text x="105" y="117" class="lbl">X-API-Key gates every route except /health.</text>
+    <text x="105" y="182" class="lbl">Every request is audited -- accepted or rejected.</text>
+    <text x="105" y="247" class="lbl">Remediation stays plan-only -- no execute route.</text>
   </svg>
   <p class="credit">Now open <b>Module 32 &middot; Lab</b>. &nbsp;&middot;&nbsp; <b>Gourav Shah</b> &nbsp;&middot;&nbsp; School of DevOps &amp; AI</p>
   <div class="pageno">M32&middot;22</div>
@@ -623,7 +610,7 @@ footer, header, hgroup, main, menu, nav, section {
       if(!sec) return;
       var svg = sec.querySelector('svg');
       if(!svg) return;
-      var mh = 58;
+      var mh = sec.classList.contains('divider') ? 80 : 58;
       svg.style.maxHeight = mh + '%';
       var guard = 0;
       while (sec.scrollHeight > sec.clientHeight + 2 && mh > 18 && guard++ < 20){

@@ -115,7 +115,8 @@ footer, header, hgroup, main, menu, nav, section {
 
   /* Section divider slides (style guide §3a) — title only, centered */
   .reveal .slides section.divider{ justify-content:center; align-items:center; }
-  .reveal .slides section.divider h2.t{ order:0; font-size:2.2em; max-width:88%; }
+  .reveal .slides section.divider h2.t{ order:2; font-size:1.1em; max-width:76%; }
+  .reveal .slides section.divider svg{ order:1; }
 </style>
 </head>
 <body>
@@ -143,43 +144,7 @@ footer, header, hgroup, main, menu, nav, section {
   <p class="kicker">MODULE 29 &nbsp;&middot;&nbsp; AI-POWERED PYTHON FOR DEVOPS &amp; SRE</p>
   <h2 class="t" style="font-size:1.8em">Restart a Deployment, but only through the gates</h2>
   <p class="s" style="font-size:1.2em">one action, and only after every gate agrees</p>
-  <svg viewBox="0 0 1100 300" role="img" aria-label="A target Deployment goes into restart-plan, the work order. Three gates — namespace allowlist, approval, and cooldown — stand between the plan and a real restart. Only after all three agree does the real restart happen, and every real restart is written to the audit log.">
-    <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <rect x="12" y="105" width="185" height="90" rx="10"/>
-    </g>
-    <text x="104" y="140" text-anchor="middle" class="lbl-b">a Deployment</text>
-    <text x="104" y="168" text-anchor="middle" class="lbl-sm">the restart target</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <path d="M197,150 L252,150" marker-end="url(#ah)"/>
-    </g>
-    <g filter="url(#rough)" fill="#e1d5e7" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
-      <rect x="258" y="105" width="205" height="90" rx="10"/>
-    </g>
-    <text x="360" y="140" text-anchor="middle" class="lbl-b">restart-plan</text>
-    <text x="360" y="168" text-anchor="middle" class="lbl-sm">the work order</text>
-    <g filter="url(#rough)" fill="#ffe6cc" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="9 7">
-      <rect x="485" y="70" width="230" height="160" rx="10"/>
-    </g>
-    <text x="600" y="102" text-anchor="middle" class="lbl-b">three gates</text>
-    <text x="600" y="136" text-anchor="middle" class="lbl-sm">namespace allowlist</text>
-    <text x="600" y="166" text-anchor="middle" class="lbl-sm">--approve</text>
-    <text x="600" y="196" text-anchor="middle" class="lbl-sm">cooldown</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <path d="M463,150 L479,150"/>
-      <path d="M715,150 L760,150" marker-end="url(#ah)"/>
-    </g>
-    <text x="737" y="135" text-anchor="middle" class="lbl-g">all agree</text>
-    <g filter="url(#rough)" fill="#d5e8d4" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
-      <rect x="768" y="105" width="200" height="90" rx="10"/>
-    </g>
-    <text x="868" y="140" text-anchor="middle" class="lbl-b">real restart</text>
-    <text x="868" y="168" text-anchor="middle" class="lbl-g" fill="#2e7d32">then logged</text>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 5">
-      <path d="M868,195 C868,225 900,232 950,236"/>
-      <rect x="955" y="215" width="130" height="55" rx="8"/>
-    </g>
-    <text x="1020" y="248" text-anchor="middle" class="lbl-g">audit log</text>
-  </svg>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A data center technician stands at a server rack with one hand paused just short of the power switch, while a work order on a clipboard waits to be signed off first."><image href="../img/decks/m29/title.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;&middot;&nbsp; School of DevOps &amp; AI &nbsp;&middot;&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M29&middot;01</div>
 </section>
@@ -187,6 +152,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- ============ DIVIDER — intro ============ -->
 <section class="divider">
   <h2 class="t">From reading the cluster to safely acting on it</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A technician sets a magnifying glass down on a cart, having finished inspecting the rack, and steps forward to reach the rack's control panel and act on it."><image href="../img/decks/m29/d1-read-to-act.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M29&middot;02</div>
 </section>
 
@@ -270,6 +236,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- ============ DIVIDER — 1 ============ -->
 <section class="divider">
   <h2 class="t">A power-cycle needs a work order, not just a hand on the switch</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A gloved hand rests on a large rack power switch while a work order form on a clipboard is held out beside it, waiting to be completed before the switch is thrown."><image href="../img/decks/m29/d2-work-order.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M29&middot;05</div>
 </section>
 
@@ -361,6 +328,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- ============ DIVIDER — 2 ============ -->
 <section class="divider">
   <h2 class="t">Three gates, not two</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A data center corridor with three closed security gates one behind the other, each needing to open in turn before the server rack waiting at the far end can be reached."><image href="../img/decks/m29/d3-three-gates.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M29&middot;08</div>
 </section>
 
@@ -450,6 +418,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- ============ DIVIDER — 3 ============ -->
 <section class="divider">
   <h2 class="t">A real dry run, not a guess written in Python</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A technician kneels and rehearses a maintenance procedure on a practice mock-up rack in the foreground, while the real production racks stand untouched behind a rope barrier."><image href="../img/decks/m29/d4-dry-run.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M29&middot;11</div>
 </section>
 
@@ -532,6 +501,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- ============ DIVIDER — 4 ============ -->
 <section class="divider">
   <h2 class="t">Restart-plan is safe to run any number of times &mdash; execute rebuilds it fresh anyway</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A technician drops a crumpled old work order into a bin and writes out a fresh one on a clipboard right at the rack, moments before acting."><image href="../img/decks/m29/d5-fresh-plan.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M29&middot;14</div>
 </section>
 
@@ -579,6 +549,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- ============ DIVIDER — 5 ============ -->
 <section class="divider">
   <h2 class="t">The cooldown reads its memory from the audit log, not from RAM</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A technician opens a thick maintenance logbook hanging on a chain beside a server rack and checks the last entry against the wall clock above, deciding whether enough time has passed."><image href="../img/decks/m29/d6-logbook.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M29&middot;16</div>
 </section>
 
@@ -632,6 +603,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- ============ DIVIDER — 6 ============ -->
 <section class="divider">
   <h2 class="t">Watching the rollout, honestly, up to a timeout</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A technician watches a rack of status lights after a power-cycle, holding up a stopwatch, patient but ready to stop waiting once time runs out."><image href="../img/decks/m29/d7-stopwatch.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M29&middot;18</div>
 </section>
 
@@ -685,6 +657,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- ============ DIVIDER — 7 ============ -->
 <section class="divider">
   <h2 class="t">What a restart can fix, and what it never will</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A hand power-cycles a server that comes back to life, while the machine right beside it has a gaping empty slot where a missing component should be, which no power-cycle can fill."><image href="../img/decks/m29/d8-fix-vs-never.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M29&middot;20</div>
 </section>
 
@@ -722,6 +695,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- ============ DIVIDER — pitfalls ============ -->
 <section class="divider">
   <h2 class="t">Common pitfalls</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A technician walking a data center aisle stumbles over loose cables coiled across the floor, having walked straight past the warning cone standing beside them."><image href="../img/decks/m29/d9-pitfalls.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M29&middot;22</div>
 </section>
 
@@ -830,7 +804,7 @@ footer, header, hgroup, main, menu, nav, section {
       if(!sec) return;
       var svg = sec.querySelector('svg');
       if(!svg) return;
-      var mh = 58;
+      var mh = sec.classList.contains('divider') ? 80 : 58;
       svg.style.maxHeight = mh + '%';
       var guard = 0;
       while (sec.scrollHeight > sec.clientHeight + 2 && mh > 18 && guard++ < 20){
