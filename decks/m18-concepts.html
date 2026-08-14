@@ -101,6 +101,9 @@ footer, header, hgroup, main, menu, nav, section {
   .reveal .credit{ order:4; font-size:.85em; color:var(--gray); margin-top:16px; }
   .reveal .credit b{ color:var(--ink); font-weight:700; }
   .reveal .pageno{ position:absolute; bottom:14px; right:22px; font-size:.6em; color:#bdbdbd; }
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:2; font-size:1.1em; max-width:76%; }
+  .reveal .slides section.divider svg{ order:1; }
   .reveal .slide-number{ font-family:'Patrick Hand',cursive; }
   .reveal code{ font-family:'Patrick Hand',cursive; color:var(--ink); }
   .reveal em{ font-style:italic; }
@@ -139,25 +142,8 @@ footer, header, hgroup, main, menu, nav, section {
   <p class="kicker">MODULE 18 &nbsp;&middot;&nbsp; AI-Powered Python for DevOps, Platform Engineering &amp; SRE</p>
   <h2 class="t" style="font-size:1.8em">Python as the Deterministic Layer Inside Skills</h2>
   <p class="s" style="font-size:1.2em">Same reading, every time, no matter who looks</p>
-  <svg viewBox="0 0 1100 320" role="img" aria-label="A SKILL.md card holds a step drawn as a wavy line under a question-mark cloud. A thermometer icon lowers on a dashed arrow toward that step, and where it touches, a small checkmark appears.">
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="3">
-      <rect x="360" y="130" width="380" height="150" rx="12" fill="var(--p-blue)"/>
-    </g>
-    <text x="550" y="168" text-anchor="middle" class="lbl-b" style="font-size:26px">SKILL.md</text>
-    <text x="550" y="208" text-anchor="middle" class="lbl-sm">Step 3: run validate, then decide</text>
-    <path d="M420,225 Q460,237 500,225 T580,225 T660,225" fill="none" stroke="#757575" stroke-width="2" stroke-dasharray="3 5"/>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.4" stroke-dasharray="8 6">
-      <circle cx="440" cy="65" r="32"/>
-    </g>
-    <text x="440" y="76" text-anchor="middle" class="lbl-b" style="font-size:30px">?</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6">
-      <rect x="790" y="35" width="30" height="90" rx="14"/>
-      <circle cx="805" cy="140" r="20"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-dasharray="6 5">
-      <path d="M805,150 C760,190 690,205 660,218" marker-end="url(#ahg)"/>
-    </g>
-    <path d="M646,210 L654,220 L670,200" fill="none" stroke="#2e7d32" stroke-width="2.6" stroke-linecap="round"/>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A hand inserting a dial thermometer into an open oven, warmth and steam faintly visible inside.">
+    <image href="../img/decks/m18/title-thermometer-oven.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
   </svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;&middot;&nbsp; School of DevOps &amp; AI &nbsp;&middot;&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M18&middot;01</div>
@@ -200,8 +186,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — the thermometer analogy ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">1 &middot; The thermometer analogy</h2>
+<section class="divider">
+  <h2 class="t">The thermometer analogy</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A dial oven thermometer sitting alone on a wooden kitchen counter, faint steam rising behind it.">
+    <image href="../img/decks/m18/divider-1-thermometer-counter.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M18&middot;03</div>
 </section>
 
@@ -209,49 +198,8 @@ footer, header, hgroup, main, menu, nav, section {
 <section>
   <h2 class="t">Three cooks, three good-faith guesses</h2>
   <p class="s">Same oven, same question, three different answers</p>
-  <svg viewBox="0 0 1100 380" role="img" aria-label="An oven with no thermometer and a runbook line, check if hot enough. Three cook figures beside it, each using a different technique and giving a different answer.">
-    <text x="550" y="30" text-anchor="middle" class="lbl-g">runbook: "check if hot enough"</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="3">
-      <rect x="440" y="150" width="220" height="170" rx="10" fill="var(--p-blue)"/>
-      <rect x="460" y="170" width="180" height="110" rx="6"/>
-    </g>
-    <text x="550" y="260" text-anchor="middle" class="lbl-sm">oven</text>
-
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2">
-      <circle cx="140" cy="235" r="22"/>
-      <path d="M140,257 L140,300 M140,270 L110,290 M140,270 L170,290"/>
-    </g>
-    <text x="140" y="205" text-anchor="middle" class="lbl-g">hand near the door</text>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="1.8" stroke-dasharray="5 5">
-      <path d="M175,240 C260,235 340,235 435,235" marker-end="url(#ahg)"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="1.8">
-      <path d="M60,320 Q140,295 220,320 Q180,342 140,337 Q100,342 60,320 Z"/>
-    </g>
-    <text x="140" y="325" text-anchor="middle" class="lbl-sm">"hot enough"</text>
-
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2">
-      <circle cx="550" cy="70" r="22"/>
-      <path d="M550,92 L550,135"/>
-    </g>
-    <text x="550" y="45" text-anchor="middle" class="lbl-g">watching the light cycle</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="1.8">
-      <path d="M470,95 Q550,70 630,95 Q590,117 550,112 Q510,117 470,95 Z"/>
-    </g>
-    <text x="550" y="103" text-anchor="middle" class="lbl-sm">"almost"</text>
-
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2">
-      <circle cx="960" cy="235" r="22"/>
-      <path d="M960,257 L960,300 M960,270 L930,290 M960,270 L990,290"/>
-    </g>
-    <text x="960" y="205" text-anchor="middle" class="lbl-g">counting preheat minutes</text>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="1.8" stroke-dasharray="5 5">
-      <path d="M925,240 C840,235 760,235 665,235" marker-end="url(#ahg)"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="1.8">
-      <path d="M880,320 Q960,295 1040,320 Q1000,342 960,337 Q920,342 880,320 Z"/>
-    </g>
-    <text x="960" y="325" text-anchor="middle" class="lbl-sm">"not sure"</text>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="Three cooks standing around a kitchen oven, one holding a hand near the open oven door, one looking closely at the oven light, one checking a clock on the wall, no thermometer anywhere.">
+    <image href="../img/decks/m18/analogy-three-cooks.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
   </svg>
   <div class="pageno">M18&middot;04</div>
 </section>
@@ -366,8 +314,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — deterministic vs non-deterministic steps ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">2 &middot; Deterministic vs non-deterministic steps</h2>
+<section class="divider">
+  <h2 class="t">Deterministic vs non-deterministic steps</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A small pile of dice next to one long straight ruler lying flat on a table.">
+    <image href="../img/decks/m18/divider-2-dice-ruler.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M18&middot;08</div>
 </section>
 
@@ -436,8 +387,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — the thin-script pattern ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">3 &middot; The thin-script pattern</h2>
+<section class="divider">
+  <h2 class="t">The thin-script pattern</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A narrow funnel with liquid pouring through it into a bottle below.">
+    <image href="../img/decks/m18/divider-3-funnel.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M18&middot;11</div>
 </section>
 
@@ -561,8 +515,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — the exit-code contract ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">4 &middot; The exit-code contract</h2>
+<section class="divider">
+  <h2 class="t">The exit-code contract</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="Three traffic lights in a row, mounted on separate poles, each showing a different lit signal.">
+    <image href="../img/decks/m18/divider-4-traffic-lights.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M18&middot;15</div>
 </section>
 
@@ -623,8 +580,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — updating the skill ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">5 &middot; Updating the skill</h2>
+<section class="divider">
+  <h2 class="t">Updating the skill</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="One runner handing off a relay baton to a second runner, mid-stride, on a running track.">
+    <image href="../img/decks/m18/divider-5-relay-baton.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M18&middot;18</div>
 </section>
 
@@ -702,8 +662,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — common pitfalls ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Common pitfalls</h2>
+<section class="divider">
+  <h2 class="t">Common pitfalls</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A yellow warning triangle sign standing upright on a workshop floor, tools visible in the background.">
+    <image href="../img/decks/m18/divider-6-warning-sign.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M18&middot;21</div>
 </section>
 
@@ -806,7 +769,7 @@ footer, header, hgroup, main, menu, nav, section {
       if(!sec) return;
       var svg = sec.querySelector('svg');
       if(!svg) return;
-      var mh = 58;
+      var mh = sec.classList.contains('divider') ? 80 : 58;
       svg.style.maxHeight = mh + '%';
       var guard = 0;
       while (sec.scrollHeight > sec.clientHeight + 2 && mh > 18 && guard++ < 20){
