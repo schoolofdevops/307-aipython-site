@@ -101,6 +101,9 @@ footer, header, hgroup, main, menu, nav, section {
   .reveal .credit{ order:4; font-size:.85em; color:var(--gray); margin-top:16px; }
   .reveal .credit b{ color:var(--ink); font-weight:700; }
   .reveal .pageno{ position:absolute; bottom:14px; right:22px; font-size:.6em; color:#bdbdbd; }
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:2; font-size:1.1em; max-width:76%; }
+  .reveal .slides section.divider svg{ order:1; }
   .reveal .slide-number{ font-family:'Patrick Hand',cursive; }
   .reveal code{ font-family:'Patrick Hand',cursive; color:var(--ink); }
   .reveal em{ font-style:italic; }
@@ -139,30 +142,8 @@ footer, header, hgroup, main, menu, nav, section {
   <p class="kicker">MODULE 15 &nbsp;·&nbsp; AI-Powered Python for DevOps, Platform Engineering &amp; SRE</p>
   <h2 class="t" style="font-size:1.9em">Building a Coding-Agent Harness</h2>
   <p class="s" style="font-size:1.2em">Write the rules once. Every agent reads them.</p>
-  <svg viewBox="0 0 1100 340" role="img" aria-label="A document labeled CLAUDE.md has an arrow pointing to a robot representing a coding agent reading it.">
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6">
-      <rect x="220" y="60" width="220" height="230" rx="10" fill="#dae8fc"/>
-    </g>
-    <text x="330" y="95" text-anchor="middle" class="lbl-b">CLAUDE.md</text>
-    <g class="lbl-sm" fill="#1e1e1e">
-      <text x="248" y="130">project context</text>
-      <text x="248" y="158">approved commands</text>
-      <text x="248" y="186">safety rules</text>
-      <text x="248" y="214">verify script</text>
-      <text x="248" y="242">definition of done</text>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4">
-      <path d="M445,175 C520,175 560,175 620,175" marker-end="url(#ah)"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.8">
-      <rect x="650" y="105" width="220" height="170" rx="16" fill="#ffe6cc"/>
-      <circle cx="710" cy="150" r="12"/>
-      <circle cx="810" cy="150" r="12"/>
-      <line x1="760" y1="105" x2="760" y2="80"/>
-      <circle cx="760" cy="70" r="8"/>
-      <rect x="690" y="190" width="140" height="55" rx="8"/>
-    </g>
-    <text x="760" y="305" text-anchor="middle" class="lbl-b">any agent</text>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A thick rulebook lying open on a desk, a small robot standing beside it reading the pages.">
+    <image href="../img/decks/m15/title-rulebook-robot.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
   </svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI &nbsp;·&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M15&middot;01</div>
@@ -172,60 +153,18 @@ footer, header, hgroup, main, menu, nav, section {
 <section>
   <h2 class="t">The same rules, typed into every spec</h2>
   <p class="s">Repeating project rules by hand is slow and easy to forget</p>
-  <svg viewBox="0 0 1100 400" role="img" aria-label="Left panel shows a tired person copying the same two rules into a tall stack of separate spec documents. Right panel shows a relaxed person with one rules file that several specs point to.">
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2">
-      <rect x="90" y="200" width="140" height="34" rx="4" fill="#fff"/>
-      <rect x="100" y="182" width="140" height="34" rx="4" fill="#fff"/>
-      <rect x="110" y="164" width="140" height="34" rx="4" fill="#fff"/>
-      <rect x="120" y="146" width="140" height="34" rx="4" fill="#f8cecc"/>
-    </g>
-    <g class="lbl-sm" fill="#1e1e1e">
-      <text x="132" y="160">use uv</text>
-      <text x="132" y="167" dy="6">never delete lock</text>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
-      <circle cx="120" cy="300" r="20"/>
-      <line x1="120" y1="320" x2="120" y2="365"/>
-      <line x1="120" y1="335" x2="90" y2="355"/>
-      <line x1="120" y1="335" x2="150" y2="355"/>
-    </g>
-    <path d="M100,290 L106,296 M112,290 L118,296" stroke="#1e1e1e" stroke-width="2"/>
-    <text x="180" y="385" text-anchor="middle" class="lbl-g" fill="#c62828">typed five times, tired</text>
-
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-dasharray="5 5">
-      <line x1="550" y1="40" x2="550" y2="380"/>
-    </g>
-
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6">
-      <rect x="620" y="150" width="130" height="90" rx="8" fill="#d5e8d4"/>
-    </g>
-    <text x="685" y="180" text-anchor="middle" class="lbl-b">CLAUDE.md</text>
-    <text x="685" y="205" text-anchor="middle" class="lbl-sm">rules, once</text>
-
-    <g filter="url(#rough)" fill="none" stroke="#2e7d32" stroke-width="2" stroke-dasharray="4 5">
-      <path d="M780,175 C830,175 850,150 880,140" marker-end="url(#ahg)"/>
-      <path d="M780,195 C830,195 850,195 880,195" marker-end="url(#ahg)"/>
-      <path d="M780,215 C830,215 850,240 880,250" marker-end="url(#ahg)"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2">
-      <rect x="890" y="120" width="90" height="30" rx="4" fill="#fff"/>
-      <rect x="890" y="180" width="90" height="30" rx="4" fill="#fff"/>
-      <rect x="890" y="235" width="90" height="30" rx="4" fill="#fff"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
-      <circle cx="685" cy="300" r="20"/>
-      <line x1="685" y1="320" x2="685" y2="360"/>
-      <line x1="685" y1="333" x2="655" y2="350"/>
-      <line x1="685" y1="333" x2="715" y2="350"/>
-    </g>
-    <text x="685" y="385" text-anchor="middle" class="lbl-g" fill="#2e7d32">written once, calm</text>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A tired person sitting at a desk surrounded by several identical stacks of paper, rubbing their eyes.">
+    <image href="../img/decks/m15/analogy-tired-retyping.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
   </svg>
   <div class="pageno">M15&middot;02</div>
 </section>
 
 <!-- ============ DIVIDER — the employee handbook analogy ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">1 &middot; The employee handbook analogy</h2>
+<section class="divider">
+  <h2 class="t">The employee handbook analogy</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A thick handbook sitting closed on an empty desk in a quiet office, waiting to be read.">
+    <image href="../img/decks/m15/divider-1-handbook-desk.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M15&middot;03</div>
 </section>
 
@@ -233,55 +172,18 @@ footer, header, hgroup, main, menu, nav, section {
 <section>
   <h2 class="t">The employee handbook</h2>
   <p class="s">A handbook tells you the rules so you do not guess</p>
-  <svg viewBox="0 0 1100 400" role="img" aria-label="Left panel shows a new hire wandering a factory floor guessing at unlabeled machines. Right panel shows the same new hire at a desk reading a handbook with a clear marked path ahead.">
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2">
-      <rect x="80" y="90" width="70" height="90" rx="4" fill="#f8cecc"/>
-      <rect x="200" y="70" width="70" height="110" rx="4" fill="#f8cecc"/>
-      <rect x="320" y="110" width="70" height="70" rx="4" fill="#f8cecc"/>
-    </g>
-    <g class="lbl-g" fill="#c62828">
-      <text x="115" y="140" text-anchor="middle">?</text>
-      <text x="235" y="130" text-anchor="middle">?</text>
-      <text x="355" y="150" text-anchor="middle">?</text>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
-      <circle cx="230" cy="260" r="18"/>
-      <line x1="230" y1="278" x2="230" y2="325"/>
-      <line x1="230" y1="292" x2="200" y2="310"/>
-      <line x1="230" y1="292" x2="260" y2="310"/>
-    </g>
-    <text x="230" y="365" text-anchor="middle" class="lbl-g" fill="#c62828">guessing at machines</text>
-
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-dasharray="5 5">
-      <line x1="550" y1="40" x2="550" y2="380"/>
-    </g>
-
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2">
-      <rect x="700" y="130" width="120" height="90" rx="4" fill="#fff"/>
-      <line x1="715" y1="150" x2="805" y2="150"/>
-      <line x1="715" y1="168" x2="805" y2="168"/>
-      <line x1="715" y1="186" x2="775" y2="186"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
-      <circle cx="900" cy="260" r="18"/>
-      <line x1="900" y1="278" x2="900" y2="325"/>
-      <line x1="900" y1="292" x2="870" y2="310"/>
-      <line x1="900" y1="292" x2="930" y2="310"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2">
-      <path d="M820,175 C850,175 870,220 895,240" marker-end="url(#ah)"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#2e7d32" stroke-width="2.4" stroke-dasharray="3 6">
-      <path d="M900,240 C880,270 850,290 800,300"/>
-    </g>
-    <text x="800" y="365" text-anchor="middle" class="lbl-g" fill="#2e7d32">reading the handbook</text>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A person standing confused among a row of large unlabeled factory machines, scratching their head.">
+    <image href="../img/decks/m15/analogy-confused-machines.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
   </svg>
   <div class="pageno">M15&middot;04</div>
 </section>
 
 <!-- ============ DIVIDER — the five things a harness needs ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">2 &middot; The five things a harness needs</h2>
+<section class="divider">
+  <h2 class="t">The five things a harness needs</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="Five different keys hanging together on a single keyring.">
+    <image href="../img/decks/m15/divider-2-five-keys.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M15&middot;05</div>
 </section>
 
@@ -499,8 +401,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — portability ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">3 &middot; Portability — one set of rules, several file names</h2>
+<section class="divider">
+  <h2 class="t">Portability — one set of rules, several file names</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A row of several different doors, a hand holding one single key that fits and turns in each of their locks.">
+    <image href="../img/decks/m15/divider-3-many-doors-one-key.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M15&middot;11</div>
 </section>
 
@@ -677,6 +582,7 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ SLIDE 13 — CLOSING ============ -->
 <section>
+  <p class="kicker">MODULE 15 &nbsp;·&nbsp; AI-Powered Python for DevOps, Platform Engineering &amp; SRE</p>
   <h2 class="t">Write it once, every agent reads it</h2>
   <p class="s">The lab writes the harness and proves an agent follows it</p>
   <svg viewBox="0 0 1100 300" role="img" aria-label="Three numbered takeaways: five components in one file, same content works for any agent, and verify before you trust.">
@@ -738,7 +644,7 @@ footer, header, hgroup, main, menu, nav, section {
       if(!sec) return;
       var svg = sec.querySelector('svg');
       if(!svg) return;
-      var mh = 58;
+      var mh = sec.classList.contains('divider') ? 80 : 58;
       svg.style.maxHeight = mh + '%';
       var guard = 0;
       while (sec.scrollHeight > sec.clientHeight + 2 && mh > 18 && guard++ < 20){
