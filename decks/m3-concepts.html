@@ -100,6 +100,9 @@ footer, header, hgroup, main, menu, nav, section {
   .reveal .credit{ order:4; font-size:.85em; color:var(--gray); margin-top:16px; }
   .reveal .credit b{ color:var(--ink); font-weight:700; }
   .reveal .pageno{ position:absolute; bottom:14px; right:22px; font-size:.6em; color:#bdbdbd; }
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:2; font-size:1.1em; max-width:76%; }
+  .reveal .slides section.divider svg{ order:1; }
   .reveal .slide-number{ font-family:'Patrick Hand',cursive; }
   .reveal code{ font-family:'Patrick Hand',cursive; color:var(--ink); }
   .reveal em{ font-style:italic; }
@@ -138,56 +141,19 @@ footer, header, hgroup, main, menu, nav, section {
   <p class="kicker">MODULE 3 &nbsp;·&nbsp; AI-POWERED PYTHON FOR DEVOPS &amp; SRE</p>
   <h2 class="t" style="font-size:1.8em">A server inventory, built from six shapes of data</h2>
   <p class="s" style="font-size:1.2em">name it &middot; shape it &middot; walk it</p>
-  <svg viewBox="0 0 1100 340" role="img" aria-label="A person feeds inventory.py, which fans out to six shapes of data: basic types, list, dict, tuple, set, and the loop and condition tools that walk them.">
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
-      <circle cx="90" cy="70" r="16"/>
-      <line x1="90" y1="86" x2="90" y2="135"/>
-      <line x1="90" y1="100" x2="62" y2="125"/>
-      <line x1="90" y1="100" x2="118" y2="125"/>
-      <line x1="90" y1="135" x2="70" y2="170"/>
-      <line x1="90" y1="135" x2="110" y2="170"/>
-    </g>
-    <text x="90" y="200" text-anchor="middle" class="lbl">you</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <path d="M145,110 C220,100 260,95 300,100" marker-end="url(#ah)"/>
-    </g>
-    <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="3" stroke-linecap="round">
-      <rect x="300" y="60" width="300" height="110" rx="12"/>
-    </g>
-    <text x="450" y="112" text-anchor="middle" class="lbl-b">inventory.py</text>
-    <text x="450" y="145" text-anchor="middle" class="lbl-g">servers, each its own folder</text>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.2" stroke-linecap="round">
-      <path d="M360,172 L120,235" marker-end="url(#ahg)"/>
-      <path d="M400,172 L290,235" marker-end="url(#ahg)"/>
-      <path d="M440,172 L460,235" marker-end="url(#ahg)"/>
-      <path d="M480,172 L630,235" marker-end="url(#ahg)"/>
-      <path d="M520,172 L800,235" marker-end="url(#ahg)"/>
-      <path d="M560,172 L970,235" marker-end="url(#ahg)"/>
-    </g>
-    <g filter="url(#rough)" fill="#ffe6cc" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
-      <rect x="50" y="240" width="140" height="55" rx="10"/>
-      <rect x="220" y="240" width="140" height="55" rx="10"/>
-      <rect x="390" y="240" width="140" height="55" rx="10"/>
-      <rect x="560" y="240" width="140" height="55" rx="10"/>
-      <rect x="730" y="240" width="140" height="55" rx="10"/>
-      <rect x="900" y="240" width="140" height="55" rx="10"/>
-    </g>
-    <g class="lbl-sm" text-anchor="middle">
-      <text x="120" y="272">types</text>
-      <text x="290" y="272">list</text>
-      <text x="460" y="272">dict</text>
-      <text x="630" y="272">tuple</text>
-      <text x="800" y="272">set</text>
-      <text x="970" y="272">for / if</text>
-    </g>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A warehouse storage shelf holding a mix of different containers — labeled jars, folders, and boxes of different shapes and sizes, neatly organized.">
+    <image href="../img/decks/m3/title-inventory-shelf.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
   </svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI &nbsp;·&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M3&middot;01</div>
 </section>
 
 <!-- ============ DIVIDER — a name for a value ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">1 &middot; A name for a value — variables and basic types</h2>
+<section class="divider">
+  <h2 class="t">A name for a value — variables and basic types</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A blank luggage tag tied with string onto a plain cardboard box.">
+    <image href="../img/decks/m3/divider-1-name-tag.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M3&middot;02</div>
 </section>
 
@@ -264,8 +230,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — lists ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">2 &middot; Lists — an ordered shelf of items</h2>
+<section class="divider">
+  <h2 class="t">Lists — an ordered shelf of items</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A wooden shelf with a row of identical boxes lined up neatly in a single line, left to right.">
+    <image href="../img/decks/m3/divider-2-numbered-shelf.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M3&middot;05</div>
 </section>
 
@@ -306,8 +275,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — dictionaries ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">3 &middot; Dictionaries — a labeled folder, not a numbered shelf</h2>
+<section class="divider">
+  <h2 class="t">Dictionaries — a labeled folder, not a numbered shelf</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="An open filing cabinet drawer packed with hanging folders, each with a blank tab sticking up.">
+    <image href="../img/decks/m3/divider-3-filing-folders.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M3&middot;07</div>
 </section>
 
@@ -351,8 +323,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — putting it together ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">4 &middot; Putting it together — an inventory is a list of dictionaries</h2>
+<section class="divider">
+  <h2 class="t">Putting it together — an inventory is a list of dictionaries</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A tall warehouse shelving unit holding several labeled folders and boxes stacked neatly across multiple shelves.">
+    <image href="../img/decks/m3/divider-4-warehouse-shelf.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M3&middot;09</div>
 </section>
 
@@ -410,8 +385,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — tuples ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">5 &middot; Tuples — a pair that is not meant to change</h2>
+<section class="divider">
+  <h2 class="t">Tuples — a pair that is not meant to change</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A hand pressing a wax seal stamp onto a closed envelope resting on a wooden desk.">
+    <image href="../img/decks/m3/divider-5-sealed-envelope.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M3&middot;12</div>
 </section>
 
@@ -470,8 +448,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — sets ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">6 &middot; Sets — a guest list, not a seating chart</h2>
+<section class="divider">
+  <h2 class="t">Sets — a guest list, not a seating chart</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A velvet rope stanchion at an entrance, with a podium holding an open guest list book beside it.">
+    <image href="../img/decks/m3/divider-6-guest-list.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M3&middot;15</div>
 </section>
 
@@ -510,8 +491,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — conditions, loops, membership ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">7 &middot; Conditions, loops and membership — checking every server against a rule</h2>
+<section class="divider">
+  <h2 class="t">Conditions, loops and membership — checking every server against a rule</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A clipboard with a checklist hanging on a wall, a pen dangling from a string tied to it.">
+    <image href="../img/decks/m3/divider-7-checklist.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M3&middot;17</div>
 </section>
 
@@ -602,8 +586,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — indexing, slicing, f-strings ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">8 &middot; Indexing, slicing and f-strings</h2>
+<section class="divider">
+  <h2 class="t">Indexing, slicing and f-strings</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A pair of scissors cutting through a long strip of paper on a table, the cut piece just separating from the rest.">
+    <image href="../img/decks/m3/divider-8-scissors-strip.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M3&middot;20</div>
 </section>
 
@@ -671,8 +658,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — mutable vs immutable ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">9 &middot; Mutable vs immutable — why this bites in automation</h2>
+<section class="divider">
+  <h2 class="t">Mutable vs immutable — why this bites in automation</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A hand pressing a rubber stamp down onto a stack of papers on a desk.">
+    <image href="../img/decks/m3/divider-9-rubber-stamp.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M3&middot;23</div>
 </section>
 
@@ -680,59 +670,8 @@ footer, header, hgroup, main, menu, nav, section {
 <section>
   <h2 class="t">A shared whiteboard bends; a printed report never does</h2>
   <p class="s">lists, dicts, sets bend; strings, numbers, tuples don't</p>
-  <svg viewBox="0 0 1150 290" role="img" aria-label="Left, two figures beside a shared whiteboard, both sets of marker scribbles visible. Right, one figure holding a printed report and a second figure holding their own separate copy, marked up without touching the original.">
-    <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <rect x="200" y="55" width="300" height="140" rx="6"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2" stroke-linecap="round">
-      <path d="M245,95 C260,85 270,105 285,95"/>
-      <path d="M380,145 C395,135 410,150 425,140"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <circle cx="90" cy="110" r="15"/>
-      <line x1="90" y1="125" x2="90" y2="185"/>
-      <line x1="90" y1="140" x2="65" y2="160"/>
-      <line x1="90" y1="140" x2="180" y2="150"/>
-      <line x1="90" y1="185" x2="70" y2="225"/>
-      <line x1="90" y1="185" x2="110" y2="225"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <circle cx="560" cy="110" r="15"/>
-      <line x1="560" y1="125" x2="560" y2="185"/>
-      <line x1="560" y1="140" x2="520" y2="150"/>
-      <line x1="560" y1="140" x2="585" y2="160"/>
-      <line x1="560" y1="185" x2="540" y2="225"/>
-      <line x1="560" y1="185" x2="580" y2="225"/>
-    </g>
-    <text x="300" y="245" text-anchor="middle" class="lbl-g">one whiteboard &mdash; both people's marks stay</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <circle cx="670" cy="110" r="15"/>
-      <line x1="670" y1="125" x2="670" y2="185"/>
-      <line x1="670" y1="140" x2="645" y2="160"/>
-      <line x1="670" y1="140" x2="705" y2="150"/>
-      <line x1="670" y1="185" x2="650" y2="225"/>
-      <line x1="670" y1="185" x2="690" y2="225"/>
-    </g>
-    <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <rect x="750" y="60" width="120" height="160" rx="6"/>
-    </g>
-    <text x="810" y="145" text-anchor="middle" class="lbl-sm">original report</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <circle cx="940" cy="110" r="15"/>
-      <line x1="940" y1="125" x2="940" y2="185"/>
-      <line x1="940" y1="140" x2="905" y2="150"/>
-      <line x1="940" y1="140" x2="965" y2="160"/>
-      <line x1="940" y1="185" x2="920" y2="225"/>
-      <line x1="940" y1="185" x2="960" y2="225"/>
-    </g>
-    <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <rect x="1000" y="60" width="120" height="160" rx="6"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2" stroke-linecap="round">
-      <path d="M1020,175 C1035,165 1050,180 1065,170"/>
-    </g>
-    <text x="1060" y="145" text-anchor="middle" class="lbl-sm">their own copy</text>
-    <text x="925" y="245" text-anchor="middle" class="lbl-g">one report &mdash; the original stays exactly as printed</text>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A whiteboard leaning against a wall, its surface smudged from erasing, next to a neat stack of printed paper reports resting flat on a table.">
+    <image href="../img/decks/m3/analogy-whiteboard-vs-report.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
   </svg>
   <div class="pageno">M3&middot;24</div>
 </section>
@@ -877,7 +816,7 @@ footer, header, hgroup, main, menu, nav, section {
       if(!sec) return;
       var svg = sec.querySelector('svg');
       if(!svg) return;
-      var mh = 58;
+      var mh = sec.classList.contains('divider') ? 80 : 58;
       svg.style.maxHeight = mh + '%';
       var guard = 0;
       while (sec.scrollHeight > sec.clientHeight + 2 && mh > 18 && guard++ < 20){
