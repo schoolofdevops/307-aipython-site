@@ -101,6 +101,9 @@ footer, header, hgroup, main, menu, nav, section {
   .reveal .credit{ order:4; font-size:.85em; color:var(--gray); margin-top:16px; }
   .reveal .credit b{ color:var(--ink); font-weight:700; }
   .reveal .pageno{ position:absolute; bottom:14px; right:22px; font-size:.6em; color:#bdbdbd; }
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:2; font-size:1.1em; max-width:76%; }
+  .reveal .slides section.divider svg{ order:1; }
   .reveal .slide-number{ font-family:'Patrick Hand',cursive; }
   .reveal code{ font-family:'Patrick Hand',cursive; color:var(--ink); }
   .reveal em{ font-style:italic; }
@@ -139,20 +142,7 @@ footer, header, hgroup, main, menu, nav, section {
   <p class="kicker">MODULE 23 &nbsp;&middot;&nbsp; AI-Powered Python for DevOps, Platform Engineering &amp; SRE</p>
   <h2 class="t" style="font-size:2.1em">Multi-Region Cloud Inventory</h2>
   <p class="s" style="font-size:1.2em">One report, every region — even when one fails</p>
-  <svg viewBox="0 0 1100 340" role="img" aria-label="Three region circles, two green and one red, each with an arrow converging into one box labeled final report.">
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4"><circle cx="160" cy="70" r="34" fill="var(--p-green)"/></g>
-    <text x="160" y="77" text-anchor="middle" class="lbl-sm">us-east-1</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4"><circle cx="160" cy="170" r="34" fill="var(--p-green)"/></g>
-    <text x="160" y="177" text-anchor="middle" class="lbl-sm">eu-west-1</text>
-    <g filter="url(#rough)" fill="none" stroke="#c62828" stroke-width="2.6"><circle cx="160" cy="270" r="34" fill="var(--p-red)"/></g>
-    <text x="160" y="277" text-anchor="middle" class="lbl-sm">ap-south-1</text>
-    <path d="M194,70 C400,70 500,130 640,175" fill="none" stroke="#1e1e1e" stroke-width="2.2" marker-end="url(#ah)"/>
-    <path d="M194,170 C350,170 500,175 640,180" fill="none" stroke="#1e1e1e" stroke-width="2.2" marker-end="url(#ah)"/>
-    <path d="M194,270 C400,270 500,220 640,190" fill="none" stroke="#c62828" stroke-width="2.2" marker-end="url(#ah)"/>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6"><rect x="650" y="140" width="280" height="90" rx="12" fill="var(--p-purple)"/></g>
-    <text x="790" y="180" text-anchor="middle" class="lbl-b">final report</text>
-    <text x="790" y="207" text-anchor="middle" fill="#757575" class="lbl-g">status: partial</text>
-  </svg>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A health inspector with a clipboard standing on a street with several small storefronts in a row stretching into the distance, one storefront marked with a small flag, pencil sketch."><image href="../img/decks/m23/title-inspector-branches.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;&middot;&nbsp; School of DevOps &amp; AI &nbsp;&middot;&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M23&middot;01</div>
 </section>
@@ -183,8 +173,9 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">1 &middot; The health inspector who covers many branches</h2>
+<section class="divider">
+  <h2 class="t">The health inspector who covers many branches</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A health inspector with a clipboard walking toward a row of small storefronts on a street, one storefront flagged, pencil sketch."><image href="../img/decks/m23/divider-1-inspector-branches.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M23&middot;03</div>
 </section>
 
@@ -262,8 +253,9 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">2 &middot; Bounded concurrency — a small pool, never one thread per region</h2>
+<section class="divider">
+  <h2 class="t">Bounded concurrency — a small pool, never one thread per region</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A small fixed team of four workers at a reception counter, calm and orderly, a much larger crowd of people waiting far in the background outside, pencil sketch."><image href="../img/decks/m23/divider-2-small-team-counter.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M23&middot;06</div>
 </section>
 
@@ -288,8 +280,9 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">3 &middot; Five AWS APIs, five different response shapes, one record</h2>
+<section class="divider">
+  <h2 class="t">Five AWS APIs, five different response shapes, one record</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A clerk sorting five differently shaped parcels on a table into one uniform labeled filing box, pencil sketch."><image href="../img/decks/m23/divider-3-sorting-parcels.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M23&middot;08</div>
 </section>
 
@@ -352,8 +345,9 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">4 &middot; Elastic IPs — a real AWS quirk, not a bug</h2>
+<section class="divider">
+  <h2 class="t">Elastic IPs — a real AWS quirk, not a bug</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A shelf of matching folded socks in neat pairs, with one odd unmatched sock set apart and calmly marked with a checkmark, not crossed out, pencil sketch."><image href="../img/decks/m23/divider-4-odd-sock.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M23&middot;11</div>
 </section>
 
@@ -377,8 +371,9 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">5 &middot; S3 is not region-scoped — a different discovery shape entirely</h2>
+<section class="divider">
+  <h2 class="t">S3 is not region-scoped — a different discovery shape entirely</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="One large central library card catalog covering an entire country map on the wall behind it, contrasted with a small row of separate regional branch office buildings in the foreground, pencil sketch."><image href="../img/decks/m23/divider-5-central-catalog.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M23&middot;13</div>
 </section>
 
@@ -453,8 +448,9 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">6 &middot; Partial regional failure — the report always returns what succeeded</h2>
+<section class="divider">
+  <h2 class="t">Partial regional failure — the report always returns what succeeded</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A courier calmly handing over a stack of delivery reports, one corner of one report slightly torn, the rest of the stack intact, no chaos, pencil sketch."><image href="../img/decks/m23/divider-6-courier-reports.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M23&middot;17</div>
 </section>
 
@@ -509,8 +505,9 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">7 &middot; Expired credentials are not the same problem as "access denied"</h2>
+<section class="divider">
+  <h2 class="t">Expired credentials are not the same problem as "access denied"</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A visitor calmly showing an expired ID badge to a relaxed front-desk guard who points toward a renewal desk, no conflict, pencil sketch."><image href="../img/decks/m23/divider-7-expired-badge.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M23&middot;20</div>
 </section>
 
@@ -533,8 +530,9 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">8 &middot; Missing tags are not errors</h2>
+<section class="divider">
+  <h2 class="t">Missing tags are not errors</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A warehouse worker looking calmly at an unlabeled box on a shelf, shrugging and marking a checklist as normal, not alarmed, pencil sketch."><image href="../img/decks/m23/divider-8-unlabeled-box.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M23&middot;22</div>
 </section>
 
@@ -561,8 +559,9 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Common pitfalls</h2>
+<section class="divider">
+  <h2 class="t">Common pitfalls</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A person on a step ladder placing a small warning triangle sign on a wall, calm and methodical, pencil sketch."><image href="../img/decks/m23/divider-9-warning-sign.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M23&middot;24</div>
 </section>
 
@@ -662,7 +661,7 @@ footer, header, hgroup, main, menu, nav, section {
       if(!sec) return;
       var svg = sec.querySelector('svg');
       if(!svg) return;
-      var mh = 58;
+      var mh = sec.classList.contains('divider') ? 80 : 58;
       svg.style.maxHeight = mh + '%';
       var guard = 0;
       while (sec.scrollHeight > sec.clientHeight + 2 && mh > 18 && guard++ < 20){
