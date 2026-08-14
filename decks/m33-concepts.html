@@ -115,7 +115,8 @@ footer, header, hgroup, main, menu, nav, section {
 
   /* ---- Section divider slides (style-guide sec 3a) ---- */
   .reveal .slides section.divider{ justify-content:center; align-items:center; }
-  .reveal .slides section.divider h2.t{ order:0; font-size:2.2em; max-width:88%; }
+  .reveal .slides section.divider h2.t{ order:2; font-size:1.1em; max-width:76%; }
+  .reveal .slides section.divider svg{ order:1; }
 </style>
 </head>
 <body>
@@ -141,38 +142,14 @@ footer, header, hgroup, main, menu, nav, section {
   <p class="kicker">MODULE 33 &nbsp;&middot;&nbsp; AI-POWERED PYTHON FOR DEVOPS &amp; SRE</p>
   <h2 class="t" style="font-size:1.6em">One command answers the three questions on-call actually asks</h2>
   <p class="s" style="font-size:1.2em">version, training run, endpoint &mdash; not accuracy</p>
-  <svg viewBox="0 0 1100 300" role="img" aria-label="One platformops ai-inspect command fans out to three questions — which model version, did the run finish, is the endpoint up — and converges on one AIWorkloadReport.">
-    <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <rect x="40" y="110" width="230" height="80" rx="12"/>
-    </g>
-    <text x="155" y="143" text-anchor="middle" class="lbl-b">platformops ai-inspect</text>
-    <text x="155" y="168" text-anchor="middle" class="lbl-sm">support-assistant</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <path d="M270,150 C310,150 330,150 360,150" marker-end="url(#ah)"/>
-    </g>
-    <g filter="url(#rough)" fill="#e1d5e7" stroke="#757575" stroke-width="2.2" stroke-linecap="round">
-      <rect x="380" y="40" width="300" height="52" rx="10"/>
-      <rect x="395" y="98" width="300" height="52" rx="10"/>
-      <rect x="410" y="156" width="300" height="52" rx="10"/>
-    </g>
-    <text x="530" y="72" text-anchor="middle" class="lbl-sm">which model version?</text>
-    <text x="545" y="130" text-anchor="middle" class="lbl-sm">did the run finish?</text>
-    <text x="560" y="188" text-anchor="middle" class="lbl-sm">is the endpoint up?</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <path d="M710,150 C750,150 770,150 800,150" marker-end="url(#ah)"/>
-    </g>
-    <g filter="url(#rough)" fill="#d5e8d4" stroke="#1e1e1e" stroke-width="3" stroke-linecap="round">
-      <rect x="810" y="105" width="250" height="100" rx="12"/>
-    </g>
-    <text x="935" y="145" text-anchor="middle" class="lbl-b">AIWorkloadReport</text>
-    <text x="935" y="172" text-anchor="middle" class="lbl-sm">one honest verdict</text>
-  </svg>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="An on-call engineer sits at a desk holding up three blank index cards fanned out in one hand, studying them one at a time beside a monitor."><image href="../img/decks/m33/title.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;&middot;&nbsp; School of DevOps &amp; AI &nbsp;&middot;&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M33&middot;01</div>
 </section>
 
 <section class="divider">
   <h2 class="t">Which model, did training finish, is it up?</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A traveller with a lantern stands at a crossroads facing three blank wooden signposts pointing in different directions, considering each one in turn."><image href="../img/decks/m33/hook.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M33&middot;02</div>
 </section>
 
@@ -212,7 +189,8 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <section class="divider">
-  <h2 class="t">1 &middot; The vocabulary: from one training attempt to a live version</h2>
+  <h2 class="t">The vocabulary: from one training attempt to a live version</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A baker in a flour-dusted apron writes in a large open logbook on a workbench, with a cooling rack of loaves behind and an oven door standing ajar."><image href="../img/decks/m33/vocabulary.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M33&middot;04</div>
 </section>
 
@@ -340,7 +318,8 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <section class="divider">
-  <h2 class="t">2 &middot; Why this lab never starts a real MLflow server</h2>
+  <h2 class="t">Why this lab never starts a real MLflow server</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="An engineer tests a small tabletop model oven with a stack of blank filing cards, while the full-size industrial oven behind stands switched off under a dust sheet."><image href="../img/decks/m33/fixtures.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M33&middot;08</div>
 </section>
 
@@ -412,7 +391,8 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <section class="divider">
-  <h2 class="t">3 &middot; A new kind of service definition: ai-service</h2>
+  <h2 class="t">A new kind of service definition: ai-service</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A shipping clerk stands between a plain cardboard box and a heavy strapped crate with a gauge, holding a short blank tag in one hand and a much longer blank tag in the other."><image href="../img/decks/m33/ai-service.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M33&middot;11</div>
 </section>
 
@@ -474,7 +454,8 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <section class="divider">
-  <h2 class="t">4 &middot; Three honest questions, not one guess</h2>
+  <h2 class="t">Three honest questions, not one guess</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="An inspector leans over a long bench examining three separate items spaced apart on it — a labelled glass jar, a closed ledger book, and a small counter bell — studying one at a time."><image href="../img/decks/m33/three-questions.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M33&middot;14</div>
 </section>
 
@@ -609,7 +590,8 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <section class="divider">
-  <h2 class="t">5 &middot; What this module deliberately does not do</h2>
+  <h2 class="t">What this module deliberately does not do</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A visitor stands behind a rope barrier looking into a bakery display case, hands clasped behind their back, observing the untouched loaves without reaching in."><image href="../img/decks/m33/read-only.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M33&middot;19</div>
 </section>
 
@@ -646,6 +628,7 @@ footer, header, hgroup, main, menu, nav, section {
 
 <section class="divider">
   <h2 class="t">Common pitfalls</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A baker carrying a tray of loaves walks steadily along a plank walkway, steering clear of an open trapdoor, a loose tilted board and a spilled sack lying just off the path ahead."><image href="../img/decks/m33/pitfalls.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M33&middot;21</div>
 </section>
 
@@ -675,21 +658,21 @@ footer, header, hgroup, main, menu, nav, section {
   <p class="kicker">MODULE 33 &nbsp;&middot;&nbsp; TAKEAWAYS</p>
   <h2 class="t" style="font-size:1.8em">Three honest answers, never a fourth guessed</h2>
   <p class="s" style="font-size:1.2em">vocabulary, fixtures, three questions, one boundary</p>
-  <svg viewBox="0 0 1100 250" role="img" aria-label="Four takeaways: the vocabulary is shared with MLflow; the client is tested against saved fixtures, not a live server; three questions are answered separately, never one guess; and the module never registers, promotes or restarts.">
+  <svg viewBox="0 0 1100 300" role="img" aria-label="Four takeaways: the vocabulary is shared with MLflow; the client is tested against saved fixtures, not a live server; three questions are answered separately, never one guess; and the module never registers, promotes or restarts.">
     <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
       <circle cx="70" cy="55" r="20"/>
       <circle cx="70" cy="120" r="20"/>
       <circle cx="70" cy="185" r="20"/>
-      <circle cx="600" cy="55" r="20"/>
+      <circle cx="70" cy="250" r="20"/>
     </g>
     <text x="70" y="63" text-anchor="middle" class="num">1</text>
     <text x="70" y="128" text-anchor="middle" class="num">2</text>
     <text x="70" y="193" text-anchor="middle" class="num">3</text>
-    <text x="600" y="63" text-anchor="middle" class="num">4</text>
+    <text x="70" y="258" text-anchor="middle" class="num">4</text>
     <text x="105" y="62" class="lbl">Vocabulary shared with MLflow: run, experiment, model, registry, version.</text>
     <text x="105" y="127" class="lbl">Tested against saved fixtures, not a live server.</text>
     <text x="105" y="192" class="lbl">Three questions, answered separately &mdash; never one guess.</text>
-    <text x="635" y="62" class="lbl">Never registers, promotes or restarts.</text>
+    <text x="105" y="257" class="lbl">Never registers, promotes or restarts.</text>
   </svg>
   <p class="credit">Now open <b>Module 33 &middot; Lab</b>. &nbsp;&middot;&nbsp; <b>Gourav Shah</b> &nbsp;&middot;&nbsp; School of DevOps &amp; AI</p>
   <div class="pageno">M33&middot;23</div>
@@ -731,7 +714,7 @@ footer, header, hgroup, main, menu, nav, section {
       if(!sec) return;
       var svg = sec.querySelector('svg');
       if(!svg) return;
-      var mh = 58;
+      var mh = sec.classList.contains('divider') ? 80 : 58;
       svg.style.maxHeight = mh + '%';
       var guard = 0;
       while (sec.scrollHeight > sec.clientHeight + 2 && mh > 18 && guard++ < 20){
