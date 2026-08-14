@@ -101,6 +101,9 @@ footer, header, hgroup, main, menu, nav, section {
   .reveal .credit{ order:4; font-size:.85em; color:var(--gray); margin-top:16px; }
   .reveal .credit b{ color:var(--ink); font-weight:700; }
   .reveal .pageno{ position:absolute; bottom:14px; right:22px; font-size:.6em; color:#bdbdbd; }
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:2; font-size:1.1em; max-width:76%; }
+  .reveal .slides section.divider svg{ order:1; }
   .reveal .slide-number{ font-family:'Patrick Hand',cursive; }
   .reveal code{ font-family:'Patrick Hand',cursive; color:var(--ink); }
   .reveal em{ font-style:italic; }
@@ -138,31 +141,8 @@ footer, header, hgroup, main, menu, nav, section {
   <p class="kicker">MODULE 20 &nbsp;&middot;&nbsp; AI-Powered Python for DevOps, Platform Engineering &amp; SRE</p>
   <h2 class="t" style="font-size:1.8em">Testing, Securing and Distributing Agent Skills</h2>
   <p class="s" style="font-size:1.2em">One checklist, one shape, every skill</p>
-  <svg viewBox="0 0 1100 340" role="img" aria-label="A stack of books on the left, labeled read cover to cover, with an arrow pointing to a single clipboard on the right listing four ticked rows: title page, table of contents, legible print run, pages in order.">
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6">
-      <rect x="60" y="150" width="200" height="26" rx="4" fill="var(--p-blue)"/>
-      <rect x="70" y="124" width="200" height="26" rx="4" fill="var(--p-blue)"/>
-      <rect x="50" y="98" width="200" height="26" rx="4" fill="var(--p-blue)"/>
-      <rect x="65" y="72" width="200" height="26" rx="4" fill="var(--p-blue)"/>
-    </g>
-    <text x="160" y="230" text-anchor="middle" class="lbl-g">read cover to cover</text>
-    <path d="M300,150 C360,150 380,150 430,150" fill="none" stroke="#757575" stroke-width="2.2" stroke-dasharray="6 5" marker-end="url(#ahg)"/>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="3">
-      <rect x="450" y="30" width="360" height="290" rx="14" fill="var(--p-orange)"/>
-      <rect x="602" y="12" width="56" height="24" rx="6"/>
-    </g>
-    <text x="630" y="70" text-anchor="middle" class="lbl-b" style="font-size:22px">the checklist</text>
-    <g class="lbl-sm">
-      <path d="M475,100 L483,108 L498,90" fill="none" stroke="#2e7d32" stroke-width="2.6" stroke-linecap="round"/>
-      <text x="510" y="106">title page</text>
-      <path d="M475,140 L483,148 L498,130" fill="none" stroke="#2e7d32" stroke-width="2.6" stroke-linecap="round"/>
-      <text x="510" y="146">table of contents</text>
-      <path d="M475,180 L483,188 L498,170" fill="none" stroke="#2e7d32" stroke-width="2.6" stroke-linecap="round"/>
-      <text x="510" y="186">legible print run</text>
-      <path d="M475,220 L483,228 L498,210" fill="none" stroke="#2e7d32" stroke-width="2.6" stroke-linecap="round"/>
-      <text x="510" y="226">pages in order</text>
-    </g>
-    <text x="630" y="278" text-anchor="middle" class="lbl-g">checked the same way, every book</text>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A librarian at a checkout desk stamping and approving a book, a small cart with more books waiting beside the desk.">
+    <image href="../img/decks/m20/title-librarian-checkout.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
   </svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;&middot;&nbsp; School of DevOps &amp; AI &nbsp;&middot;&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M20&middot;01</div>
@@ -200,8 +180,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">1 &middot; The library that checks every book before it lends it out</h2>
+<section class="divider">
+  <h2 class="t">The library that checks every book before it lends it out</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="Tall library shelves full of books, a librarian at the near end holding one book up to check it before placing it on the shelf.">
+    <image href="../img/decks/m20/divider-1-library-shelves.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M20&middot;03</div>
 </section>
 
@@ -209,27 +192,8 @@ footer, header, hgroup, main, menu, nav, section {
 <section>
   <h2 class="t">Five books, a librarian reads each one</h2>
   <p class="s">Reading every donation works — at five books</p>
-  <svg viewBox="0 0 1100 340" role="img" aria-label="A librarian beside a desk with five open books, each marked with a green read checkmark, an ordinary and unremarkable scene.">
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4">
-      <circle cx="150" cy="130" r="30"/>
-      <path d="M150,160 L150,230 M150,180 L110,210 M150,180 L190,210 M150,230 L120,290 M150,230 L180,290"/>
-    </g>
-    <text x="150" y="315" text-anchor="middle" class="lbl-sm">librarian</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2">
-      <rect x="350" y="60" width="130" height="80" rx="6" fill="var(--p-blue)"/>
-      <rect x="500" y="60" width="130" height="80" rx="6" fill="var(--p-blue)"/>
-      <rect x="650" y="60" width="130" height="80" rx="6" fill="var(--p-blue)"/>
-      <rect x="800" y="60" width="130" height="80" rx="6" fill="var(--p-blue)"/>
-      <rect x="950" y="60" width="120" height="80" rx="6" fill="var(--p-blue)"/>
-    </g>
-    <g class="lbl-sm" text-anchor="middle">
-      <path d="M400,170 L408,178 L423,160" fill="none" stroke="#2e7d32" stroke-width="2.6" stroke-linecap="round"/>
-      <path d="M550,170 L558,178 L573,160" fill="none" stroke="#2e7d32" stroke-width="2.6" stroke-linecap="round"/>
-      <path d="M700,170 L708,178 L723,160" fill="none" stroke="#2e7d32" stroke-width="2.6" stroke-linecap="round"/>
-      <path d="M850,170 L858,178 L873,160" fill="none" stroke="#2e7d32" stroke-width="2.6" stroke-linecap="round"/>
-      <path d="M995,170 L1003,178 L1018,160" fill="none" stroke="#2e7d32" stroke-width="2.6" stroke-linecap="round"/>
-    </g>
-    <text x="660" y="250" text-anchor="middle" class="lbl-g">five books, read cover to cover, one at a time</text>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A librarian sitting at a small desk, reading through a short stack of five books one at a time, calm and unhurried.">
+    <image href="../img/decks/m20/analogy-five-books.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
   </svg>
   <div class="pageno">M20&middot;04</div>
 </section>
@@ -329,8 +293,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">2 &middot; What the checklist actually checks</h2>
+<section class="divider">
+  <h2 class="t">What the checklist actually checks</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A large rubber stamp pressing down onto a clipboard checklist with several blank checkbox rows.">
+    <image href="../img/decks/m20/divider-2-checklist-stamp.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M20&middot;08</div>
 </section>
 
@@ -401,8 +368,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">3 &middot; A third real skill, built the same way as the first two</h2>
+<section class="divider">
+  <h2 class="t">A third real skill, built the same way as the first two</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A woodworking workbench with three identical wooden boxes lined up in a row, each built from the same simple template.">
+    <image href="../img/decks/m20/divider-3-three-boxes.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M20&middot;11</div>
 </section>
 
@@ -496,8 +466,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">4 &middot; What a cross-agent smoke test proves &mdash; and what it does not</h2>
+<section class="divider">
+  <h2 class="t">What a cross-agent smoke test proves &mdash; and what it does not</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="Two different robots standing on opposite sides of a table, both examining the same open book placed between them.">
+    <image href="../img/decks/m20/divider-4-two-robots.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M20&middot;15</div>
 </section>
 
@@ -577,8 +550,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">5 &middot; Version pinning: a skill's freshness, checkable on its own</h2>
+<section class="divider">
+  <h2 class="t">Version pinning: a skill's freshness, checkable on its own</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="An open library card-catalog drawer full of index cards, one card being pulled out and examined by a hand.">
+    <image href="../img/decks/m20/divider-5-card-catalog.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M20&middot;19</div>
 </section>
 
@@ -733,7 +709,7 @@ footer, header, hgroup, main, menu, nav, section {
       if(!sec) return;
       var svg = sec.querySelector('svg');
       if(!svg) return;
-      var mh = 58;
+      var mh = sec.classList.contains('divider') ? 80 : 58;
       svg.style.maxHeight = mh + '%';
       var guard = 0;
       while (sec.scrollHeight > sec.clientHeight + 2 && mh > 18 && guard++ < 20){
