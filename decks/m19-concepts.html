@@ -101,6 +101,9 @@ footer, header, hgroup, main, menu, nav, section {
   .reveal .credit{ order:4; font-size:.85em; color:var(--gray); margin-top:16px; }
   .reveal .credit b{ color:var(--ink); font-weight:700; }
   .reveal .pageno{ position:absolute; bottom:14px; right:22px; font-size:.6em; color:#bdbdbd; }
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:2; font-size:1.1em; max-width:76%; }
+  .reveal .slides section.divider svg{ order:1; }
   .reveal .slide-number{ font-family:'Patrick Hand',cursive; }
   .reveal code{ font-family:'Patrick Hand',cursive; color:var(--ink); }
   .reveal em{ font-style:italic; }
@@ -193,8 +196,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — the pre-flight checklist ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">1 &middot; The pre-flight checklist</h2>
+<section class="divider">
+  <h2 class="t">The pre-flight checklist</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A pilot in uniform does a walkaround inspection of a small airplane, holding a clipboard, examining the landing gear closely.">
+    <image href="../img/decks/m19/divider-1-pilot-walkaround.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M19&middot;03</div>
 </section>
 
@@ -324,8 +330,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — combine agent judgment with deterministic checks ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">2 &middot; What "combine agent judgment with deterministic checks" means here</h2>
+<section class="divider">
+  <h2 class="t">What "combine agent judgment with deterministic checks" means here</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A human hand and a robot hand both hold pens, each ticking a checkbox on the same clipboard checklist between them.">
+    <image href="../img/decks/m19/divider-2-human-robot-checklist.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M19&middot;09</div>
 </section>
 
@@ -385,8 +394,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — where each piece of evidence comes from ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">3 &middot; Where each piece of evidence comes from</h2>
+<section class="divider">
+  <h2 class="t">Where each piece of evidence comes from</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="Three separate pipes flow water into one funnel, which drains into a single collecting basin below.">
+    <image href="../img/decks/m19/divider-3-pipes-funnel.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M19&middot;12</div>
 </section>
 
@@ -477,8 +489,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — confidence computed honestly ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">4 &middot; Confidence, computed honestly</h2>
+<section class="divider">
+  <h2 class="t">Confidence, computed honestly</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="An old brass mechanical postal scale with a small parcel on the weighing pan, the needle on the dial pointing partway up.">
+    <image href="../img/decks/m19/divider-4-postal-scale.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M19&middot;16</div>
 </section>
 
@@ -596,8 +611,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — an honest unknown beats a guess ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">5 &middot; The lesson underneath the report: an honest unknown beats a guess</h2>
+<section class="divider">
+  <h2 class="t">The lesson underneath the report: an honest unknown beats a guess</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A simple compass on a wooden table, its needle spinning loosely and not settled on any direction.">
+    <image href="../img/decks/m19/divider-5-compass-spinning.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M19&middot;21</div>
 </section>
 
@@ -652,8 +670,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — common pitfalls ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Common pitfalls</h2>
+<section class="divider">
+  <h2 class="t">Common pitfalls</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A pothole in a road with a warning cone placed beside it.">
+    <image href="../img/decks/m19/divider-6-pothole-cone.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M19&middot;24</div>
 </section>
 
@@ -755,7 +776,7 @@ footer, header, hgroup, main, menu, nav, section {
       if(!sec) return;
       var svg = sec.querySelector('svg');
       if(!svg) return;
-      var mh = 58;
+      var mh = sec.classList.contains('divider') ? 80 : 58;
       svg.style.maxHeight = mh + '%';
       var guard = 0;
       while (sec.scrollHeight > sec.clientHeight + 2 && mh > 18 && guard++ < 20){
