@@ -101,6 +101,9 @@ footer, header, hgroup, main, menu, nav, section {
   .reveal .credit{ order:4; font-size:.85em; color:var(--gray); margin-top:16px; }
   .reveal .credit b{ color:var(--ink); font-weight:700; }
   .reveal .pageno{ position:absolute; bottom:14px; right:22px; font-size:.6em; color:#bdbdbd; }
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:2; font-size:1.1em; max-width:76%; }
+  .reveal .slides section.divider svg{ order:1; }
   .reveal .slide-number{ font-family:'Patrick Hand',cursive; }
   .reveal code{ font-family:'Patrick Hand',cursive; color:var(--ink); }
   .reveal em{ font-style:italic; }
@@ -197,8 +200,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — annotations on functions ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">1 &middot; Annotations on functions &mdash; documentation a tool can read</h2>
+<section class="divider">
+  <h2 class="t">Annotations on functions &mdash; documentation a tool can read</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A blank luggage tag tied to a suitcase handle, sitting on an airport conveyor belt.">
+    <image href="../img/decks/m5/divider-1-luggage-tag.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M5&middot;02</div>
 </section>
 
@@ -235,8 +241,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — typed containers, Optional, unions ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">2 &middot; Typed containers, Optional, and unions</h2>
+<section class="divider">
+  <h2 class="t">Typed containers, Optional, and unions</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A shelf of labeled storage boxes and bins of different shapes and sizes, one small box has its lid slightly open and looks empty.">
+    <image href="../img/decks/m5/divider-2-labeled-boxes.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M5&middot;04</div>
 </section>
 
@@ -325,8 +334,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — dataclasses ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">3 &middot; Dataclasses &mdash; a typed record, still on the honour system</h2>
+<section class="divider">
+  <h2 class="t">Dataclasses &mdash; a typed record, still on the honour system</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A metal filing cabinet drawer pulled open, neatly labeled hanging folders visible inside, no lock on the drawer.">
+    <image href="../img/decks/m5/divider-3-filing-cabinet.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M5&middot;08</div>
 </section>
 
@@ -371,8 +383,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — Pydantic ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">4 &middot; Pydantic &mdash; a model that actually checks</h2>
+<section class="divider">
+  <h2 class="t">Pydantic &mdash; a model that actually checks</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A security guard at a turnstile gate examining a visitor's ID badge before letting them through, a queue of people waiting behind.">
+    <image href="../img/decks/m5/divider-4-security-guard.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M5&middot;11</div>
 </section>
 
@@ -477,8 +492,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — the boundary rule ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">5 &middot; The boundary rule &mdash; validate at the edge, trust inside</h2>
+<section class="divider">
+  <h2 class="t">The boundary rule &mdash; validate at the edge, trust inside</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A border checkpoint gate with an officer stamping a passport at a booth, a queue of travelers with suitcases waiting to pass through.">
+    <image href="../img/decks/m5/divider-5-border-checkpoint.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M5&middot;16</div>
 </section>
 
@@ -599,8 +617,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — dict vs dataclass vs Pydantic ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">6 &middot; dict vs. dataclass vs. Pydantic &mdash; picking the right one</h2>
+<section class="divider">
+  <h2 class="t">dict vs. dataclass vs. Pydantic &mdash; picking the right one</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="Three different containers side by side on a table: a plain open cardboard box, a labeled wooden crate, and a sturdy locked metal case.">
+    <image href="../img/decks/m5/divider-6-three-containers.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M5&middot;19</div>
 </section>
 
@@ -657,6 +678,7 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ SLIDE 16 — closing / build it ============ -->
 <section>
+  <p class="kicker">MODULE 5 &nbsp;·&nbsp; AI-POWERED PYTHON FOR DEVOPS &amp; SRE</p>
   <h2 class="t">One model, one boundary, one habit, now build it</h2>
   <p class="s">validate once, then let the rest of the code trust it</p>
   <svg viewBox="0 0 1100 300" role="img" aria-label="A closing hand-off card: build ServiceDefinition and a nested ObservabilityRefs by hand, delegate three field constraints to a coding agent, review the diff, tag v0.3.">
@@ -715,7 +737,7 @@ footer, header, hgroup, main, menu, nav, section {
       if(!sec) return;
       var svg = sec.querySelector('svg');
       if(!svg) return;
-      var mh = 58;
+      var mh = sec.classList.contains('divider') ? 80 : 58;
       svg.style.maxHeight = mh + '%';
       var guard = 0;
       while (sec.scrollHeight > sec.clientHeight + 2 && mh > 18 && guard++ < 20){
