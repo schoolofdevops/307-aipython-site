@@ -114,7 +114,8 @@ footer, header, hgroup, main, menu, nav, section {
   .num{ fill:var(--ink); font-size:24px; font-weight:700; }
   /* Section divider slides (style guide §3a) — title only, centered */
   .reveal .slides section.divider{ justify-content:center; align-items:center; }
-  .reveal .slides section.divider h2.t{ order:0; font-size:2.2em; max-width:88%; }
+  .reveal .slides section.divider h2.t{ order:2; font-size:1.1em; max-width:76%; }
+  .reveal .slides section.divider svg{ order:1; }
 </style>
 </head>
 <body>
@@ -142,25 +143,7 @@ footer, header, hgroup, main, menu, nav, section {
   <p class="kicker">MODULE 30 &nbsp;&middot;&nbsp; AI-POWERED PYTHON FOR DEVOPS &amp; SRE</p>
   <h2 class="t" style="font-size:1.8em">One ID ties a whole run's records together</h2>
   <p class="s" style="font-size:1.2em">logs and traces, tagged with the same run ID</p>
-  <svg viewBox="0 0 1100 300" role="img" aria-label="One run fans out to two records — every structured log line and one trace span — and both are tagged with the same correlation ID req-a1b2.">
-    <g filter="url(#rough)" fill="#e1d5e7" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
-      <rect x="60" y="105" width="230" height="90" rx="12"/>
-    </g>
-    <text x="175" y="140" text-anchor="middle" class="lbl-b">one run</text>
-    <text x="175" y="168" text-anchor="middle" class="lbl-sm">req-a1b2</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <path d="M290,135 C400,135 440,85 540,85" marker-end="url(#ah)"/>
-      <path d="M290,165 C400,165 440,215 540,215" marker-end="url(#ah)"/>
-    </g>
-    <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <rect x="545" y="45" width="490" height="80" rx="10"/>
-      <rect x="545" y="175" width="490" height="80" rx="10"/>
-    </g>
-    <text x="790" y="80" text-anchor="middle" class="lbl-b">every structured log line</text>
-    <text x="790" y="108" text-anchor="middle" class="lbl-g">tagged req-a1b2</text>
-    <text x="790" y="210" text-anchor="middle" class="lbl-b">one trace span</text>
-    <text x="790" y="238" text-anchor="middle" class="lbl-g">tagged req-a1b2</text>
-  </svg>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A hand presses one rubber stamp onto two separate records lying on a desk — a bound ledger book and a long strip of chart paper — with a cord tying both back to a single folder in the middle."><image href="../img/decks/m30/title.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;&middot;&nbsp; School of DevOps &amp; AI &nbsp;&middot;&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M30&middot;01</div>
 </section>
@@ -168,6 +151,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- ============ DIVIDER — intro ============ -->
 <section class="divider">
   <h2 class="t">Read what a system says about itself</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="An engineer stands beside a running machine that is printing a long ribbon of paper about its own condition, holding the ribbon up to read it while dial gauges show on the machine's panel."><image href="../img/decks/m30/d-intro.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M30&middot;02</div>
 </section>
 
@@ -199,7 +183,8 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ DIVIDER — section 1 ============ -->
 <section class="divider">
-  <h2 class="t">1 &middot; The claim number, not five separate folders</h2>
+  <h2 class="t">The claim number, not five separate folders</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A call-centre agent wearing a headset holds up one slim folder at a front desk, while five clerks at separate desks behind them each hold their own stack of paperwork, all linked back by a single thin line."><image href="../img/decks/m30/d-claim.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M30&middot;04</div>
 </section>
 
@@ -282,7 +267,8 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ DIVIDER — section 2 ============ -->
 <section class="divider">
-  <h2 class="t">2 &middot; Vitals, chart notes and the alarm &mdash; three signals, one patient</h2>
+  <h2 class="t">Vitals, chart notes and the alarm &mdash; three signals, one patient</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="One hospital patient in a bed watched three ways at once — a vital-signs monitor tracing a wavy line on a stand, a nurse writing on a clipboard, and an alarm lamp flashing on the wall above the bed."><image href="../img/decks/m30/d-signals.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M30&middot;07</div>
 </section>
 
@@ -393,7 +379,8 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ DIVIDER — section 3 ============ -->
 <section class="divider">
-  <h2 class="t">3 &middot; A quiet backend and a broken one are not the same fact</h2>
+  <h2 class="t">A quiet backend and a broken one are not the same fact</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="Two desk telephones on one counter — at the left a clerk holds the handset and shrugs with an open empty palm, having answered with nothing to report; at the right the handset lies off the hook with its cord cut and the chair behind it empty."><image href="../img/decks/m30/d-quiet.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M30&middot;11</div>
 </section>
 
@@ -460,7 +447,8 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ DIVIDER — section 4 ============ -->
 <section class="divider">
-  <h2 class="t">4 &middot; Instrumenting the instrument</h2>
+  <h2 class="t">Instrumenting the instrument</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A technician in a workshop presses a stethoscope against the casing of a large vital-signs monitor, listening to the monitoring instrument itself while a small gauge clipped to its side reads back on it."><image href="../img/decks/m30/d-instrument.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M30&middot;14</div>
 </section>
 
@@ -547,7 +535,8 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ DIVIDER — section 5 ============ -->
 <section class="divider">
-  <h2 class="t">5 &middot; Why this lab runs against fixtures, not a real backend</h2>
+  <h2 class="t">Why this lab runs against fixtures, not a real backend</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A full-size aircraft cockpit mockup sits on trestles in a workshop with a pilot working its identical controls, but its cables run to a small bench box on a table instead of to real engines."><image href="../img/decks/m30/d-fixtures.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M30&middot;18</div>
 </section>
 
@@ -587,6 +576,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- ============ DIVIDER — Common pitfalls ============ -->
 <section class="divider">
   <h2 class="t">Common pitfalls</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="An engineer walks a path across open ground dotted with open pits, some loosely covered with boards and leaves so they are hard to spot, testing the ground ahead with a stick before each step."><image href="../img/decks/m30/d-pitfalls.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M30&middot;20</div>
 </section>
 
@@ -677,7 +667,7 @@ footer, header, hgroup, main, menu, nav, section {
       if(!sec) return;
       var svg = sec.querySelector('svg');
       if(!svg) return;
-      var mh = 58;
+      var mh = sec.classList.contains('divider') ? 80 : 58;
       svg.style.maxHeight = mh + '%';
       var guard = 0;
       while (sec.scrollHeight > sec.clientHeight + 2 && mh > 18 && guard++ < 20){

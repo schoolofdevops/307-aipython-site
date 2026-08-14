@@ -115,7 +115,8 @@ footer, header, hgroup, main, menu, nav, section {
 
   /* Section divider slides (style guide §3a) — title only, centered */
   .reveal .slides section.divider{ justify-content:center; align-items:center; }
-  .reveal .slides section.divider h2.t{ order:0; font-size:2.2em; max-width:88%; }
+  .reveal .slides section.divider h2.t{ order:2; font-size:1.1em; max-width:76%; }
+  .reveal .slides section.divider svg{ order:1; }
 </style>
 </head>
 <body>
@@ -143,35 +144,7 @@ footer, header, hgroup, main, menu, nav, section {
   <p class="kicker">MODULE 27 &nbsp;&middot;&nbsp; AI-POWERED PYTHON FOR DEVOPS &amp; SRE</p>
   <h2 class="t" style="font-size:1.8em">Build the box once. Run it the same everywhere.</h2>
   <p class="s" style="font-size:1.2em">one image &mdash; laptop, CI, or Kubernetes</p>
-  <svg viewBox="0 0 1100 300" role="img" aria-label="A Dockerfile is built into one container image, which then runs unchanged on a laptop, on Kubernetes, and in CI.">
-    <g filter="url(#rough)" fill="#e1d5e7" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <rect x="15" y="95" width="180" height="100" rx="10"/>
-    </g>
-    <text x="105" y="135" text-anchor="middle" class="lbl-b">Dockerfile</text>
-    <text x="105" y="162" text-anchor="middle" class="lbl-sm">the packing list</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <path d="M195,145 L248,145" marker-end="url(#ah)"/>
-    </g>
-    <text x="222" y="128" text-anchor="middle" class="lbl-g">build</text>
-    <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
-      <rect x="255" y="85" width="210" height="120" rx="10"/>
-    </g>
-    <text x="360" y="135" text-anchor="middle" class="lbl-b">container image</text>
-    <text x="360" y="162" text-anchor="middle" class="lbl-sm">the packed box</text>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-linecap="round">
-      <path d="M465,120 C560,75 640,55 700,52" marker-end="url(#ahg)"/>
-      <path d="M465,145 C560,145 640,145 700,145" marker-end="url(#ahg)"/>
-      <path d="M465,170 C560,215 640,235 700,238" marker-end="url(#ahg)"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2" stroke-linecap="round">
-      <rect x="705" y="25" width="360" height="55" rx="8"/>
-      <rect x="705" y="118" width="360" height="55" rx="8"/>
-      <rect x="705" y="210" width="360" height="55" rx="8"/>
-    </g>
-    <text x="885" y="58" text-anchor="middle" class="lbl-sm">your laptop</text>
-    <text x="885" y="151" text-anchor="middle" class="lbl-sm">Kubernetes (a kind cluster)</text>
-    <text x="885" y="243" text-anchor="middle" class="lbl-sm">a CI pipeline</text>
-  </svg>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="One standard steel shipping container hangs from a dockside crane above a flatbed truck, a rail wagon and an open ship's hold, showing the same sealed box fits every transport."><image href="../img/decks/m27/title.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;&middot;&nbsp; School of DevOps &amp; AI &nbsp;&middot;&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M27&middot;01</div>
 </section>
@@ -179,6 +152,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- ============ DIVIDER — intro ============ -->
 <section class="divider">
   <h2 class="t">Why package PlatformOps as a container?</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="Three engineers at three different desks, each puzzling over their own laptop while trying to run the same tool."><image href="../img/decks/m27/why-container.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M27&middot;02</div>
 </section>
 
@@ -214,7 +188,8 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ DIVIDER — 1 ============ -->
 <section class="divider">
-  <h2 class="t">1 &middot; A shipping container, not a truck packed by hand</h2>
+  <h2 class="t">A shipping container, not a truck packed by hand</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="On one side dockworkers carry loose barrels and crates up a gangplank one at a time; on the other a crane lifts a single sealed standard container in one move."><image href="../img/decks/m27/shipping-container.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M27&middot;04</div>
 </section>
 
@@ -297,7 +272,8 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ DIVIDER — 2 ============ -->
 <section class="divider">
-  <h2 class="t">2 &middot; Multi-stage builds</h2>
+  <h2 class="t">Multi-stage builds</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A worker wheels the scaffolding, ladders and cement mixer away from a finished house, leaving only the building behind."><image href="../img/decks/m27/multistage.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M27&middot;07</div>
 </section>
 
@@ -381,7 +357,8 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ DIVIDER — 3 ============ -->
 <section class="divider">
-  <h2 class="t">3 &middot; Run as a guest, not as root</h2>
+  <h2 class="t">Run as a guest, not as root</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A hotel guest taps a key card on their own room door while a staff-only door further down the corridor stays shut."><image href="../img/decks/m27/nonroot-guest.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M27&middot;10</div>
 </section>
 
@@ -421,7 +398,8 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ DIVIDER — 4 ============ -->
 <section class="divider">
-  <h2 class="t">4 &middot; Configure at run time, not in the box</h2>
+  <h2 class="t">Configure at run time, not in the box</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A hand turns the dial on a wall-mounted hotel thermostat while the room around it stays exactly the same."><image href="../img/decks/m27/runtime-config.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M27&middot;12</div>
 </section>
 
@@ -460,7 +438,8 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ DIVIDER — 5 ============ -->
 <section class="divider">
-  <h2 class="t">5 &middot; Secrets handed over at the door</h2>
+  <h2 class="t">Secrets handed over at the door</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A hotel receptionist hands a single key card across the check-in desk to an arriving guest with a suitcase."><image href="../img/decks/m27/secrets-checkin.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M27&middot;14</div>
 </section>
 
@@ -503,7 +482,8 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ DIVIDER — 6 ============ -->
 <section class="divider">
-  <h2 class="t">6 &middot; Health checks</h2>
+  <h2 class="t">Health checks</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A nurse checks a resting patient's pulse on a scheduled round, glancing at the wall clock rather than reacting to an alarm."><image href="../img/decks/m27/healthcheck.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M27&middot;16</div>
 </section>
 
@@ -542,7 +522,8 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ DIVIDER — 7 ============ -->
 <section class="divider">
-  <h2 class="t">7 &middot; Resource limits &mdash; a fence, not a suggestion</h2>
+  <h2 class="t">Resource limits &mdash; a fence, not a suggestion</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A row of separate utility meters on an apartment building wall, each one behind its own fenced cage, with a worker checking one."><image href="../img/decks/m27/resource-limits.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M27&middot;18</div>
 </section>
 
@@ -571,7 +552,8 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ DIVIDER — 8 ============ -->
 <section class="divider">
-  <h2 class="t">8 &middot; Scanning and SBOM</h2>
+  <h2 class="t">Scanning and SBOM</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A hand holds a magnifying glass over the ingredient panel on the back of a tinned food can in a kitchen."><image href="../img/decks/m27/sbom-scan.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M27&middot;20</div>
 </section>
 
@@ -648,7 +630,8 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ DIVIDER — 9 ============ -->
 <section class="divider">
-  <h2 class="t">9 &middot; The same image, two ways to run it</h2>
+  <h2 class="t">The same image, two ways to run it</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="The same person shown twice: carrying groceries home on a one-off errand, and standing in a work apron beside a calendar with a recurring day circled."><image href="../img/decks/m27/two-ways.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M27&middot;23</div>
 </section>
 
@@ -739,6 +722,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- ============ DIVIDER — pitfalls ============ -->
 <section class="divider">
   <h2 class="t">Common pitfalls</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="An overstuffed shipping container with its doors burst open, ladders, crates and a cement mixer spilling onto the dock while a worker looks on."><image href="../img/decks/m27/pitfalls.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M27&middot;26</div>
 </section>
 
@@ -838,7 +822,7 @@ footer, header, hgroup, main, menu, nav, section {
       if(!sec) return;
       var svg = sec.querySelector('svg');
       if(!svg) return;
-      var mh = 58;
+      var mh = sec.classList.contains('divider') ? 80 : 58;
       svg.style.maxHeight = mh + '%';
       var guard = 0;
       while (sec.scrollHeight > sec.clientHeight + 2 && mh > 18 && guard++ < 20){

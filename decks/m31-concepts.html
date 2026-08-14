@@ -114,7 +114,8 @@ footer, header, hgroup, main, menu, nav, section {
   .num{ fill:var(--ink); font-size:24px; font-weight:700; }
   /* Section divider slides (style guide §3a) — title only, centered */
   .reveal .slides section.divider{ justify-content:center; align-items:center; }
-  .reveal .slides section.divider h2.t{ order:0; font-size:2.2em; max-width:88%; }
+  .reveal .slides section.divider h2.t{ order:2; font-size:1.1em; max-width:76%; }
+  .reveal .slides section.divider svg{ order:1; }
 </style>
 </head>
 <body>
@@ -142,35 +143,7 @@ footer, header, hgroup, main, menu, nav, section {
   <p class="kicker">MODULE 31 &nbsp;&middot;&nbsp; AI-POWERED PYTHON FOR DEVOPS &amp; SRE</p>
   <h2 class="t" style="font-size:1.8em">One command pulls the whole incident chart</h2>
   <p class="s" style="font-size:1.2em">six systems, one report, in seconds</p>
-  <svg viewBox="0 0 1100 300" role="img" aria-label="One incident-collect command fans out to a stack of six evidence cards from six systems and a merged timeline strip, gathered into one incident-context report.">
-    <g filter="url(#rough)" fill="#e1d5e7" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
-      <rect x="45" y="110" width="290" height="80" rx="12"/>
-    </g>
-    <text x="190" y="145" text-anchor="middle" class="lbl-b">incident-collect</text>
-    <text x="190" y="173" text-anchor="middle" class="lbl-sm">payments</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <path d="M335,150 L430,150" marker-end="url(#ah)"/>
-    </g>
-    <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <rect x="440" y="40" width="300" height="52" rx="10"/>
-      <rect x="455" y="98" width="300" height="52" rx="10"/>
-      <rect x="470" y="156" width="300" height="52" rx="10"/>
-    </g>
-    <text x="590" y="72" text-anchor="middle" class="lbl-sm">six evidence records</text>
-    <text x="605" y="130" text-anchor="middle" class="lbl-sm">ownership · source · CI · k8s</text>
-    <text x="620" y="188" text-anchor="middle" class="lbl-sm">cloud · observability</text>
-    <g filter="url(#rough)" fill="#d5e8d4" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
-      <rect x="800" y="98" width="260" height="52" rx="10"/>
-    </g>
-    <text x="930" y="130" text-anchor="middle" class="lbl-b">one report</text>
-    <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="5 5">
-      <rect x="800" y="164" width="260" height="44" rx="10"/>
-    </g>
-    <text x="930" y="192" text-anchor="middle" class="lbl-g">+ merged timeline</text>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-linecap="round">
-      <path d="M760,124 L795,124" marker-end="url(#ahg)"/>
-    </g>
-  </svg>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="An on-call engineer sits at a desk in front of a single monitor holding one printed report sheet, with six closed folders stacked unopened beside the keyboard."><image href="../img/decks/m31/title.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;&middot;&nbsp; School of DevOps &amp; AI &nbsp;&middot;&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M31&middot;01</div>
 </section>
@@ -178,6 +151,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- ============ DIVIDER — intro ============ -->
 <section class="divider">
   <h2 class="t">The first few minutes, as one command</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A single finger presses one key on a keyboard and six sheets of paper fan out across the desk toward the reader like a spread hand of cards."><image href="../img/decks/m31/d1-first-minutes.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M31&middot;02</div>
 </section>
 
@@ -225,7 +199,8 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ DIVIDER — section 1 ============ -->
 <section class="divider">
-  <h2 class="t">1 &middot; The chart before the diagnosis</h2>
+  <h2 class="t">The chart before the diagnosis</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A doctor stands at the foot of an emergency room bed reading a clipboard chart carefully before touching the patient or any equipment."><image href="../img/decks/m31/d2-chart.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M31&middot;04</div>
 </section>
 
@@ -316,7 +291,8 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ DIVIDER — section 2 ============ -->
 <section class="divider">
-  <h2 class="t">2 &middot; Six adapters, one report &mdash; nothing reimplemented</h2>
+  <h2 class="t">Six adapters, one report &mdash; nothing reimplemented</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="Six hoses and pipes of different shapes converge into a single funnel that empties into one open tray on a workbench."><image href="../img/decks/m31/d3-adapters.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M31&middot;07</div>
 </section>
 
@@ -422,7 +398,8 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ DIVIDER — section 3 ============ -->
 <section class="divider">
-  <h2 class="t">3 &middot; A source that cannot answer is not a source that fails silently</h2>
+  <h2 class="t">A source that cannot answer is not a source that fails silently</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A row of six wall telephones: five handsets are lifted and answering, while one hangs with a severed cord and a blank tag dangling from it."><image href="../img/decks/m31/d4-unknown.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M31&middot;10</div>
 </section>
 
@@ -494,7 +471,8 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ DIVIDER — section 4 ============ -->
 <section class="divider">
-  <h2 class="t">4 &middot; SLO and error budget, in plain words</h2>
+  <h2 class="t">SLO and error budget, in plain words</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A glass jar filled with sand almost to the rim, leaving only a thin gap at the top, with a hand holding a spoon hovering over that remaining gap."><image href="../img/decks/m31/d5-slo.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M31&middot;13</div>
 </section>
 
@@ -553,7 +531,8 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ DIVIDER — section 5 ============ -->
 <section class="divider">
-  <h2 class="t">5 &middot; An incident timeline, built from real timestamps only</h2>
+  <h2 class="t">An incident timeline, built from real timestamps only</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="Blank cards pegged in order along a clothesline, with one clothespin left empty where no card hangs."><image href="../img/decks/m31/d6-timeline.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M31&middot;16</div>
 </section>
 
@@ -606,7 +585,8 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ DIVIDER — section 6 ============ -->
 <section class="divider">
-  <h2 class="t">6 &middot; Diagnose read-only, first &mdash; always</h2>
+  <h2 class="t">Diagnose read-only, first &mdash; always</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A technician inspects an open machine panel of levers and dials through a magnifying glass, keeping the other hand deliberately behind their back."><image href="../img/decks/m31/d7-readonly.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M31&middot;18</div>
 </section>
 
@@ -639,6 +619,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- ============ DIVIDER — pitfalls ============ -->
 <section class="divider">
   <h2 class="t">Common pitfalls</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A person walks along a footpath with several open holes ahead, each marked by a small blank flag planted beside it."><image href="../img/decks/m31/d8-pitfalls.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M31&middot;20</div>
 </section>
 
@@ -730,7 +711,7 @@ footer, header, hgroup, main, menu, nav, section {
       if(!sec) return;
       var svg = sec.querySelector('svg');
       if(!svg) return;
-      var mh = 58;
+      var mh = sec.classList.contains('divider') ? 80 : 58;
       svg.style.maxHeight = mh + '%';
       var guard = 0;
       while (sec.scrollHeight > sec.clientHeight + 2 && mh > 18 && guard++ < 20){

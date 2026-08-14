@@ -115,7 +115,8 @@ footer, header, hgroup, main, menu, nav, section {
 
   /* Section divider slides (style guide §3a) — title only, centered */
   .reveal .slides section.divider{ justify-content:center; align-items:center; }
-  .reveal .slides section.divider h2.t{ order:0; font-size:2.2em; max-width:88%; }
+  .reveal .slides section.divider h2.t{ order:2; font-size:1.1em; max-width:76%; }
+  .reveal .slides section.divider svg{ order:1; }
 </style>
 </head>
 <body>
@@ -143,41 +144,7 @@ footer, header, hgroup, main, menu, nav, section {
   <p class="kicker">MODULE 28 &nbsp;&middot;&nbsp; AI-POWERED PYTHON FOR DEVOPS &amp; SRE</p>
   <h2 class="t" style="font-size:1.8em">Read the cluster's status board from Python</h2>
   <p class="s" style="font-size:1.2em">the same questions kubectl asks &mdash; as data</p>
-  <svg viewBox="0 0 1100 300" role="img" aria-label="The platformops workload-inspect command asks the Kubernetes API server, which acts as a live status board, and turns the answer into a machine-readable report.">
-    <g filter="url(#rough)" fill="#e1d5e7" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <rect x="15" y="95" width="215" height="105" rx="10"/>
-    </g>
-    <text x="122" y="138" text-anchor="middle" class="lbl-b">workload-inspect</text>
-    <text x="122" y="166" text-anchor="middle" class="lbl-sm">Python code</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <path d="M230,148 L288,148" marker-end="url(#ah)"/>
-    </g>
-    <text x="259" y="131" text-anchor="middle" class="lbl-g">asks</text>
-    <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
-      <rect x="295" y="82" width="245" height="130" rx="10"/>
-    </g>
-    <text x="417" y="130" text-anchor="middle" class="lbl-b">API server</text>
-    <text x="417" y="158" text-anchor="middle" class="lbl-sm">a live status board</text>
-    <text x="417" y="184" text-anchor="middle" class="lbl-g">replicas &middot; phase &middot; events</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <path d="M540,148 L598,148" marker-end="url(#ah)"/>
-    </g>
-    <text x="569" y="131" text-anchor="middle" class="lbl-g">reports</text>
-    <g filter="url(#rough)" fill="#d5e8d4" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <rect x="605" y="95" width="245" height="105" rx="10"/>
-    </g>
-    <text x="727" y="138" text-anchor="middle" class="lbl-b">a report</text>
-    <text x="727" y="166" text-anchor="middle" class="lbl-sm">a program can read</text>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 5">
-      <path d="M417,82 C417,50 417,44 417,36"/>
-    </g>
-    <text x="417" y="26" text-anchor="middle" class="lbl-g">controllers wrote the state</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
-      <rect x="880" y="110" width="200" height="75" rx="8"/>
-    </g>
-    <text x="980" y="140" text-anchor="middle" class="lbl-sm">reads, never</text>
-    <text x="980" y="166" text-anchor="middle" class="lbl-g" fill="#2e7d32">changes anything</text>
-  </svg>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="An engineer stands in an airport terminal looking up at a large overhead departure board while holding a notebook, with an aircraft visible through the window behind."><image href="../img/decks/m28/title.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;&middot;&nbsp; School of DevOps &amp; AI &nbsp;&middot;&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M28&middot;01</div>
 </section>
@@ -185,6 +152,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- ============ DIVIDER — intro ============ -->
 <section class="divider">
   <h2 class="t">From running on Kubernetes to reading it from Python</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A worker turns away from a sealed shipping crate they have just strapped shut and steps toward a wall panel of round gauges to read them."><image href="../img/decks/m28/d1-intro.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M28&middot;02</div>
 </section>
 
@@ -220,6 +188,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- ============ DIVIDER — 1 ============ -->
 <section class="divider">
   <h2 class="t">The Kubernetes API is a live status board, and you are reading it, not touching it</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A traveller stands with hands clasped behind their back reading a large airport departure board, while a separate control tower in the distance directs the aircraft."><image href="../img/decks/m28/d2-statusboard.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M28&middot;04</div>
 </section>
 
@@ -319,6 +288,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- ============ DIVIDER — 2 ============ -->
 <section class="divider">
   <h2 class="t">Two ways in: your laptop's kubeconfig, or a Pod's own identity</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="Two people enter the same building by two different doors: one unlocks their door with a personal key, the other holds a lanyard badge to a wall reader."><image href="../img/decks/m28/d3-twoways.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M28&middot;07</div>
 </section>
 
@@ -362,6 +332,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- ============ DIVIDER — 3 ============ -->
 <section class="divider">
   <h2 class="t">Two clients for two kinds of object</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="Two service counters side by side in a records office, each with its own clerk and stack of ledgers, and a visitor deciding which counter to approach."><image href="../img/decks/m28/d4-twoclients.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M28&middot;09</div>
 </section>
 
@@ -404,6 +375,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- ============ DIVIDER — 4 ============ -->
 <section class="divider">
   <h2 class="t">Reading a Deployment's real numbers &mdash; desired, ready, available</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A warehouse worker holds an order slip and points at a row of mechanical tally counters on a shelving rack, comparing what was ordered against what is on the shelves."><image href="../img/decks/m28/d5-replicas.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M28&middot;11</div>
 </section>
 
@@ -481,6 +453,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- ============ DIVIDER — 5 ============ -->
 <section class="divider">
   <h2 class="t">One field name tells you which failure you are looking at</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="In a repair workshop a mechanic stands among several broken machines and lifts the single paper tag hanging from one of them to read it."><image href="../img/decks/m28/d6-fieldname.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M28&middot;14</div>
 </section>
 
@@ -550,6 +523,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- ============ DIVIDER — 6 ============ -->
 <section class="divider">
   <h2 class="t">Warning events, filtered to what is still true</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A person clears an overcrowded notice board, dropping handfuls of outdated notices into a bin while leaving only a couple still pinned up."><image href="../img/decks/m28/d7-events.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M28&middot;17</div>
 </section>
 
@@ -596,6 +570,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- ============ DIVIDER — 7 ============ -->
 <section class="divider">
   <h2 class="t">Errors have a name too</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="Two doorways side by side: at one a visitor knocks on a shut door with nobody answering, at the other a uniformed guard blocks the open doorway with a raised palm."><image href="../img/decks/m28/d8-errors.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M28&middot;19</div>
 </section>
 
@@ -626,6 +601,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- ============ DIVIDER — 8 ============ -->
 <section class="divider">
   <h2 class="t">A script, not a controller &mdash; and why that difference matters</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="On a factory floor a person takes one single photograph with a handheld camera while a fixed ceiling-mounted surveillance camera watches the same floor continuously."><image href="../img/decks/m28/d9-script.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M28&middot;21</div>
 </section>
 
@@ -668,6 +644,7 @@ footer, header, hgroup, main, menu, nav, section {
 <!-- ============ DIVIDER — pitfalls ============ -->
 <section class="divider">
   <h2 class="t">Common pitfalls</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A walker carefully steps around a series of open manholes and broken paving slabs marked with traffic cones, picking a path through."><image href="../img/decks/m28/d10-pitfalls.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M28&middot;23</div>
 </section>
 
@@ -766,7 +743,7 @@ footer, header, hgroup, main, menu, nav, section {
       if(!sec) return;
       var svg = sec.querySelector('svg');
       if(!svg) return;
-      var mh = 58;
+      var mh = sec.classList.contains('divider') ? 80 : 58;
       svg.style.maxHeight = mh + '%';
       var guard = 0;
       while (sec.scrollHeight > sec.clientHeight + 2 && mh > 18 && guard++ < 20){
