@@ -101,6 +101,9 @@ footer, header, hgroup, main, menu, nav, section {
   .reveal .credit{ order:4; font-size:.85em; color:var(--gray); margin-top:16px; }
   .reveal .credit b{ color:var(--ink); font-weight:700; }
   .reveal .pageno{ position:absolute; bottom:14px; right:22px; font-size:.6em; color:#bdbdbd; }
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:2; font-size:1.1em; max-width:76%; }
+  .reveal .slides section.divider svg{ order:1; }
   .reveal .slide-number{ font-family:'Patrick Hand',cursive; }
   .reveal code{ font-family:'Patrick Hand',cursive; color:var(--ink); }
   .reveal em{ font-style:italic; }
@@ -140,60 +143,15 @@ footer, header, hgroup, main, menu, nav, section {
   <p class="kicker">MODULE 11 &nbsp;&middot;&nbsp; AI-POWERED PYTHON FOR DEVOPS, PLATFORM ENGINEERING &amp; SRE</p>
   <h2 class="t" style="font-size:1.8em">Ask the programs that already know the answer</h2>
   <p class="s" style="font-size:1.2em">git, docker, grep are already on your machine</p>
-  <svg viewBox="0 0 1100 380" role="img" aria-label="A figure at a desk with an intercom panel. Three rooms visible through doors labelled git, docker, grep. Each room has a small figure ready to answer. Intercom wires connect them all.">
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <!-- desk -->
-      <rect x="420" y="200" width="260" height="80" rx="8" fill="#e3f2fd"/>
-      <!-- intercom panel on desk -->
-      <rect x="500" y="170" width="100" height="40" rx="5" fill="#fff9c4"/>
-      <circle cx="525" cy="190" r="6" fill="#c8e6c9"/>
-      <circle cx="550" cy="190" r="6" fill="#c8e6c9"/>
-      <circle cx="575" cy="190" r="6" fill="#c8e6c9"/>
-      <!-- figure at desk (head + body) -->
-      <circle cx="550" cy="130" r="22"/>
-      <line x1="550" y1="152" x2="550" y2="200"/>
-      <line x1="550" y1="170" x2="520" y2="195"/>
-      <line x1="550" y1="170" x2="580" y2="195"/>
-      <!-- room 1: git -->
-      <rect x="60" y="80" width="180" height="200" rx="10" fill="#e8f5e9"/>
-      <rect x="60" y="80" width="180" height="35" rx="10" fill="#c8e6c9"/>
-      <!-- git figure -->
-      <circle cx="150" cy="170" r="16"/>
-      <line x1="150" y1="186" x2="150" y2="230"/>
-      <line x1="150" y1="200" x2="130" y2="220"/>
-      <line x1="150" y1="200" x2="170" y2="220"/>
-      <!-- room 2: docker -->
-      <rect x="460" y="310" width="180" height="60" rx="10" fill="#e8f5e9"/>
-      <!-- Actually, let me place rooms better — left, bottom-left, right -->
-      <!-- room 3: grep -->
-      <rect x="860" y="80" width="180" height="200" rx="10" fill="#e8f5e9"/>
-      <rect x="860" y="80" width="180" height="35" rx="10" fill="#c8e6c9"/>
-      <!-- grep figure -->
-      <circle cx="950" cy="170" r="16"/>
-      <line x1="950" y1="186" x2="950" y2="230"/>
-      <line x1="950" y1="200" x2="930" y2="220"/>
-      <line x1="950" y1="200" x2="970" y2="220"/>
-      <!-- wires from intercom to rooms -->
-      <path d="M500,190 Q350,190 240,180" stroke="#757575" stroke-dasharray="6,4"/>
-      <path d="M575,190 Q750,190 860,180" stroke="#757575" stroke-dasharray="6,4"/>
-      <!-- docker room below -->
-      <rect x="60" y="310" width="180" height="60" rx="10" fill="#e8f5e9"/>
-      <path d="M525,210 Q400,310 240,340" stroke="#757575" stroke-dasharray="6,4" fill="none"/>
-    </g>
-    <!-- labels (no filter) -->
-    <text x="150" y="103" class="lbl-b" text-anchor="middle">git</text>
-    <text x="950" y="103" class="lbl-b" text-anchor="middle">grep</text>
-    <text x="150" y="347" class="lbl-b" text-anchor="middle">docker</text>
-    <text x="550" y="115" class="lbl-sm" text-anchor="middle">Your Python process</text>
-    <text x="550" y="230" class="lbl-sm" text-anchor="middle">intercom panel</text>
-  </svg>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A person at a desk speaking into an intercom panel, with three open doorways behind them, each showing a different helper figure waiting to answer."><image href="../img/decks/m11/title-intercom-desk.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;&middot;&nbsp; School of DevOps &amp; AI &nbsp;&middot;&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M11&middot;01</div>
 </section>
 
 <!-- ============ DIVIDER — running a program and reading its answer ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">1 &middot; Running a program and reading its answer</h2>
+<section class="divider">
+  <h2 class="t">Running a program and reading its answer</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A person handing a folded note to a running messenger, who dashes off toward the horizon carrying it."><image href="../img/decks/m11/divider-1-messenger-note.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M11&middot;02</div>
 </section>
 
@@ -236,8 +194,9 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — never let the shell reinterpret ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">2 &middot; Never let the shell reinterpret what you meant to say</h2>
+<section class="divider">
+  <h2 class="t">Never let the shell reinterpret what you meant to say</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A row of five people standing in a line, each whispering into the next person's ear, a game-of-telephone chain."><image href="../img/decks/m11/divider-2-whisper-chain.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M11&middot;04</div>
 </section>
 
@@ -342,8 +301,9 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — CLI, SDK, or not Python ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">3 &middot; Deciding: wrap a CLI, call an SDK, or step back from Python entirely</h2>
+<section class="divider">
+  <h2 class="t">Deciding: wrap a CLI, call an SDK, or step back from Python entirely</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A person standing at a crossroads facing three blank signposts pointing down three different paths."><image href="../img/decks/m11/divider-3-crossroads.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M11&middot;07</div>
 </section>
 
@@ -395,8 +355,9 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — a deadline for every external command ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">4 &middot; A deadline for every external command</h2>
+<section class="divider">
+  <h2 class="t">A deadline for every external command</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A kitchen timer ticking down on a table, next to a closed door with a person waiting patiently beside it."><image href="../img/decks/m11/divider-4-timer-door.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M11&middot;09</div>
 </section>
 
@@ -450,8 +411,9 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — git and docker, from Python ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">5 &middot; git and docker, from Python</h2>
+<section class="divider">
+  <h2 class="t">git and docker, from Python</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="An open toolbox with wrenches and a hammer on a workbench, next to a small stacked shipping crate with a rope handle."><image href="../img/decks/m11/divider-5-toolbox-crate.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M11&middot;11</div>
 </section>
 
@@ -744,6 +706,7 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ SLIDE 13 — Now build v0.9 (closing) ============ -->
 <section>
+  <p class="kicker">MODULE 11 &nbsp;&middot;&nbsp; AI-POWERED PYTHON FOR DEVOPS, PLATFORM ENGINEERING &amp; SRE</p>
   <h2 class="t" style="font-size:1.8em">Now build v0.9 &mdash; wrapping git and docker safely</h2>
   <p class="s" style="font-size:1.2em">same three rules, applied to local tools</p>
   <svg viewBox="0 0 1100 340" role="img" aria-label="Two-panel hand-off card. Left: git_status, git_log, docker_info following three rules, and container_list with NDJSON parsing. Right (green): check-security using subprocess to find unsafe subprocess, and v0.9 Local Operations Adapter.">
@@ -817,7 +780,7 @@ footer, header, hgroup, main, menu, nav, section {
       if(!sec) return;
       var svg = sec.querySelector('svg');
       if(!svg) return;
-      var mh = 58;
+      var mh = sec.classList.contains('divider') ? 80 : 58;
       svg.style.maxHeight = mh + '%';
       var guard = 0;
       while (sec.scrollHeight > sec.clientHeight + 2 && mh > 18 && guard++ < 20){
