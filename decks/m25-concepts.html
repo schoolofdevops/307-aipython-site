@@ -115,7 +115,8 @@ footer, header, hgroup, main, menu, nav, section {
 
   /* Section divider slides (style guide §3a) — title only, centered */
   .reveal .slides section.divider{ justify-content:center; align-items:center; }
-  .reveal .slides section.divider h2.t{ order:0; font-size:2.2em; max-width:88%; }
+  .reveal .slides section.divider h2.t{ order:2; font-size:1.1em; max-width:76%; }
+  .reveal .slides section.divider svg{ order:1; }
 </style>
 </head>
 <body>
@@ -143,48 +144,15 @@ footer, header, hgroup, main, menu, nav, section {
   <p class="kicker">MODULE 25 &nbsp;&middot;&nbsp; AI-POWERED PYTHON FOR DEVOPS &amp; SRE</p>
   <h2 class="t" style="font-size:1.8em">Safe Cloud Remediation</h2>
   <p class="s" style="font-size:1.2em">plan it, approve it, do it, write it down</p>
-  <svg viewBox="0 0 1100 300" role="img" aria-label="A four step pipeline: doctor's order, nurse's check, medication given, chart entry, labelled underneath plan, approve, execute, log.">
-    <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <rect x="30" y="70" width="230" height="90" rx="10"/>
-    </g>
-    <text x="145" y="105" text-anchor="middle" class="lbl-b">doctor's order</text>
-    <text x="145" y="130" text-anchor="middle" class="lbl-sm">drug, dose, reason</text>
-    <text x="145" y="185" text-anchor="middle" class="lbl-g">plan</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <path d="M260,115 L305,115" marker-end="url(#ah)"/>
-    </g>
-    <g filter="url(#rough)" fill="#ffe6cc" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <rect x="312" y="70" width="230" height="90" rx="10"/>
-    </g>
-    <text x="427" y="105" text-anchor="middle" class="lbl-b">nurse's check</text>
-    <text x="427" y="130" text-anchor="middle" class="lbl-sm">against the chart</text>
-    <text x="427" y="185" text-anchor="middle" class="lbl-g">approve</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <path d="M542,115 L587,115" marker-end="url(#ah)"/>
-    </g>
-    <g filter="url(#rough)" fill="#ffe6cc" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <rect x="594" y="70" width="230" height="90" rx="10"/>
-    </g>
-    <text x="709" y="105" text-anchor="middle" class="lbl-b">medication given</text>
-    <text x="709" y="130" text-anchor="middle" class="lbl-sm">the real write call</text>
-    <text x="709" y="185" text-anchor="middle" class="lbl-g">execute</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <path d="M824,115 L869,115" marker-end="url(#ah)"/>
-    </g>
-    <g filter="url(#rough)" fill="#d5e8d4" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <rect x="876" y="70" width="195" height="90" rx="10"/>
-    </g>
-    <text x="973" y="105" text-anchor="middle" class="lbl-b">chart entry</text>
-    <text x="973" y="130" text-anchor="middle" class="lbl-sm">before &amp; after</text>
-    <text x="973" y="185" text-anchor="middle" class="lbl-g">log</text>
-  </svg>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A hand stamps a signed order onto a stack of paper on a desk, standing for a plan that is approved and made official."><image href="../img/decks/m25/title-wax-seal-stamp.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;&middot;&nbsp; School of DevOps &amp; AI &nbsp;&middot;&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M25&middot;01</div>
 </section>
 
 <!-- ============ DIVIDER — section 1 ============ -->
 <section class="divider">
-  <h2 class="t">1 &middot; A doctor's order, not a hallway fix</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A medical chart on a clipboard hangs from the rail of a hospital bed, standing for the written order that guides every step."><image href="../img/decks/m25/divider-1-chart-clipboard.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
+  <h2 class="t">A doctor's order, not a hallway fix</h2>
   <div class="pageno">M25&middot;02</div>
 </section>
 
@@ -192,53 +160,7 @@ footer, header, hgroup, main, menu, nav, section {
 <section>
   <h2 class="t">The doctor writes it, the nurse checks it, the chart remembers it</h2>
   <p class="s">one order, three separate steps</p>
-  <svg viewBox="0 0 1100 360" role="img" aria-label="A doctor figure writes an order pad with drug, dose and reason; an arrow leads to a nurse figure checking a chart against a patient bed; a second arrow leads to a wall-mounted chart being written on.">
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <circle cx="90" cy="70" r="17"/>
-      <line x1="90" y1="87" x2="90" y2="150"/>
-      <line x1="90" y1="105" x2="55" y2="140"/>
-      <line x1="90" y1="105" x2="130" y2="130"/>
-      <line x1="90" y1="150" x2="65" y2="200"/>
-      <line x1="90" y1="150" x2="115" y2="200"/>
-    </g>
-    <text x="90" y="230" text-anchor="middle" class="lbl">the doctor</text>
-    <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <rect x="150" y="115" width="150" height="100" rx="6"/>
-    </g>
-    <text x="225" y="140" text-anchor="middle" class="lbl-sm">order pad</text>
-    <line x1="165" y1="155" x2="285" y2="155" stroke="#757575" stroke-width="1.6"/>
-    <line x1="165" y1="175" x2="285" y2="175" stroke="#757575" stroke-width="1.6"/>
-    <line x1="165" y1="195" x2="255" y2="195" stroke="#757575" stroke-width="1.6"/>
-    <text x="225" y="238" text-anchor="middle" class="lbl-g">drug, dose, reason</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
-      <path d="M305,165 C355,165 370,175 400,180" marker-end="url(#ah)"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <circle cx="460" cy="130" r="17"/>
-      <line x1="460" y1="147" x2="460" y2="210"/>
-      <line x1="460" y1="165" x2="425" y2="200"/>
-      <line x1="460" y1="165" x2="500" y2="190"/>
-      <line x1="460" y1="210" x2="435" y2="260"/>
-      <line x1="460" y1="210" x2="485" y2="260"/>
-    </g>
-    <text x="460" y="290" text-anchor="middle" class="lbl">the nurse, checking</text>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-linecap="round">
-      <rect x="545" y="185" width="150" height="80" rx="8"/>
-    </g>
-    <text x="620" y="230" text-anchor="middle" class="lbl-sm">patient's chart</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
-      <path d="M700,180 C750,170 780,165 815,160" marker-end="url(#ah)"/>
-    </g>
-    <g filter="url(#rough)" fill="#d5e8d4" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
-      <rect x="825" y="60" width="235" height="230" rx="10"/>
-    </g>
-    <text x="942" y="100" text-anchor="middle" class="lbl-b">the chart on the wall</text>
-    <line x1="850" y1="130" x2="1035" y2="130" stroke="#757575" stroke-width="1.6"/>
-    <line x1="850" y1="155" x2="1035" y2="155" stroke="#757575" stroke-width="1.6"/>
-    <line x1="850" y1="180" x2="1010" y2="180" stroke="#757575" stroke-width="1.6"/>
-    <text x="942" y="230" text-anchor="middle" class="lbl-sm">given, how much, when</text>
-    <text x="942" y="255" text-anchor="middle" class="lbl-g" fill="#2e7d32">the record survives</text>
-  </svg>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A doctor writes on a chart at a hospital bedside while a nurse reviews the same chart beside them, standing for the order, the check, and the record all tied to the same document."><image href="../img/decks/m25/analogy-hospital-ward.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <div class="pageno">M25&middot;03</div>
 </section>
 
@@ -328,7 +250,8 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ DIVIDER — section 2 ============ -->
 <section class="divider">
-  <h2 class="t">2 &middot; Two gates, not one</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="Two separate wooden garden gates set in a wall, standing for two independent checks that both must open before a change proceeds."><image href="../img/decks/m25/divider-2-two-gates.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
+  <h2 class="t">Two gates, not one</h2>
   <div class="pageno">M25&middot;06</div>
 </section>
 
@@ -430,7 +353,8 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ DIVIDER — section 3 ============ -->
 <section class="divider">
-  <h2 class="t">3 &middot; Not every finding should be fixed by a machine</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A robotic arm on a factory line selectively lifts one box off a conveyor belt, standing for a machine that only acts on the specific cases it is allowed to handle."><image href="../img/decks/m25/divider-3-robotic-sorting.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
+  <h2 class="t">Not every finding should be fixed by a machine</h2>
   <div class="pageno">M25&middot;10</div>
 </section>
 
@@ -547,7 +471,8 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ DIVIDER — section 4 ============ -->
 <section class="divider">
-  <h2 class="t">4 &middot; Plan first &mdash; and it costs nothing to run twice</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A pencil hovers just above a blank sheet of paper without touching it, standing for a plan that describes a change without making it."><image href="../img/decks/m25/divider-4-pencil-hover.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
+  <h2 class="t">Plan first &mdash; and it costs nothing to run twice</h2>
   <div class="pageno">M25&middot;14</div>
 </section>
 
@@ -587,7 +512,8 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ DIVIDER — section 5 ============ -->
 <section class="divider">
-  <h2 class="t">5 &middot; Re-checking before you act &mdash; the idempotency guarantee</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A hand double-checks a closed front door handle before stepping away, standing for confirming the current state right before acting on it."><image href="../img/decks/m25/divider-5-door-check.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
+  <h2 class="t">Re-checking before you act &mdash; the idempotency guarantee</h2>
   <div class="pageno">M25&middot;16</div>
 </section>
 
@@ -669,7 +595,8 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ DIVIDER — section 6 ============ -->
 <section class="divider">
-  <h2 class="t">6 &middot; The chart: why the audit log is the rollback plan</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="An open logbook with handwritten entries, a quill pen, and a compass resting beside it, standing for a written record that lets you find your way back."><image href="../img/decks/m25/divider-6-logbook.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
+  <h2 class="t">The chart: why the audit log is the rollback plan</h2>
   <div class="pageno">M25&middot;19</div>
 </section>
 
@@ -719,7 +646,8 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ DIVIDER — section 7 ============ -->
 <section class="divider">
-  <h2 class="t">7 &middot; Bounding the blast radius</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A small bonfire burns contained inside a ring of stones in an open field, standing for a change kept inside a fixed, safe boundary."><image href="../img/decks/m25/divider-7-contained-bonfire.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
+  <h2 class="t">Bounding the blast radius</h2>
   <div class="pageno">M25&middot;22</div>
 </section>
 
@@ -750,6 +678,7 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ DIVIDER — common pitfalls ============ -->
 <section class="divider">
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A pothole in a road surface with a traffic cone set beside it, standing for a hazard marked so it can be avoided."><image href="../img/decks/m25/divider-pitfalls-pothole.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/></svg>
   <h2 class="t">Common pitfalls</h2>
   <div class="pageno">M25&middot;24</div>
 </section>
@@ -858,7 +787,7 @@ footer, header, hgroup, main, menu, nav, section {
       if(!sec) return;
       var svg = sec.querySelector('svg');
       if(!svg) return;
-      var mh = 58;
+      var mh = sec.classList.contains('divider') ? 80 : 58;
       svg.style.maxHeight = mh + '%';
       var guard = 0;
       while (sec.scrollHeight > sec.clientHeight + 2 && mh > 18 && guard++ < 20){
