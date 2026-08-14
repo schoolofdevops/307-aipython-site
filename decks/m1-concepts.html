@@ -101,6 +101,9 @@ footer, header, hgroup, main, menu, nav, section {
   .reveal .credit{ order:4; font-size:.85em; color:var(--gray); margin-top:16px; }
   .reveal .credit b{ color:var(--ink); font-weight:700; }
   .reveal .pageno{ position:absolute; bottom:14px; right:22px; font-size:.6em; color:#bdbdbd; }
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:2; font-size:1.1em; max-width:76%; }
+  .reveal .slides section.divider svg{ order:1; }
   .reveal .slide-number{ font-family:'Patrick Hand',cursive; }
   .reveal code{ font-family:'Patrick Hand',cursive; color:var(--ink); }
   .reveal em{ font-style:italic; }
@@ -139,52 +142,19 @@ footer, header, hgroup, main, menu, nav, section {
   <p class="kicker">MODULE 1 &nbsp;·&nbsp; AI-POWERED PYTHON FOR DEVOPS &amp; SRE</p>
   <h2 class="t" style="font-size:2.1em">Python in the AI and Agent Era</h2>
   <p class="s" style="font-size:1.2em">enough Python to build · enough judgment to direct it</p>
-  <svg viewBox="0 0 1100 300" role="img" aria-label="You and a coding agent both feed into one PlatformOps toolkit, which fans out to the module's three questions: why Python, which tool, and what to delegate.">
-    <!-- you: stick figure -->
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
-      <circle cx="160" cy="85" r="16"/>
-      <line x1="160" y1="101" x2="160" y2="150"/>
-      <line x1="160" y1="115" x2="130" y2="140"/>
-      <line x1="160" y1="115" x2="190" y2="140"/>
-      <line x1="160" y1="150" x2="138" y2="185"/>
-      <line x1="160" y1="150" x2="182" y2="185"/>
-    </g>
-    <text x="160" y="215" text-anchor="middle" class="lbl">you</text>
-    <!-- coding agent box -->
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.4" stroke-linecap="round">
-      <rect x="75" y="235" width="170" height="50" rx="9"/>
-    </g>
-    <text x="160" y="266" text-anchor="middle" class="lbl-sm">coding agent</text>
-    <!-- arrows into the toolkit -->
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <path d="M215,130 C300,135 350,140 422,150" marker-end="url(#ah)"/>
-      <path d="M250,255 C330,245 360,215 422,192" marker-end="url(#ah)"/>
-    </g>
-    <!-- the toolkit -->
-    <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="3" stroke-linecap="round">
-      <rect x="430" y="110" width="240" height="110" rx="12"/>
-    </g>
-    <text x="550" y="152" text-anchor="middle" class="lbl-b">PlatformOps Toolkit</text>
-    <text x="550" y="185" text-anchor="middle" class="lbl-g">v0.0 &rarr; v3.0</text>
-    <!-- fan-out to the three questions -->
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.2" stroke-linecap="round">
-      <path d="M515,225 L440,262" marker-end="url(#ahg)"/>
-      <path d="M550,225 L550,262" marker-end="url(#ahg)"/>
-      <path d="M590,225 L675,262" marker-end="url(#ahg)"/>
-    </g>
-    <g class="lbl-g" text-anchor="middle">
-      <text x="415" y="292">why Python</text>
-      <text x="550" y="292">which tool</text>
-      <text x="705" y="292">what to delegate</text>
-    </g>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A human hand and a robot hand both reach to type on the same laptop keyboard, side by side.">
+    <image href="../img/decks/m1/title-shared-keyboard.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
   </svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI &nbsp;·&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M1·01</div>
 </section>
 
 <!-- ============ DIVIDER — what are we building ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">What are we building in this course?</h2>
+<section class="divider">
+  <h2 class="t">What are we building in this course?</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="An open wooden toolbox with tools neatly arranged inside, a small toy robot sitting beside it.">
+    <image href="../img/decks/m1/divider-0-toolbox.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M1·02</div>
 </section>
 
@@ -339,8 +309,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — why learn Python ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">1 &middot; Why learn Python when agents write Python?</h2>
+<section class="divider">
+  <h2 class="t">Why learn Python when agents write Python?</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A person sitting at a laptop, hands on the keyboard, leaning in with a thoughtful expression.">
+    <image href="../img/decks/m1/divider-1-thinking-laptop.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M1·06</div>
 </section>
 
@@ -348,48 +321,8 @@ footer, header, hgroup, main, menu, nav, section {
 <section>
   <h2 class="t">Autopilot flies the plane; the pilot is there for when it goes wrong</h2>
   <p class="s">you can’t take over a plane you never learned to fly</p>
-  <svg viewBox="0 0 1100 360" role="img" aria-label="A cockpit scene: a pilot sits at the yoke with the autopilot panel switched on, watching a red trouble spot on the horizon through the windshield that only a trained pilot would catch.">
-    <!-- windshield -->
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
-      <rect x="120" y="40" width="560" height="190" rx="18"/>
-    </g>
-    <!-- horizon -->
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-linecap="round">
-      <line x1="140" y1="150" x2="660" y2="150"/>
-    </g>
-    <!-- trouble on the horizon -->
-    <g filter="url(#rough)" fill="#f8cecc" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
-      <circle cx="540" cy="118" r="10"/>
-    </g>
-    <text x="540" y="85" text-anchor="middle" class="lbl-sm" fill="#c62828">trouble ahead</text>
-    <!-- pilot at the yoke -->
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <circle cx="240" cy="255" r="17"/>
-      <line x1="240" y1="272" x2="240" y2="315"/>
-      <line x1="240" y1="285" x2="295" y2="270"/>
-      <line x1="240" y1="315" x2="222" y2="342"/>
-      <line x1="240" y1="315" x2="258" y2="342"/>
-      <path d="M296,258 a14,14 0 1,1 14,14"/>
-      <line x1="308" y1="276" x2="308" y2="300"/>
-    </g>
-    <text x="150" y="358" text-anchor="middle" class="lbl">the pilot &mdash; you</text>
-    <!-- watching arrow -->
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-dasharray="5 6" stroke-linecap="round">
-      <path d="M262,240 C340,195 440,160 522,130" marker-end="url(#ahg)"/>
-    </g>
-    <!-- autopilot panel -->
-    <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <rect x="430" y="255" width="220" height="64" rx="10"/>
-    </g>
-    <text x="540" y="283" text-anchor="middle" class="lbl-b">AUTOPILOT ON</text>
-    <text x="540" y="308" text-anchor="middle" class="lbl-g">flying smoothly</text>
-    <!-- gloss -->
-    <g class="lbl-g" text-anchor="middle">
-      <text x="885" y="120">autopilot flies most</text>
-      <text x="885" y="148">of every flight</text>
-      <text x="885" y="215">the pilot&rsquo;s job &mdash; see it</text>
-      <text x="885" y="243">go wrong, take over</text>
-    </g>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A pilot's hands rest near the control yoke inside an airplane cockpit, an autopilot switch panel lit up beside them, looking out through the windshield at the horizon.">
+    <image href="../img/decks/m1/analogy-pilot-autopilot.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
   </svg>
   <div class="pageno">M1·07</div>
 </section>
@@ -459,8 +392,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — Python vs the toolbox ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">2 &middot; Python against the rest of your toolbox</h2>
+<section class="divider">
+  <h2 class="t">Python against the rest of your toolbox</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A wooden signpost at a crossroads in an open field, several blank arrow signs pointing in different directions.">
+    <image href="../img/decks/m1/divider-2-signpost.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M1·10</div>
 </section>
 
@@ -468,76 +404,8 @@ footer, header, hgroup, main, menu, nav, section {
 <section>
   <h2 class="t">Every tool is a vehicle built for a trip</h2>
   <p class="s">no truck to the corner shop · no bicycle to shift house</p>
-  <svg viewBox="0 0 1100 380" role="img" aria-label="A street scene with five stations: a walking figure for Bash, a daily van for Python, a freight truck for Go, a permit office building for Terraform, and a moving crew carrying a box for Ansible.">
-    <!-- road -->
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-linecap="round">
-      <line x1="50" y1="305" x2="1050" y2="305"/>
-    </g>
-    <!-- Bash: walker -->
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <circle cx="115" cy="205" r="13"/>
-      <line x1="115" y1="218" x2="115" y2="258"/>
-      <line x1="115" y1="230" x2="92" y2="252"/>
-      <line x1="115" y1="230" x2="140" y2="248"/>
-      <line x1="115" y1="258" x2="94" y2="300"/>
-      <line x1="115" y1="258" x2="140" y2="298"/>
-    </g>
-    <!-- Python: the daily van (protagonist, blue) -->
-    <g filter="url(#rough)" fill="#dae8fc" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
-      <rect x="250" y="235" width="160" height="55" rx="8"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <line x1="370" y1="235" x2="370" y2="290"/>
-      <circle cx="285" cy="296" r="10"/>
-      <circle cx="385" cy="296" r="10"/>
-    </g>
-    <!-- Go: freight truck -->
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <rect x="470" y="215" width="170" height="75" rx="6"/>
-      <rect x="640" y="245" width="42" height="45" rx="5"/>
-      <circle cx="510" cy="297" r="10"/>
-      <circle cx="590" cy="297" r="10"/>
-      <circle cx="662" cy="297" r="10"/>
-    </g>
-    <!-- Terraform: permit office -->
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <rect x="720" y="190" width="120" height="112" rx="4"/>
-      <rect x="762" y="266" width="34" height="36"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-linecap="round">
-      <rect x="737" y="212" width="26" height="24"/>
-      <rect x="797" y="212" width="26" height="24"/>
-    </g>
-    <text x="780" y="178" text-anchor="middle" class="lbl-sm">PERMIT OFFICE</text>
-    <!-- Ansible: moving crew -->
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <circle cx="915" cy="212" r="12"/>
-      <line x1="915" y1="224" x2="915" y2="262"/>
-      <line x1="915" y1="235" x2="945" y2="252"/>
-      <line x1="915" y1="262" x2="900" y2="300"/>
-      <line x1="915" y1="262" x2="930" y2="300"/>
-      <circle cx="1025" cy="212" r="12"/>
-      <line x1="1025" y1="224" x2="1025" y2="262"/>
-      <line x1="1025" y1="235" x2="995" y2="252"/>
-      <line x1="1025" y1="262" x2="1010" y2="300"/>
-      <line x1="1025" y1="262" x2="1040" y2="300"/>
-      <rect x="945" y="240" width="50" height="34" rx="4"/>
-    </g>
-    <!-- labels -->
-    <g class="lbl-sm" text-anchor="middle">
-      <text x="115" y="338">Bash &mdash; the walk</text>
-      <text x="330" y="338">Python &mdash; the daily van</text>
-      <text x="565" y="338">Go &mdash; the freight truck</text>
-      <text x="780" y="338">Terraform &mdash; permits</text>
-      <text x="970" y="338">Ansible &mdash; the crew</text>
-    </g>
-    <g class="lbl-g" text-anchor="middle">
-      <text x="115" y="366">quick trips</text>
-      <text x="330" y="366">carries structure, daily</text>
-      <text x="565" y="366">one binary, many nodes</text>
-      <text x="780" y="366">say what you want; it matches it</text>
-      <text x="970" y="366">config, with a checklist</text>
-    </g>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A street with three different vehicles parked in a row — a bicycle, a delivery van, and a large freight truck — each a different size, in front of a row of shopfronts.">
+    <image href="../img/decks/m1/analogy-vehicles-row.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
   </svg>
   <div class="pageno">M1·11</div>
 </section>
@@ -627,8 +495,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — the solution ladder ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">3 &middot; The solution ladder — pick the smallest thing that works</h2>
+<section class="divider">
+  <h2 class="t">The solution ladder — pick the smallest thing that works</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A wooden staircase with four steps, each step a little bigger and higher than the last.">
+    <image href="../img/decks/m1/divider-3-staircase.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M1·14</div>
 </section>
 
@@ -769,8 +640,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — what you write, what you delegate ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">4 &middot; What you write, what you delegate</h2>
+<section class="divider">
+  <h2 class="t">What you write, what you delegate</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A clipboard with a checklist of blank lines and empty checkboxes, a pen resting diagonally across it.">
+    <image href="../img/decks/m1/divider-4-checklist.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M1·18</div>
 </section>
 
@@ -778,68 +652,8 @@ footer, header, hgroup, main, menu, nav, section {
 <section>
   <h2 class="t">A faster contractor means more inspection, not less</h2>
   <p class="s">the work appears faster than you can watch it happen</p>
-  <svg viewBox="0 0 1100 360" role="img" aria-label="A construction scene: a contractor pours concrete at speed on the left while an inspector with a clipboard checks a load-bearing wall and a sign-off sheet waits with a check mark.">
-    <!-- ground -->
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-linecap="round">
-      <line x1="70" y1="270" x2="1030" y2="270"/>
-    </g>
-    <!-- speed lines -->
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-linecap="round">
-      <line x1="85" y1="140" x2="120" y2="140"/>
-      <line x1="78" y1="165" x2="113" y2="165"/>
-      <line x1="85" y1="190" x2="120" y2="190"/>
-    </g>
-    <!-- contractor pouring -->
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <circle cx="175" cy="130" r="15"/>
-      <line x1="175" y1="145" x2="175" y2="225"/>
-      <line x1="175" y1="160" x2="225" y2="120"/>
-      <line x1="175" y1="225" x2="158" y2="270"/>
-      <line x1="175" y1="225" x2="192" y2="270"/>
-      <path d="M218,100 L272,88 L280,122 L226,134 Z"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-dasharray="4 6" stroke-linecap="round">
-      <path d="M278,125 C300,150 320,170 335,188"/>
-    </g>
-    <!-- fresh pour -->
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2.2" stroke-linecap="round">
-      <rect x="310" y="192" width="130" height="78" rx="4"/>
-    </g>
-    <!-- load-bearing wall -->
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.8" stroke-linecap="round">
-      <rect x="560" y="90" width="80" height="180" rx="3"/>
-      <line x1="560" y1="150" x2="640" y2="150"/>
-      <line x1="560" y1="210" x2="640" y2="210"/>
-    </g>
-    <!-- inspector -->
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.6" stroke-linecap="round">
-      <circle cx="760" cy="130" r="15"/>
-      <line x1="760" y1="145" x2="760" y2="225"/>
-      <line x1="760" y1="165" x2="800" y2="185"/>
-      <line x1="760" y1="225" x2="744" y2="270"/>
-      <line x1="760" y1="225" x2="776" y2="270"/>
-      <rect x="798" y="172" width="44" height="58" rx="4"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-dasharray="5 6" stroke-linecap="round">
-      <path d="M742,122 C700,108 672,105 648,112" marker-end="url(#ahg)"/>
-    </g>
-    <!-- sign-off sheet -->
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <rect x="900" y="105" width="120" height="95" rx="8"/>
-      <line x1="918" y1="130" x2="1000" y2="130"/>
-      <line x1="918" y1="150" x2="1000" y2="150"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="3" stroke-linecap="round">
-      <path d="M930,178 L948,192 L988,158"/>
-    </g>
-    <!-- labels -->
-    <g class="lbl-g" text-anchor="middle">
-      <text x="175" y="305">the contractor &mdash; fast</text>
-      <text x="375" y="305">fresh pour</text>
-      <text x="600" y="305">load-bearing wall</text>
-      <text x="775" y="337">you inspect</text>
-      <text x="960" y="235">you sign off</text>
-    </g>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A construction site: one worker pours concrete quickly from a wheelbarrow on the left, a second worker examines a brick wall closely while holding a clipboard.">
+    <image href="../img/decks/m1/analogy-contractor-inspector.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
   </svg>
   <div class="pageno">M1·19</div>
 </section>
@@ -920,8 +734,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — the PlatformOps Toolkit ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">5 &middot; The PlatformOps Toolkit — the one project you build through this course</h2>
+<section class="divider">
+  <h2 class="t">The PlatformOps Toolkit — the one project you build through this course</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="An architectural blueprint on a table with a small toolbox sitting on top of it, a compass and ruler beside it.">
+    <image href="../img/decks/m1/divider-5-blueprint-toolbox.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M1·22</div>
 </section>
 
@@ -1043,6 +860,7 @@ footer, header, hgroup, main, menu, nav, section {
 
 <!-- ============ SLIDE 20 — CLOSING ============ -->
 <section>
+  <p class="kicker">MODULE 1 &nbsp;·&nbsp; AI-POWERED PYTHON FOR DEVOPS &amp; SRE</p>
   <h2 class="t">What to carry out of Module 1</h2>
   <p class="s">your deliverable is decisions you can defend</p>
   <svg viewBox="0 0 1100 340" role="img" aria-label="A four-step recap — run the ladder question, let the table rule out Python, delegate then inspect, walk the architecture map — beside a card describing the Module 1 lab: eight requirements, one worksheet, a checker.">
@@ -1112,7 +930,7 @@ footer, header, hgroup, main, menu, nav, section {
       if(!sec) return;
       var svg = sec.querySelector('svg');
       if(!svg) return;
-      var mh = 58;
+      var mh = sec.classList.contains('divider') ? 80 : 58;
       svg.style.maxHeight = mh + '%';
       var guard = 0;
       while (sec.scrollHeight > sec.clientHeight + 2 && mh > 18 && guard++ < 20){
