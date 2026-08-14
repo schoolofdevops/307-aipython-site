@@ -101,6 +101,9 @@ footer, header, hgroup, main, menu, nav, section {
   .reveal .credit{ order:4; font-size:.85em; color:var(--gray); margin-top:16px; }
   .reveal .credit b{ color:var(--ink); font-weight:700; }
   .reveal .pageno{ position:absolute; bottom:14px; right:22px; font-size:.6em; color:#bdbdbd; }
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:2; font-size:1.1em; max-width:76%; }
+  .reveal .slides section.divider svg{ order:1; }
   .reveal .slide-number{ font-family:'Patrick Hand',cursive; }
   .reveal code{ font-family:'Patrick Hand',cursive; color:var(--ink); }
   .reveal em{ font-style:italic; }
@@ -139,38 +142,19 @@ footer, header, hgroup, main, menu, nav, section {
   <p class="kicker">MODULE 17 &nbsp;&middot;&nbsp; AI-Powered Python for DevOps, Platform Engineering &amp; SRE</p>
   <h2 class="t" style="font-size:1.8em">Designing a High-Quality SKILL.md</h2>
   <p class="s" style="font-size:1.2em">Five sections floating in, waiting to land into one card</p>
-  <svg viewBox="0 0 1100 320" role="img" aria-label="A blank SKILL.md card sits on a page with a pencil beside it, while five section labels — trigger, preconditions, steps, output, failure handling — float above it, each connected by a dashed arrow about to land into place.">
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="3" stroke-dasharray="7 6">
-      <rect x="410" y="150" width="280" height="150" rx="12" fill="var(--p-blue)"/>
-    </g>
-    <text x="550" y="185" text-anchor="middle" class="lbl-b" style="font-size:26px">SKILL.md</text>
-    <text x="550" y="215" text-anchor="middle" class="lbl-g">(blank, waiting)</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <line x1="330" y1="290" x2="400" y2="240"/>
-      <line x1="330" y1="290" x2="340" y2="278"/>
-    </g>
-    <g class="lbl-b" fill="#1e1e1e">
-      <text x="110" y="40" text-anchor="middle">trigger</text>
-      <text x="310" y="30" text-anchor="middle">preconditions</text>
-      <text x="550" y="24" text-anchor="middle">steps</text>
-      <text x="800" y="30" text-anchor="middle">output</text>
-      <text x="1000" y="40" text-anchor="middle">failure handling</text>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-dasharray="6 5">
-      <path d="M110,55 C160,90 350,120 460,152" marker-end="url(#ahg)"/>
-      <path d="M310,45 C360,80 440,110 500,150" marker-end="url(#ahg)"/>
-      <path d="M550,38 C550,70 550,110 550,148" marker-end="url(#ahg)"/>
-      <path d="M800,45 C750,80 660,110 600,150" marker-end="url(#ahg)"/>
-      <path d="M1000,55 C950,90 750,120 640,152" marker-end="url(#ahg)"/>
-    </g>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A blank laminated card pinned to a corkboard, with several blank sticky notes floating around it, each connected by a light dashed line.">
+    <image href="../img/decks/m17/title-card-landing.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
   </svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;&middot;&nbsp; School of DevOps &amp; AI &nbsp;&middot;&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M17&middot;01</div>
 </section>
 
 <!-- ============ DIVIDER — the runbook analogy ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">1 &middot; The runbook analogy</h2>
+<section class="divider">
+  <h2 class="t">The runbook analogy</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A laminated runbook card pinned to a wall next to a landline phone at an on-call station desk.">
+    <image href="../img/decks/m17/divider-1-runbook-station.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M17&middot;02</div>
 </section>
 
@@ -227,8 +211,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — trigger descriptions ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">2 &middot; Trigger descriptions — a misfire vs a miss</h2>
+<section class="divider">
+  <h2 class="t">Trigger descriptions — a misfire vs a miss</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A motion-sensor security light mounted on a house wall, switched on and glowing, with a cat walking on the ground below it.">
+    <image href="../img/decks/m17/divider-2-motion-light-cat.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M17&middot;04</div>
 </section>
 
@@ -308,8 +295,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — structuring the body ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">3 &middot; Structuring the body — five parts, five reasons</h2>
+<section class="divider">
+  <h2 class="t">Structuring the body — five parts, five reasons</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="Two hands assembling a jigsaw puzzle, five large puzzle pieces coming together on a table, one piece still being placed.">
+    <image href="../img/decks/m17/divider-3-jigsaw.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M17&middot;07</div>
 </section>
 
@@ -509,8 +499,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — agent-neutral core ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">4 &middot; An agent-neutral core, with extensions kept separate</h2>
+<section class="divider">
+  <h2 class="t">An agent-neutral core, with extensions kept separate</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A universal travel power adapter plugged into a wall socket, with several different plug attachments laid out on a table beside it.">
+    <image href="../img/decks/m17/divider-4-universal-adapter.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M17&middot;13</div>
 </section>
 
@@ -575,8 +568,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — a skill's lifecycle ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">5 &middot; A skill's lifecycle</h2>
+<section class="divider">
+  <h2 class="t">A skill's lifecycle</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="An alarm clock sitting quietly on a nightstand in a dim bedroom, waiting.">
+    <image href="../img/decks/m17/divider-5-alarm-clock.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M17&middot;16</div>
 </section>
 
@@ -650,8 +646,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER — common pitfalls ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">Common pitfalls</h2>
+<section class="divider">
+  <h2 class="t">Common pitfalls</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A warning traffic cone standing next to a large pothole in a road.">
+    <image href="../img/decks/m17/divider-6-pothole-cone.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M17&middot;18</div>
 </section>
 
@@ -754,7 +753,7 @@ footer, header, hgroup, main, menu, nav, section {
       if(!sec) return;
       var svg = sec.querySelector('svg');
       if(!svg) return;
-      var mh = 58;
+      var mh = sec.classList.contains('divider') ? 80 : 58;
       svg.style.maxHeight = mh + '%';
       var guard = 0;
       while (sec.scrollHeight > sec.clientHeight + 2 && mh > 18 && guard++ < 20){
