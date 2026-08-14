@@ -101,6 +101,9 @@ footer, header, hgroup, main, menu, nav, section {
   .reveal .credit{ order:4; font-size:.85em; color:var(--gray); margin-top:16px; }
   .reveal .credit b{ color:var(--ink); font-weight:700; }
   .reveal .pageno{ position:absolute; bottom:14px; right:22px; font-size:.6em; color:#bdbdbd; }
+  .reveal .slides section.divider{ justify-content:center; align-items:center; }
+  .reveal .slides section.divider h2.t{ order:2; font-size:1.1em; max-width:76%; }
+  .reveal .slides section.divider svg{ order:1; }
   .reveal .slide-number{ font-family:'Patrick Hand',cursive; }
   .reveal code{ font-family:'Patrick Hand',cursive; color:var(--ink); }
   .reveal em{ font-style:italic; }
@@ -138,29 +141,8 @@ footer, header, hgroup, main, menu, nav, section {
   <p class="kicker">MODULE 16 &nbsp;·&nbsp; AI-Powered Python for DevOps, Platform Engineering &amp; SRE</p>
   <h2 class="t" style="font-size:2.1em">Agent Skills: The Correct Mental Model</h2>
   <p class="s" style="font-size:1.2em">A procedure only some tasks need gets its own card, not a spot in CLAUDE.md.</p>
-  <svg viewBox="0 0 1100 300" role="img" aria-label="A rules card labeled review a service definition slides out of a large document labeled CLAUDE dot md into its own small folder labeled skill.">
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.8">
-      <rect x="70" y="60" width="230" height="180" rx="10" fill="#dae8fc"/>
-    </g>
-    <text x="185" y="95" text-anchor="middle" class="lbl-b">CLAUDE.md</text>
-    <g stroke="#1e1e1e" stroke-width="1.6" opacity="0.6">
-      <line x1="95" y1="115" x2="275" y2="115"/>
-      <line x1="95" y1="140" x2="275" y2="140"/>
-      <line x1="95" y1="165" x2="275" y2="165"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#c62828" stroke-width="2.2" stroke-dasharray="6 5">
-      <rect x="95" y="185" width="180" height="34" rx="6" fill="#f8cecc"/>
-    </g>
-    <text x="185" y="207" text-anchor="middle" class="lbl-sm">review a service def</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <path d="M300,200 C400,200 430,150 520,140" marker-end="url(#ah)"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="3">
-      <rect x="540" y="90" width="220" height="120" rx="12" fill="#d5e8d4"/>
-    </g>
-    <text x="650" y="130" text-anchor="middle" class="lbl-b">skill</text>
-    <text x="650" y="160" text-anchor="middle" class="lbl-sm">review a service def</text>
-    <text x="650" y="185" text-anchor="middle" class="lbl-g">read only on demand</text>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A hand pulls one blank recipe card out of a wooden recipe card box, a thick closed rulebook binder sitting nearby on the counter.">
+    <image href="../img/decks/m16/title-recipe-card-pull.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
   </svg>
   <p class="credit"><b>Gourav Shah</b> &nbsp;·&nbsp; School of DevOps &amp; AI &nbsp;·&nbsp; Lesson + Lab + Quiz</p>
   <div class="pageno">M16&middot;01</div>
@@ -222,8 +204,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">1 &middot; The kitchen analogy &mdash; house rules vs. a recipe card</h2>
+<section class="divider">
+  <h2 class="t">The kitchen analogy &mdash; house rules vs. a recipe card</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A professional restaurant kitchen with stainless steel counters and hanging pots, empty of people, early morning light.">
+    <image href="../img/decks/m16/divider-1-kitchen-empty.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M16&middot;03</div>
 </section>
 
@@ -231,40 +216,8 @@ footer, header, hgroup, main, menu, nav, section {
 <section>
   <h2 class="t">Every cook reads the poster, every shift</h2>
   <p class="s">The poster is CLAUDE.md — rules every task needs, always</p>
-  <svg viewBox="0 0 1100 380" role="img" aria-label="A house rules poster pinned by the kitchen door lists wash hands, label containers, and ask before substituting. A line of three cooks each read the poster at the start of their shift, no matter what they cook that day.">
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.8">
-      <rect x="410" y="40" width="280" height="170" rx="8" fill="#ffe6cc"/>
-    </g>
-    <text x="550" y="72" text-anchor="middle" class="lbl-b">HOUSE RULES</text>
-    <g class="lbl-sm" fill="#1e1e1e">
-      <text x="435" y="108">wash hands</text>
-      <text x="435" y="140">label containers</text>
-      <text x="435" y="172">ask before substituting</text>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-dasharray="5 5">
-      <path d="M480,255 C500,235 520,220 500,210" marker-end="url(#ahg)"/>
-      <path d="M550,270 C550,245 550,225 550,212" marker-end="url(#ahg)"/>
-      <path d="M620,255 C600,235 580,220 600,210" marker-end="url(#ahg)"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
-      <circle cx="480" cy="280" r="18"/>
-      <line x1="480" y1="298" x2="480" y2="335"/>
-      <line x1="480" y1="310" x2="455" y2="325"/>
-      <line x1="480" y1="310" x2="505" y2="325"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
-      <circle cx="550" cy="290" r="18"/>
-      <line x1="550" y1="308" x2="550" y2="345"/>
-      <line x1="550" y1="320" x2="525" y2="335"/>
-      <line x1="550" y1="320" x2="575" y2="335"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
-      <circle cx="620" cy="280" r="18"/>
-      <line x1="620" y1="298" x2="620" y2="335"/>
-      <line x1="620" y1="310" x2="595" y2="325"/>
-      <line x1="620" y1="310" x2="645" y2="325"/>
-    </g>
-    <text x="550" y="370" text-anchor="middle" class="lbl-g">three different shifts, same poster, every time</text>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A poster pinned beside a kitchen door, a line of three cooks in white uniforms filing past it, each glancing up as they enter.">
+    <image href="../img/decks/m16/analogy-poster-line.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
   </svg>
   <div class="pageno">M16&middot;04</div>
 </section>
@@ -273,40 +226,8 @@ footer, header, hgroup, main, menu, nav, section {
 <section>
   <h2 class="t">One card, pulled only when that dish is on the menu</h2>
   <p class="s">The recipe card is a skill — read only when the task needs it</p>
-  <svg viewBox="0 0 1100 380" role="img" aria-label="A recipe box sits on a drawer by the stove. A cook pulls out one card labeled tonight's special only because that dish is on the menu, follows it, and puts it back untouched otherwise.">
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4">
-      <rect x="90" y="150" width="150" height="110" rx="6" fill="#e1d5e7"/>
-    </g>
-    <text x="165" y="180" text-anchor="middle" class="lbl-b">recipe box</text>
-    <g stroke="#1e1e1e" stroke-width="1.6" opacity="0.6">
-      <line x1="110" y1="200" x2="220" y2="200"/>
-      <line x1="110" y1="215" x2="220" y2="215"/>
-      <line x1="110" y1="230" x2="220" y2="230"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.4" stroke-linecap="round">
-      <path d="M245,205 C310,205 330,150 400,135" marker-end="url(#ah)"/>
-    </g>
-    <text x="330" y="175" text-anchor="middle" class="lbl-g">tonight's special is on the menu</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.8">
-      <rect x="420" y="70" width="220" height="130" rx="8" fill="#d5e8d4"/>
-    </g>
-    <text x="530" y="102" text-anchor="middle" class="lbl-b">tonight's special</text>
-    <g stroke="#1e1e1e" stroke-width="1.6" opacity="0.6">
-      <line x1="440" y1="122" x2="620" y2="122"/>
-      <line x1="440" y1="140" x2="620" y2="140"/>
-      <line x1="440" y1="158" x2="580" y2="158"/>
-    </g>
-    <g filter="url(#rough)" fill="none" stroke="#757575" stroke-width="2" stroke-dasharray="5 5">
-      <path d="M530,200 C530,260 300,290 240,262" marker-end="url(#ahg)"/>
-    </g>
-    <text x="420" y="300" text-anchor="middle" class="lbl-g">put back — rest of the box untouched</text>
-    <g filter="url(#rough)" fill="none" stroke="#1e1e1e" stroke-width="2.2" stroke-linecap="round">
-      <circle cx="800" cy="200" r="22"/>
-      <line x1="800" y1="222" x2="800" y2="270"/>
-      <line x1="800" y1="238" x2="765" y2="258"/>
-      <line x1="800" y1="238" x2="835" y2="258"/>
-    </g>
-    <text x="800" y="305" text-anchor="middle" class="lbl-g">the cook, holding one card</text>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A chef's hand pulls one recipe card from a wooden card box on the counter, a pot simmering on the stove just behind.">
+    <image href="../img/decks/m16/analogy-recipe-card.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
   </svg>
   <div class="pageno">M16&middot;05</div>
 </section>
@@ -350,8 +271,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">2 &middot; Inside a SKILL.md</h2>
+<section class="divider">
+  <h2 class="t">Inside a SKILL.md</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A single index card held up to the light, a visible fold crease dividing it into a short top section and a longer bottom section, both blank.">
+    <image href="../img/decks/m16/divider-2-index-card-fold.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M16&middot;07</div>
 </section>
 
@@ -444,8 +368,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">3 &middot; Progressive disclosure &mdash; why the agent does not load every skill at once</h2>
+<section class="divider">
+  <h2 class="t">Progressive disclosure &mdash; why the agent does not load every skill at once</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A finger quickly scanning down a long shelf of blank labeled folder spines, one folder pulled halfway out.">
+    <image href="../img/decks/m16/divider-3-scanning-shelf.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M16&middot;10</div>
 </section>
 
@@ -507,8 +434,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">4 &middot; The five-way taxonomy &mdash; where the line actually falls</h2>
+<section class="divider">
+  <h2 class="t">The five-way taxonomy &mdash; where the line actually falls</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="Five different wooden crates arranged in a row on a workshop floor, each a slightly different size and shape, sorted neatly.">
+    <image href="../img/decks/m16/divider-4-five-crates.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M16&middot;12</div>
 </section>
 
@@ -579,8 +509,11 @@ footer, header, hgroup, main, menu, nav, section {
 </section>
 
 <!-- ============ DIVIDER ============ -->
-<section>
-  <h2 class="t" style="font-size:2.2em">5 &middot; What makes a good skill boundary</h2>
+<section class="divider">
+  <h2 class="t">What makes a good skill boundary</h2>
+  <svg viewBox="0 0 1600 900" role="img" aria-label="A low garden fence dividing two plots of land, one side neatly trimmed with straight rows, the other side left wild and overgrown.">
+    <image href="../img/decks/m16/divider-5-fence-boundary.jpg" x="0" y="0" width="1600" height="900" preserveAspectRatio="xMidYMid meet"/>
+  </svg>
   <div class="pageno">M16&middot;15</div>
 </section>
 
@@ -750,7 +683,7 @@ footer, header, hgroup, main, menu, nav, section {
       if(!sec) return;
       var svg = sec.querySelector('svg');
       if(!svg) return;
-      var mh = 58;
+      var mh = sec.classList.contains('divider') ? 80 : 58;
       svg.style.maxHeight = mh + '%';
       var guard = 0;
       while (sec.scrollHeight > sec.clientHeight + 2 && mh > 18 && guard++ < 20){
